@@ -1,0 +1,39 @@
+{{ 'monster-lupas.css' | asset_url | stylesheet_tag }}
+
+<div class="ml-instagram-bar">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+  <span class="ml-instagram-bar__label">{{ section.settings.label }}</span>
+  <a class="ml-instagram-bar__handle" href="{{ section.settings.instagram_url | default: '#' }}" target="_blank" rel="noopener">{{ section.settings.handle }}</a>
+</div>
+
+{% schema %}
+{
+  "name": "Faixa Instagram",
+  "tag": "section",
+  "class": "section-ml-instagram",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Texto",
+      "default": "Siga-nos no Instagram"
+    },
+    {
+      "type": "text",
+      "id": "handle",
+      "label": "@ exibido",
+      "default": "@monsterlupas"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Link do Instagram"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Faixa Instagram"
+    }
+  ]
+}
+{% endschema %}

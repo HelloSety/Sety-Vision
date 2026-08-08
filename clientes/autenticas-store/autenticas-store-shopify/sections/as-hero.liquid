@@ -1,0 +1,121 @@
+{{ 'autenticas-store.css' | asset_url | stylesheet_tag }}
+
+<section class="as-hero">
+  <div class="as-hero-img">
+    <img
+      src="{{ section.settings.image_file | asset_url }}"
+      alt="{{ section.settings.heading | default: shop.name }}"
+      {% if section.settings.priority %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+    >
+  </div>
+  <div class="as-hero-overlay"></div>
+  <div class="as-hero-content page-width">
+    {%- if section.settings.eyebrow != blank -%}
+      <span class="as-hero-eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
+    <h1>{{ section.settings.heading_line1 }}<br><span class="as-hero-stroke">{{ section.settings.heading_highlight }}</span> {{ section.settings.heading_line2 }}</h1>
+    {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
+    <div class="as-hero-cta-row">
+      {%- if section.settings.button_label_1 != blank -%}
+        <a href="{{ section.settings.button_link_1 | default: '#produtos' }}" class="as-btn-primary">{{ section.settings.button_label_1 }}</a>
+      {%- endif -%}
+      {%- if section.settings.button_label_2 != blank -%}
+        <a href="{{ section.settings.button_link_2 | default: '#promo' }}" class="as-btn-outline-light">{{ section.settings.button_label_2 }}</a>
+      {%- endif -%}
+    </div>
+    <div class="as-hero-badges">
+      <div class="as-hero-badge-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="7" width="15" height="11" rx="1"/><path d="M16 11h3.5L22 15.5V18h-6"/><circle cx="6" cy="20" r="1.6"/><circle cx="17.5" cy="20" r="1.6"/></svg>
+        Envio Para Todo o Brasil
+      </div>
+      <div class="as-hero-badge-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+        Compra Garantida
+      </div>
+      <div class="as-hero-badge-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 1 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg>
+        29 Modelos Exclusivos
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero (texto real)",
+  "tag": "section",
+  "class": "section-as-hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "image_file",
+      "label": "Nome do arquivo em Assets",
+      "info": "Ex: hero-bg.jpg — precisa já estar em Assets do tema",
+      "default": "hero-bg.jpg"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Selo acima do título",
+      "default": "Coleção 2026"
+    },
+    {
+      "type": "text",
+      "id": "heading_line1",
+      "label": "Título — linha 1",
+      "default": "Qualidade"
+    },
+    {
+      "type": "text",
+      "id": "heading_highlight",
+      "label": "Título — palavra em destaque",
+      "default": "Máxima"
+    },
+    {
+      "type": "text",
+      "id": "heading_line2",
+      "label": "Título — resto da linha 2",
+      "default": "& Preço Justo"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Subtítulo",
+      "default": "Roupas, tênis, chinelos e bonés de altíssima qualidade — direto pra você, com envio pra todo o Brasil."
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Botão 1 — texto",
+      "default": "Ver Coleção"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Botão 1 — link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Botão 2 — texto",
+      "default": "Ver Promoções"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Botão 2 — link"
+    },
+    {
+      "type": "checkbox",
+      "id": "priority",
+      "label": "Prioridade de carregamento",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero (texto real)"
+    }
+  ]
+}
+{% endschema %}

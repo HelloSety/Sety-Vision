@@ -1,0 +1,51 @@
+{{ 'monster-lupas.css' | asset_url | stylesheet_tag }}
+
+<div class="color-{{ section.settings.color_scheme }} gradient ml-about-section">
+  <div class="page-width">
+    <div class="ml-about-grid">
+      <img class="ml-about-logo" src="{{ section.settings.image_file | asset_url }}" alt="{{ shop.name }}" loading="lazy" width="200" height="200">
+      <div>
+        <h2>{{ section.settings.heading }}</h2>
+        <div class="ml-about-text">{{ section.settings.text }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sobre (logo do tema)",
+  "tag": "section",
+  "class": "section-ml-about",
+  "settings": [
+    {
+      "type": "text",
+      "id": "image_file",
+      "label": "Nome do arquivo em Assets",
+      "default": "monster-lupas-logo.png"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "O que é a Monster Lupas"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cor",
+      "default": "scheme-2"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sobre (logo do tema)"
+    }
+  ]
+}
+{% endschema %}

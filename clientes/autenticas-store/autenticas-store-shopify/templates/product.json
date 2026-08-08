@@ -1,0 +1,154 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "badges-top": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"as-pd-badges\"><span class=\"as-pd-badge as-pd-badge--promo\">Frete Grátis</span><span class=\"as-pd-badge as-pd-badge--quality\">Qualidade Premium</span></div>"
+          }
+        },
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "pix-install": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% assign as_variant = product.selected_or_first_available_variant %}<p class=\"as-pd-pix\">No Pix: <strong>{{ as_variant.price | times: 0.95 | money }}</strong> (5% off)</p><p class=\"as-pd-install\">ou 3x de {{ as_variant.price | divided_by: 3.0 | money }} sem juros</p>"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector"
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "payment-trust": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"as-pd-payment-row\"><span>VISA</span><span>MASTER</span><span>PIX</span><span>ELO</span><span>AMEX</span><span>BOLETO</span></div><ul class=\"as-pd-trust\"><li><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z\"/><path d=\"m9 12 2 2 4-4\"/></svg> Compra 100% Segura e Criptografada</li><li><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M12 19V5M5 12l7-7 7 7\"/></svg> Envio em até 24h úteis</li><li><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M16 2v4M8 2v4M3 10h18\"/></svg> Troca Garantida em 7 Dias</li></ul>"
+          }
+        },
+        "tabs-open": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"as-pd-tabs\"><input type=\"radio\" name=\"as-pd-tab-{{ section.id }}\" id=\"as-pd-tab-desc-{{ section.id }}\" class=\"as-pd-tab-radio\" checked><input type=\"radio\" name=\"as-pd-tab-{{ section.id }}\" id=\"as-pd-tab-medidas-{{ section.id }}\" class=\"as-pd-tab-radio\"><div class=\"as-pd-tabs__nav\"><label for=\"as-pd-tab-desc-{{ section.id }}\" class=\"as-pd-tabs__item as-pd-tabs__item--desc\">Descrição</label><label for=\"as-pd-tab-medidas-{{ section.id }}\" class=\"as-pd-tabs__item as-pd-tabs__item--medidas\">Tabela de Medidas</label></div><div class=\"as-pd-tabs__panel as-pd-tabs__panel--desc\">"
+          }
+        },
+        "description": {
+          "type": "description"
+        },
+        "tabs-close": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "</div><div class=\"as-pd-tabs__panel as-pd-tabs__panel--medidas\">{% render 'as-product-measure-table', product: product %}</div></div>"
+          }
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Compartilhar"
+          }
+        }
+      },
+      "block_order": [
+        "badges-top",
+        "title",
+        "price",
+        "pix-install",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "payment-trust",
+        "tabs-open",
+        "description",
+        "tabs-close",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_position": "left",
+        "gallery_layout": "thumbnail",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "disclosures": {
+      "type": "disclosures",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 0
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "Você Também Vai Gostar",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "product-faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "q1": { "type": "collapsible_row", "settings": { "heading": "O site é seguro?", "row_content": "<p>Sim. Trabalhamos com pagamento criptografado de ponta a ponta e atendimento direto — sem intermediários.</p>", "icon": "none" } },
+        "q2": { "type": "collapsible_row", "settings": { "heading": "E se o produto não servir?", "row_content": "<p>Você tem 7 dias de garantia após o recebimento para solicitar troca por tamanho, modelo ou devolução.</p>", "icon": "none" } },
+        "q3": { "type": "collapsible_row", "settings": { "heading": "Como acompanho meu pedido?", "row_content": "<p>Assim que o pedido é despachado, você recebe o código de rastreio por WhatsApp.</p>", "icon": "none" } },
+        "q4": { "type": "collapsible_row", "settings": { "heading": "Quais formas de pagamento vocês aceitam?", "row_content": "<p>Pix (com 5% de desconto), cartão de crédito parcelado e boleto bancário.</p>", "icon": "none" } },
+        "q5": { "type": "collapsible_row", "settings": { "heading": "Em quanto tempo meu pedido chega?", "row_content": "<p>O prazo médio é de 7 a 15 dias úteis, variando conforme sua região.</p>", "icon": "none" } },
+        "q6": { "type": "collapsible_row", "settings": { "heading": "As fotos são reais?", "row_content": "<p>Sim, todas as fotos são do produto real, fotografado em nosso estoque — sem edição que altere cor ou acabamento.</p>", "icon": "none" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"],
+      "settings": {
+        "caption": "",
+        "heading": "Dúvidas Frequentes",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "disclosures",
+    "related-products",
+    "product-faq"
+  ]
+}

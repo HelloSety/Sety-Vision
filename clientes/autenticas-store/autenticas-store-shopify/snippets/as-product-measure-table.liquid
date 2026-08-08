@@ -1,0 +1,59 @@
+{%- comment -%}
+  Tabela de medidas por categoria — replica site/js/catalog.js (MEASURE_TABLES).
+  Uso: {% render 'as-product-measure-table', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign as_cat = 'roupas'
+  if product.type == 'Tênis' or product.tags contains 'categoria-tenis'
+    assign as_cat = 'tenis'
+  elsif product.type == 'Chinelos' or product.tags contains 'categoria-chinelos'
+    assign as_cat = 'chinelos'
+  elsif product.type contains 'Bonés' or product.type contains 'Acessórios' or product.tags contains 'categoria-acessorios'
+    assign as_cat = 'acessorios'
+  endif
+-%}
+{%- case as_cat -%}
+  {%- when 'tenis' -%}
+    <table class="as-pd-measure-table">
+      <thead><tr><th>Numeração BR</th><th>Comprimento do pé (cm)</th></tr></thead>
+      <tbody>
+        <tr><td>38</td><td>24</td></tr>
+        <tr><td>39</td><td>24,5</td></tr>
+        <tr><td>40</td><td>25,5</td></tr>
+        <tr><td>41</td><td>26</td></tr>
+        <tr><td>42</td><td>27</td></tr>
+        <tr><td>43</td><td>27,5</td></tr>
+      </tbody>
+    </table>
+    <p class="as-pd-measure-note">Meça o comprimento do pé do calcanhar até a ponta do dedo maior e compare com a tabela.</p>
+  {%- when 'chinelos' -%}
+    <table class="as-pd-measure-table">
+      <thead><tr><th>Numeração</th><th>Comprimento do pé (cm)</th></tr></thead>
+      <tbody>
+        <tr><td>37/38</td><td>até 24</td></tr>
+        <tr><td>39/40</td><td>24 a 26</td></tr>
+        <tr><td>41/42</td><td>26 a 28</td></tr>
+        <tr><td>43/44</td><td>28 a 30</td></tr>
+      </tbody>
+    </table>
+    <p class="as-pd-measure-note">Slides e sandálias têm numeração em faixas — se estiver entre duas, prefira a maior.</p>
+  {%- when 'acessorios' -%}
+    <table class="as-pd-measure-table">
+      <thead><tr><th>Tamanho</th><th>Circunferência</th></tr></thead>
+      <tbody>
+        <tr><td>Único (ajustável)</td><td>54cm a 62cm</td></tr>
+      </tbody>
+    </table>
+    <p class="as-pd-measure-note">Ajuste traseiro (fivela ou snapback) — serve na maioria dos tamanhos de cabeça adulta.</p>
+  {%- else -%}
+    <table class="as-pd-measure-table">
+      <thead><tr><th>Tamanho</th><th>Busto (cm)</th><th>Comprimento (cm)</th><th>Manga (cm)</th></tr></thead>
+      <tbody>
+        <tr><td>P</td><td>96 - 100</td><td>68</td><td>20</td></tr>
+        <tr><td>M</td><td>100 - 104</td><td>70</td><td>21</td></tr>
+        <tr><td>G</td><td>104 - 108</td><td>72</td><td>22</td></tr>
+        <tr><td>GG</td><td>108 - 112</td><td>74</td><td>23</td></tr>
+      </tbody>
+    </table>
+    <p class="as-pd-measure-note">Medidas aproximadas, tiradas com a peça deitada. Entre dois tamanhos? Opte pelo maior.</p>
+{%- endcase -%}

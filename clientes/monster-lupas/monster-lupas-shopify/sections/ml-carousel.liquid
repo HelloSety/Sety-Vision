@@ -1,0 +1,88 @@
+{{ 'monster-lupas.css' | asset_url | stylesheet_tag }}
+
+<div class="color-{{ section.settings.color_scheme }} gradient ml-carousel-section">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="ml-carousel-head">
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="ml-carousel-sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    <div class="ml-carousel-wrap" data-ml-carousel>
+      <button type="button" class="ml-carousel-arrow ml-carousel-arrow--prev" data-ml-prev aria-label="Anterior">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="ml-carousel-track" data-ml-track>
+        {%- if section.settings.collection != blank -%}
+          {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+            {%- render 'card-product', card_product: product, media_aspect_ratio: 'square', section_id: section.id -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+      <button type="button" class="ml-carousel-arrow ml-carousel-arrow--next" data-ml-next aria-label="Próximo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+
+    {%- if section.settings.show_view_all and section.settings.collection != blank -%}
+      <div class="center-cta" style="text-align:center; margin-top:28px;">
+        <a href="{{ section.settings.collection.url }}" class="button button--secondary">Ver coleção completa</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Carrossel de produtos",
+  "tag": "section",
+  "class": "section-ml-carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Novidades"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subtítulo"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Coleção"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Produtos a mostrar",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "default": 12
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Mostrar botão \"Ver coleção completa\"",
+      "default": false
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cor",
+      "default": "scheme-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Carrossel de produtos"
+    }
+  ]
+}
+{% endschema %}

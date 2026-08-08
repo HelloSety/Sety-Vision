@@ -1,0 +1,40 @@
+{%- comment -%}
+  Card de produto customizado — replica o design do site estático (site/js/catalog.js productCardHTML):
+  badge desconto + frete grátis, cores disponíveis, preço de/por, parcelamento, Pix, botão Comprar + sacola.
+  Uso: {% render 'as-card-product', card_product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign as_variant = card_product.selected_or_first_available_variant
+  assign as_price = as_variant.price
+  assign as_compare = as_variant.compare_at_price
+  assign as_discount_pct = 0
+  if as_compare > as_price
+    assign as_discount_pct = as_compare | minus: as_price | times: 100 | divided_by: as_compare | round
+  endif
+  assign as_pix_price = as_price | times: 0.95 | round
+  assign as_install = as_price | divided_by: 3.0
+  assign as_color_option = card_product.options_by_name['Cor']
+  assign as_color_count = as_color_option.values.size
+-%}
+<div class="as-card">
+  <a class="as-card-img" href="{{ card_product.url }}">
+    {%- if as_discount_pct > 0 -%}<span class="as-badge as-badge-discount">-{{ as_discount_pct }}% OFF</span>{%- endif -%}
+    {{ card_product.featured_media | image_url: width: 600 | image_tag: loading: 'lazy', alt: card_product.title, widths: '300,450,600' }}
+  </a>
+  <div class="as-card-body">
+    <a href="{{ card_product.url }}"><h3>{{ card_product.title }}</h3></a>
+    {%- if as_color_count > 1 -%}<span class="as-card-colors">{{ as_color_count }} cores disponíveis</span>{%- endif -%}
+    <div class="as-price-row">
+      {%- if as_discount_pct > 0 -%}<span class="as-price-old">{{ as_compare | money }}</span>{%- endif -%}
+      <span class="as-price-now">{{ as_price | money }}</span>
+    </div>
+    <span class="as-price-install">3x de {{ as_install | money }} sem juros</span>
+    <span class="as-price-pix">{{ as_pix_price | money }} no Pix (5% OFF)</span>
+    <div class="as-card-cta-row">
+      <a class="as-card-buy-btn" href="{{ card_product.url }}">Comprar</a>
+      <a class="as-card-cart-btn" href="{{ card_product.url }}" aria-label="Ver produto {{ card_product.title }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </a>
+    </div>
+  </div>
+</div>

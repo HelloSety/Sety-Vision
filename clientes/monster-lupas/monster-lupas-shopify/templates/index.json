@@ -1,0 +1,170 @@
+{
+  "sections": {
+    "marquee": {
+      "type": "ml-marquee",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "text": "Frete grátis para todo o Brasil" } },
+        "item-2": { "type": "item", "settings": { "text": "5% de desconto no Pix" } },
+        "item-3": { "type": "item", "settings": { "text": "Proteção UV400 em todos os modelos" } },
+        "item-4": { "type": "item", "settings": { "text": "7 dias de garantia" } }
+      },
+      "block_order": ["item-1", "item-2", "item-3", "item-4"]
+    },
+    "hero-banner": {
+      "type": "ml-banner",
+      "settings": {
+        "image_desktop": "colecao-homem-desktop.webp",
+        "image_mobile": "colecao-homem-mobile.webp",
+        "alt": "Monster Lupas — Nova Coleção. Estilo que impõe, atitude que marca",
+        "link": "#produtos",
+        "priority": true
+      }
+    },
+    "sticker-categories": {
+      "type": "ml-sticker-categories",
+      "blocks": {
+        "cat-1": { "type": "category_tab", "settings": { "label": "Linha X-Metal", "collection": "linha-x-metal" } },
+        "cat-2": { "type": "category_tab", "settings": { "label": "Linha Esportiva", "collection": "linha-esportiva" } },
+        "cat-3": { "type": "category_tab", "settings": { "label": "Linha Clássica", "collection": "linha-classica" } },
+        "cat-4": { "type": "category_tab", "settings": { "label": "Linha Streetwear", "collection": "linha-streetwear" } }
+      },
+      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4"],
+      "settings": {
+        "heading": "Compre por Modelo",
+        "collection": "all",
+        "products_to_show": 40,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "carousel-novidades": {
+      "type": "ml-carousel",
+      "settings": {
+        "heading": "Novidades",
+        "subheading": "Os modelos mais recentes do catálogo Monster Lupas.",
+        "collection": "novidades",
+        "products_to_show": 12,
+        "show_view_all": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "carousel-destaques": {
+      "type": "ml-carousel",
+      "settings": {
+        "heading": "Nossa Coleção",
+        "subheading": "31 modelos exclusivos, todos com proteção UV400 e lente polarizada",
+        "collection": "all",
+        "products_to_show": 16,
+        "show_view_all": false,
+        "color_scheme": "scheme-2"
+      }
+    },
+    "carousel-colecionador": {
+      "type": "ml-carousel",
+      "settings": {
+        "heading": "Edição Colecionador",
+        "subheading": "Réplicas dos modelos mais icônicos e raros — peça de quem entende.",
+        "collection": "edicao-colecionador",
+        "products_to_show": 12,
+        "show_view_all": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "promo-banner": {
+      "type": "ml-banner",
+      "settings": {
+        "image_desktop": "colecao-mulher-desktop.webp",
+        "image_mobile": "colecao-mulher-mobile.webp",
+        "alt": "Monster Lupas — Nova Coleção. Estilo que impõe, atitude que marca",
+        "link": "#produtos",
+        "priority": false
+      }
+    },
+    "carousel-performance": {
+      "type": "ml-carousel",
+      "settings": {
+        "heading": "Linha Performance",
+        "subheading": "Feitos pra esporte: leves, aerodinâmicos, com máxima proteção.",
+        "collection": "linha-performance",
+        "products_to_show": 12,
+        "show_view_all": true,
+        "color_scheme": "scheme-2"
+      }
+    },
+    "benefits": {
+      "type": "multicolumn",
+      "blocks": {
+        "b1": { "type": "column", "settings": { "title": "Envio Rápido", "text": "<p>Despachamos seu pedido em até 24h úteis.</p>" } },
+        "b2": { "type": "column", "settings": { "title": "Pague com Pix", "text": "<p>Simples, seguro e com 5% de desconto.</p>" } },
+        "b3": { "type": "column", "settings": { "title": "Suporte Humanizado", "text": "<p>Estamos prontos pra tirar suas dúvidas.</p>" } },
+        "b4": { "type": "column", "settings": { "title": "Garantia 7 Dias", "text": "<p>Compra 100% segura em todos os pedidos.</p>" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": {
+        "title": "",
+        "columns_desktop": 4,
+        "column_alignment": "left",
+        "columns_mobile": "1",
+        "background_style": "none",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "about": {
+      "type": "ml-about",
+      "settings": {
+        "image_file": "monster-lupas-logo.png",
+        "heading": "O que é a Monster Lupas",
+        "text": "<p>A Monster Lupas nasceu para quem impõe presença: óculos de sol com proteção UV400, lentes polarizadas e design que impõe atitude. Curadoria própria dos modelos mais procurados do momento, qualidade que se sente e estilo que representa.</p>",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "q1": { "type": "collapsible_row", "settings": { "heading": "A Monster Lupas é confiável?", "row_content": "<p>Sim. Somos uma loja estabelecida, com estoque próprio e atendimento direto — sem intermediários. Milhares de clientes já compraram e aprovam a qualidade dos óculos.</p>", "icon": "none" } },
+        "q2": { "type": "collapsible_row", "settings": { "heading": "As fotos são reais?", "row_content": "<p>Sim, todas as fotos são do produto real, fotografado em nosso estoque — sem edição que altere cor ou acabamento.</p>", "icon": "none" } },
+        "q3": { "type": "collapsible_row", "settings": { "heading": "O site é seguro?", "row_content": "<p>Sim. Todas as informações de pagamento são processadas com criptografia e segurança de ponta a ponta.</p>", "icon": "none" } },
+        "q4": { "type": "collapsible_row", "settings": { "heading": "As lentes protegem contra o sol?", "row_content": "<p>Sim, todos os modelos têm proteção UV400, bloqueando 100% dos raios UVA e UVB.</p>", "icon": "none" } },
+        "q5": { "type": "collapsible_row", "settings": { "heading": "Como acompanho meu pedido?", "row_content": "<p>Assim que o pedido é despachado, você recebe o código de rastreio por WhatsApp e e-mail.</p>", "icon": "none" } },
+        "q6": { "type": "collapsible_row", "settings": { "heading": "Quais formas de pagamento vocês aceitam?", "row_content": "<p>Pix (com 5% de desconto), cartão de crédito em até 6x sem juros e boleto bancário.</p>", "icon": "none" } },
+        "q7": { "type": "collapsible_row", "settings": { "heading": "Em quanto tempo meu pedido chega?", "row_content": "<p>O prazo médio é de 7 a 15 dias úteis, variando conforme sua região.</p>", "icon": "none" } },
+        "q8": { "type": "collapsible_row", "settings": { "heading": "E se eu não gostar do óculos?", "row_content": "<p>Você tem 7 dias de garantia após o recebimento para solicitar troca ou devolução.</p>", "icon": "none" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"],
+      "settings": {
+        "caption": "",
+        "heading": "Dúvidas Frequentes",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "instagram-bar": {
+      "type": "ml-instagram-bar",
+      "settings": {
+        "label": "Siga-nos no Instagram",
+        "handle": "@monsterlupas",
+        "instagram_url": ""
+      }
+    }
+  },
+  "order": [
+    "marquee",
+    "hero-banner",
+    "sticker-categories",
+    "carousel-novidades",
+    "carousel-destaques",
+    "carousel-colecionador",
+    "promo-banner",
+    "carousel-performance",
+    "benefits",
+    "about",
+    "faq",
+    "instagram-bar"
+  ]
+}

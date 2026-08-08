@@ -1,0 +1,163 @@
+{
+  "sections": {
+    "marquee": {
+      "type": "as-marquee",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "text": "Frete grátis para todo o Brasil" } },
+        "item-2": { "type": "item", "settings": { "text": "5% de desconto no Pix" } },
+        "item-3": { "type": "item", "settings": { "text": "Peças originais e selecionadas" } },
+        "item-4": { "type": "item", "settings": { "text": "Troca garantida em 7 dias" } }
+      },
+      "block_order": ["item-1", "item-2", "item-3", "item-4"]
+    },
+    "hero-banner": {
+      "type": "as-banner",
+      "settings": {
+        "image_desktop": "banner-hero-desktop.jpg",
+        "image_mobile": "banner-hero-mobile.jpg",
+        "alt": "Autênticas Store — Peças Exclusivas",
+        "link": "#produtos",
+        "priority": true
+      }
+    },
+    "sticker-categories": {
+      "type": "as-sticker-categories",
+      "blocks": {
+        "cat-1": { "type": "category_tab", "settings": { "label": "Roupas", "collection": "roupas" } },
+        "cat-2": { "type": "category_tab", "settings": { "label": "Tênis", "collection": "tenis" } },
+        "cat-3": { "type": "category_tab", "settings": { "label": "Chinelos", "collection": "chinelos" } },
+        "cat-4": { "type": "category_tab", "settings": { "label": "Bonés & Acessórios", "collection": "bones-acessorios" } }
+      },
+      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4"],
+      "settings": {
+        "heading": "Compre por Categoria",
+        "collection": "all",
+        "products_to_show": 26,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "carousel-novidades": {
+      "type": "as-carousel",
+      "settings": {
+        "heading": "Novidades",
+        "subheading": "Acabou de chegar na loja — direto pra você.",
+        "collection": "novidades",
+        "products_to_show": 12,
+        "show_view_all": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "carousel-destaques": {
+      "type": "as-carousel",
+      "settings": {
+        "heading": "Nossa Coleção",
+        "subheading": "25 peças reais, roupas, tênis, chinelos e bonés de marca.",
+        "collection": "all",
+        "products_to_show": 16,
+        "show_view_all": false,
+        "color_scheme": "scheme-2"
+      }
+    },
+    "carousel-mais-vendidos": {
+      "type": "as-carousel",
+      "settings": {
+        "heading": "Mais Vendidos",
+        "subheading": "Os queridinhos da Autênticas Store.",
+        "collection": "mais-vendidos",
+        "products_to_show": 12,
+        "show_view_all": true,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "promo-banner": {
+      "type": "as-banner",
+      "settings": {
+        "image_desktop": "banner-promo-desktop.jpg",
+        "image_mobile": "banner-promo-mobile.jpg",
+        "alt": "Autênticas Store — Compre com confiança",
+        "link": "#produtos",
+        "priority": false
+      }
+    },
+    "carousel-tenis": {
+      "type": "as-carousel",
+      "settings": {
+        "heading": "Linha Tênis",
+        "subheading": "McQueen, Gucci, Nike e Mizuno — conforto e estilo premium.",
+        "collection": "tenis",
+        "products_to_show": 12,
+        "show_view_all": true,
+        "color_scheme": "scheme-2"
+      }
+    },
+    "benefits": {
+      "type": "as-benefits",
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "icon": "envio", "title": "Envio Rápido", "text": "Despachamos seu pedido em até 24h úteis." } },
+        "b2": { "type": "benefit", "settings": { "icon": "pix", "title": "Pague com Pix", "text": "Simples, seguro e com 5% de desconto." } },
+        "b3": { "type": "benefit", "settings": { "icon": "suporte", "title": "Suporte Humanizado", "text": "Estamos prontos pra tirar suas dúvidas." } },
+        "b4": { "type": "benefit", "settings": { "icon": "garantia", "title": "Garantia 7 Dias", "text": "Compra 100% segura em todos os pedidos." } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": {
+        "color_scheme": "scheme-1"
+      }
+    },
+    "about": {
+      "type": "as-about",
+      "settings": {
+        "image_file": "autenticas-store-logo.png",
+        "heading": "O que é a Autênticas Store",
+        "text": "<p>A Autênticas Store nasceu em Nova Andradina/MS pra quem gosta de vestir bem sem abrir mão do preço justo. Roupas, tênis, chinelos e bonés das grifes mais desejadas, com curadoria própria e envio pra todo o Brasil.</p>",
+        "color_scheme": "scheme-2"
+      }
+    },
+    "faq": {
+      "type": "collapsible-content",
+      "blocks": {
+        "q1": { "type": "collapsible_row", "settings": { "heading": "A Autênticas Store é confiável?", "row_content": "<p>Sim. Somos uma loja estabelecida em Nova Andradina/MS, com estoque próprio e atendimento direto — sem intermediários.</p>", "icon": "none" } },
+        "q2": { "type": "collapsible_row", "settings": { "heading": "As fotos são reais?", "row_content": "<p>Sim, todas as fotos são do produto real, sem edição que altere cor ou acabamento.</p>", "icon": "none" } },
+        "q3": { "type": "collapsible_row", "settings": { "heading": "O site é seguro?", "row_content": "<p>Sim. Todas as informações de pagamento são processadas com criptografia e segurança de ponta a ponta.</p>", "icon": "none" } },
+        "q4": { "type": "collapsible_row", "settings": { "heading": "Como funcionam os tamanhos?", "row_content": "<p>Cada produto tem uma tabela de medidas própria (roupas, tênis, chinelos e bonés) na página do produto — confira antes de comprar.</p>", "icon": "none" } },
+        "q5": { "type": "collapsible_row", "settings": { "heading": "Como acompanho meu pedido?", "row_content": "<p>Assim que o pedido é despachado, você recebe o código de rastreio.</p>", "icon": "none" } },
+        "q6": { "type": "collapsible_row", "settings": { "heading": "Quais formas de pagamento vocês aceitam?", "row_content": "<p>Pix (com 5% de desconto), cartão de crédito parcelado sem juros e boleto bancário.</p>", "icon": "none" } },
+        "q7": { "type": "collapsible_row", "settings": { "heading": "Em quanto tempo meu pedido chega?", "row_content": "<p>O prazo médio é de 7 a 15 dias úteis, variando conforme sua região.</p>", "icon": "none" } },
+        "q8": { "type": "collapsible_row", "settings": { "heading": "E se eu não gostar do produto?", "row_content": "<p>Você tem 7 dias de garantia após o recebimento para solicitar troca ou devolução.</p>", "icon": "none" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"],
+      "settings": {
+        "caption": "",
+        "heading": "Dúvidas Frequentes",
+        "heading_alignment": "center",
+        "layout": "none",
+        "container_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "instagram-bar": {
+      "type": "as-instagram-bar",
+      "settings": {
+        "label": "Siga-nos no Instagram",
+        "handle": "@autenticas__store",
+        "instagram_url": "https://www.instagram.com/autenticas__store/"
+      }
+    }
+  },
+  "order": [
+    "marquee",
+    "hero-banner",
+    "sticker-categories",
+    "carousel-novidades",
+    "carousel-destaques",
+    "carousel-mais-vendidos",
+    "promo-banner",
+    "carousel-tenis",
+    "benefits",
+    "about",
+    "faq",
+    "instagram-bar"
+  ]
+}

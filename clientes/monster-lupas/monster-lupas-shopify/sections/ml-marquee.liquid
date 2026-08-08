@@ -1,0 +1,44 @@
+{{ 'monster-lupas.css' | asset_url | stylesheet_tag }}
+
+<div class="ml-marquee">
+  <div class="ml-marquee__track">
+    {% for i in (1..2) %}
+      {%- for block in section.blocks -%}
+        <span class="ml-marquee__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+      {%- endfor -%}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Faixa de benefícios",
+  "tag": "section",
+  "class": "section-ml-marquee",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Frete grátis para todo o Brasil"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Faixa de benefícios",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Frete grátis para todo o Brasil" } },
+        { "type": "item", "settings": { "text": "5% de desconto no Pix" } },
+        { "type": "item", "settings": { "text": "Proteção UV400 em todos os modelos" } },
+        { "type": "item", "settings": { "text": "7 dias de garantia" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,86 @@
+{{ 'autenticas-store.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign icon_truck = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 18V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h1"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>'
+  assign icon_pix = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>'
+  assign icon_support = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11a9 9 0 0 1 18 0"/><path d="M21 12v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"/><path d="M3 12v5a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3Z"/><path d="M18 19v1a2 2 0 0 1-2 2h-3"/></svg>'
+  assign icon_shield = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>'
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient as-benefits-section">
+  <div class="page-width as-benefits-grid">
+    {%- for block in section.blocks -%}
+      <div class="as-benefit-item" {{ block.shopify_attributes }}>
+        <span class="as-benefit-icon">
+          {%- case block.settings.icon -%}
+            {%- when 'pix' -%}{{ icon_pix }}
+            {%- when 'suporte' -%}{{ icon_support }}
+            {%- when 'garantia' -%}{{ icon_shield }}
+            {%- else -%}{{ icon_truck }}
+          {%- endcase -%}
+        </span>
+        <h3>{{ block.settings.title }}</h3>
+        <p>{{ block.settings.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Benefícios (ícones)",
+  "tag": "section",
+  "class": "section-as-benefits",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cor",
+      "default": "scheme-1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefício",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícone",
+          "options": [
+            { "value": "envio", "label": "Caminhão (envio)" },
+            { "value": "pix", "label": "Cifrão (pagamento)" },
+            { "value": "suporte", "label": "Headset (suporte)" },
+            { "value": "garantia", "label": "Escudo (garantia)" }
+          ],
+          "default": "envio"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Benefício"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Descrição do benefício."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefícios (ícones)",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "envio", "title": "Envio Rápido", "text": "Despachamos seu pedido em até 24h úteis." } },
+        { "type": "benefit", "settings": { "icon": "pix", "title": "Pague com Pix", "text": "Simples, seguro e com 5% de desconto." } },
+        { "type": "benefit", "settings": { "icon": "suporte", "title": "Suporte Humanizado", "text": "Estamos prontos pra tirar suas dúvidas." } },
+        { "type": "benefit", "settings": { "icon": "garantia", "title": "Garantia 7 Dias", "text": "Compra 100% segura em todos os pedidos." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

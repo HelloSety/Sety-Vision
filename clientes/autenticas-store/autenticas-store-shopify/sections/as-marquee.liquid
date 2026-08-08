@@ -1,0 +1,47 @@
+{{ 'autenticas-store.css' | asset_url | stylesheet_tag }}
+
+<div class="as-marquee">
+  <div class="as-marquee__track">
+    {% for i in (1..2) %}
+      {%- for block in section.blocks -%}
+        <span class="as-marquee__item" {{ block.shopify_attributes }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          {{ block.settings.text }}
+        </span>
+      {%- endfor -%}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Faixa de benefícios",
+  "tag": "section",
+  "class": "section-as-marquee",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Frete grátis para todo o Brasil"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Faixa de benefícios",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Frete grátis para todo o Brasil" } },
+        { "type": "item", "settings": { "text": "5% de desconto no Pix" } },
+        { "type": "item", "settings": { "text": "Proteção UV400 em todos os modelos" } },
+        { "type": "item", "settings": { "text": "7 dias de garantia" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

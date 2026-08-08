@@ -1,0 +1,21 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "as-footer",
+      "settings": {
+        "logo_file": "logo-mono-branca.png",
+        "about_text": "Moda masculina de altíssima qualidade e preço justo. Roupas, tênis, chinelos e bonés selecionados a dedo.",
+        "instagram_url": "https://www.instagram.com/autenticas__store/",
+        "address": "Rua Yutaka Hashinukuti, 428 — Nova Andradina/MS",
+        "email": "contato@autenticasstore.com.br",
+        "whatsapp_url": "https://wa.me/5567998741451",
+        "color_scheme": "scheme-4"
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}

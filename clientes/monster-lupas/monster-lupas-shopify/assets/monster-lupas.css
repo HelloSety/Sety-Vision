@@ -1,0 +1,170 @@
+/* Monster Lupas — identidade Sety Studio sobre o tema Dawn (preto/branco/cinza, Sora + Montserrat) */
+
+:root {
+  --ml-ink: #0d0d0d;
+  --ml-ink-soft: #1a1a1a;
+  --ml-bg-soft: #f7f7f5;
+  --ml-cinza: #6b6b68;
+  --ml-cinza-claro: #46453f;
+  --ml-borda: #ececea;
+  --font-body-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body-weight: 500;
+  --font-body-weight-bold: 700;
+  --font-heading-family: 'Sora', 'Montserrat', sans-serif;
+  --font-heading-weight: 700;
+  --font-heading-weight-bold: 800;
+}
+
+body { -webkit-font-smoothing: antialiased; }
+
+.h1, .h2, .h3, .h4, .h5,
+h1, h2, h3, h4, h5,
+.banner__heading, .title, .card__heading {
+  letter-spacing: .3px;
+}
+
+/* ---------- Marquee (faixa de benefícios rolando) ---------- */
+.ml-marquee { background: var(--ml-ink); overflow: hidden; padding: 9px 0; }
+.ml-marquee__track { display: flex; width: max-content; animation: ml-marquee-scroll 22s linear infinite; }
+.ml-marquee__item {
+  display: flex; align-items: center; gap: 8px; color: #fff; font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; padding: 0 28px;
+  border-right: 1px solid rgba(255,255,255,.15); font-family: var(--font-body-family);
+}
+@keyframes ml-marquee-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ml-marquee__track { animation: none; } }
+
+/* ---------- Announcement bar (contato) ---------- */
+.announcement-bar { font-size: 12.5px; }
+.announcement-bar-message a { font-weight: 600; }
+
+/* ---------- Header logo ---------- */
+.header__heading-logo-wrapper img, .header__heading-logo { object-fit: contain; }
+
+/* ---------- Botões ---------- */
+.button, button.shopify-payment-button__button--unbranded, .shopify-challenge__button {
+  text-transform: uppercase; letter-spacing: .3px; font-weight: 800; font-size: 13px;
+}
+
+/* ---------- Cards de produto ---------- */
+.card__media { background: var(--ml-bg-soft); }
+.card--standard .card__media img,
+.card__media img {
+  object-fit: contain !important;
+  object-position: center;
+  padding: 14px;
+  box-sizing: border-box;
+}
+.card__content .price { font-weight: 800; }
+.price del { color: var(--ml-cinza); }
+.card-information .caption { text-transform: uppercase; letter-spacing: .04em; }
+
+/* ---------- Badge de desconto/frete (nativo Dawn) ---------- */
+.card__badge .badge { text-transform: uppercase; font-weight: 800; letter-spacing: .03em; }
+
+/* ---------- Categorias "sticker" (compre por modelo) ---------- */
+.ml-sticker-section { padding: 12px 0 8px; }
+.ml-category-tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 18px 0 28px; }
+.ml-category-tab {
+  padding: 9px 20px; border-radius: 999px; border: 1px solid var(--ml-borda); background: #fff;
+  font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
+  color: var(--ml-cinza-claro); transition: background .15s, color .15s, border-color .15s; cursor: pointer;
+}
+.ml-category-tab:hover { border-color: var(--ml-ink); color: var(--ml-ink); }
+.ml-category-tab.is-active { background: var(--ml-ink); border-color: var(--ml-ink); color: #fff; }
+
+.ml-sticker-row-wrap { position: relative; }
+.ml-sticker-row {
+  display: flex; gap: 30px; overflow-x: auto; padding: 20px 4px; scroll-snap-type: x mandatory;
+  scroll-padding-left: 4px; scrollbar-width: none;
+}
+.ml-sticker-row::-webkit-scrollbar { display: none; }
+.ml-sticker-item { flex: 0 0 auto; width: 140px; text-align: center; scroll-snap-align: start; }
+.ml-sticker-item:not(.is-visible) { display: none; }
+.ml-sticker-tile { position: relative; width: 140px; height: 140px; margin: 0 auto; }
+.ml-sticker-tile::before {
+  content: ''; position: absolute; inset: 6px; background: var(--ml-ink); border-radius: 38% 62% 61% 39% / 44% 40% 60% 56%;
+  transform: rotate(-6deg); transition: transform .25s ease;
+}
+.ml-sticker-item:nth-child(even) .ml-sticker-tile::before { transform: rotate(7deg); border-radius: 60% 40% 42% 58% / 55% 60% 40% 45%; }
+.ml-sticker-item:hover .ml-sticker-tile::before { transform: rotate(0deg) scale(1.05); }
+.ml-sticker-tile img {
+  position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: 24px;
+  transform: rotate(-4deg); transition: transform .25s ease; box-shadow: 0 8px 24px rgba(20,20,20,.12);
+}
+.ml-sticker-item:nth-child(even) .ml-sticker-tile img { transform: rotate(3deg); }
+.ml-sticker-item:hover .ml-sticker-tile img { transform: rotate(0deg) scale(1.06); }
+.ml-sticker-item span { display: block; margin-top: 16px; font-weight: 800; font-size: 12.5px; text-transform: uppercase; letter-spacing: .3px; color: var(--ml-ink); font-family: var(--font-body-family); }
+@media (max-width: 640px) { .ml-sticker-item, .ml-sticker-tile { width: 112px; } }
+
+/* ---------- Carrossel de produtos (coleções) ---------- */
+.ml-carousel-section { padding: 44px 0; }
+.ml-carousel-head { text-align: center; margin-bottom: 6px; }
+.ml-carousel-head h2 { text-transform: uppercase; font-size: 28px; position: relative; display: inline-block; padding-bottom: 14px; }
+.ml-carousel-head h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 56px; height: 4px; background: var(--ml-ink); border-radius: 4px; }
+.ml-carousel-sub { text-align: center; color: var(--ml-cinza); font-weight: 600; font-size: 12.5px; text-transform: uppercase; letter-spacing: .5px; margin: 16px 0 30px; }
+.ml-carousel-wrap { position: relative; }
+.ml-carousel-track {
+  display: flex; gap: 16px; overflow-x: auto; padding: 6px 4px 16px; scroll-snap-type: x mandatory;
+  scroll-padding-left: 4px; scrollbar-width: none;
+}
+.ml-carousel-track::-webkit-scrollbar { display: none; }
+.ml-carousel-track > * { flex: 0 0 auto; width: 230px; scroll-snap-align: start; }
+@media (max-width: 640px) { .ml-carousel-track > * { width: 172px; } }
+.ml-carousel-arrow {
+  position: absolute; top: 40%; transform: translateY(-50%); z-index: 3;
+  width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--ml-borda);
+  background: #fff; color: var(--ml-ink); display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(20,20,20,.1); transition: background .15s, color .15s; cursor: pointer;
+}
+.ml-carousel-arrow:hover { background: var(--ml-ink); color: #fff; }
+.ml-carousel-arrow--prev { left: 10px; }
+.ml-carousel-arrow--next { right: 10px; }
+@media (max-width: 900px) { .ml-carousel-arrow { display: none; } }
+
+/* ---------- Sobre (logo do tema) ---------- */
+.ml-about-section { padding: 48px 0; }
+.ml-about-grid { display: flex; flex-direction: column; align-items: center; gap: 28px; text-align: center; max-width: 640px; margin: 0 auto; }
+.ml-about-logo { width: 200px; height: 200px; object-fit: contain; padding: 24px; box-sizing: border-box; background: rgba(0,0,0,.03); border-radius: 20px; }
+.ml-about-grid h2 { font-size: 28px; text-transform: uppercase; margin-bottom: 18px; }
+.ml-about-text { color: var(--ml-cinza); line-height: 1.75; font-size: 14.5px; }
+
+/* ---------- Instagram bar ---------- */
+.ml-instagram-bar {
+  background: var(--ml-ink); color: #fff; text-align: center; padding: 44px 24px 40px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.ml-instagram-bar svg { width: 34px; height: 34px; color: #fff; }
+.ml-instagram-bar__label { font-size: 13px; color: #9a9a9a; font-weight: 600; }
+.ml-instagram-bar__handle { font-size: 20px; font-weight: 800; color: #fff; }
+.ml-instagram-bar__handle:hover { text-decoration: underline; }
+
+/* ---------- WhatsApp flutuante ---------- */
+.ml-whats-float {
+  position: fixed; bottom: 24px; right: 24px; z-index: 200;
+  background: #25d366; color: #fff; width: 58px; height: 58px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,.25); transition: transform .2s ease;
+}
+.ml-whats-float svg { width: 28px; height: 28px; }
+.ml-whats-float::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: #25d366; opacity: .55; animation: ml-pulse-ring 2.4s ease-out infinite; z-index: -1; }
+@keyframes ml-pulse-ring { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(1.9); opacity: 0; } }
+.ml-whats-float:hover { transform: scale(1.07); }
+
+/* ---------- Produto: badges/pix/parcelamento ---------- */
+.ml-pd-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+.ml-pd-badge { display: inline-block; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; padding: 6px 14px; border-radius: 999px; }
+.ml-pd-badge--promo { background: var(--ml-ink); color: #fff; }
+.ml-pd-badge--quality { background: var(--ml-bg-soft); border: 1px solid var(--ml-borda); color: var(--ml-cinza-claro); }
+.ml-pd-pix { font-size: 13px; color: var(--ml-ink); font-weight: 700; margin: 8px 0; }
+.ml-pd-pix strong { font-weight: 800; }
+.ml-pd-install { font-size: 12.5px; color: var(--ml-cinza); margin-bottom: 10px; }
+.ml-pd-payment-row { display: flex; gap: 6px; flex-wrap: wrap; margin: 14px 0; }
+.ml-pd-payment-row span { background: var(--ml-bg-soft); border: 1px solid var(--ml-borda); border-radius: 6px; padding: 5px 9px; font-size: 10px; font-weight: 800; color: var(--ml-cinza-claro); letter-spacing: .3px; }
+.ml-pd-trust { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 20px 0 0; padding-top: 20px; border-top: 1px solid var(--ml-borda); }
+.ml-pd-trust li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--ml-ink-soft); font-weight: 600; }
+.ml-pd-trust li svg { width: 18px; height: 18px; color: var(--ml-ink); flex-shrink: 0; }
+
+/* ---------- Benefícios (multicolumn nativo) ---------- */
+.ml-benefits .multicolumn-card__image-wrapper svg,
+.ml-benefits .multicolumn-card__image-wrapper img { color: var(--ml-ink); }
