@@ -1,0 +1,225 @@
+<div class="site-header">
+  <div class="header-top">
+    <!-- Pesquisar -->
+    <div class="header-left">
+      <a href="{{ routes.search_url }}" class="header-icon" aria-label="Pesquisar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      </a>
+    </div>
+
+    <!-- Logo -->
+    <a href="{{ routes.root_url }}" class="logo-text">
+      <span>{{ section.settings.logo_line1 | default: 'NATALIA' }}</span>
+      <span>{{ section.settings.logo_line2 | default: 'SILVEIRA' }}</span>
+    </a>
+
+    <!-- Carrinho + Hamburger -->
+    <div class="header-right">
+      <a href="{{ routes.cart_url }}" class="header-icon cart-icon-wrap" aria-label="Carrinho">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        {%- if cart.item_count > 0 -%}
+          <span class="cart-count">{{ cart.item_count }}</span>
+        {%- endif -%}
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <style>
+    .cart-icon-wrap { position: relative; display: inline-flex; align-items: center; }
+    .cart-count {
+      position: absolute;
+      top: -6px; right: -8px;
+      background: #C4946A;
+      color: #fff;
+      font-family: Jost, sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      min-width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 3px;
+      letter-spacing: 0;
+    }
+  </style>
+
+  <!-- Desktop Nav -->
+  <nav class="header-nav" role="navigation">
+    <a href="{{ routes.root_url }}">{{ section.settings.nav_home | default: 'CASA' }}</a>
+
+    <div class="nav-dropdown">
+      <button class="nav-trigger">{{ section.settings.nav_shop | default: 'COMPRAR' }}</button>
+      <div class="nav-submenu">
+        {%- for link in section.settings.main_menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- else -%}
+          <a href="{{ routes.all_products_collection_url }}">Todos os Produtos</a>
+          <a href="{{ routes.collections_url }}/conjuntos">Conjuntos</a>
+          <a href="{{ routes.collections_url }}/vestidos">Vestidos</a>
+          <a href="{{ routes.collections_url }}/pecas-exclusivas">Peças Exclusivas</a>
+          <a href="{{ routes.collections_url }}/complementos-do-look">Complementos do Look</a>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <a href="/pages/sobre">{{ section.settings.nav_about | default: 'SOBRE' }}</a>
+  </nav>
+</div>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav" role="navigation">
+  <button class="mobile-nav-close" id="mobileNavClose">×</button>
+  <a href="{{ routes.root_url }}">{{ section.settings.nav_home | default: 'CASA' }}</a>
+  <a href="{{ routes.all_products_collection_url }}">{{ section.settings.nav_shop | default: 'COMPRAR' }}</a>
+  <a href="/pages/sobre">{{ section.settings.nav_about | default: 'SOBRE' }}</a>
+</div>
+
+<!-- Email Popup -->
+{%- if section.settings.show_popup -%}
+<div class="popup-overlay" id="nsPopup">
+  <div class="popup-box">
+    <div class="popup-image">
+      {%- if section.settings.popup_image -%}
+        <img src="{{ section.settings.popup_image | image_url: width: 600 }}" alt="Natalia Silveira" width="600" height="800" loading="lazy">
+      {%- else -%}
+        <img src="{{ 'default-hero.jpg' | asset_url }}" alt="Natalia Silveira" width="600" height="800" loading="lazy">
+      {%- endif -%}
+    </div>
+    <div class="popup-side">
+      <button class="popup-close" id="popupClose">×</button>
+      <span class="popup-mono">ns</span>
+      <h2 class="popup-offer">{{ section.settings.popup_title | default: 'GANHE 10% DE DESCONTO' }}</h2>
+      <p class="popup-sub">{{ section.settings.popup_sub | default: 'NO SEU PRIMEIRO PEDIDO' }}</p>
+      <p class="popup-desc">{{ section.settings.popup_desc | default: 'Cadastre-se para acesso exclusivo ao universo Natalia Silveira' }}</p>
+      {%- form 'customer', id: 'popupForm', class: 'popup-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter,popup,10off">
+        {%- if form.posted_successfully? -%}
+          <p style="font-size:12px;letter-spacing:1px;color:#C4946A;margin:16px 0;">Código enviado! Verifique seu e-mail.</p>
+        {%- else -%}
+          <input class="popup-input" type="email" name="contact[email]" placeholder="{{ section.settings.popup_placeholder | default: 'Endereço de e-mail*' }}" required>
+          <button type="submit" class="popup-submit">{{ section.settings.popup_btn | default: 'Obter código de desconto' }}</button>
+        {%- endif -%}
+      {%- endform -%}
+      <button class="popup-skip" id="popupSkip">{{ section.settings.popup_skip | default: 'Não, obrigada' }}</button>
+    </div>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "logo_line1",
+      "label": "Linha 1 do logo",
+      "default": "NATALIA"
+    },
+    {
+      "type": "text",
+      "id": "logo_line2",
+      "label": "Linha 2 do logo",
+      "default": "SILVEIRA"
+    },
+    {
+      "type": "header",
+      "content": "Navegação"
+    },
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Menu dropdown Comprar",
+      "default": "main-menu"
+    },
+    {
+      "type": "text",
+      "id": "nav_home",
+      "label": "Label: Casa",
+      "default": "CASA"
+    },
+    {
+      "type": "text",
+      "id": "nav_shop",
+      "label": "Label: Comprar",
+      "default": "COMPRAR"
+    },
+    {
+      "type": "text",
+      "id": "nav_about",
+      "label": "Label: Sobre",
+      "default": "SOBRE"
+    },
+    {
+      "type": "text",
+      "id": "nav_policies",
+      "label": "Label: Políticas",
+      "default": "POLÍTICAS"
+    },
+    {
+      "type": "header",
+      "content": "Popup de E-mail"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_popup",
+      "label": "Mostrar popup ao entrar no site",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "popup_image",
+      "label": "Imagem do popup"
+    },
+    {
+      "type": "text",
+      "id": "popup_title",
+      "label": "Título do popup",
+      "default": "GANHE 10% DE DESCONTO"
+    },
+    {
+      "type": "text",
+      "id": "popup_sub",
+      "label": "Subtítulo do popup",
+      "default": "NO SEU PRIMEIRO PEDIDO"
+    },
+    {
+      "type": "textarea",
+      "id": "popup_desc",
+      "label": "Descrição do popup",
+      "default": "Cadastre-se para acesso exclusivo ao universo Natalia Silveira"
+    },
+    {
+      "type": "text",
+      "id": "popup_placeholder",
+      "label": "Placeholder do e-mail",
+      "default": "Endereço de e-mail*"
+    },
+    {
+      "type": "text",
+      "id": "popup_btn",
+      "label": "Botão do popup",
+      "default": "Obter código de desconto"
+    },
+    {
+      "type": "text",
+      "id": "popup_skip",
+      "label": "Link pular popup",
+      "default": "Não, obrigada"
+    }
+  ]
+}
+{% endschema %}

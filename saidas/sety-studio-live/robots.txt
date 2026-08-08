@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://setystudio.com.br/sitemap.xml

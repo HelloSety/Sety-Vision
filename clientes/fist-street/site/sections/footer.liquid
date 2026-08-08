@@ -1,0 +1,64 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        {%- if settings.logo -%}
+          {{ settings.logo | image_tag: width: 400, alt: shop.name }}
+        {%- else -%}
+          <img src="{{ 'logo-white.png' | asset_url }}" alt="{{ shop.name }}" width="420" height="210">
+        {%- endif -%}
+        <p>{{ section.settings.footer_text | default: 'Streetwear autêntico: sneakers, camisetas, moletons, jaquetas e acessórios com atitude de rua.' }}</p>
+        {%- if settings.instagram_url != blank -%}
+        <a href="{{ settings.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram" style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--cinza-claro);font-weight:700;font-size:12.5px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          Siga no Instagram
+        </a>
+        {%- endif -%}
+      </div>
+      <div>
+        <h4>Menu do Rodapé</h4>
+        <ul>
+          {%- for link in linklists[section.settings.footer_menu].links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      <div>
+        <h4>Central de Atendimento</h4>
+        <ul>
+          <li>{{ section.settings.support_hours | default: 'Atendimento: seg. a sáb. 9h às 18h' }}</li>
+          <li>Contato: {{ section.settings.support_phone | default: 'via WhatsApp' }}</li>
+          <li>Email: {{ section.settings.support_email | default: 'contato@fiststreet.com.br' }}</li>
+        </ul>
+        {%- if settings.whatsapp_number != blank -%}
+        <a class="footer-whats" href="https://wa.me/{{ settings.whatsapp_number }}" target="_blank" rel="noopener">💬 Atendimento via WhatsApp</a>
+        {%- endif -%}
+      </div>
+      <div>
+        <h4>Formas de Pagamento</h4>
+        <div class="payment-icons">
+          <span>VISA</span><span>MASTER</span><span>PIX</span><span>ELO</span><span>AMEX</span><span>BOLETO</span>
+        </div>
+        <h4 style="margin-top:26px">Loja Verificada</h4>
+        <div class="trust-badges">
+          <span>✓ Google Seguro</span>
+          <span>✓ Compra Segura</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Rodapé",
+  "settings": [
+    { "type": "link_list", "id": "footer_menu", "label": "Menu do rodapé", "default": "footer" },
+    { "type": "textarea", "id": "footer_text", "label": "Texto institucional curto" },
+    { "type": "text", "id": "support_hours", "label": "Horário de atendimento" },
+    { "type": "text", "id": "support_phone", "label": "Telefone de atendimento" },
+    { "type": "text", "id": "support_email", "label": "Email de atendimento" }
+  ]
+}
+{% endschema %}

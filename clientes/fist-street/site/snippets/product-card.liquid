@@ -1,0 +1,34 @@
+{%- comment -%} Espera variável `product` no escopo {%- endcomment -%}
+<div class="card" data-product-id="{{ product.id }}">
+  <a class="card-img" href="{{ product.url }}">
+    {%- if product.compare_at_price > product.price -%}
+      <span class="badge">{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% OFF</span>
+    {%- endif -%}
+    {%- if product.available == false -%}
+      <span class="badge" style="background:#6b6b6b">Esgotado</span>
+    {%- endif -%}
+    {%- if product.featured_image -%}
+      <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | default: product.title }}" loading="lazy" width="800" height="{{ 800 | divided_by: product.featured_image.aspect_ratio }}">
+    {%- else -%}
+      <img src="{{ 'default-hero.jpg' | asset_url }}" alt="{{ product.title }}" loading="lazy" width="800" height="533">
+    {%- endif -%}
+  </a>
+  <div class="card-body">
+    <a href="{{ product.url }}"><h3>{{ product.title }}</h3></a>
+    <div class="price-row">
+      <span class="price-now">{{ product.price | money }}</span>
+      {%- if product.compare_at_price > product.price -%}
+        <span class="price-old">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+    </div>
+    <span class="price-install">em até 12x de {{ product.price | divided_by: 12.0 | money }}</span>
+    {%- if product.available -%}
+      <button type="button" class="btn-primary card-buy-btn quick-add-btn" data-product-handle="{{ product.handle }}" aria-label="Comprar {{ product.title }}">
+        <span>Comprar</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </button>
+    {%- else -%}
+      <span class="btn-primary card-buy-btn" style="background:#6b6b6b;cursor:not-allowed">Esgotado</span>
+    {%- endif -%}
+  </div>
+</div>

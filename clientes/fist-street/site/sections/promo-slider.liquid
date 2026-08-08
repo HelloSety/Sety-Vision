@@ -1,0 +1,37 @@
+<section class="section container" style="padding-top:0">
+  <div class="promo-slider" id="promo-slider">
+    <div class="promo-slider-track" id="promo-slider-track">
+      <a class="promo-slide" href="{{ section.settings.slide1_link | default: routes.all_products_collection_url }}">
+        <picture>
+          <source media="(max-width: 860px)" srcset="{{ 'banner-catalogo-mobile.jpg' | asset_img_url: '750x' }}">
+          <img src="{{ 'banner-catalogo-desktop.jpg' | asset_img_url: '1800x' }}" alt="{{ section.settings.slide1_alt | default: 'Os tênis mais brabos estão aqui' }}" width="1800" height="600" loading="lazy">
+        </picture>
+      </a>
+      <a class="promo-slide" href="{{ section.settings.slide2_link | default: routes.all_products_collection_url }}">
+        <picture>
+          <source media="(max-width: 860px)" srcset="{{ 'banner-lifestyle-mobile.jpg' | asset_img_url: '750x' }}">
+          <img src="{{ 'banner-lifestyle-desktop.jpg' | asset_img_url: '1800x' }}" alt="{{ section.settings.slide2_alt | default: 'Estilo de vida Fist Street' }}" width="1800" height="600" loading="lazy">
+        </picture>
+      </a>
+    </div>
+    <button type="button" class="promo-slider-arrow prev" id="promo-prev" aria-label="Slide anterior">‹</button>
+    <button type="button" class="promo-slider-arrow next" id="promo-next" aria-label="Próximo slide">›</button>
+    <div class="promo-slider-dots" id="promo-slider-dots">
+      <button type="button" class="promo-dot active" data-index="0" aria-label="Ir para slide 1"></button>
+      <button type="button" class="promo-dot" data-index="1" aria-label="Ir para slide 2"></button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Slider de Banners",
+  "settings": [
+    { "type": "url", "id": "slide1_link", "label": "Link do slide 1 (Catálogo)" },
+    { "type": "text", "id": "slide1_alt", "label": "Texto alternativo do slide 1" },
+    { "type": "url", "id": "slide2_link", "label": "Link do slide 2 (Lifestyle)" },
+    { "type": "text", "id": "slide2_alt", "label": "Texto alternativo do slide 2" }
+  ],
+  "presets": [{ "name": "Slider de Banners" }]
+}
+{% endschema %}

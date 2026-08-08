@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retorno do Pagamento — Autênticas Store</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .status-wrap { max-width: 520px; margin: 0 auto; padding: 90px 24px; text-align: center; }
+  .status-icon { width: 76px; height: 76px; margin: 0 auto 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+  .status-icon svg { width: 38px; height: 38px; }
+  .status-icon.ok { background: #e6f6ec; color: #1f8a4c; }
+  .status-icon.pending { background: #fff3d9; color: #b3781b; }
+  .status-icon.fail { background: #fdeaea; color: #a12727; }
+  .status-wrap h1 { font-size: 22px; text-transform: uppercase; margin-bottom: 10px; }
+  .status-wrap p { color: var(--cinza); font-size: 14px; line-height: 1.6; margin-bottom: 28px; }
+  .status-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-top">
+    <a href="index.html" class="logo" aria-label="Autênticas Store — página inicial">
+      <img src="assets/logo.png" alt="Autênticas Store">
+      <span>AUTÊNTICAS STORE</span>
+    </a>
+  </div>
+</header>
+
+<main class="status-wrap" id="statusWrap"></main>
+
+<script>
+  const STATUS = {
+    approved: {
+      icon: 'ok',
+      title: 'Pagamento aprovado!',
+      text: 'Seu pedido foi confirmado com sucesso. Em breve você recebe as informações de envio pelo WhatsApp ou e-mail informado.',
+      svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 13 4 4L19 7"/></svg>',
+    },
+    pending: {
+      icon: 'pending',
+      title: 'Pagamento em análise',
+      text: 'Recebemos seu pedido e estamos aguardando a confirmação do pagamento (comum em boleto e alguns métodos Pix/cartão). Assim que for aprovado, avisamos você.',
+      svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>',
+    },
+    failure: {
+      icon: 'fail',
+      title: 'Pagamento não concluído',
+      text: 'Não foi possível confirmar seu pagamento. Nenhum valor foi cobrado. Você pode tentar novamente ou escolher outra forma de pagamento.',
+      svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>',
+    },
+  };
+
+  const status = new URLSearchParams(window.location.search).get('status') || 'pending';
+  const s = STATUS[status] || STATUS.pending;
+
+  document.getElementById('statusWrap').innerHTML = `
+    <div class="status-icon ${s.icon}">${s.svg}</div>
+    <h1>${s.title}</h1>
+    <p>${s.text}</p>
+    <div class="status-actions">
+      <a href="index.html" class="btn-primary">Voltar à loja</a>
+      ${status === 'failure' ? '<a href="checkout.html" class="btn-outline-light" style="color:#0d0d0d;border-color:#0d0d0d">Tentar novamente</a>' : ''}
+    </div>
+  `;
+</script>
+</body>
+</html>

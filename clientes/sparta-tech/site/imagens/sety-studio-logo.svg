@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 80" fill="none">
+  <!-- Ícone estrela com fundo azul -->
+  <rect x="0" y="0" width="80" height="80" rx="16" fill="url(#bg)"/>
+  <path d="M40 8L44.4 34.4L70.4 40L44.4 45.6L40 72L35.6 45.6L9.6 40L35.6 34.4Z" fill="white"/>
+
+  <!-- Texto SETY -->
+  <text x="96" y="52" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="800" letter-spacing="-1" fill="url(#text-grad)">SETY</text>
+  <!-- Texto STUDIO -->
+  <text x="230" y="52" font-family="Inter, Arial, sans-serif" font-size="38" font-weight="800" letter-spacing="-1" fill="white"> STUDIO</text>
+
+  <!-- Subtítulo -->
+  <text x="97" y="68" font-family="Inter, Arial, sans-serif" font-size="9" font-weight="600" letter-spacing="4" fill="#475569">DIGITAL AGENCY</text>
+
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+</svg>

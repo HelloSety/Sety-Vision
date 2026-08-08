@@ -1,0 +1,38 @@
+{%- comment -%} Espera variável `product` no escopo. Cartão do carrossel "Mais Vendidos" / "Coleção X". {%- endcomment -%}
+{%- assign size_option_index = -1 -%}
+{%- for option in product.options_with_values -%}
+  {%- if option.name == 'Tamanho' or option.name == 'Size' -%}
+    {%- assign size_option_index = forloop.index0 -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign sizes = product.options_with_values[size_option_index].values -%}
+{%- assign sizes_shown = sizes | slice: 0, 3 -%}
+{%- assign extra_sizes = sizes.size | minus: 3 -%}
+
+<a class="dest-card" href="{{ product.url }}">
+  <div class="dest-card-img">
+    {%- if show_best_seller -%}<span class="badge badge-vendido">Mais Vendido</span>{%- endif -%}
+    {%- if product.compare_at_price > product.price -%}
+      <span class="badge-desconto">-{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}%</span>
+    {%- endif -%}
+    {%- if product.featured_image -%}
+      <img src="{{ product.featured_image | image_url: width: 480 }}" alt="{{ product.featured_image.alt | default: product.title }}" loading="lazy" width="480" height="{{ 480 | divided_by: product.featured_image.aspect_ratio }}">
+    {%- else -%}
+      <img src="{{ 'default-hero.jpg' | asset_url }}" alt="{{ product.title }}" loading="lazy" width="480" height="320">
+    {%- endif -%}
+  </div>
+  <p class="dest-card-nome">{{ product.title }}<em>{{ product.vendor }}</em></p>
+  {%- if sizes_shown.size > 0 -%}
+    <div class="dest-card-tamanhos">
+      {%- for value in sizes_shown -%}<span class="dest-card-tamanho">{{ value }}</span>{%- endfor -%}
+      {%- if extra_sizes > 0 -%}<span class="dest-card-tamanho">+{{ extra_sizes }}</span>{%- endif -%}
+    </div>
+  {%- endif -%}
+  <hr class="dest-card-divisor">
+  <p class="dest-card-preco">{{ product.price | money }}</p>
+  <span class="dest-card-pix">{{ product.price | times: 0.9 | money }} no Pix</span>
+  <div class="dest-card-cta">
+    <span>Comprar</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8h12l1 12H5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
+  </div>
+</a>

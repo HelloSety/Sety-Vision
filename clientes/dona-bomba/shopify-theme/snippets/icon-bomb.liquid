@@ -1,0 +1,7 @@
+{% doc %}
+  Renders the Dona Bomba brand symbol (the bomb icon used in the logo).
+  @param {string} [class] - Extra CSS class to apply to the svg element
+  @example
+  {% render 'icon-bomb', class: 'logo-mark' %}
+{% enddoc %}
+<svg class="{{ class }}" viewBox="40 45 130 130" aria-hidden="true"><circle cx="100" cy="118" r="33" fill="var(--red)"/><circle cx="100" cy="118" r="28" fill="var(--black)"/><path d="M78 141 q-3 10 2 15 q5-5 1-15z" fill="var(--red)"/><path d="M99 145 q-3 12 2 17 q5-5 1-17z" fill="var(--red)"/><path d="M120 141 q-3 9 2 13 q4-4 1-13z" fill="var(--red)"/><ellipse cx="89" cy="105" rx="7" ry="9" fill="var(--white)" opacity="0.85"/><ellipse cx="102" cy="128" rx="3" ry="4" fill="var(--white)" opacity="0.5"/><path d="M100 90 Q 108 72 124 76" stroke="var(--black)" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M124 58 l5 11 l11 4 l-11 5 l-4 11 l-5-11 l-11-4 l11-5 z" fill="var(--red)"/></svg>

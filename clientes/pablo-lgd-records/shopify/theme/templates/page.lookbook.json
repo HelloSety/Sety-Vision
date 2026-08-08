@@ -1,0 +1,33 @@
+{
+  "sections": {
+    "main": {
+      "type": "lookbook",
+      "settings": {
+        "eyebrow": "LGD RECORDS / SS 2025",
+        "title": "LOOK<br>BOOK",
+        "subtitle": "Drop 01. A nova estética do underground.<br>Streetwear que carrega cultura, música e identidade.<br>Cada peça, uma declaração.",
+        "season": "SS25",
+        "drop": "01",
+        "cta_eyebrow": "DROP 01",
+        "cta_title": "COMPRE<br>A COLEÇÃO",
+        "cta_text": "ACESSAR SHOP"
+      },
+      "blocks": {
+        "l1": { "type": "look", "settings": { "title": "LEGACY BLACK", "watermark": "LGD" } },
+        "l2": { "type": "look", "settings": { "title": "CHAOS WHITE", "watermark": "REC" } },
+        "l3": { "type": "look", "settings": { "title": "JERSEY RECORDS", "watermark": "LGD" } },
+        "l4": { "type": "look", "settings": { "title": "UNDERGROUND CLUB", "watermark": "" } },
+        "l5": { "type": "look", "settings": { "title": "VISION BLACK", "watermark": "SS25" } },
+        "l6": { "type": "look", "settings": { "title": "VINTAGE RAP", "watermark": "" } },
+        "l7": { "type": "look", "settings": { "title": "NO RULES", "watermark": "LGD" } },
+        "l8": { "type": "look", "settings": { "title": "STREET DIVISION", "watermark": "" } },
+        "l9": { "type": "look", "settings": { "title": "CLASSIC HOOD", "watermark": "RECORDS" } },
+        "l10": { "type": "look", "settings": { "title": "NIGHT VISION", "watermark": "" } },
+        "l11": { "type": "look", "settings": { "title": "ARCHIVE TEE", "watermark": "DROP01" } },
+        "l12": { "type": "look", "settings": { "title": "SIGNATURE", "watermark": "LGD" } }
+      },
+      "block_order": ["l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8", "l9", "l10", "l11", "l12"]
+    }
+  },
+  "order": ["main"]
+}

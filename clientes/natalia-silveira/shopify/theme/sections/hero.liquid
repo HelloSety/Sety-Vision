@@ -1,0 +1,325 @@
+<section class="hero">
+  <div class="hero-image">
+    {%- if section.settings.image -%}
+      <picture>
+        {%- if section.settings.mobile_image -%}
+          <source media="(max-width: 768px)" srcset="{{ section.settings.mobile_image | image_url: width: 900 }}">
+        {%- endif -%}
+        <img
+          src="{{ section.settings.image | image_url: width: 1800 }}"
+          srcset="{{ section.settings.image | image_url: width: 900 }} 900w, {{ section.settings.image | image_url: width: 1400 }} 1400w, {{ section.settings.image | image_url: width: 1800 }} 1800w"
+          sizes="100vw"
+          alt="{{ section.settings.image.alt | default: shop.name }}"
+          width="1800"
+          height="1100"
+          loading="eager"
+          fetchpriority="high">
+      </picture>
+    {%- else -%}
+      <img
+        src="{{ 'default-hero.jpg' | asset_url }}"
+        alt="{{ shop.name }}"
+        width="1800"
+        height="1100"
+        loading="eager"
+        fetchpriority="high">
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_text -%}
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-inner">
+        {%- if section.settings.hero_eyebrow != blank -%}
+          <p class="hero-eyebrow">{{ section.settings.hero_eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.show_title -%}
+          <h1 class="hero-title">
+            <em>{{ section.settings.title_line1 | default: 'Feita à mão,' }}</em><br>
+            {{ section.settings.title_line2 | default: 'com alma do Brasil' }}
+          </h1>
+        {%- endif -%}
+        {%- if section.settings.support_text != blank -%}
+          <p class="hero-support">{{ section.settings.support_text | newline_to_br }}</p>
+        {%- endif -%}
+        <a href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}" class="btn-fill-white hero-cta">
+          {{ section.settings.cta_text | default: 'VER COLEÇÃO' }}
+        </a>
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+<style>
+  /* ── HERO BASE ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: clamp(580px, 70vh, 760px);
+    overflow: hidden;
+  }
+
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+
+  .hero-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #1a1208 0%, #2d1e0a 50%, #3d2a10 100%);
+  }
+
+  /* ── OVERLAY ── */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, .55) 0%,
+      rgba(0, 0, 0, .20) 60%,
+      rgba(0, 0, 0, .05) 100%
+    );
+  }
+
+  /* ── CONTENT ── */
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-inner {
+    max-width: 560px;
+    padding: 0 clamp(24px, 6vw, 80px);
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .hero-eyebrow {
+    font-family: Jost, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, .70);
+    text-transform: uppercase;
+    margin: 0 0 20px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(54px, 5vw, 72px);
+    line-height: 1.05;
+    color: #fff;
+    margin: 0 0 24px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+  }
+
+  .hero-support {
+    font-family: Jost, sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, .85);
+    margin: 0 0 28px;
+  }
+
+  /* ── CTA ── */
+  .hero-cta {
+    display: inline-block;
+    margin-top: 36px;
+    padding: 15px 36px;
+    font-family: Jost, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #111;
+    background: #fff;
+    text-decoration: none;
+    transition: background .2s, transform .2s, box-shadow .2s;
+  }
+
+  .hero-cta:hover {
+    background: #f5f2ee;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .18);
+  }
+
+  /* ── LARGE DESKTOP (1200px) ── */
+  @media (max-width: 1200px) {
+    .hero {
+      height: clamp(560px, 70vh, 740px);
+    }
+    .hero-inner {
+      max-width: 520px;
+    }
+  }
+
+  /* ── NOTEBOOK / SMALL DESKTOP (992px) ── */
+  @media (max-width: 992px) {
+    .hero {
+      height: clamp(520px, 72vh, 700px);
+    }
+    .hero-title {
+      font-size: clamp(44px, 5.5vw, 60px);
+    }
+  }
+
+  /* ── TABLET / LARGE MOBILE (768px) ── */
+  @media (max-width: 768px) {
+    .hero {
+      height: 78vh;
+      min-height: 520px;
+      max-height: 620px;
+    }
+    .hero-image img {
+      object-position: center center;
+    }
+    .hero-overlay {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, .08) 0%,
+        rgba(0, 0, 0, .45) 55%,
+        rgba(0, 0, 0, .62) 100%
+      );
+    }
+    .hero-content {
+      align-items: flex-end;
+      padding-bottom: 60px;
+    }
+    .hero-inner {
+      max-width: 90%;
+      padding: 80px 20px 0;
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: clamp(34px, 8.5vw, 42px);
+      margin-bottom: 20px;
+    }
+    .hero-cta {
+      font-size: 12px;
+      padding: 14px 28px;
+      margin-top: 28px;
+      letter-spacing: 2px;
+    }
+  }
+
+  /* ── SMALL MOBILE (480px) ── */
+  @media (max-width: 480px) {
+    .hero {
+      height: 80vh;
+      min-height: 480px;
+      max-height: 600px;
+    }
+    .hero-title {
+      font-size: 34px;
+    }
+    .hero-content {
+      padding-bottom: 48px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Imagem"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagem de fundo do hero (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Imagem de fundo do hero (mobile)",
+      "info": "Opcional. Se vazia, usa a imagem de desktop também no celular. Use uma foto enquadrada na vertical, com o rosto/produto centralizado."
+    },
+    {
+      "type": "header",
+      "content": "Textos"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text",
+      "label": "Mostrar texto sobre a imagem",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Mostrar título grande (Feita à mão...)",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Texto pequeno acima (eyebrow)",
+      "default": "MACRAMÊ COUTURE • FEITO NO BRASIL"
+    },
+    {
+      "type": "text",
+      "id": "title_line1",
+      "label": "Título — Linha 1 (itálico)",
+      "default": "Feita à mão,"
+    },
+    {
+      "type": "text",
+      "id": "title_line2",
+      "label": "Título — Linha 2",
+      "default": "com alma do Brasil"
+    },
+    {
+      "type": "textarea",
+      "id": "support_text",
+      "label": "Texto de apoio (abaixo do título)",
+      "default": "Criamos sonhos.\nVestimos momentos."
+    },
+    {
+      "type": "header",
+      "content": "Botão"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto do botão",
+      "default": "VER COLEÇÃO"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Link do botão"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

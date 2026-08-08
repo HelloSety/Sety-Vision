@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sety Studio — Página de Produto Premium (padrão Manto Pro)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* ===================================================================
+     SETY STUDIO — COMPONENTE: PÁGINA DE PRODUTO / CHECKOUT PREMIUM
+     Extraído com fidelidade de https://mantoprooficial.com.br/ (2026-08-02)
+     Ver spec completa em MEMORY/PLAYBOOKS/padrao-icones-checkout.md
+
+     COMO USAR NUM CLIENTE NOVO:
+     1. Copiar todo o bloco <section class="sety-produto"> pro template de
+        produto do cliente (Shopify: sections/main-product.liquid ou tema estático).
+     2. Trocar as variáveis abaixo pela cor de marca do cliente (--sety-accent).
+     3. Trocar os placeholders {{ }} por dados reais do produto (via Liquid,
+        JS de loja, ou hardcode em site estático).
+     4. Trocar o número de WhatsApp nos dois links "Comprar pelo WhatsApp".
+     =================================================================== */
+
+  .sety-produto {
+    --sety-accent: #12FD20;        /* cor de destaque da marca — TROCAR por cliente */
+    --sety-accent-text: #000000;   /* texto sobre o accent (preto ou branco conforme contraste) */
+    --sety-dark: #000000;
+    --sety-text: #282828;
+    --sety-text-soft: #565656;
+    --sety-border: #dfdfdf;
+    --sety-bg-soft: #f6f6f8;
+    --sety-radius: 7px;
+    --sety-radius-sm: 4px;
+    --sety-font: 'Poppins', sans-serif;
+
+    font-family: var(--sety-font);
+    color: var(--sety-text);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+  .sety-produto *, .sety-produto *::before, .sety-produto *::after { box-sizing: border-box; }
+
+  /* Barra de anúncio giratória */
+  .sety-anuncio {
+    background: var(--sety-dark);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 8px 16px;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    border-radius: var(--sety-radius-sm);
+    margin-bottom: 24px;
+  }
+  .sety-anuncio button {
+    background: none; border: none; color: #fff; cursor: pointer;
+    display: flex; align-items: center; padding: 2px;
+  }
+  .sety-anuncio button svg { width: 14px; height: 14px; }
+
+  /* Breadcrumb */
+  .sety-breadcrumb {
+    font-size: 13px;
+    color: var(--sety-text-soft);
+    margin-bottom: 20px;
+  }
+  .sety-breadcrumb a { color: var(--sety-text-soft); text-decoration: none; }
+  .sety-breadcrumb a:hover { text-decoration: underline; }
+
+  /* Grid principal: galeria + info */
+  .sety-produto__grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 860px) {
+    .sety-produto__grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* Galeria (thumbnails na lateral — padrão editorial) */
+  .sety-galeria { display: flex; gap: 12px; position: sticky; top: 24px; }
+  .sety-galeria__thumbs {
+    display: flex; flex-direction: column; gap: 8px;
+    width: 64px; flex-shrink: 0;
+  }
+  .sety-galeria__thumbs img {
+    width: 100%; aspect-ratio: 1; object-fit: cover;
+    border-radius: var(--sety-radius-sm);
+    border: 1px solid var(--sety-border);
+    cursor: pointer;
+  }
+  .sety-galeria__thumbs img.is-active { border-color: var(--sety-dark); border-width: 2px; }
+  .sety-galeria__main { flex: 1; border-radius: var(--sety-radius); overflow: hidden; background: #fafafa; }
+  .sety-galeria__main img { width: 100%; height: auto; display: block; object-fit: cover; }
+  @media (max-width: 640px) {
+    .sety-galeria { flex-direction: column-reverse; }
+    .sety-galeria__thumbs { flex-direction: row; width: 100%; }
+    .sety-galeria__thumbs img { width: 56px; }
+  }
+
+  /* Badges duplos */
+  .sety-badges { display: flex; gap: 6px; margin-bottom: 10px; }
+  .sety-badge {
+    font-size: 10px; font-weight: 400; padding: 3px 5px; border-radius: 3px;
+  }
+  .sety-badge--oferta { background: var(--sety-accent); color: var(--sety-accent-text); }
+  .sety-badge--qualidade { background: var(--sety-dark); color: #fff; }
+
+  /* Título */
+  .sety-titulo {
+    font-size: 18px; text-transform: uppercase; letter-spacing: -0.8px;
+    margin: 5px 0 12px; font-weight: 400;
+  }
+
+  /* Preço */
+  .sety-preco-linha { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .sety-preco-atual { font-size: 29px; font-weight: 600; color: var(--sety-text-soft); }
+  .sety-preco-riscado { font-size: 17px; text-decoration: line-through; color: var(--sety-text); }
+  .sety-preco-desconto {
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+    background: var(--sety-accent); color: var(--sety-accent-text);
+    padding: 2px 7px; border-radius: var(--sety-radius-sm);
+  }
+  .sety-parcelamento { font-size: 14px; display: flex; align-items: center; gap: 6px; margin: 8px 0; }
+  .sety-parcelamento svg { width: 16px; height: 16px; }
+  .sety-formas-link {
+    display: inline-block; font-size: 13px; color: var(--sety-dark);
+    border: 1px solid var(--sety-border); border-radius: var(--sety-radius-sm);
+    padding: 4px 10px; text-decoration: none; margin-bottom: 16px;
+    background: #fff; cursor: pointer;
+  }
+  .sety-formas-link:hover { background: var(--sety-bg-soft); }
+
+  /* Bloco PIX destacado */
+  .sety-pix {
+    display: flex; align-items: center; gap: 8px;
+    background: #f1f1f1; border-radius: var(--sety-radius);
+    padding: 8px 12px; margin-bottom: 20px;
+    box-shadow: 1px 1px 4px -2px rgba(0,0,0,.35);
+  }
+  .sety-pix svg { width: 22px; height: 22px; fill: #32BCAD; flex-shrink: 0; }
+  .sety-pix strong { font-size: 13px; }
+  .sety-pix span.envio {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    background: #fff; border-radius: 3px; padding: 2px 6px; margin-left: 8px;
+  }
+
+  /* Seletor de tamanho */
+  .sety-opcao { margin-bottom: 20px; }
+  .sety-opcao__label { font-size: 13px; font-weight: 600; margin-bottom: 8px; display: block; }
+  .sety-opcao__label span { font-weight: 400; color: var(--sety-text-soft); margin-left: 4px; }
+  .sety-swatch-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sety-swatch {
+    border: 1px solid var(--sety-border); border-radius: 5px;
+    padding: 8px 16px; font-size: 15px; background: #fff; cursor: pointer;
+    min-width: 44px; text-align: center;
+  }
+  .sety-swatch.is-selected { border: 2px solid var(--sety-dark); font-weight: 600; }
+  .sety-swatch:disabled, .sety-swatch.is-indisponivel {
+    opacity: .4; text-decoration: line-through; cursor: not-allowed;
+  }
+
+  /* Toggle personalizar */
+  .sety-toggle-list { display: flex; gap: 8px; }
+  .sety-toggle {
+    border: 1px solid var(--sety-border); border-radius: 5px;
+    padding: 8px 16px; font-size: 14px; background: #fff; cursor: pointer;
+  }
+  .sety-toggle.is-selected { border: 2px solid var(--sety-dark); font-weight: 600; }
+  .sety-personalizacao {
+    display: none; background: var(--sety-bg-soft); border-radius: var(--sety-radius);
+    padding: 18px; margin-top: 12px;
+  }
+  .sety-personalizacao.is-aberto { display: block; }
+  .sety-personalizacao label {
+    display: flex; align-items: center; gap: 6px; font-size: 12px;
+    text-transform: uppercase; font-weight: 600; margin-bottom: 4px;
+  }
+  .sety-personalizacao label svg { width: 18px; height: 18px; color: var(--sety-accent); }
+  .sety-personalizacao input {
+    width: 100%; height: 42px; padding: 12px 18px; margin-bottom: 12px;
+    border: 1px solid #d7d7eb73; border-radius: var(--sety-radius); background: #fff; font-size: 14px;
+  }
+  .sety-personalizacao input:focus { outline: none; border-color: var(--sety-accent); }
+  .sety-personalizacao .aviso { color: #b9b9cd; font-weight: normal; margin-left: 6px; font-size: 10px; }
+
+  /* Quantidade */
+  .sety-qtd {
+    display: inline-flex; align-items: center; border: 1px solid var(--sety-border);
+    border-radius: var(--sety-radius); overflow: hidden;
+  }
+  .sety-qtd button {
+    width: 46px; height: 46px; border: none; background: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sety-qtd button:hover { background: var(--sety-bg-soft); }
+  .sety-qtd input {
+    width: 46px; height: 46px; border: none; border-left: 1px solid var(--sety-border);
+    border-right: 1px solid var(--sety-border); text-align: center; font-size: 16px;
+  }
+
+  /* CTAs — hierarquia de 3 botões */
+  .sety-ctas { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+  .sety-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    height: 55px; border-radius: var(--sety-radius); font-size: 15px; font-weight: 600;
+    text-decoration: none; cursor: pointer; border: none; width: 100%;
+  }
+  .sety-btn svg { width: 20px; height: 20px; }
+  .sety-btn--primario { background: var(--sety-accent); color: var(--sety-accent-text); text-transform: uppercase; letter-spacing: 1px; }
+  .sety-btn--primario:hover { filter: brightness(0.95); }
+  .sety-btn--secundario { background: var(--sety-dark); color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+  .sety-btn--secundario:hover { filter: brightness(1.2); }
+  .sety-btn--outline {
+    background: #fff; color: #36B376; border: 2px solid #36B376;
+  }
+  .sety-btn--outline:hover { background: #36B376; color: #fff; }
+  .sety-btn--outline svg { color: #25D366; }
+  .sety-btn--outline:hover svg { color: #fff; }
+
+  /* Formas de pagamento */
+  .sety-pagamento {
+    background: #fff; border: 1px solid var(--sety-bg-soft); border-radius: var(--sety-radius-sm);
+    box-shadow: 0 5px 6px -5px var(--sety-bg-soft); padding: 10px; text-align: center; margin-bottom: 8px;
+  }
+  .sety-pagamento__titulo {
+    display: inline-block; background: var(--sety-bg-soft); border-radius: 4px;
+    padding: 4px 10px; font-size: 12px; font-weight: 700; margin-bottom: 8px;
+  }
+  .sety-pagamento__icones { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .sety-pagamento__icones svg { height: 28px; width: auto; }
+
+  /* Selo de segurança / frete / devolução */
+  .sety-info-box {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: #fff; border: 1px solid var(--sety-bg-soft); border-radius: var(--sety-radius-sm);
+    box-shadow: 0 5px 6px -5px var(--sety-bg-soft); padding: 12px 15px; margin-top: 10px;
+  }
+  .sety-info-box svg { width: 22px; height: 22px; flex-shrink: 0; color: var(--sety-text); }
+  .sety-info-box strong { display: block; font-size: 14px; margin-bottom: 2px; }
+  .sety-info-box p { margin: 0; font-size: 12px; color: var(--sety-text-soft); line-height: 1.5; }
+
+  /* ===== Abas Descrição / Tabela de medidas ===== */
+  .sety-tabs { margin-top: 56px; }
+  .sety-tabs__nav { display: flex; gap: 32px; border-bottom: 1px solid var(--sety-border); margin-bottom: 24px; }
+  .sety-tabs__item {
+    background: none; border: none; cursor: pointer; padding: 0 0 18px;
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .3px;
+    color: var(--sety-text-soft); border-bottom: 2px solid transparent; margin-bottom: -1px;
+  }
+  .sety-tabs__item.is-active { color: var(--sety-text); border-bottom-color: var(--sety-dark); }
+  .sety-tabs__content { display: none; max-width: 760px; }
+  .sety-tabs__content.is-active { display: block; }
+  .sety-tabs__content h2 { font-size: 20px; text-transform: uppercase; font-weight: 400; margin: 24px 0 8px; }
+  .sety-tabs__content h2:first-child { margin-top: 0; }
+  .sety-tabs__content p { font-size: 15px; line-height: 1.6; color: var(--sety-text); margin: 0 0 8px; }
+  .sety-tabs__content img { max-width: 100%; border-radius: var(--sety-radius); }
+  .sety-trust-links { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 28px; }
+  .sety-trust-links button {
+    background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px;
+    font-size: 14px; color: var(--sety-text-soft); padding: 0;
+  }
+  .sety-trust-links svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+  /* ===== Banner cartão de crédito ===== */
+  .sety-banner-cartao {
+    display: flex; align-items: center; gap: 14px; background: var(--sety-dark); color: #fff;
+    border-radius: var(--sety-radius); padding: 16px 20px; margin-top: 24px;
+  }
+  .sety-banner-cartao svg { width: 30px; height: 30px; flex-shrink: 0; color: #d4af37; }
+  .sety-banner-cartao p { margin: 0; font-size: 14px; letter-spacing: .2px; }
+
+  /* ===== Selos de segurança completos ===== */
+  .sety-seguranca-completa {
+    margin-top: 16px; padding: 20px; border: 1px solid var(--sety-bg-soft); border-radius: var(--sety-radius);
+    box-shadow: 0 5px 6px -5px var(--sety-bg-soft);
+  }
+  .sety-seguranca-completa .sety-pagamento__icones { margin-bottom: 16px; justify-content: flex-start; }
+  .sety-selos-confianca { display: flex; flex-wrap: wrap; gap: 24px; border-top: 1px solid var(--sety-bg-soft); padding-top: 16px; }
+  .sety-selo { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; }
+  .sety-selo svg { width: 20px; height: 20px; color: #1a9c4c; }
+
+  /* ===== Grid de produtos (relacionados / vistos recentemente) ===== */
+  .sety-secao-produtos { margin-top: 64px; }
+  .sety-secao-produtos h3 {
+    text-align: center; font-size: 18px; text-transform: uppercase; font-weight: 400; margin-bottom: 28px;
+  }
+  .sety-produtos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  @media (max-width: 860px) { .sety-produtos-grid { grid-template-columns: repeat(2, 1fr); } }
+  .sety-produto-card { text-align: center; }
+  .sety-produto-card__imagem-wrap { position: relative; border-radius: var(--sety-radius); overflow: hidden; background: #fafafa; margin-bottom: 10px; }
+  .sety-produto-card img { width: 100%; aspect-ratio: .85; object-fit: cover; display: block; }
+  .sety-produto-card .sety-badge--oferta { position: absolute; top: 8px; left: 8px; }
+  .sety-produto-card__titulo { font-size: 14px; margin: 0 0 6px; }
+  .sety-produto-card__preco { font-size: 15px; font-weight: 600; }
+  .sety-produto-card__preco-riscado { font-size: 12px; text-decoration: line-through; color: var(--sety-text-soft); margin-left: 6px; }
+
+  /* ===== FAQ ===== */
+  .sety-faq { margin-top: 64px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .sety-faq h2 { text-align: center; font-size: 22px; text-transform: uppercase; font-weight: 400; margin-bottom: 8px; }
+  .sety-faq > p { text-align: center; color: var(--sety-text-soft); font-size: 14px; margin-bottom: 24px; }
+  .sety-faq__item { border-top: 1px solid var(--sety-border); }
+  .sety-faq__item:last-child { border-bottom: 1px solid var(--sety-border); }
+  .sety-faq__pergunta {
+    width: 100%; background: none; border: none; cursor: pointer; text-align: left;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 21px 4px; font-size: 15px; font-weight: 600;
+  }
+  .sety-faq__pergunta svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform .2s; }
+  .sety-faq__item.is-aberto .sety-faq__pergunta svg { transform: rotate(45deg); }
+  .sety-faq__resposta { display: none; padding: 0 4px 21px; font-size: 14px; line-height: 1.6; color: var(--sety-text-soft); }
+  .sety-faq__item.is-aberto .sety-faq__resposta { display: block; }
+
+  /* ===== Footer ===== */
+  .sety-footer {
+    --sety-dark: #000000;
+    background: var(--sety-dark); color: #fff; margin-top: 64px; padding: 48px 24px 24px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .sety-footer__grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  @media (max-width: 760px) { .sety-footer__grid { grid-template-columns: 1fr 1fr; } }
+  .sety-footer__titulo { font-size: 12px; font-weight: 600; text-transform: uppercase; margin: 0 0 12px; }
+  .sety-footer__links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .sety-footer__links a { color: rgba(255,255,255,.75); text-decoration: none; font-size: 13px; }
+  .sety-footer__links a:hover { color: #fff; }
+  .sety-footer__atendimento p { font-size: 13px; margin: 0 0 8px; display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,.85); }
+  .sety-footer__atendimento svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .sety-footer-whats {
+    display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff;
+    border-radius: 5px; padding: 10px 18px; text-decoration: none; font-size: 13px; font-weight: 600; margin-top: 8px;
+  }
+  .sety-footer-whats svg { width: 20px; height: 20px; }
+  .sety-footer__pagamento-icones { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .sety-footer__pagamento-icones svg { height: 24px; width: auto; }
+  .sety-footer__selos { display: flex; flex-wrap: wrap; gap: 16px; border-top: 1px solid rgba(255,255,255,.15); padding-top: 16px; }
+  .sety-footer__selo { display: flex; align-items: center; gap: 6px; font-size: 11px; color: rgba(255,255,255,.7); }
+  .sety-footer__selo svg { width: 16px; height: 16px; }
+  .sety-footer__copy {
+    max-width: 1200px; margin: 32px auto 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.15);
+    font-size: 12px; color: rgba(255,255,255,.5); text-align: center;
+  }
+
+  /* WhatsApp flutuante */
+  .sety-whatsapp-float {
+    position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px;
+    border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,.25); z-index: 999; text-decoration: none;
+  }
+  .sety-whatsapp-float svg { width: 30px; height: 30px; }
+</style>
+</head>
+<body style="background:#fff; margin:0;">
+
+<!-- ===== Barra de anúncio giratória ===== -->
+<div style="padding:16px 16px 0;">
+<div class="sety-anuncio" style="max-width:1200px;margin:0 auto;">
+  <button aria-label="Anterior">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <span>10% OFF comprando no Pix</span>
+  <button aria-label="Próximo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>
+</div>
+
+<section class="sety-produto">
+
+  <nav class="sety-breadcrumb">
+    <a href="#">Página Inicial</a> / {{ nome_do_produto }}
+  </nav>
+
+  <div class="sety-produto__grid">
+
+    <!-- ===== Galeria ===== -->
+    <div class="sety-galeria">
+      <div class="sety-galeria__thumbs">
+        <img class="is-active" src="{{ imagem_1 }}" alt="{{ nome_do_produto }}" onclick="setyTrocarImagem(this)">
+        <img src="{{ imagem_2 }}" alt="{{ nome_do_produto }}" onclick="setyTrocarImagem(this)">
+      </div>
+      <div class="sety-galeria__main">
+        <img id="sety-imagem-principal" src="{{ imagem_1 }}" alt="{{ nome_do_produto }}">
+      </div>
+    </div>
+
+    <!-- ===== Informações do produto ===== -->
+    <div class="sety-produto__info">
+
+      <div class="sety-badges">
+        <span class="sety-badge sety-badge--oferta">LEVE 5 PAGUE 4</span>
+        <span class="sety-badge sety-badge--qualidade">QUALIDADE PREMIUM</span>
+      </div>
+
+      <h1 class="sety-titulo">{{ nome_do_produto }}</h1>
+
+      <div class="sety-preco-linha">
+        <span class="sety-preco-atual">R$ {{ preco_atual }}</span>
+        <span class="sety-preco-riscado">R$ {{ preco_original }}</span>
+        <span class="sety-preco-desconto">- {{ percentual_desconto }}%</span>
+      </div>
+
+      <p class="sety-parcelamento">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 9h20"/></svg>
+        em até 12x de <b>R$ {{ valor_parcela }}</b>
+      </p>
+
+      <a href="#formas-pagamento" class="sety-formas-link" onclick="document.getElementById('sety-modal-pagamento').classList.add('is-aberto');return false;">+ Formas de Pagamento</a>
+
+      <div class="sety-pix">
+        <svg viewBox="0 0 512 512"><path d="M242.4 292.5C247.9 298 257.1 298 262.6 292.5L339.3 215.8C334.8 210.5 328.1 207 320.6 207H239.5C232 207 225.3 210.5 220.8 215.8L242.4 292.5zM384.4 168.9L322.9 107.4C307.6 92.1 288 84 267.9 82.3V17.1C267.9 7.7 260.2 0 250.8 0S233.8 7.7 233.8 17.1V82.3C213.7 84 194.1 92.1 178.8 107.4L117.4 168.9C102.1 184.2 94 203.8 92.3 223.9H17.1C7.7 223.9 0 231.6 0 241S7.7 258.1 17.1 258.1H92.3C94 278.2 102.1 297.8 117.4 313.1L178.9 374.6C194.2 389.9 213.8 398 233.9 399.7V464.9C233.9 474.3 241.6 482 251 482S268.1 474.3 268.1 464.9V399.7C288.2 398 307.8 389.9 323.1 374.6L384.6 313.1C399.9 297.8 408 278.2 409.7 258.1H474.9C484.3 258.1 492 250.4 492 241S484.3 223.9 474.9 223.9H409.7C407.9 203.8 399.8 184.2 384.4 168.9z" fill="#32BCAD"/></svg>
+        <div>
+          <strong>10% OFF</strong> no pix
+          <span class="envio">+ Envio Prioritário</span>
+        </div>
+      </div>
+
+      <!-- Seletor de tamanho -->
+      <div class="sety-opcao">
+        <span class="sety-opcao__label">Tamanho: <span id="sety-tamanho-selecionado">P</span></span>
+        <div class="sety-swatch-list" id="sety-swatch-tamanho">
+          <button type="button" class="sety-swatch is-selected">P</button>
+          <button type="button" class="sety-swatch">M</button>
+          <button type="button" class="sety-swatch">G</button>
+          <button type="button" class="sety-swatch">GG</button>
+          <button type="button" class="sety-swatch">2GG</button>
+          <button type="button" class="sety-swatch">3GG</button>
+          <button type="button" class="sety-swatch">4GG</button>
+        </div>
+      </div>
+
+      <!-- Toggle personalizar -->
+      <div class="sety-opcao">
+        <span class="sety-opcao__label">Personalizar: <span id="sety-personalizar-selecionado">Não Personalizar</span></span>
+        <div class="sety-toggle-list" id="sety-toggle-personalizar">
+          <button type="button" class="sety-toggle is-selected" data-valor="Não Personalizar">Não Personalizar</button>
+          <button type="button" class="sety-toggle" data-valor="Personalizar">Personalizar</button>
+        </div>
+        <div class="sety-personalizacao" id="sety-campos-personalizacao">
+          <label for="sety-nome">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+            Nome:
+          </label>
+          <input id="sety-nome" type="text" placeholder="Ex: Carlos S." name="properties[Nome]">
+          <label for="sety-numero">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.8 2.8M15.2 15.2 18 18M18 6l-2.8 2.8M8.8 15.2 6 18"/></svg>
+            Número: <span class="aviso">(ATÉ 2 DÍGITOS)</span>
+          </label>
+          <input id="sety-numero" type="text" maxlength="2" inputmode="numeric" placeholder="Ex: 10" name="properties[Número]">
+        </div>
+      </div>
+
+      <!-- Quantidade -->
+      <div class="sety-opcao">
+        <span class="sety-opcao__label">Quantidade:</span>
+        <div class="sety-qtd">
+          <button type="button" onclick="setyAlterarQtd(-1)" aria-label="Diminuir quantidade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg>
+          </button>
+          <input type="text" id="sety-qtd-input" value="1" inputmode="numeric" aria-label="Quantidade">
+          <button type="button" onclick="setyAlterarQtd(1)" aria-label="Aumentar quantidade">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3 CTAs -->
+      <div class="sety-ctas">
+        <button type="submit" class="sety-btn sety-btn--primario">Adicionar à Sacola</button>
+        <a href="https://wa.me/55SEUNUMERO?text=Ol%C3%A1%2C%20quero%20finalizar%20minha%20compra%20por%20aqui!" class="sety-btn sety-btn--secundario">Comprar pelo WhatsApp</a>
+        <a href="https://wa.me/55SEUNUMERO?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20produto%3A%20{{ nome_do_produto }}" class="sety-btn sety-btn--outline" target="_blank">
+          <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25D366"/><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+          Comprar pelo WhatsApp
+        </a>
+      </div>
+
+      <!-- Formas de pagamento -->
+      <div class="sety-pagamento">
+        <span class="sety-pagamento__titulo">FORMAS DE PAGAMENTO</span>
+        <div class="sety-pagamento__icones">
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><circle cx="18" cy="16" r="7" fill="#FFCB05"/><circle cx="27" cy="16" r="7" fill="#00A4E0" fill-opacity="0.85"/><circle cx="22.5" cy="21" r="7" fill="#EF4123" fill-opacity="0.85"/></svg>
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#B4151B"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#fff" text-anchor="middle">Hipercard</text></svg>
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#2E77BC"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#fff" text-anchor="middle">AMEX</text></svg>
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><circle cx="18" cy="16" r="8" fill="#F68121"/><text x="30" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="8" fill="#111">DISC</text></svg>
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+        </div>
+      </div>
+
+      <!-- Selo de segurança -->
+      <div class="sety-info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <p>Pagamentos e informações estão seguros<br>Site oficial com <a href="/policies/privacy-policy">todos os direitos reservados</a></p>
+      </div>
+
+      <!-- Frete grátis -->
+      <div class="sety-info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg>
+        <div>
+          <strong>Frete Grátis</strong>
+          <p>Frete grátis em pedidos acima de R${{ valor_frete_gratis }}<br>Entrega realizada pelos Correios.</p>
+        </div>
+      </div>
+
+      <!-- Devoluções -->
+      <div class="sety-info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        <div>
+          <strong>Devoluções Gratuitas</strong>
+          <p>Estorno de 100% do seu dinheiro<br>7 dias após o recebimento da mercadoria.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== Abas Descrição / Tabela de medidas ===== -->
+  <div class="sety-tabs">
+    <div class="sety-tabs__nav">
+      <button type="button" class="sety-tabs__item is-active" data-sety-tab="descricao">Descrição</button>
+      <button type="button" class="sety-tabs__item" data-sety-tab="medidas">Tabelas de Medidas</button>
+    </div>
+
+    <div class="sety-tabs__content is-active" data-sety-tab-content="descricao">
+      <h2>Qualidade premium e preço justo</h2>
+      <p>Cansado de pagar caro em produtos de time? Agora você não precisa mais se preocupar com preços exorbitantes. Aqui, oferecemos produtos da melhor qualidade por um preço justo.</p>
+      <h2>Compre com confiança</h2>
+      <p>Escolha o seu produto com carinho — trabalhamos com fornecedores de alta qualidade pra garantir que você receba exatamente o que viu na loja.</p>
+      <h2>A compra é segura?</h2>
+      <p><strong>A compra é 100% segura!</strong> Garantimos uma compra segura, produto de qualidade e plena satisfação. Se você comprar e não se agradar com a qualidade, pode solicitar a devolução em até 7 dias após o recebimento.</p>
+      <h2>Entrega rápida e segura</h2>
+      <p>Te acompanhamos em todas as etapas da sua compra. Assim que a compra for confirmada, nossa equipe entra em contato via e-mail em até 7 dias úteis com o código de rastreamento, que pode ser acompanhado em tempo real.</p>
+
+      <div class="sety-trust-links">
+        <button type="button">
+          <svg viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M17 17H8.68C8.68 17 8 16 7 16M17 17V8M17 17H19.32M17 8V3H1V17H5.32M17 8H23.5L25 12.5V17H22.68C22.68 17 22 16 21 16M21 16C22 16 23 17 23 18C23 19 22 20 21 20C20 20 19 19 19 18C19 17.65 19.12 17.3 19.32 17M21 16C20.35 16 19.69 16.43 19.32 17M7 16C8 16 9 17 9 18C9 19 8 20 7 20C6 20 5 19 5 18C5 17.65 5.12 17.3 5.32 17M7 16C6.35 16 5.69 16.43 5.32 17"/></svg>
+          Rastreio
+        </button>
+        <button type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M23 8V4H1V8M23 8V20H1V8M23 8H1M5 12H8M19 12V16H12V12H19Z"/></svg>
+          Parcele sua compra!
+        </button>
+        <button type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10C4 10 3.5 2 12 2C20.5 2 20 10 20 10M4 10C3.3 10.3 2 11 2 12.5C2 14 3 15 4 15C4.8 15 5.7 15 6 15V10H4ZM20 10C20.7 10.2 22 10.9 22 12.5C22 14.1 20.7 14.8 20 15M20 10H18V15H20M20 15C20.2 16.5 19.6 19.5 16 19.5M16 19.5C16 19 15.8 18 15 18C14.2 18 13 18 12.5 18C12 18 10.8 18 10 18C9.2 18 9 19 9 19.5C9 20 9.2 21 10 21C10.8 21 12 21 12.5 21H15C15.8 21 16 20 16 19.5Z"/></svg>
+          Suporte Profissional
+        </button>
+      </div>
+    </div>
+
+    <div class="sety-tabs__content" data-sety-tab-content="medidas">
+      <img src="{{ tabela_medidas }}" alt="Tabela de medidas">
+    </div>
+  </div>
+
+  <!-- ===== Banner cartão de crédito ===== -->
+  <div class="sety-banner-cartao">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 9h22"/></svg>
+    <p>Compras feitas no <strong>cartão de crédito</strong> são processadas e enviadas <strong>mais rapidamente</strong>.</p>
+  </div>
+
+  <!-- ===== Formas de pagamento completas + selos de confiança ===== -->
+  <div class="sety-seguranca-completa">
+    <div class="sety-pagamento__icones">
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#B4151B"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#fff" text-anchor="middle">Hipercard</text></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><circle cx="18" cy="16" r="7" fill="#FFCB05"/><circle cx="27" cy="16" r="7" fill="#00A4E0" fill-opacity="0.85"/><circle cx="22.5" cy="21" r="7" fill="#EF4123" fill-opacity="0.85"/></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#2E77BC"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#fff" text-anchor="middle">AMEX</text></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><circle cx="18" cy="16" r="8" fill="#F68121"/><text x="30" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="8" fill="#111">DISC</text></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#003087" text-anchor="middle">boleto</text></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+    </div>
+    <div class="sety-selos-confianca">
+      <span class="sety-selo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+        COMPRA 100% SEGURA
+      </span>
+      <span class="sety-selo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        AMBIENTE CRIPTOGRAFADO
+      </span>
+    </div>
+  </div>
+
+  <!-- ===== Você também vai gostar ===== -->
+  <div class="sety-secao-produtos">
+    <h3>Você também vai gostar</h3>
+    <div class="sety-produtos-grid">
+      <!-- Repetir este card pra cada produto relacionado real -->
+      <div class="sety-produto-card">
+        <div class="sety-produto-card__imagem-wrap">
+          <span class="sety-badge sety-badge--oferta">- 55%</span>
+          <img src="{{ imagem_relacionado_1 }}" alt="{{ nome_relacionado_1 }}">
+        </div>
+        <p class="sety-produto-card__titulo">{{ nome_relacionado_1 }}</p>
+        <p class="sety-produto-card__preco">R$ {{ preco_relacionado_1 }}<span class="sety-produto-card__preco-riscado">R$ {{ preco_original_relacionado_1 }}</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Vistos recentemente ===== -->
+  <div class="sety-secao-produtos">
+    <h3>Vistos Recentemente</h3>
+    <div class="sety-produtos-grid">
+      <div class="sety-produto-card">
+        <div class="sety-produto-card__imagem-wrap">
+          <img src="{{ imagem_1 }}" alt="{{ nome_do_produto }}">
+        </div>
+        <p class="sety-produto-card__titulo">{{ nome_do_produto }}</p>
+        <p class="sety-produto-card__preco">R$ {{ preco_atual }}<span class="sety-produto-card__preco-riscado">R$ {{ preco_original }}</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FAQ ===== -->
+  <div class="sety-faq" id="sety-faq">
+    <h2>Dúvidas Frequentes</h2>
+    <p>Conte conosco! Atendemos de segunda a sábado, das 9h às 18h, em todos os nossos canais de suporte.</p>
+
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">O site é seguro?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Sim! Trabalhamos com plataformas de e-commerce reconhecidas no mercado. Todos os seus dados são criptografados para garantir 100% de segurança.</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">E se o produto não servir?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Sem estresse! Você pode solicitar a troca em até 7 dias após o recebimento, seja por tamanho, modelo ou até mesmo devolução.</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">Como acompanho meu pedido?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Após a compra, você recebe pelo e-mail e WhatsApp o número de rastreio. É só clicar no link e acompanhar o trajeto em tempo real.</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">Quais formas de pagamento vocês aceitam?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Aceitamos cartão de crédito (todas as bandeiras), Pix e boleto. No Pix, seu produto já entra em processo de separação na hora — mais rápido pra chegar até você!</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">Em quanto tempo meu produto chega?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">O prazo varia de acordo com o frete escolhido, mas normalmente as entregas acontecem entre 4 a 8 dias úteis. Você recebe o código de rastreio para acompanhar cada passo.</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">Vocês fazem personalização?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Sim! Muitos produtos permitem personalização. Basta selecionar a opção "Personalizar" e preencher os campos antes de adicionar à sacola.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="sety-footer">
+  <div class="sety-footer__grid">
+    <div>
+      <p class="sety-footer__titulo">Menu do Rodapé</p>
+      <ul class="sety-footer__links">
+        <li><a href="#">Aviso Legal</a></li>
+        <li><a href="#">FAQ - Perguntas Frequentes</a></li>
+        <li><a href="#">Política de Origem do Produto</a></li>
+        <li><a href="#">Política de Privacidade</a></li>
+        <li><a href="#">Políticas de Envio e Prazo de Entrega</a></li>
+        <li><a href="#">Políticas de Trocas e Devoluções</a></li>
+      </ul>
+    </div>
+    <div class="sety-footer__atendimento">
+      <p class="sety-footer__titulo">Central de Atendimento</p>
+      <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Atendimento: seg. à sáb. 09 às 18h</p>
+      <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5h18v14H3z"/><path d="M3 5l9 7 9-7"/></svg> Email: {{ email_contato }}</p>
+      <a href="https://wa.me/55SEUNUMERO" class="sety-footer-whats">
+        <svg viewBox="0 0 32 32"><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2z"/></svg>
+        Atendimento via WhatsApp
+      </a>
+    </div>
+    <div style="grid-column: span 2;">
+      <p class="sety-footer__titulo">Formas de Pagamento</p>
+      <div class="sety-footer__pagamento-icones">
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#B4151B"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#fff" text-anchor="middle">Hipercard</text></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#fff"/><circle cx="18" cy="16" r="7" fill="#FFCB05"/><circle cx="27" cy="16" r="7" fill="#00A4E0" fill-opacity="0.85"/><circle cx="22.5" cy="21" r="7" fill="#EF4123" fill-opacity="0.85"/></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#2E77BC"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#fff" text-anchor="middle">AMEX</text></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#fff"/><circle cx="18" cy="16" r="8" fill="#F68121"/><text x="30" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="8" fill="#111">DISC</text></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#fff"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#003087" text-anchor="middle">boleto</text></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#fff"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+      </div>
+      <div class="sety-footer__selos">
+        <span class="sety-footer__selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg> Site Seguro (Google)</span>
+        <span class="sety-footer__selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> Loja Verificada</span>
+        <span class="sety-footer__selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Certificado SSL</span>
+      </div>
+    </div>
+  </div>
+  <p class="sety-footer__copy">© {{ ano_atual }} {{ nome_da_loja }} | Todos os direitos reservados.</p>
+</footer>
+
+<!-- WhatsApp flutuante (fixo em toda navegação) -->
+<a href="https://wa.me/55SEUNUMERO" class="sety-whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 32 32"><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+</a>
+
+<script>
+  // Troca de imagem principal ao clicar na miniatura
+  function setyTrocarImagem(thumb) {
+    document.getElementById('sety-imagem-principal').src = thumb.src;
+    document.querySelectorAll('.sety-galeria__thumbs img').forEach(function(img){ img.classList.remove('is-active'); });
+    thumb.classList.add('is-active');
+  }
+
+  // Seletor de tamanho
+  document.getElementById('sety-swatch-tamanho').addEventListener('click', function(e) {
+    var btn = e.target.closest('.sety-swatch');
+    if (!btn) return;
+    this.querySelectorAll('.sety-swatch').forEach(function(b){ b.classList.remove('is-selected'); });
+    btn.classList.add('is-selected');
+    document.getElementById('sety-tamanho-selecionado').textContent = btn.textContent;
+  });
+
+  // Toggle personalizar
+  document.getElementById('sety-toggle-personalizar').addEventListener('click', function(e) {
+    var btn = e.target.closest('.sety-toggle');
+    if (!btn) return;
+    this.querySelectorAll('.sety-toggle').forEach(function(b){ b.classList.remove('is-selected'); });
+    btn.classList.add('is-selected');
+    var valor = btn.dataset.valor;
+    document.getElementById('sety-personalizar-selecionado').textContent = valor;
+    var campos = document.getElementById('sety-campos-personalizacao');
+    if (valor === 'Personalizar') {
+      campos.classList.add('is-aberto');
+    } else {
+      campos.classList.remove('is-aberto');
+      document.getElementById('sety-nome').value = '';
+      document.getElementById('sety-numero').value = '';
+    }
+  });
+  document.getElementById('sety-numero')?.addEventListener('input', function() {
+    this.value = this.value.replace(/\D/g, '').slice(0, 2);
+  });
+
+  // Quantidade
+  function setyAlterarQtd(delta) {
+    var input = document.getElementById('sety-qtd-input');
+    var novo = Math.max(1, parseInt(input.value || '1', 10) + delta);
+    input.value = novo;
+  }
+
+  // Abas Descrição / Tabela de medidas
+  document.querySelector('.sety-tabs__nav')?.addEventListener('click', function(e) {
+    var btn = e.target.closest('.sety-tabs__item');
+    if (!btn) return;
+    var alvo = btn.dataset.setyTab;
+    this.querySelectorAll('.sety-tabs__item').forEach(function(b){ b.classList.remove('is-active'); });
+    btn.classList.add('is-active');
+    document.querySelectorAll('.sety-tabs__content').forEach(function(c){
+      c.classList.toggle('is-active', c.dataset.setyTabContent === alvo);
+    });
+  });
+
+  // FAQ accordion
+  document.getElementById('sety-faq')?.addEventListener('click', function(e) {
+    var btn = e.target.closest('.sety-faq__pergunta');
+    if (!btn) return;
+    btn.closest('.sety-faq__item').classList.toggle('is-aberto');
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Imperial Store — Sacola</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: 'Montserrat', sans-serif; color: #151515; background: #f7f7f8;
+    --sety-accent: #D4AF37;
+    --sety-accent-2: #F5D171;
+    --sety-gold-gradient: linear-gradient(135deg, #FCE7A6 0%, #E8C158 30%, #D4AF37 55%, #B8860B 80%, #8a6a14 100%);
+    --sety-accent-text: #000000;
+    --sety-dark: #000000;
+    --sety-text-soft: #6b6b6b;
+    --sety-border: #e2e2e2;
+    --sety-radius: 6px;
+    --sety-font-heading: 'Sora', sans-serif;
+  }
+  a { text-decoration: none; color: inherit; }
+  button { font-family: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .imperial-logo { display: flex; align-items: center; gap: 10px; }
+  .imperial-logo__selo {
+    width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+    background: radial-gradient(circle at 30% 30%, #fff6de, var(--sety-accent-2) 35%, var(--sety-accent) 65%, #8a6a14 100%);
+    display: flex; align-items: center; justify-content: center; padding: 3px;
+  }
+  .imperial-logo__selo-inner {
+    width: 100%; height: 100%; border-radius: 50%; background: #000;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--sety-font-heading); color: var(--sety-accent-2); font-size: 9px; font-weight: 800; letter-spacing: .3px;
+  }
+  .imperial-logo__texto { font-family: var(--sety-font-heading); line-height: 1; }
+  .imperial-logo__texto strong {
+    display: block; font-size: 19px; font-weight: 800; letter-spacing: 1px;
+    background: var(--sety-gold-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .imperial-logo__texto span { display: block; font-size: 9px; font-weight: 600; color: #fff; letter-spacing: 4px; margin-top: 2px; }
+  .imperial-logo__img { height: 68px; width: auto; display: block; }
+
+  .sety-header {
+    background: var(--sety-dark); color: #fff; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 24px rgba(0,0,0,.25);
+  }
+  .sety-header__voltar { font-size: 13px; font-weight: 600; color: rgba(255,255,255,.75); display: flex; align-items: center; gap: 6px; transition: color .2s; }
+  .sety-header__voltar svg { width: 16px; height: 16px; }
+  .sety-header__voltar:hover { color: #fff; }
+
+  .sety-checkout { max-width: 860px; margin: 0 auto; padding: 56px 24px 100px; }
+  .sety-checkout h1 { font-family: var(--sety-font-heading); font-size: 27px; font-weight: 800; text-transform: uppercase; letter-spacing: .5px; margin: 0 0 32px; }
+
+  .sety-carrinho-vazio { text-align: center; padding: 72px 24px; background: #fff; border-radius: 14px; border: 1px solid #f0f0f0; box-shadow: 0 1px 3px rgba(0,0,0,.03); }
+  .sety-carrinho-vazio svg { width: 52px; height: 52px; color: #ddd; margin-bottom: 18px; }
+  .sety-carrinho-vazio p { color: var(--sety-text-soft); margin: 0 0 22px; font-size: 14.5px; }
+  .sety-carrinho-vazio a {
+    display: inline-block; background: var(--sety-gold-gradient); color: var(--sety-accent-text); font-weight: 700;
+    text-transform: uppercase; letter-spacing: .3px; padding: 14px 30px; border-radius: var(--sety-radius); font-size: 13px;
+    transition: filter .2s;
+  }
+  .sety-carrinho-vazio a:hover { filter: brightness(1.06); }
+
+  .sety-carrinho-item {
+    display: grid; grid-template-columns: 84px 1fr auto; gap: 16px; align-items: center;
+    background: #fff; border: 1px solid #f0f0f0; border-radius: 12px; padding: 16px; margin-bottom: 14px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.03); transition: box-shadow .2s;
+  }
+  .sety-carrinho-item:hover { box-shadow: 0 8px 20px rgba(0,0,0,.06); }
+  .sety-carrinho-item__imagem { width: 84px; height: 84px; border-radius: 8px; overflow: hidden; background: #0a0a0a; }
+  .sety-carrinho-item__imagem img { width: 100%; height: 100%; object-fit: cover; }
+  .sety-carrinho-item__nome { font-size: 15px; font-weight: 700; margin: 0 0 2px; }
+  .sety-carrinho-item__variacao { font-size: 12px; color: var(--sety-text-soft); margin: 0 0 4px; }
+  .sety-carrinho-item__tamanho { font-size: 12px; font-weight: 600; margin: 0 0 8px; }
+  .sety-carrinho-item__linha { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .sety-carrinho-qtd { display: inline-flex; align-items: center; border: 1px solid var(--sety-border); border-radius: var(--sety-radius); overflow: hidden; }
+  .sety-carrinho-qtd button { width: 32px; height: 32px; border: none; background: none; cursor: pointer; font-size: 15px; }
+  .sety-carrinho-qtd button:hover { background: #f2f2f2; }
+  .sety-carrinho-qtd span { width: 30px; text-align: center; font-size: 13px; font-weight: 600; }
+  .sety-carrinho-item__remover { background: none; border: none; color: #b03434; font-size: 12px; font-weight: 600; cursor: pointer; padding: 0; }
+  .sety-carrinho-item__preco { font-size: 16px; font-weight: 700; text-align: right; white-space: nowrap; }
+  @media (max-width: 560px) {
+    .sety-carrinho-item { grid-template-columns: 64px 1fr; }
+    .sety-carrinho-item__imagem { width: 64px; height: 64px; }
+    .sety-carrinho-item__preco { grid-column: 1 / -1; text-align: left; margin-top: 8px; }
+  }
+
+  .sety-resumo { background: #fff; border: 1px solid #f0f0f0; border-radius: 12px; padding: 24px; margin-top: 28px; box-shadow: 0 1px 3px rgba(0,0,0,.03); }
+  .sety-resumo__linha { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 12px; color: var(--sety-text-soft); }
+  .sety-resumo__total { display: flex; justify-content: space-between; font-size: 19px; font-weight: 800; border-top: 1px solid #f0f0f0; padding-top: 16px; margin-top: 4px; }
+  .sety-resumo__nota { font-size: 12px; color: var(--sety-text-soft); margin-top: 10px; }
+
+  .sety-btn-finalizar {
+    display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 56px; margin-top: 22px;
+    background: #25D366; color: #fff; border: none; border-radius: var(--sety-radius); font-weight: 700;
+    text-transform: uppercase; letter-spacing: .5px; font-size: 14.5px; cursor: pointer;
+    transition: filter .2s, transform .15s; box-shadow: 0 8px 20px rgba(37,211,102,.25);
+  }
+  .sety-btn-finalizar:active { transform: scale(.98); }
+  .sety-btn-finalizar svg { width: 22px; height: 22px; }
+  .sety-btn-finalizar:hover { filter: brightness(1.08); }
+
+  .sety-continuar-comprando { display: block; text-align: center; margin-top: 16px; font-size: 13px; font-weight: 600; color: var(--sety-text-soft); }
+  .sety-continuar-comprando:hover { color: #151515; }
+</style>
+</head>
+<body>
+
+<header class="sety-header">
+  <a href="index.html" class="imperial-logo">
+    <img src="assets/logo/imperial-store-logo-header.png" alt="Imperial Store" class="imperial-logo__img">
+  </a>
+  <a href="colecao.html" class="sety-header__voltar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    Continuar comprando
+  </a>
+</header>
+
+<div class="sety-checkout">
+  <h1>Sua Sacola</h1>
+  <div id="sety-checkout-conteudo"></div>
+</div>
+
+<script src="js/catalogo.js"></script>
+<script src="js/carrinho.js"></script>
+<script>
+  function carrinhoRenderizarCheckout() {
+    var itens = carrinhoLer();
+    var container = document.getElementById('sety-checkout-conteudo');
+
+    if (itens.length === 0) {
+      container.innerHTML =
+        '<div class="sety-carrinho-vazio">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 8h12l1 12H5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>' +
+          '<p>Sua sacola está vazia.</p>' +
+          '<a href="colecao.html">Ver Produtos</a>' +
+        '</div>';
+      return;
+    }
+
+    var html = '';
+    var total = 0;
+
+    itens.forEach(function (item, index) {
+      var p = IMPERIAL_CATALOGO[item.slug];
+      if (!p) return;
+      var subtotal = p.preco * item.quantidade;
+      total += subtotal;
+      html += '' +
+        '<div class="sety-carrinho-item">' +
+          '<div class="sety-carrinho-item__imagem"><img src="' + p.imagem + '" alt="' + p.nome + '"></div>' +
+          '<div>' +
+            '<p class="sety-carrinho-item__nome">' + p.nome + '</p>' +
+            '<p class="sety-carrinho-item__variacao">' + p.variacao + '</p>' +
+            '<p class="sety-carrinho-item__tamanho">Tamanho: ' + item.tamanho + '</p>' +
+            '<div class="sety-carrinho-item__linha">' +
+              '<div class="sety-carrinho-qtd">' +
+                '<button type="button" onclick="carrinhoAlterarQuantidade(' + index + ', -1)" aria-label="Diminuir">−</button>' +
+                '<span>' + item.quantidade + '</span>' +
+                '<button type="button" onclick="carrinhoAlterarQuantidade(' + index + ', 1)" aria-label="Aumentar">+</button>' +
+              '</div>' +
+              '<button type="button" class="sety-carrinho-item__remover" onclick="carrinhoRemover(' + index + ')">Remover</button>' +
+            '</div>' +
+          '</div>' +
+          '<p class="sety-carrinho-item__preco">' + imperialFormatarPreco(subtotal) + '</p>' +
+        '</div>';
+    });
+
+    var freteGratis = total >= 250;
+    html += '' +
+      '<div class="sety-resumo">' +
+        '<div class="sety-resumo__linha"><span>Subtotal</span><span>' + imperialFormatarPreco(total) + '</span></div>' +
+        '<div class="sety-resumo__linha"><span>Frete</span><span>' + (freteGratis ? 'Grátis' : 'Calculado no WhatsApp') + '</span></div>' +
+        '<div class="sety-resumo__total"><span>Total</span><span>' + imperialFormatarPreco(total) + '</span></div>' +
+        (freteGratis ? '' : '<p class="sety-resumo__nota">Faltam ' + imperialFormatarPreco(250 - total) + ' para frete grátis.</p>') +
+        '<button type="button" class="sety-btn-finalizar" onclick="finalizarPedidoWhatsapp()">' +
+          '<svg viewBox="0 0 32 32"><path fill="currentColor" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2z"/></svg>' +
+          'Finalizar Pedido no WhatsApp' +
+        '</button>' +
+      '</div>' +
+      '<a href="colecao.html" class="sety-continuar-comprando">Continuar comprando</a>';
+
+    container.innerHTML = html;
+  }
+
+  function finalizarPedidoWhatsapp() {
+    var itens = carrinhoLer();
+    if (itens.length === 0) return;
+    var linhas = ['Olá! Quero fechar meu pedido na Imperial Store:', ''];
+    var total = 0;
+    itens.forEach(function (item) {
+      var p = IMPERIAL_CATALOGO[item.slug];
+      if (!p) return;
+      var subtotal = p.preco * item.quantidade;
+      total += subtotal;
+      linhas.push('• ' + item.quantidade + 'x ' + p.nome + ' (' + p.variacao + ') — Tam. ' + item.tamanho + ' — ' + imperialFormatarPreco(subtotal));
+    });
+    linhas.push('', 'Total: ' + imperialFormatarPreco(total));
+    var msg = encodeURIComponent(linhas.join('\n'));
+    window.open('https://wa.me/' + IMPERIAL_WHATS_NUMERO + '?text=' + msg, '_blank');
+  }
+
+  carrinhoRenderizarCheckout();
+</script>
+
+</body>
+</html>

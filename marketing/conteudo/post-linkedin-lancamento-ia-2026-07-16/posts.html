@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+  body { background: #444; }
+  .slide {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    background: #000000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 80px 90px;
+  }
+  .eyebrow {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #FF2A2A;
+  }
+  .rule {
+    width: 70px;
+    height: 5px;
+    background: #FF2A2A;
+    margin: 28px 0 36px 0;
+  }
+  .titulo {
+    font-size: 66px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: #FFFFFF;
+  }
+  .titulo .destaque { color: #FF2A2A; }
+  .subtitulo {
+    font-size: 30px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.72);
+    margin-top: 30px;
+    line-height: 1.4;
+  }
+  .icones {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-top: 56px;
+  }
+  .icone-box {
+    width: 110px;
+    height: 110px;
+    border: 1px solid rgba(255,255,255,0.18);
+    background: #1A1A1A;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 52px;
+  }
+  .plus {
+    font-size: 44px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.4);
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 34px;
+  }
+  .cta-box {
+    background: #FF2A2A;
+    padding: 22px 40px;
+    display: inline-block;
+  }
+  .cta-box span {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #FFFFFF;
+    text-transform: uppercase;
+  }
+  .marca {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+  }
+  .cta-soft {
+    font-size: 30px;
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+</style>
+</head>
+<body>
+
+<!-- POST 1 — AURORA / WHATSAPP -->
+<div class="slide" id="post-1">
+  <div>
+    <div class="eyebrow">Automação</div>
+    <div class="rule"></div>
+    <div class="titulo">Criei uma automação que <span class="destaque">nunca</span> deixa um cliente sem resposta no WhatsApp</div>
+    <div class="subtitulo">Nem às 2h da manhã. Nem no fim de semana.</div>
+    <div class="icones">
+      <div class="icone-box">🤖</div>
+      <div class="plus">+</div>
+      <div class="icone-box">💬</div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="cta-box"><span>Comente ATIVO</span></div>
+    <div class="marca">Sety Vision</div>
+  </div>
+</div>
+
+<!-- POST 2 — PAINEL / CRM -->
+<div class="slide" id="post-2">
+  <div>
+    <div class="eyebrow">CRM</div>
+    <div class="rule"></div>
+    <div class="titulo">Montei um painel que avisa em tempo real quando um <span class="destaque">lead esquenta</span></div>
+    <div class="subtitulo">Sem precisar abrir o WhatsApp a cada 5 minutos pra checar.</div>
+    <div class="icones">
+      <div class="icone-box">📊</div>
+      <div class="plus">+</div>
+      <div class="icone-box">🔔</div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="cta-box"><span>Comente PAINEL</span></div>
+    <div class="marca">Sety Vision</div>
+  </div>
+</div>
+
+<!-- POST 3 — PROSPECÇÃO B2B -->
+<div class="slide" id="post-3">
+  <div>
+    <div class="eyebrow">Prospecção</div>
+    <div class="rule"></div>
+    <div class="titulo">Montei uma máquina de prospecção B2B gastando <span class="destaque">quase zero</span></div>
+    <div class="subtitulo">Sem contratar SDR, sem planilha manual.</div>
+    <div class="icones">
+      <div class="icone-box">🗺️</div>
+      <div class="plus">+</div>
+      <div class="icone-box">🤖</div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="cta-box"><span>Comente MÁQUINA</span></div>
+    <div class="marca">Sety Vision</div>
+  </div>
+</div>
+
+<!-- POST 4 — BASTIDOR / PIVÔ (sem CTA de venda) -->
+<div class="slide" id="post-4">
+  <div>
+    <div class="eyebrow">Bastidor</div>
+    <div class="rule"></div>
+    <div class="titulo">Mudei <span class="destaque">80%</span> do meu foco pra construir sistemas de Inteligência Artificial</div>
+    <div class="subtitulo">O resto ainda é site, tráfego e design — mas o motor agora é outro.</div>
+  </div>
+  <div class="footer">
+    <div class="cta-soft">Bora ver até onde dá →</div>
+    <div class="marca">Sety Studio</div>
+  </div>
+</div>
+
+<!-- POST 5 — LEAD MAGNET CALCULADORA -->
+<div class="slide" id="post-5">
+  <div>
+    <div class="eyebrow">Diagnóstico</div>
+    <div class="rule"></div>
+    <div class="titulo">Quanto sua empresa <span class="destaque">perde</span> por demora no WhatsApp?</div>
+    <div class="subtitulo">Fiz uma calculadora rápida pra descobrir o número exato.</div>
+    <div class="icones">
+      <div class="icone-box">💰</div>
+      <div class="plus">+</div>
+      <div class="icone-box">⏱️</div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="cta-box"><span>Comente CALCULAR</span></div>
+    <div class="marca">Sety Vision</div>
+  </div>
+</div>
+
+</body>
+</html>

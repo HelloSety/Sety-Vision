@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-wpp="{{ settings.wpp_number }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000">
+
+  <title>
+    {%- if template == 'index' -%}
+      {{ shop.name }} — Cultura, Música e Rua
+    {%- elsif template == 'product' -%}
+      {{ product.title }} — {{ shop.name }}
+    {%- elsif template == 'collection' -%}
+      {{ collection.title }} — {{ shop.name }}
+    {%- else -%}
+      {{ page_title }} — {{ shop.name }}
+    {%- endif -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- elsif settings.seo_default_description != blank -%}
+    <meta name="description" content="{{ settings.seo_default_description | escape }}">
+  {%- endif -%}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+  {%- render 'meta-tags' -%}
+
+  {{ content_for_header }}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  {%- if settings.color_accent != blank -%}
+    <style>:root{ --pix: {{ settings.color_accent }}; }</style>
+  {%- endif -%}
+
+  {%- if settings.favicon -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32 }}">
+  {%- endif -%}
+
+  {%- if settings.gsc_verification != blank -%}
+    <meta name="google-site-verification" content="{{ settings.gsc_verification }}">
+  {%- endif -%}
+
+  {%- if settings.ga4_id != blank -%}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ settings.ga4_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ settings.ga4_id }}');
+    </script>
+  {%- endif -%}
+
+  {%- if settings.meta_pixel_id != blank -%}
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '{{ settings.meta_pixel_id }}');
+      fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" alt=""
+      src="https://www.facebook.com/tr?id={{ settings.meta_pixel_id }}&ev=PageView&noscript=1"></noscript>
+  {%- endif -%}
+
+  {%- if settings.custom_head_code != blank -%}
+    {{ settings.custom_head_code }}
+  {%- endif -%}
+</head>
+
+<body class="template-{{ template.name }}">
+
+  <a href="#MainContent" class="skip-link">Pular para o conteúdo</a>
+
+  {%- sections 'header-group' -%}
+
+  <main id="MainContent" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {%- sections 'footer-group' -%}
+
+  <a href="https://wa.me/{{ settings.wpp_number }}" target="_blank" rel="noopener" class="wpp-float" aria-label="WhatsApp">
+    {%- render 'icon-whatsapp' -%}
+  </a>
+
+  {%- render 'cookie-consent' -%}
+
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+
+  {%- if settings.custom_body_code != blank -%}
+    {{ settings.custom_body_code }}
+  {%- endif -%}
+</body>
+</html>

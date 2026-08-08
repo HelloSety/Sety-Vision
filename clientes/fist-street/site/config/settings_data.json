@@ -1,0 +1,39 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "instagram_url": "https://www.instagram.com/fist.street",
+    "whatsapp_number": "67998130558",
+    "topbar_highlight": "FRETE GRÁTIS",
+    "topbar_text": "acima de R$299 — Parcele em até 12x",
+    "main_menu": "main-menu",
+    "color_preto": "#0a0a0a",
+    "color_verde": "#39ff14",
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "main_menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "footer_menu": "footer",
+          "footer_text": "",
+          "support_hours": "",
+          "support_phone": "67998130558",
+          "support_email": "usefist.com.br"
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}

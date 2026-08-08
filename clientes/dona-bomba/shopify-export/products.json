@@ -1,0 +1,5095 @@
+[
+  {
+    "handle": "airbrush-cap",
+    "title": "Airbrush Cap",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/airbrush-cap.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "astro-fatcap",
+    "title": "Astro Fatcap",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/astro-fatcap.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "big-dripper-hubik",
+    "title": "BIG DRIPPER HUBIK®",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 32,00",
+    "price": "32.00",
+    "image": "img/produtos/big-dripper-hubik.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "borrifador-de-compressao-guarany-1-25l",
+    "title": "Borrifador de Compressão Guarany 1,25L",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Luvas, máscaras e itens de proteção e apoio pra quem pinta na rua ou no estúdio.",
+    "priceRaw": "R$ 85,00",
+    "price": "85.00",
+    "image": "img/produtos/borrifador-de-compressao-guarany-1-25l.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-color-marker-base-oleo-acrilex",
+    "title": "Caneta Color  Marker (Base Óleo) - Acrilex",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 15,90",
+    "price": "15.90",
+    "image": "img/produtos/caneta-color-marker-base-oleo-acrilex.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-marcador-acrilica-posca-pc-17k",
+    "title": "Caneta Marcador Acrílica Posca PC 17K",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 79,00",
+    "price": "79.00",
+    "image": "img/produtos/caneta-marcador-acrilica-posca-pc-17k.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-marcador-acrilica-posca-pc-1m",
+    "title": "Caneta Marcador Acrílica Posca PC 1M",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 29,00",
+    "price": "29.00",
+    "image": "img/produtos/caneta-marcador-acrilica-posca-pc-1m.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-marcador-acrilica-posca-pc-3m",
+    "title": "Caneta Marcador Acrílica Posca PC 3M",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 29,00",
+    "price": "29.00",
+    "image": "img/produtos/caneta-marcador-acrilica-posca-pc-3m.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-marcador-acrilica-posca-pc-5m",
+    "title": "Caneta Marcador Acrílica Posca PC 5M",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 29,00",
+    "price": "29.00",
+    "image": "img/produtos/caneta-marcador-acrilica-posca-pc-5m.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-marcador-acrilica-posca-pc-7m",
+    "title": "Caneta Marcador Acrílica Posca PC 7M",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 42,90",
+    "price": "42.90",
+    "image": "img/produtos/caneta-marcador-acrilica-posca-pc-7m.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-marcador-acrilica-posca-pc-8k",
+    "title": "Caneta Marcador Acrílica Posca PC 8K",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 39,00",
+    "price": "39.00",
+    "image": "img/produtos/caneta-marcador-acrilica-posca-pc-8k.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-marcador-permanente-uni-paint-marker-px-20",
+    "title": "Caneta Marcador Permanente Uni Paint Marker PX-20",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 32,90",
+    "price": "32.90",
+    "image": "img/produtos/caneta-marcador-permanente-uni-paint-marker-px-20.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-marcador-permanente-uni-paint-marker-px-21",
+    "title": "Caneta Marcador Permanente Uni Paint Marker PX-21",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 27,90",
+    "price": "27.90",
+    "image": "img/produtos/caneta-marcador-permanente-uni-paint-marker-px-21.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-marcador-permanente-uni-paint-marker-px-30",
+    "title": "Caneta Marcador Permanente Uni Paint Marker PX-30",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 54,90",
+    "price": "54.90",
+    "image": "img/produtos/caneta-marcador-permanente-uni-paint-marker-px-30.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-squeezer-mtn-street-dabber",
+    "title": "CANETA SQUEEZER MTN STREET Dabber",
+    "category": "Squeezer",
+    "categorySlug": "squeezer",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 39,00",
+    "price": "39.00",
+    "image": "img/produtos/caneta-squeezer-mtn-street-dabber.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Squeezer"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "caneta-window-marker-acrilex",
+    "title": "Caneta Window  Marker  - Acrilex",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 60,00",
+    "price": "60.00",
+    "image": "img/produtos/caneta-window-marker-acrilex.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "canetas-permanentes-paint-marker-kit-12-cores",
+    "title": "Canetas permanentes Paint Marker - kit 12 cores",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 195,00",
+    "price": "195.00",
+    "image": "img/produtos/canetas-permanentes-paint-marker-kit-12-cores.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "canetas-risk-marker-kit-12-cores-ref-01",
+    "title": "Canetas Risk Marker - kit 12 cores ref 01",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 130,00",
+    "price": "130.00",
+    "image": "img/produtos/canetas-risk-marker-kit-12-cores-ref-01.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-ghetto-blaster",
+    "title": "Cap Ghetto Blaster",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 7,00",
+    "price": "7.00",
+    "image": "img/produtos/cap-ghetto-blaster.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-level-1",
+    "title": "Cap Level 1",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-level-1.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-level-6",
+    "title": "Cap Level 6",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-level-6.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-needle-fine-liner",
+    "title": "Cap Needle  Fine Liner",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-needle-fine-liner.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-needle",
+    "title": "Cap Needle",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-needle.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-new-york-fat",
+    "title": "Cap New York Fat",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-new-york-fat.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-ny-lego",
+    "title": "Cap NY Lego",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-ny-lego.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-skinny-banana",
+    "title": "Cap Skinny Banana",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-skinny-banana.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-soft",
+    "title": "Cap Soft",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-soft.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-super-skinny-maclaim",
+    "title": "Cap Super Skinny Maclaim",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-super-skinny-maclaim.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-ultra-fat",
+    "title": "Cap Ultra Fat",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-ultra-fat.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "cap-universal-preto",
+    "title": "Cap Universal Preto",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/cap-universal-preto.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "colorgin-arte-urbana-400ml",
+    "title": "COLORGIN ARTE URBANA 400ML",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa. Cores aproximadas — a cor exata pode variar de tela pra tela.",
+    "priceRaw": "R$ 30,00",
+    "price": "30.00",
+    "image": "img/produtos/spray-colorgin-arte-urbana-unidade.jpg",
+    "specs": [
+      {
+        "label": "Cores",
+        "value": "83 cores"
+      },
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      },
+      {
+        "label": "Capacidade",
+        "value": "400ml"
+      }
+    ],
+    "swatches": [
+      {
+        "name": "ALGODÃO",
+        "code": "942",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "AMARELO BAUNILHA",
+        "code": "913",
+        "hex": "#f4c515"
+      },
+      {
+        "name": "AMARELO CANARIO",
+        "code": "912",
+        "hex": "#f4c515"
+      },
+      {
+        "name": "AMARELO IPANEMA",
+        "code": "948",
+        "hex": "#f4c515"
+      },
+      {
+        "name": "AMARELO LIMÃO",
+        "code": "914",
+        "hex": "#f4c515"
+      },
+      {
+        "name": "AMARELO SOL",
+        "code": "915",
+        "hex": "#f4c515"
+      },
+      {
+        "name": "AQUARIO",
+        "code": "982",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "AREIA",
+        "code": "949",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "AVELÃ",
+        "code": "950",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "AZUL ATLÂNTICO",
+        "code": "984",
+        "hex": "#1b3a6b"
+      },
+      {
+        "name": "AZUL BEBÊ",
+        "code": "978",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "AZUL CELESTE",
+        "code": "965",
+        "hex": "#7ec8e3"
+      },
+      {
+        "name": "AZUL CÉU",
+        "code": "923",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "AZUL CHUVA",
+        "code": "928",
+        "hex": "#5a2a72"
+      },
+      {
+        "name": "AZUL EUROPÉIA",
+        "code": "924",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "AZUL MACKENZIE",
+        "code": "927",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "AZUL MARINHO",
+        "code": "983",
+        "hex": "#1b3a6b"
+      },
+      {
+        "name": "AZUL MIRÓ",
+        "code": "926",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "AZUL NETUNO",
+        "code": "925",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "AZUL PETRÓLEO",
+        "code": "996",
+        "hex": "#0f3d4a"
+      },
+      {
+        "name": "BAMBU",
+        "code": "941",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "BERINJELA",
+        "code": "957",
+        "hex": "#3d1f33"
+      },
+      {
+        "name": "BRANCHISA",
+        "code": "947",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "BRANCO",
+        "code": "944",
+        "hex": "#f7f7f7"
+      },
+      {
+        "name": "BRANCO GELO",
+        "code": "943",
+        "hex": "#f7f7f7"
+      },
+      {
+        "name": "BRANCO TRANSLUCIDO",
+        "code": "969",
+        "hex": "#e8e8e8"
+      },
+      {
+        "name": "CACAU",
+        "code": "932",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "CANELA",
+        "code": "952",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "CARAMELO",
+        "code": "931",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "CHOCOLATE",
+        "code": "980",
+        "hex": "#4a2c1d"
+      },
+      {
+        "name": "CINZA CARRARA",
+        "code": "933",
+        "hex": "#8a8a8a"
+      },
+      {
+        "name": "CINZA CHUMBO",
+        "code": "985",
+        "hex": "#5a5a5a"
+      },
+      {
+        "name": "CINZA CLARO",
+        "code": "934",
+        "hex": "#8a8a8a"
+      },
+      {
+        "name": "CINZA LONDRES",
+        "code": "935",
+        "hex": "#8a8a8a"
+      },
+      {
+        "name": "CINZA NEBLINA",
+        "code": "979",
+        "hex": "#b8b8b8"
+      },
+      {
+        "name": "ELDORADO",
+        "code": "972",
+        "hex": "#c9a227"
+      },
+      {
+        "name": "FRAMBOESA",
+        "code": "956",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "FUMÊ",
+        "code": "946",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "ITAIPU",
+        "code": "981",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "LARANJA",
+        "code": "900",
+        "hex": "#f07d1a"
+      },
+      {
+        "name": "LARANJA HOLANDA",
+        "code": "901",
+        "hex": "#f07d1a"
+      },
+      {
+        "name": "LARANJA MARTE",
+        "code": "968",
+        "hex": "#c0431f"
+      },
+      {
+        "name": "LILÁS",
+        "code": "940",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "MADEIRA",
+        "code": "951",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "MAGENTA",
+        "code": "918",
+        "hex": "#d0006f"
+      },
+      {
+        "name": "MAMÃO",
+        "code": "971",
+        "hex": "#ffb27a"
+      },
+      {
+        "name": "MARROM CAFE",
+        "code": "929",
+        "hex": "#6b4a2f"
+      },
+      {
+        "name": "OURO",
+        "code": "991",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "PRATA",
+        "code": "990",
+        "hex": "#c0c0c0"
+      },
+      {
+        "name": "PRETO",
+        "code": "945",
+        "hex": "#141414"
+      },
+      {
+        "name": "ROSA BISCUIT",
+        "code": "954",
+        "hex": "#e88bb0"
+      },
+      {
+        "name": "ROSA BLUSH",
+        "code": "953",
+        "hex": "#e88bb0"
+      },
+      {
+        "name": "ROSA CHICLETE",
+        "code": "955",
+        "hex": "#e88bb0"
+      },
+      {
+        "name": "ROSA LIRIO",
+        "code": "917",
+        "hex": "#e88bb0"
+      },
+      {
+        "name": "ROSA LOTUS",
+        "code": "916",
+        "hex": "#e88bb0"
+      },
+      {
+        "name": "ROSA PETALA",
+        "code": "999",
+        "hex": "#f4a6c1"
+      },
+      {
+        "name": "ROXO",
+        "code": "903",
+        "hex": "#6a3fa0"
+      },
+      {
+        "name": "ROXO BETERRABA",
+        "code": "904",
+        "hex": "#6a3fa0"
+      },
+      {
+        "name": "TANGERINA",
+        "code": "967",
+        "hex": "#f28c28"
+      },
+      {
+        "name": "TUTTI FRUTTI",
+        "code": "974",
+        "hex": "#ff5fa2"
+      },
+      {
+        "name": "VANILA",
+        "code": "966",
+        "hex": "#f3e5c0"
+      },
+      {
+        "name": "VERDE ABACATE",
+        "code": "908",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "VERDE AMAZONAS",
+        "code": "987",
+        "hex": "#1f5c4d"
+      },
+      {
+        "name": "VERDE BANDEIRA",
+        "code": "906",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "VERDE ERVILHA",
+        "code": "963",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "VERDE ESMERALDA",
+        "code": "907",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "VERDE MARESIA",
+        "code": "960",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "VERDE MATA",
+        "code": "911",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "VERDE MENTA",
+        "code": "909",
+        "hex": "#8fd9b6"
+      },
+      {
+        "name": "VERDE NAUTICO",
+        "code": "962",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "VERDE NEON",
+        "code": "905",
+        "hex": "#d6ff2f"
+      },
+      {
+        "name": "VERDE PISCINA",
+        "code": "961",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "VERDE PISTACHE",
+        "code": "988",
+        "hex": "#93a267"
+      },
+      {
+        "name": "VERDE TOSCANA",
+        "code": "910",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "VERMELHO AÇAI",
+        "code": "921",
+        "hex": "#d1263a"
+      },
+      {
+        "name": "VERMELHO CEREJA",
+        "code": "973",
+        "hex": "#9c1c2e"
+      },
+      {
+        "name": "VERMELHO FERRARI",
+        "code": "919",
+        "hex": "#d1263a"
+      },
+      {
+        "name": "VERMELHO GOIABA",
+        "code": "922",
+        "hex": "#d1263a"
+      },
+      {
+        "name": "VERMELHO MALAGUETA",
+        "code": "920",
+        "hex": "#d1263a"
+      },
+      {
+        "name": "VIOLETA",
+        "code": "936",
+        "hex": "#6a3fa0"
+      },
+      {
+        "name": "VIOLETA COSMOS",
+        "code": "937",
+        "hex": "#6a3fa0"
+      },
+      {
+        "name": "VIOLETA ESSENCIA",
+        "code": "938",
+        "hex": "#6a3fa0"
+      },
+      {
+        "name": "VIOLETA VAMPIRO",
+        "code": "997",
+        "hex": "#3a0d4a"
+      }
+    ],
+    "hasSwatches": true
+  },
+  {
+    "handle": "conjunto-gilrs-love-graffiti-high-quality",
+    "title": "Conjunto Gilrs Love Graffiti - HIGH QUALITY",
+    "category": "Vestuário",
+    "categorySlug": "vestuario",
+    "description": "Peças de vestuário da loja — pra usar a marca no corpo.",
+    "priceRaw": "R$ 89,00",
+    "price": "89.00",
+    "image": "img/produtos/conjunto-gilrs-love-graffiti-high-quality.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Vestuário"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "dripper-hubik-60ml",
+    "title": "Dripper HUBIK® -  60ml",
+    "category": "Squeezer",
+    "categorySlug": null,
+    "description": "Produto original de arte urbana, direto pra sua mochila.",
+    "priceRaw": "R$ 29,00",
+    "price": "29.00",
+    "image": "img/produtos/dripper-hubik-60ml.jpg",
+    "specs": [
+      {
+        "label": "Capacidade",
+        "value": "60ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "dripper-hubik-vazio-sem-tinta",
+    "title": "Dripper HUBIK® Vazio (Sem Tinta)",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 25,00",
+    "price": "25.00",
+    "image": "img/produtos/dripper-hubik-vazio-sem-tinta.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "dripper-hubik-x-coolega-edicao-limitada",
+    "title": "Dripper HUBIK® x COOLEGA - Edição limitada",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 29,00",
+    "price": "29.00",
+    "image": "img/produtos/dripper-hubik-x-coolega-edicao-limitada.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "fat-cap-flame",
+    "title": "Fat Cap Flame",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/fat-cap-flame.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "filtro-para-particulados-3m-5n11-o-par",
+    "title": "Filtro para Particulados 3M™ 5N11 (o par)",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Luvas, máscaras e itens de proteção e apoio pra quem pinta na rua ou no estúdio.",
+    "priceRaw": "R$ 10,00",
+    "price": "10.00",
+    "image": "img/produtos/filtro-para-particulados-3m-5n11-o-par.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "filtros-mecanico-2091-3m-para-particulados-o-par",
+    "title": "Filtros Mecânico  2091 3M - Para particulados (o par)",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Luvas, máscaras e itens de proteção e apoio pra quem pinta na rua ou no estúdio.",
+    "priceRaw": "R$ 37,00",
+    "price": "37.00",
+    "image": "img/produtos/filtros-mecanico-2091-3m-para-particulados-o-par.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "hello-my-name-is-pac-10-sticker",
+    "title": "HELLO, my name is PAC 10 STICKER",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Luvas, máscaras e itens de proteção e apoio pra quem pinta na rua ou no estúdio.",
+    "priceRaw": "R$ 10,00",
+    "price": "10.00",
+    "image": "img/produtos/pack-stickers-hello-my-name.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "hubik-x-hey-coffee",
+    "title": "HUBIK® x Hey! Coffee",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 29,00",
+    "price": "29.00",
+    "image": "img/produtos/hubik-x-hey-coffee.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "lapis-de-cor-estojo-com-72-cores-fine-art-acrilex-high-quality",
+    "title": "Lápis de cor - Estojo com 72 cores Fine Art - Acrilex High Quality",
+    "category": "Fine Art",
+    "categorySlug": "fine-art",
+    "description": "Linha fine art pra quem trabalha tela, ilustração e trabalhos de estúdio com mais precisão.",
+    "priceRaw": "R$ 290,00",
+    "price": "290.00",
+    "image": null,
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Fine Art"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "luva-multitato-preta-em-poliuretano-pu",
+    "title": "Luva multitato - Preta em Poliuretano (PU)",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Luvas, máscaras e itens de proteção e apoio pra quem pinta na rua ou no estúdio.",
+    "priceRaw": "R$ 20,00",
+    "price": "20.00",
+    "image": "img/produtos/luva-multitato-preta-em-poliuretano-pu.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "marcador-permanente-hubik",
+    "title": "Marcador Permanente HUBIK®",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 19,90",
+    "price": "19.90",
+    "image": "img/produtos/marcador-permanente-hubik.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "marcador-sakura-solid-marker-1-un",
+    "title": "Marcador Sakura Solid Marker - 1 UN",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 40,00",
+    "price": "40.00",
+    "image": "img/produtos/marcador-sakura-solid-marker-1-un.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "marcador-squeezer-torpe",
+    "title": "Marcador Squeezer Torpe",
+    "category": "Squeezer",
+    "categorySlug": "squeezer",
+    "description": "Marcador squeezer da Torpe, ideal pra letras molhadas e efeito de tinta escorrida (drip). Fotos autorais em breve — consulte cores e tamanhos disponíveis (30ml, 60ml, 100ml) pelo WhatsApp.",
+    "priceRaw": "Consulte",
+    "price": null,
+    "image": null,
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Squeezer"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "mascara-3m-6200-semifacial-respirador-reutilizavel",
+    "title": "Mascara 3M™ 6200 - Semifacial (Respirador reutilizável)",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 140,00",
+    "price": "140.00",
+    "image": "img/produtos/mascara-3m-6200-semifacial-respirador-reutilizavel.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "montana-cans-ultra-wide-750ml",
+    "title": "Montana Cans - Ultra Wide 750ML",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 59,00",
+    "price": "59.00",
+    "image": "img/produtos/montana-cans-ultra-wide-750ml.jpg",
+    "specs": [
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      },
+      {
+        "label": "Capacidade",
+        "value": "750ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "montana-gold-black-fat-cap",
+    "title": "Montana Gold / Black Fat Cap",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/montana-gold-black-fat-cap.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "montana-level-5-fat-cap",
+    "title": "Montana Level 5 Fat Cap",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/montana-level-5-fat-cap.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "mtn-94-400ml",
+    "title": "MTN 94 400ML",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa. Cores aproximadas — a cor exata pode variar de tela pra tela.",
+    "priceRaw": "Consulte",
+    "price": null,
+    "image": null,
+    "specs": [
+      {
+        "label": "Cores",
+        "value": "216 cores"
+      },
+      {
+        "label": "Acabamento",
+        "value": "Fosco"
+      },
+      {
+        "label": "Capacidade",
+        "value": "400ml"
+      }
+    ],
+    "swatches": [
+      {
+        "name": "Black",
+        "code": "9RV-9011",
+        "hex": "#000000"
+      },
+      {
+        "name": "White",
+        "code": "9RV-9010",
+        "hex": "#ffffff"
+      },
+      {
+        "name": "Ipanema Yellow",
+        "code": "9RV-189",
+        "hex": "#fff9c3"
+      },
+      {
+        "name": "Party Yellow",
+        "code": "9RV-20",
+        "hex": "#fff08c"
+      },
+      {
+        "name": "Canarias Yellow",
+        "code": "9RV-109",
+        "hex": "#fff058"
+      },
+      {
+        "name": "Light Yellow",
+        "code": "9RV-1021",
+        "hex": "#ffe100"
+      },
+      {
+        "name": "Yosemite Yellow",
+        "code": "9RV-110",
+        "hex": "#c7b300"
+      },
+      {
+        "name": "Babel Green",
+        "code": "9RV-111",
+        "hex": "#a29400"
+      },
+      {
+        "name": "Mission Green",
+        "code": "9RV-112",
+        "hex": "#766a10"
+      },
+      {
+        "name": "Dragon Green",
+        "code": "9RV-113",
+        "hex": "#5e5003"
+      },
+      {
+        "name": "Maya Green",
+        "code": "9RV-114",
+        "hex": "#3d3408"
+      },
+      {
+        "name": "Sundance",
+        "code": "9RV-192",
+        "hex": "#ffebc2"
+      },
+      {
+        "name": "Dalai Orange",
+        "code": "9RV-102",
+        "hex": "#fddca3"
+      },
+      {
+        "name": "Plural Orange",
+        "code": "9RV-103",
+        "hex": "#fac67e"
+      },
+      {
+        "name": "Solar Orange",
+        "code": "9RV-50",
+        "hex": "#f7b060"
+      },
+      {
+        "name": "Tangerine",
+        "code": "9RV-105",
+        "hex": "#f5a54a"
+      },
+      {
+        "name": "Lava Orange",
+        "code": "9RV-106",
+        "hex": "#ef8407"
+      },
+      {
+        "name": "Kalani Orange",
+        "code": "9RV-2004",
+        "hex": "#ea640d"
+      },
+      {
+        "name": "Mars Orange",
+        "code": "9RV-107",
+        "hex": "#e64715"
+      },
+      {
+        "name": "Phoenix Orange",
+        "code": "9RV-108",
+        "hex": "#be3819"
+      },
+      {
+        "name": "Malta White",
+        "code": "9RV-190",
+        "hex": "#f9f6e9"
+      },
+      {
+        "name": "Bone White",
+        "code": "9RV-1013",
+        "hex": "#f3efd6"
+      },
+      {
+        "name": "Safari Brown",
+        "code": "9RV-135",
+        "hex": "#eadfa8"
+      },
+      {
+        "name": "Inca Brown",
+        "code": "9RV-136",
+        "hex": "#d9b365"
+      },
+      {
+        "name": "Kraft Brown",
+        "code": "9RV-137",
+        "hex": "#bd9b61"
+      },
+      {
+        "name": "Marrakech",
+        "code": "9RV-138",
+        "hex": "#99743f"
+      },
+      {
+        "name": "Sequoia Brown",
+        "code": "9RV-139",
+        "hex": "#6f5229"
+      },
+      {
+        "name": "Mole Brown",
+        "code": "9RV-140",
+        "hex": "#503915"
+      },
+      {
+        "name": "Gondola Brown",
+        "code": "9RV-141",
+        "hex": "#412c13"
+      },
+      {
+        "name": "Jaima Brown",
+        "code": "9RV-191",
+        "hex": "#f1e8de"
+      },
+      {
+        "name": "Dingo Brown",
+        "code": "9RV-94",
+        "hex": "#e8d0b7"
+      },
+      {
+        "name": "Tana Brown",
+        "code": "9RV-95",
+        "hex": "#d2a785"
+      },
+      {
+        "name": "Montserrat",
+        "code": "9RV-96",
+        "hex": "#cc955e"
+      },
+      {
+        "name": "Chiapas Brown",
+        "code": "9RV-97",
+        "hex": "#a0682b"
+      },
+      {
+        "name": "Bean Brown",
+        "code": "9RV-98",
+        "hex": "#a65f2f"
+      },
+      {
+        "name": "Coffee Brown",
+        "code": "9RV-100",
+        "hex": "#402009"
+      },
+      {
+        "name": "Chocolate Brown",
+        "code": "9RV-35",
+        "hex": "#41302a"
+      },
+      {
+        "name": "Ebony Brown",
+        "code": "9RV-101",
+        "hex": "#2f1109"
+      },
+      {
+        "name": "Chewing Gum",
+        "code": "9RV-193",
+        "hex": "#f6c3d3"
+      },
+      {
+        "name": "Tutti Frutti",
+        "code": "9RV-115",
+        "hex": "#ea949d"
+      },
+      {
+        "name": "Fever Red",
+        "code": "9RV-3017",
+        "hex": "#dc534d"
+      },
+      {
+        "name": "Blood Red",
+        "code": "9RV-116",
+        "hex": "#d52f25"
+      },
+      {
+        "name": "Vivid Red",
+        "code": "9RV-3001",
+        "hex": "#b3061e"
+      },
+      {
+        "name": "Clandestine Red",
+        "code": "9RV-47",
+        "hex": "#950825"
+      },
+      {
+        "name": "Bordeaux Red",
+        "code": "9RV-3004",
+        "hex": "#610819"
+      },
+      {
+        "name": "Cherokee Red",
+        "code": "9RV-3007",
+        "hex": "#3a0807"
+      },
+      {
+        "name": "Night Red",
+        "code": "9RV-77",
+        "hex": "#2d0604"
+      },
+      {
+        "name": "Supernova Pink",
+        "code": "9RV-194",
+        "hex": "#fce6eb"
+      },
+      {
+        "name": "Tokyo Pink",
+        "code": "9RV-164",
+        "hex": "#f7c7d7"
+      },
+      {
+        "name": "Orchid Pink",
+        "code": "9RV-165",
+        "hex": "#ec7faa"
+      },
+      {
+        "name": "Erika",
+        "code": "9RV-4003",
+        "hex": "#e85b99"
+      },
+      {
+        "name": "Magenta",
+        "code": "9RV-4010",
+        "hex": "#d90075"
+      },
+      {
+        "name": "Acai Red",
+        "code": "9RV-166",
+        "hex": "#9a004b"
+      },
+      {
+        "name": "Rioja Red",
+        "code": "9RV-167",
+        "hex": "#6b0037"
+      },
+      {
+        "name": "Anger Red",
+        "code": "9RV-168",
+        "hex": "#550026"
+      },
+      {
+        "name": "Taurus Red",
+        "code": "9RV-169",
+        "hex": "#36001c"
+      },
+      {
+        "name": "Saudade Pink",
+        "code": "9RV-196",
+        "hex": "#f2dddd"
+      },
+      {
+        "name": "Boreal Pink",
+        "code": "9RV-86",
+        "hex": "#e3bfc3"
+      },
+      {
+        "name": "Stereo Pink",
+        "code": "9RV-87",
+        "hex": "#ca95a4"
+      },
+      {
+        "name": "Single Pink",
+        "code": "9RV-88",
+        "hex": "#a06c7e"
+      },
+      {
+        "name": "Compact Red",
+        "code": "9RV-89",
+        "hex": "#864a54"
+      },
+      {
+        "name": "Bitacora Red",
+        "code": "9RV-90",
+        "hex": "#582b3a"
+      },
+      {
+        "name": "Pandora Red",
+        "code": "9RV-91",
+        "hex": "#4f1f30"
+      },
+      {
+        "name": "Gaudi Red",
+        "code": "9RV-92",
+        "hex": "#321129"
+      },
+      {
+        "name": "Stendhal Red",
+        "code": "9RV-93",
+        "hex": "#1e000e"
+      },
+      {
+        "name": "Penelope Brown",
+        "code": "9RV-197",
+        "hex": "#f8ede7"
+      },
+      {
+        "name": "Sensible Brown",
+        "code": "9RV-176",
+        "hex": "#efd9d0"
+      },
+      {
+        "name": "Oak Brown",
+        "code": "9RV-203",
+        "hex": "#a86159"
+      },
+      {
+        "name": "Interrail Brown",
+        "code": "9RV-204",
+        "hex": "#9e3d45"
+      },
+      {
+        "name": "Warrior Brown",
+        "code": "9RV-205",
+        "hex": "#591421"
+      },
+      {
+        "name": "Plancton",
+        "code": "9RV-200",
+        "hex": "#e8d6c8"
+      },
+      {
+        "name": "Respect Pink",
+        "code": "9RV-64",
+        "hex": "#b59892"
+      },
+      {
+        "name": "Scarlet Brown",
+        "code": "9RV-201",
+        "hex": "#8e6061"
+      },
+      {
+        "name": "Mosquito Brown",
+        "code": "9RV-202",
+        "hex": "#684445"
+      },
+      {
+        "name": "April Violet",
+        "code": "9RV-321",
+        "hex": "#e9cde4"
+      },
+      {
+        "name": "Shiva Violet",
+        "code": "9RV-195",
+        "hex": "#e5cce1"
+      },
+      {
+        "name": "Arlet Violet",
+        "code": "9RV-322",
+        "hex": "#d0add2"
+      },
+      {
+        "name": "Persia Violet",
+        "code": "9RV-170",
+        "hex": "#c5add0"
+      },
+      {
+        "name": "Mandala Violet",
+        "code": "9RV-323",
+        "hex": "#bc90c1"
+      },
+      {
+        "name": "Bishop Violet",
+        "code": "9RV-276",
+        "hex": "#a670a9"
+      },
+      {
+        "name": "Raval Violet",
+        "code": "9RV-275",
+        "hex": "#a7659e"
+      },
+      {
+        "name": "Sultan Violet",
+        "code": "9RV-283",
+        "hex": "#7d3a7a"
+      },
+      {
+        "name": "Reverend Violet",
+        "code": "9RV-274",
+        "hex": "#56294c"
+      },
+      {
+        "name": "Republic Violet",
+        "code": "9RV-310",
+        "hex": "#dacbe5"
+      },
+      {
+        "name": "Woodstock Violet",
+        "code": "9RV-311",
+        "hex": "#cdc3e1"
+      },
+      {
+        "name": "Community Violet",
+        "code": "9RV-171",
+        "hex": "#b194c0"
+      },
+      {
+        "name": "Destiny Violet",
+        "code": "9RV-172",
+        "hex": "#8270a3"
+      },
+      {
+        "name": "Ultraviolet",
+        "code": "9RV-173",
+        "hex": "#6b4d8d"
+      },
+      {
+        "name": "Venus Violet",
+        "code": "9RV-174",
+        "hex": "#483366"
+      },
+      {
+        "name": "Electra Violet",
+        "code": "9RV-175",
+        "hex": "#32234e"
+      },
+      {
+        "name": "Cosmos Violet",
+        "code": "9RV-28",
+        "hex": "#241c46"
+      },
+      {
+        "name": "Vampire Violet",
+        "code": "9RV-27",
+        "hex": "#040632"
+      },
+      {
+        "name": "Sagan Blue",
+        "code": "9RV-312",
+        "hex": "#c1cae8"
+      },
+      {
+        "name": "Martinez Blue",
+        "code": "9RV-313",
+        "hex": "#aebee3"
+      },
+      {
+        "name": "Rosemary Blue",
+        "code": "9RV-314",
+        "hex": "#9db1dc"
+      },
+      {
+        "name": "Dancer Blue",
+        "code": "9RV-315",
+        "hex": "#85a0d3"
+      },
+      {
+        "name": "Marseilles Blue",
+        "code": "9RV-316",
+        "hex": "#6386c3"
+      },
+      {
+        "name": "Porto Blue",
+        "code": "9RV-317",
+        "hex": "#616cb1"
+      },
+      {
+        "name": "Ween",
+        "code": "9RV-318",
+        "hex": "#3b54a1"
+      },
+      {
+        "name": "Tuareg Blue",
+        "code": "9RV-319",
+        "hex": "#263284"
+      },
+      {
+        "name": "Mantra Blue",
+        "code": "9RV-320",
+        "hex": "#302b66"
+      },
+      {
+        "name": "Rain Blue",
+        "code": "9RV-184",
+        "hex": "#c4e7f8"
+      },
+      {
+        "name": "Hydra Blue",
+        "code": "9RV-149",
+        "hex": "#8ecae5"
+      },
+      {
+        "name": "Argo Blue",
+        "code": "9RV-150",
+        "hex": "#44b3df"
+      },
+      {
+        "name": "Freedom Blue",
+        "code": "9RV-151",
+        "hex": "#0098d2"
+      },
+      {
+        "name": "Europe Blue",
+        "code": "9RV-152",
+        "hex": "#0074b0"
+      },
+      {
+        "name": "Electric Blue",
+        "code": "9RV-30",
+        "hex": "#004799"
+      },
+      {
+        "name": "Dark Blue",
+        "code": "9RV-5005",
+        "hex": "#003875"
+      },
+      {
+        "name": "Twister Blue",
+        "code": "9RV-154",
+        "hex": "#042151"
+      },
+      {
+        "name": "Navy Blue",
+        "code": "9RV-5013",
+        "hex": "#010e30"
+      },
+      {
+        "name": "Angel Blue",
+        "code": "9RV-185",
+        "hex": "#eaf0f5"
+      },
+      {
+        "name": "Barceloneta Blue",
+        "code": "9RV-156",
+        "hex": "#cae4f0"
+      },
+      {
+        "name": "Thalassa Blue",
+        "code": "9RV-157",
+        "hex": "#a2d3ea"
+      },
+      {
+        "name": "Perseus Blue",
+        "code": "9RV-158",
+        "hex": "#7fb8d5"
+      },
+      {
+        "name": "Odyssey Blue",
+        "code": "9RV-159",
+        "hex": "#6ea4be"
+      },
+      {
+        "name": "Eureka Blue",
+        "code": "9RV-160",
+        "hex": "#467289"
+      },
+      {
+        "name": "Jase Blue",
+        "code": "9RV-161",
+        "hex": "#2e4a5b"
+      },
+      {
+        "name": "Deep Blue",
+        "code": "9RV-162",
+        "hex": "#003447"
+      },
+      {
+        "name": "Poseydon Blue",
+        "code": "9RV-163",
+        "hex": "#00202c"
+      },
+      {
+        "name": "Virgin Green",
+        "code": "9RV-186",
+        "hex": "#f5faf7"
+      },
+      {
+        "name": "Gemini Green",
+        "code": "9RV-142",
+        "hex": "#e1f0e8"
+      },
+      {
+        "name": "Luminous Green",
+        "code": "9RV-6027",
+        "hex": "#a1d5cf"
+      },
+      {
+        "name": "Bali Green",
+        "code": "9RV-144",
+        "hex": "#7bc6c0"
+      },
+      {
+        "name": "Erasmus Green",
+        "code": "9RV-145",
+        "hex": "#5bb5b5"
+      },
+      {
+        "name": "Turquoise",
+        "code": "9RV-5018",
+        "hex": "#008691"
+      },
+      {
+        "name": "Glory Blue",
+        "code": "9RV-146",
+        "hex": "#2d6a75"
+      },
+      {
+        "name": "Pegasus Blue",
+        "code": "9RV-147",
+        "hex": "#003640"
+      },
+      {
+        "name": "Hercules Blue",
+        "code": "9RV-148",
+        "hex": "#002628"
+      },
+      {
+        "name": "Vespa Green",
+        "code": "9RV-187",
+        "hex": "#f1f5df"
+      },
+      {
+        "name": "Frisco Green",
+        "code": "9RV-124",
+        "hex": "#d4e19e"
+      },
+      {
+        "name": "Pistachio Green",
+        "code": "9RV-16",
+        "hex": "#bdd268"
+      },
+      {
+        "name": "Guacamole Green",
+        "code": "9RV-34",
+        "hex": "#88bb44"
+      },
+      {
+        "name": "Neon Green",
+        "code": "9RV-125",
+        "hex": "#a5b700"
+      },
+      {
+        "name": "Valley Green",
+        "code": "9RV-6018",
+        "hex": "#4a7518"
+      },
+      {
+        "name": "Toscana Green",
+        "code": "9RV-126",
+        "hex": "#2b491e"
+      },
+      {
+        "name": "Era Green",
+        "code": "9RV-127",
+        "hex": "#142f0f"
+      },
+      {
+        "name": "Amazon Green",
+        "code": "9RV-6009",
+        "hex": "#0f2405"
+      },
+      {
+        "name": "Flash Green",
+        "code": "9RV-188",
+        "hex": "#f2edbe"
+      },
+      {
+        "name": "Lemon Yellow",
+        "code": "9RV-1016",
+        "hex": "#dcd872"
+      },
+      {
+        "name": "Oregano Green",
+        "code": "9RV-129",
+        "hex": "#afab00"
+      },
+      {
+        "name": "Krypton Green",
+        "code": "9RV-60",
+        "hex": "#83890e"
+      },
+      {
+        "name": "Euskadi Green",
+        "code": "9RV-130",
+        "hex": "#50590d"
+      },
+      {
+        "name": "Comarca Green",
+        "code": "9RV-131",
+        "hex": "#333b08"
+      },
+      {
+        "name": "Borneo Green",
+        "code": "9RV-132",
+        "hex": "#283307"
+      },
+      {
+        "name": "Dharma Green",
+        "code": "9RV-133",
+        "hex": "#1e2705"
+      },
+      {
+        "name": "Infinite Green",
+        "code": "9RV-134",
+        "hex": "#131c04"
+      },
+      {
+        "name": "El Dorado",
+        "code": "9RV-177",
+        "hex": "#f1c700"
+      },
+      {
+        "name": "Tibet",
+        "code": "9RV-178",
+        "hex": "#d58b26"
+      },
+      {
+        "name": "Mustard",
+        "code": "9RV-8023",
+        "hex": "#a76225"
+      },
+      {
+        "name": "Glace Brown",
+        "code": "9RV-99",
+        "hex": "#7a3d24"
+      },
+      {
+        "name": "Java Green",
+        "code": "9RV-199",
+        "hex": "#86c8b4"
+      },
+      {
+        "name": "Emerald Green",
+        "code": "9RV-182",
+        "hex": "#009e8f"
+      },
+      {
+        "name": "Beryl Green",
+        "code": "9RV-183",
+        "hex": "#117774"
+      },
+      {
+        "name": "Bonsai Green",
+        "code": "9RV-179",
+        "hex": "#b8bb86"
+      },
+      {
+        "name": "Thai Green",
+        "code": "9RV-180",
+        "hex": "#8e966e"
+      },
+      {
+        "name": "Labyrinth Green",
+        "code": "9RV-181",
+        "hex": "#474a2b"
+      },
+      {
+        "name": "Sulfur Yellow",
+        "code": "9RV-267",
+        "hex": "#f8e710"
+      },
+      {
+        "name": "Psycho Green",
+        "code": "9RV-266",
+        "hex": "#e1dd21"
+      },
+      {
+        "name": "Sonar Green",
+        "code": "9RV-265",
+        "hex": "#bdc505"
+      },
+      {
+        "name": "Laser Green",
+        "code": "9RV-281",
+        "hex": "#97bf0d"
+      },
+      {
+        "name": "Laos Green",
+        "code": "9RV-282",
+        "hex": "#96c147"
+      },
+      {
+        "name": "Hulk Green",
+        "code": "9RV-280",
+        "hex": "#27a22d"
+      },
+      {
+        "name": "Mint Green",
+        "code": "9RV-272",
+        "hex": "#94c681"
+      },
+      {
+        "name": "Iguana Green",
+        "code": "9RV-273",
+        "hex": "#9dc346"
+      },
+      {
+        "name": "Mystic Green",
+        "code": "9RV-271",
+        "hex": "#34a644"
+      },
+      {
+        "name": "Medium Yellow",
+        "code": "9RV-1028",
+        "hex": "#f8b65b"
+      },
+      {
+        "name": "Peach",
+        "code": "9RV-1017",
+        "hex": "#fac073"
+      },
+      {
+        "name": "Mango",
+        "code": "9RV-207",
+        "hex": "#f29855"
+      },
+      {
+        "name": "Cyan",
+        "code": "9RV-245",
+        "hex": "#11afba"
+      },
+      {
+        "name": "Formentera Blue",
+        "code": "9RV-270",
+        "hex": "#48bdcb"
+      },
+      {
+        "name": "Genesis Blue",
+        "code": "9RV-269",
+        "hex": "#2aa7c0"
+      },
+      {
+        "name": "Tramontana Blue",
+        "code": "9RV-268",
+        "hex": "#00749c"
+      },
+      {
+        "name": "Joker Pink",
+        "code": "9RV-278",
+        "hex": "#e479a7"
+      },
+      {
+        "name": "Disco Pink",
+        "code": "9RV-277",
+        "hex": "#c24f94"
+      },
+      {
+        "name": "Rosary Pink",
+        "code": "9RV-279",
+        "hex": "#e0177e"
+      },
+      {
+        "name": "Light Red",
+        "code": "9RV-3020",
+        "hex": "#e32e2e"
+      },
+      {
+        "name": "Madrid Red",
+        "code": "9RV-241",
+        "hex": "#9a291c"
+      },
+      {
+        "name": "Jewel Silver",
+        "code": "",
+        "hex": "#aaaaaa"
+      },
+      {
+        "name": "Frame Gold",
+        "code": "",
+        "hex": "#a07d3c"
+      },
+      {
+        "name": "Copper",
+        "code": "",
+        "hex": "#d26e28"
+      },
+      {
+        "name": "Tofu Grey",
+        "code": "9RV-300",
+        "hex": "#fef9e3"
+      },
+      {
+        "name": "Placebo Grey",
+        "code": "9RV-301",
+        "hex": "#f5efd6"
+      },
+      {
+        "name": "Koala Grey",
+        "code": "9RV-302",
+        "hex": "#d8cdc3"
+      },
+      {
+        "name": "Native Grey",
+        "code": "9RV-303",
+        "hex": "#bcb2ad"
+      },
+      {
+        "name": "Balboa Grey",
+        "code": "9RV-304",
+        "hex": "#a29690"
+      },
+      {
+        "name": "Cloud Grey",
+        "code": "9RV-305",
+        "hex": "#c9d2d7"
+      },
+      {
+        "name": "Winter Grey",
+        "code": "9RV-306",
+        "hex": "#b7c1cd"
+      },
+      {
+        "name": "Jaws Grey",
+        "code": "9RV-307",
+        "hex": "#abb5c1"
+      },
+      {
+        "name": "Whale Grey",
+        "code": "9RV-308",
+        "hex": "#6b7c91"
+      },
+      {
+        "name": "Chernobyl Grey",
+        "code": "9RV-309",
+        "hex": "#5e7386"
+      },
+      {
+        "name": "Stardust Grey",
+        "code": "9RV-198",
+        "hex": "#eef0f1"
+      },
+      {
+        "name": "Siberian Grey",
+        "code": "9RV-7047",
+        "hex": "#dbdddf"
+      },
+      {
+        "name": "Rita Grey",
+        "code": "9RV-118",
+        "hex": "#cdd0d1"
+      },
+      {
+        "name": "Pearl Grey",
+        "code": "9RV-7040",
+        "hex": "#b5b8ba"
+      },
+      {
+        "name": "London Grey",
+        "code": "9RV-119",
+        "hex": "#898b8e"
+      },
+      {
+        "name": "Wolf Grey",
+        "code": "9RV-120",
+        "hex": "#5b5b5e"
+      },
+      {
+        "name": "Icarus Grey",
+        "code": "9RV-121",
+        "hex": "#48484b"
+      },
+      {
+        "name": "Anthracite Grey",
+        "code": "9RV-7016",
+        "hex": "#363538"
+      },
+      {
+        "name": "Metropolis Grey",
+        "code": "9RV-78",
+        "hex": "#262227"
+      },
+      {
+        "name": "Fluorescent Yellow",
+        "code": "9RVF Yellow",
+        "hex": "#f6ff00"
+      },
+      {
+        "name": "Fluorescent Orange",
+        "code": "9RVF Orange",
+        "hex": "#ff6e00"
+      },
+      {
+        "name": "Fluorescent Red",
+        "code": "9RVF Red",
+        "hex": "#ff2741"
+      },
+      {
+        "name": "Fluorescent Fuchsia",
+        "code": "9RVF Fuchsia",
+        "hex": "#ff3d90"
+      },
+      {
+        "name": "Fluorescent Violet",
+        "code": "9RVF Violet",
+        "hex": "#a823c3"
+      },
+      {
+        "name": "Fluorescent Blue",
+        "code": "9RVF Blue",
+        "hex": "#0088cd"
+      },
+      {
+        "name": "Fluorescent Green",
+        "code": "9RVF Green",
+        "hex": "#2fc700"
+      },
+      {
+        "name": "Ethereal Yellow",
+        "code": "",
+        "hex": "#fffaa3"
+      },
+      {
+        "name": "Haze Orange",
+        "code": "",
+        "hex": "#fbb36d"
+      },
+      {
+        "name": "Soul Red",
+        "code": "",
+        "hex": "#eda795"
+      },
+      {
+        "name": "Judea Brown",
+        "code": "",
+        "hex": "#b79e74"
+      },
+      {
+        "name": "Aura Violet",
+        "code": "",
+        "hex": "#c5add0"
+      },
+      {
+        "name": "Atmosphere Blue",
+        "code": "",
+        "hex": "#199cd2"
+      },
+      {
+        "name": "Breeze Green",
+        "code": "",
+        "hex": "#a1d5cf"
+      },
+      {
+        "name": "Smoke Grey",
+        "code": "",
+        "hex": "#cdcdcd"
+      },
+      {
+        "name": "Shadow Black",
+        "code": "",
+        "hex": "#a6a6a7"
+      },
+      {
+        "name": "Air White",
+        "code": "",
+        "hex": "#ffffff"
+      }
+    ],
+    "hasSwatches": true
+  },
+  {
+    "handle": "mtn-black-book-sketchbook-120g-m",
+    "title": "MTN Black Book SketchBook 120g/m²",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Luvas, máscaras e itens de proteção e apoio pra quem pinta na rua ou no estúdio.",
+    "priceRaw": "R$ 59,00",
+    "price": "59.00",
+    "image": "img/produtos/mtn-black-book-sketchbook-120g-m.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "mtn-hardcore-400ml",
+    "title": "MTN Hardcore 400ML",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa. Cores aproximadas — a cor exata pode variar de tela pra tela.",
+    "priceRaw": "R$ 35,00",
+    "price": "35.00",
+    "image": null,
+    "specs": [
+      {
+        "label": "Cores",
+        "value": "141 cores"
+      },
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      },
+      {
+        "label": "Capacidade",
+        "value": "400ml"
+      }
+    ],
+    "swatches": [
+      {
+        "name": "Black",
+        "code": "HRV-9011",
+        "hex": "#000000"
+      },
+      {
+        "name": "Satin Black",
+        "code": "",
+        "hex": "#000000"
+      },
+      {
+        "name": "Matte Black",
+        "code": "",
+        "hex": "#000000"
+      },
+      {
+        "name": "White",
+        "code": "HRV-9010",
+        "hex": "#ffffff"
+      },
+      {
+        "name": "Satin White",
+        "code": "",
+        "hex": "#ffffff"
+      },
+      {
+        "name": "Matte White",
+        "code": "",
+        "hex": "#ffffff"
+      },
+      {
+        "name": "Unicorn Yellow",
+        "code": "HRV-252",
+        "hex": "#ffffbf"
+      },
+      {
+        "name": "Beach Yellow",
+        "code": "HRV-222",
+        "hex": "#fff386"
+      },
+      {
+        "name": "Cream",
+        "code": "HRV-7",
+        "hex": "#fed792"
+      },
+      {
+        "name": "Party Yellow",
+        "code": "HRV-20",
+        "hex": "#fdef46"
+      },
+      {
+        "name": "Light Yellow",
+        "code": "HRV-1021",
+        "hex": "#ffe100"
+      },
+      {
+        "name": "Luxor Yellow",
+        "code": "HRV-239",
+        "hex": "#fab700"
+      },
+      {
+        "name": "Ganges Yellow",
+        "code": "HRV-11",
+        "hex": "#f4ca2a"
+      },
+      {
+        "name": "Atacama Yellow",
+        "code": "HRV-206",
+        "hex": "#fbcb8c"
+      },
+      {
+        "name": "Peach",
+        "code": "HRV-1017",
+        "hex": "#f9ba57"
+      },
+      {
+        "name": "Medium Yellow",
+        "code": "HRV-1028",
+        "hex": "#ffa300"
+      },
+      {
+        "name": "Mango",
+        "code": "HRV-207",
+        "hex": "#e87722"
+      },
+      {
+        "name": "Mustard",
+        "code": "HRV-8023",
+        "hex": "#b9501a"
+      },
+      {
+        "name": "Rust Red",
+        "code": "HRV-18",
+        "hex": "#6d2601"
+      },
+      {
+        "name": "Apricot",
+        "code": "HRV-9",
+        "hex": "#fac294"
+      },
+      {
+        "name": "Pumpkin",
+        "code": "HRV-208",
+        "hex": "#f6ad6b"
+      },
+      {
+        "name": "Pastel Orange",
+        "code": "HRV-2003",
+        "hex": "#ec753b"
+      },
+      {
+        "name": "Orange",
+        "code": "HRV-2004",
+        "hex": "#e95e0f"
+      },
+      {
+        "name": "Calcutta Orange",
+        "code": "HRV-209",
+        "hex": "#dc4126"
+      },
+      {
+        "name": "Prometheus Orange",
+        "code": "HRV-210",
+        "hex": "#990000"
+      },
+      {
+        "name": "Iroko Red",
+        "code": "HRV-260",
+        "hex": "#572d2d"
+      },
+      {
+        "name": "Flamingo",
+        "code": "HRV-259",
+        "hex": "#e8927c"
+      },
+      {
+        "name": "Colorado Red",
+        "code": "HRV-33",
+        "hex": "#e74f45"
+      },
+      {
+        "name": "Light Red",
+        "code": "HRV-3020",
+        "hex": "#e5352d"
+      },
+      {
+        "name": "Vivid Red",
+        "code": "HRV-3001",
+        "hex": "#c90019"
+      },
+      {
+        "name": "Madrid Red",
+        "code": "HRV-241",
+        "hex": "#c52332"
+      },
+      {
+        "name": "Soviet Red",
+        "code": "HRV-242",
+        "hex": "#8d0000"
+      },
+      {
+        "name": "Bordeaux Red",
+        "code": "HRV-3004",
+        "hex": "#82131d"
+      },
+      {
+        "name": "Alice Pink",
+        "code": "HRV-348",
+        "hex": "#f4adc5"
+      },
+      {
+        "name": "Manga Pink",
+        "code": "HRV-258",
+        "hex": "#f2acb9"
+      },
+      {
+        "name": "Love Pink",
+        "code": "HRV-211",
+        "hex": "#ee87ad"
+      },
+      {
+        "name": "Erika",
+        "code": "HRV-4003",
+        "hex": "#de336b"
+      },
+      {
+        "name": "Magenta",
+        "code": "HRV-4010",
+        "hex": "#dd1d5a"
+      },
+      {
+        "name": "Akari Red",
+        "code": "HRV-212",
+        "hex": "#c50041"
+      },
+      {
+        "name": "Merlot Red",
+        "code": "HRV-213",
+        "hex": "#762a3d"
+      },
+      {
+        "name": "Treze Violet",
+        "code": "HRV-349",
+        "hex": "#f6b8d0"
+      },
+      {
+        "name": "Princess Violet",
+        "code": "HRV-257",
+        "hex": "#d592aa"
+      },
+      {
+        "name": "Witch Violet",
+        "code": "HRV-224",
+        "hex": "#b86c95"
+      },
+      {
+        "name": "Geisha Violet",
+        "code": "HRV-225",
+        "hex": "#c15c92"
+      },
+      {
+        "name": "Pure Purple",
+        "code": "HRV-350",
+        "hex": "#8f154b"
+      },
+      {
+        "name": "Tube Violet",
+        "code": "HRV-226",
+        "hex": "#7c3f60"
+      },
+      {
+        "name": "Cherry",
+        "code": "HRV-4007",
+        "hex": "#582741"
+      },
+      {
+        "name": "Malva",
+        "code": "HRV-256",
+        "hex": "#b4b5df"
+      },
+      {
+        "name": "Violet",
+        "code": "HRV-214",
+        "hex": "#9993cb"
+      },
+      {
+        "name": "Prophet Violet",
+        "code": "HRV-215",
+        "hex": "#6d63a5"
+      },
+      {
+        "name": "Blue Violet",
+        "code": "HRV-3",
+        "hex": "#574a96"
+      },
+      {
+        "name": "Anonymous Violet",
+        "code": "HRV-216",
+        "hex": "#45347a"
+      },
+      {
+        "name": "Galaxy Violet",
+        "code": "HRV-264",
+        "hex": "#221c35"
+      },
+      {
+        "name": "Vampire Violet",
+        "code": "HRV-27",
+        "hex": "#00084d"
+      },
+      {
+        "name": "Aurora Blue",
+        "code": "HRV-73",
+        "hex": "#c8d3ed"
+      },
+      {
+        "name": "Hortensia Blue",
+        "code": "HRV-351",
+        "hex": "#889ed1"
+      },
+      {
+        "name": "Gala Blue",
+        "code": "HRV-352",
+        "hex": "#5d78ba"
+      },
+      {
+        "name": "Julione Blue",
+        "code": "HRV-353",
+        "hex": "#40549f"
+      },
+      {
+        "name": "Babylon Blue",
+        "code": "HRV-243",
+        "hex": "#3d5588"
+      },
+      {
+        "name": "Lewis Blue",
+        "code": "HRV-32",
+        "hex": "#213a8f"
+      },
+      {
+        "name": "Universe Blue",
+        "code": "HRV-354",
+        "hex": "#0f2354"
+      },
+      {
+        "name": "Costa Brava Blue",
+        "code": "HRV-74",
+        "hex": "#94bfe5"
+      },
+      {
+        "name": "Waimea Blue",
+        "code": "HRV-227",
+        "hex": "#6f9fd0"
+      },
+      {
+        "name": "Zeppelin Blue",
+        "code": "HRV-228",
+        "hex": "#4875b3"
+      },
+      {
+        "name": "Andromeda Blue",
+        "code": "HRV-229",
+        "hex": "#465499"
+      },
+      {
+        "name": "Ultramarine Blue",
+        "code": "HRV-5002",
+        "hex": "#37306a"
+      },
+      {
+        "name": "Leviathan Blue",
+        "code": "HRV-230",
+        "hex": "#0d0f49"
+      },
+      {
+        "name": "Nostromo Blue",
+        "code": "HRV-75",
+        "hex": "#081f2c"
+      },
+      {
+        "name": "Himalayan Blue",
+        "code": "HRV-13",
+        "hex": "#86cee1"
+      },
+      {
+        "name": "Arctic Blue",
+        "code": "HRV-29",
+        "hex": "#5bc2e7"
+      },
+      {
+        "name": "Light Blue",
+        "code": "HRV-8",
+        "hex": "#60c5e7"
+      },
+      {
+        "name": "Avatar Blue",
+        "code": "HRV-217",
+        "hex": "#00a2dd"
+      },
+      {
+        "name": "Electric Blue",
+        "code": "HRV-30",
+        "hex": "#004799"
+      },
+      {
+        "name": "Dark Blue",
+        "code": "HRV-5005",
+        "hex": "#00659d"
+      },
+      {
+        "name": "Neptune Blue",
+        "code": "HRV-218",
+        "hex": "#004578"
+      },
+      {
+        "name": "Fukushima Blue",
+        "code": "HRV-355",
+        "hex": "#8ecfd3"
+      },
+      {
+        "name": "Patagonia Blue",
+        "code": "HRV-255",
+        "hex": "#68d2df"
+      },
+      {
+        "name": "Cousteau Blue",
+        "code": "HRV-231",
+        "hex": "#1bb2c4"
+      },
+      {
+        "name": "Glacier Blue",
+        "code": "HRV-232",
+        "hex": "#009cab"
+      },
+      {
+        "name": "Planet Blue",
+        "code": "HRV-14",
+        "hex": "#008098"
+      },
+      {
+        "name": "Christiania Blue",
+        "code": "HRV-233",
+        "hex": "#006675"
+      },
+      {
+        "name": "Indigo Blue",
+        "code": "HRV-234",
+        "hex": "#004750"
+      },
+      {
+        "name": "Vintage Blue",
+        "code": "HRV-356",
+        "hex": "#97d2d0"
+      },
+      {
+        "name": "Iceberg Blue",
+        "code": "HRV-357",
+        "hex": "#6ec3bf"
+      },
+      {
+        "name": "Waterlily Blue",
+        "code": "HRV-358",
+        "hex": "#60b3ac"
+      },
+      {
+        "name": "Mururoa Blue",
+        "code": "HRV-359",
+        "hex": "#008c8d"
+      },
+      {
+        "name": "Caribbean Blue",
+        "code": "HRV-5021",
+        "hex": "#007f80"
+      },
+      {
+        "name": "Major Blue",
+        "code": "HRV-360",
+        "hex": "#1f6363"
+      },
+      {
+        "name": "Ocean Blue",
+        "code": "HRV-5020",
+        "hex": "#00454e"
+      },
+      {
+        "name": "Potosi Green",
+        "code": "HRV-361",
+        "hex": "#a6d5c6"
+      },
+      {
+        "name": "Max Green",
+        "code": "HRV-254",
+        "hex": "#a7e6d7"
+      },
+      {
+        "name": "Paris Green",
+        "code": "HRV-219",
+        "hex": "#8bc8aa"
+      },
+      {
+        "name": "UFO Green",
+        "code": "HRV-220",
+        "hex": "#5bb89e"
+      },
+      {
+        "name": "Surgical Green",
+        "code": "HRV-21",
+        "hex": "#009473"
+      },
+      {
+        "name": "Dark Green",
+        "code": "HRV-6016",
+        "hex": "#008352"
+      },
+      {
+        "name": "Persephone Green",
+        "code": "HRV-221",
+        "hex": "#005231"
+      },
+      {
+        "name": "Golden Green",
+        "code": "HRV-24",
+        "hex": "#9ccd9a"
+      },
+      {
+        "name": "Light Green",
+        "code": "HRV-4",
+        "hex": "#74b957"
+      },
+      {
+        "name": "Guacamole Green",
+        "code": "HRV-34",
+        "hex": "#88bb44"
+      },
+      {
+        "name": "Valley Green",
+        "code": "HRV-6018",
+        "hex": "#6a9720"
+      },
+      {
+        "name": "Cologno N. Green",
+        "code": "HRV-237",
+        "hex": "#6a8515"
+      },
+      {
+        "name": "Lutecia Green",
+        "code": "HRV-5",
+        "hex": "#046a38"
+      },
+      {
+        "name": "Amazon Green",
+        "code": "HRV-6009",
+        "hex": "#0f2405"
+      },
+      {
+        "name": "Poison Green",
+        "code": "HRV-235",
+        "hex": "#dedd3a"
+      },
+      {
+        "name": "Mojito Green",
+        "code": "HRV-236",
+        "hex": "#c1d509"
+      },
+      {
+        "name": "Pistachio Green",
+        "code": "HRV-16",
+        "hex": "#b0c643"
+      },
+      {
+        "name": "Mantis Green",
+        "code": "HRV-362",
+        "hex": "#78be7a"
+      },
+      {
+        "name": "Mint Green",
+        "code": "HRV-272",
+        "hex": "#60b565"
+      },
+      {
+        "name": "Nature Green",
+        "code": "HRV-363",
+        "hex": "#00964f"
+      },
+      {
+        "name": "Reggae Green",
+        "code": "HRV-364",
+        "hex": "#006942"
+      },
+      {
+        "name": "Pale Green",
+        "code": "HRV-6019",
+        "hex": "#cce0ac"
+      },
+      {
+        "name": "Element Green",
+        "code": "HRV-253",
+        "hex": "#bbc592"
+      },
+      {
+        "name": "Apple Green",
+        "code": "HRV-15",
+        "hex": "#acb681"
+      },
+      {
+        "name": "Rambo Green",
+        "code": "HRV-250",
+        "hex": "#8f995b"
+      },
+      {
+        "name": "Khaki Green",
+        "code": "HRV-6013",
+        "hex": "#727e48"
+      },
+      {
+        "name": "Olive Green",
+        "code": "HRV-6003",
+        "hex": "#60683d"
+      },
+      {
+        "name": "Forest Green",
+        "code": "HRV-251",
+        "hex": "#46502c"
+      },
+      {
+        "name": "Druid Brown",
+        "code": "HRV-246",
+        "hex": "#eecf99"
+      },
+      {
+        "name": "Tepuy Brown",
+        "code": "HRV-247",
+        "hex": "#deb276"
+      },
+      {
+        "name": "Baobab Brown",
+        "code": "HRV-248",
+        "hex": "#cc9456"
+      },
+      {
+        "name": "Greyhound Brown",
+        "code": "HRV-249",
+        "hex": "#b0763f"
+      },
+      {
+        "name": "Toasted Brown",
+        "code": "HRV-8002",
+        "hex": "#8a5531"
+      },
+      {
+        "name": "Tobacco Brown",
+        "code": "HRV-8017",
+        "hex": "#402009"
+      },
+      {
+        "name": "Chocolate Brown",
+        "code": "HRV-35",
+        "hex": "#473729"
+      },
+      {
+        "name": "Pangea Brown",
+        "code": "HRV-261",
+        "hex": "#a9431e"
+      },
+      {
+        "name": "Puchineli White",
+        "code": "HRV-365",
+        "hex": "#f9f7ea"
+      },
+      {
+        "name": "Bone White",
+        "code": "HRV-1013",
+        "hex": "#f3efd6"
+      },
+      {
+        "name": "Arkalis Grey",
+        "code": "HRV-55",
+        "hex": "#ebe6d6"
+      },
+      {
+        "name": "City Grey",
+        "code": "HRV-57",
+        "hex": "#cabdb0"
+      },
+      {
+        "name": "Regina Grey",
+        "code": "HRV-42",
+        "hex": "#b7a794"
+      },
+      {
+        "name": "Nazgul Grey",
+        "code": "HRV-40",
+        "hex": "#928782"
+      },
+      {
+        "name": "Ripley Grey",
+        "code": "HRV-39",
+        "hex": "#7e7f82"
+      },
+      {
+        "name": "Light Grey",
+        "code": "HRV-6",
+        "hex": "#e6e6e6"
+      },
+      {
+        "name": "Squatter Grey",
+        "code": "HRV-366",
+        "hex": "#c4c5c6"
+      },
+      {
+        "name": "Matter Grey",
+        "code": "HRV-262",
+        "hex": "#99a0a3"
+      },
+      {
+        "name": "Pearl Grey",
+        "code": "HRV-7040",
+        "hex": "#7b7c7e"
+      },
+      {
+        "name": "Dark Grey",
+        "code": "HRV-7031",
+        "hex": "#616264"
+      },
+      {
+        "name": "Sputnik Grey",
+        "code": "HRV-263",
+        "hex": "#4b4f54"
+      },
+      {
+        "name": "Anthracite Grey",
+        "code": "HRV-7016",
+        "hex": "#464648"
+      },
+      {
+        "name": "Silver",
+        "code": "",
+        "hex": "#bebebe"
+      },
+      {
+        "name": "Gold",
+        "code": "",
+        "hex": "#d2b450"
+      }
+    ],
+    "hasSwatches": true
+  },
+  {
+    "handle": "nou-colors-400ml",
+    "title": "NOU Colors 400ML",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa. Cores aproximadas — a cor exata pode variar de tela pra tela.",
+    "priceRaw": "R$ 29,00",
+    "price": "29.00",
+    "image": "img/produtos/spray-preto-nou-colors-70049.jpg",
+    "specs": [
+      {
+        "label": "Cores",
+        "value": "142 cores"
+      },
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      },
+      {
+        "label": "Capacidade",
+        "value": "400ml"
+      }
+    ],
+    "swatches": [
+      {
+        "name": "Creme",
+        "code": "70001",
+        "hex": "#fccf63"
+      },
+      {
+        "name": "Amarelo Ming",
+        "code": "70002",
+        "hex": "#f8ea8e"
+      },
+      {
+        "name": "Amarelo Festa",
+        "code": "70003",
+        "hex": "#f6e661"
+      },
+      {
+        "name": "Amarelo Claro",
+        "code": "70004",
+        "hex": "#fbc939"
+      },
+      {
+        "name": "Amarelo MéDio",
+        "code": "70005",
+        "hex": "#f57a3c"
+      },
+      {
+        "name": "CanáRio",
+        "code": "70205",
+        "hex": "#f9dc41"
+      },
+      {
+        "name": "Amarelo",
+        "code": "70206",
+        "hex": "#fab840"
+      },
+      {
+        "name": "Amarelo EléTrico",
+        "code": "70207",
+        "hex": "#f78e42"
+      },
+      {
+        "name": "Laranja Solar",
+        "code": "70006",
+        "hex": "#f89a63"
+      },
+      {
+        "name": "Laranja None",
+        "code": "70007",
+        "hex": "#f8a156"
+      },
+      {
+        "name": "Caramelo",
+        "code": "70008",
+        "hex": "#e35768"
+      },
+      {
+        "name": "Papaya",
+        "code": "70220",
+        "hex": "#f36674"
+      },
+      {
+        "name": "Laranja Eco",
+        "code": "70208",
+        "hex": "#da644b"
+      },
+      {
+        "name": "Pele",
+        "code": "70278",
+        "hex": "#e0888f"
+      },
+      {
+        "name": "Laranja Luminoso",
+        "code": "70043",
+        "hex": "#ef4f3c"
+      },
+      {
+        "name": "Maravilha Luminoso",
+        "code": "70044",
+        "hex": "#ee2362"
+      },
+      {
+        "name": "Vermelho Luminoso",
+        "code": "70270",
+        "hex": "#f03948"
+      },
+      {
+        "name": "Laranja Bahia",
+        "code": "70274",
+        "hex": "#da473a"
+      },
+      {
+        "name": "Vermelho",
+        "code": "70009",
+        "hex": "#e32c3a"
+      },
+      {
+        "name": "Vermelho Rubi",
+        "code": "70010",
+        "hex": "#b92b37"
+      },
+      {
+        "name": "Vermelho Bordô",
+        "code": "70011",
+        "hex": "#281d31"
+      },
+      {
+        "name": "Goiaba",
+        "code": "70223",
+        "hex": "#c53c40"
+      },
+      {
+        "name": "Vermelho Blood",
+        "code": "70224",
+        "hex": "#6b2035"
+      },
+      {
+        "name": "Vermelho óXido",
+        "code": "70277",
+        "hex": "#5a292b"
+      },
+      {
+        "name": "Rosa Ioiô",
+        "code": "70229",
+        "hex": "#c13a6d"
+      },
+      {
+        "name": "Vermelho Ira",
+        "code": "70272",
+        "hex": "#7a202f"
+      },
+      {
+        "name": "Vermelho Café",
+        "code": "70012",
+        "hex": "#2e2027"
+      },
+      {
+        "name": "Vermelho Transparente",
+        "code": "70051",
+        "hex": "#fcd4eb"
+      },
+      {
+        "name": "Violeta Puro",
+        "code": "70279",
+        "hex": "#522252"
+      },
+      {
+        "name": "AçAí",
+        "code": "70234",
+        "hex": "#982590"
+      },
+      {
+        "name": "Beterraba",
+        "code": "70241",
+        "hex": "#8c3884"
+      },
+      {
+        "name": "Framboesa",
+        "code": "70228",
+        "hex": "#dd588f"
+      },
+      {
+        "name": "OrquíDea",
+        "code": "70232",
+        "hex": "#c74dae"
+      },
+      {
+        "name": "Rosa Uau",
+        "code": "70233",
+        "hex": "#a83197"
+      },
+      {
+        "name": "Rosa Boneca",
+        "code": "70226",
+        "hex": "#f797d0"
+      },
+      {
+        "name": "RosáLia",
+        "code": "70227",
+        "hex": "#f46eb6"
+      },
+      {
+        "name": "Rosa Antigo",
+        "code": "70240",
+        "hex": "#bf6092"
+      },
+      {
+        "name": "Rosa Magenta",
+        "code": "70014",
+        "hex": "#d6527f"
+      },
+      {
+        "name": "Rosa PaixãO",
+        "code": "70013",
+        "hex": "#e868bb"
+      },
+      {
+        "name": "Rosa Bebê",
+        "code": "70231",
+        "hex": "#eb95cf"
+      },
+      {
+        "name": "Rosa Boreal",
+        "code": "70239",
+        "hex": "#edbac8"
+      },
+      {
+        "name": "Marrom SensíVel",
+        "code": "70243",
+        "hex": "#f3bbbd"
+      },
+      {
+        "name": "Rosa Leve",
+        "code": "70244",
+        "hex": "#fde6dc"
+      },
+      {
+        "name": "Plancton",
+        "code": "70245",
+        "hex": "#e0b9ae"
+      },
+      {
+        "name": "Violeta Shiva",
+        "code": "70235",
+        "hex": "#e7cae3"
+      },
+      {
+        "name": "PenéLope",
+        "code": "70238",
+        "hex": "#f0d2d0"
+      },
+      {
+        "name": "Rosa Tricô",
+        "code": "70230",
+        "hex": "#dfcac5"
+      },
+      {
+        "name": "Rosa Supernova",
+        "code": "70225",
+        "hex": "#fbccbf"
+      },
+      {
+        "name": "Violeta PáLido",
+        "code": "70016",
+        "hex": "#dcb6df"
+      },
+      {
+        "name": "Violeta",
+        "code": "70017",
+        "hex": "#604ba9"
+      },
+      {
+        "name": "LiláS",
+        "code": "70015",
+        "hex": "#b17ac4"
+      },
+      {
+        "name": "Violeta Luminoso",
+        "code": "70273",
+        "hex": "#5d2a69"
+      },
+      {
+        "name": "Taurus",
+        "code": "70242",
+        "hex": "#4a2b45"
+      },
+      {
+        "name": "Violeta Cosmos",
+        "code": "70236",
+        "hex": "#2c2f67"
+      },
+      {
+        "name": "Violeta Vampiro",
+        "code": "70237",
+        "hex": "#131426"
+      },
+      {
+        "name": "Azul Bis",
+        "code": "70264",
+        "hex": "#3a4f7d"
+      },
+      {
+        "name": "Violeta Azulado",
+        "code": "70018",
+        "hex": "#3b3e91"
+      },
+      {
+        "name": "Azul Navy",
+        "code": "70262",
+        "hex": "#4379be"
+      },
+      {
+        "name": "Azul Ultra",
+        "code": "70019",
+        "hex": "#3d4661"
+      },
+      {
+        "name": "Azul Luminoso",
+        "code": "70271",
+        "hex": "#3f59aa"
+      },
+      {
+        "name": "Azul Lewis",
+        "code": "70020",
+        "hex": "#3a587c"
+      },
+      {
+        "name": "Azul Transparente",
+        "code": "70053",
+        "hex": "#f3f9fd"
+      },
+      {
+        "name": "Azul Europa",
+        "code": "70281",
+        "hex": "#4168b6"
+      },
+      {
+        "name": "Azul Eureka",
+        "code": "70261",
+        "hex": "#41688c"
+      },
+      {
+        "name": "Azul OdisséIa",
+        "code": "70260",
+        "hex": "#6584ae"
+      },
+      {
+        "name": "Azul AtlâNtico",
+        "code": "70021",
+        "hex": "#3c7db8"
+      },
+      {
+        "name": "Azul Claro",
+        "code": "70022",
+        "hex": "#7bc2ec"
+      },
+      {
+        "name": "Azul Indigo",
+        "code": "70263",
+        "hex": "#4962ad"
+      },
+      {
+        "name": "Azul Retrô",
+        "code": "70025",
+        "hex": "#44959e"
+      },
+      {
+        "name": "Azul Lost",
+        "code": "70026",
+        "hex": "#3a6580"
+      },
+      {
+        "name": "Verde Luz",
+        "code": "70024",
+        "hex": "#7fd3c4"
+      },
+      {
+        "name": "Azul áGua",
+        "code": "70023",
+        "hex": "#86ccef"
+      },
+      {
+        "name": "Azul Anjo",
+        "code": "70256",
+        "hex": "#dff4f7"
+      },
+      {
+        "name": "Azul Barceloneta",
+        "code": "70257",
+        "hex": "#b1ddee"
+      },
+      {
+        "name": "Azul Nuvem",
+        "code": "70258",
+        "hex": "#c3e4ef"
+      },
+      {
+        "name": "Azul Horizonte",
+        "code": "70259",
+        "hex": "#95c7e2"
+      },
+      {
+        "name": "Cinza Escuro",
+        "code": "70028",
+        "hex": "#656871"
+      },
+      {
+        "name": "Cinza Black",
+        "code": "70280",
+        "hex": "#3b4047"
+      },
+      {
+        "name": "Verde Mar",
+        "code": "70253",
+        "hex": "#87d5b8"
+      },
+      {
+        "name": "Azul Dolphin",
+        "code": "70254",
+        "hex": "#3a6971"
+      },
+      {
+        "name": "Azul AmazôNia",
+        "code": "70255",
+        "hex": "#3d6064"
+      },
+      {
+        "name": "Verde Folha",
+        "code": "70035",
+        "hex": "#44514e"
+      },
+      {
+        "name": "Verde Escuro",
+        "code": "70034",
+        "hex": "#466a4a"
+      },
+      {
+        "name": "Verde Campo",
+        "code": "70031",
+        "hex": "#557e49"
+      },
+      {
+        "name": "Verde Espinho",
+        "code": "70251",
+        "hex": "#3b503a"
+      },
+      {
+        "name": "Verde CáQui",
+        "code": "70036",
+        "hex": "#466c3c"
+      },
+      {
+        "name": "Verde Menta",
+        "code": "70032",
+        "hex": "#57b25e"
+      },
+      {
+        "name": "Verde Guaca",
+        "code": "70030",
+        "hex": "#64b057"
+      },
+      {
+        "name": "Verde Transparente",
+        "code": "70054",
+        "hex": "#f3faef"
+      },
+      {
+        "name": "Verde Tatu",
+        "code": "70250",
+        "hex": "#6f8856"
+      },
+      {
+        "name": "Verde Eureka",
+        "code": "70249",
+        "hex": "#96a566"
+      },
+      {
+        "name": "Verde Luminoso",
+        "code": "70045",
+        "hex": "#7acb41"
+      },
+      {
+        "name": "Verde Pimp My CarroçA",
+        "code": "70283",
+        "hex": "#56b63d"
+      },
+      {
+        "name": "Verde Nou",
+        "code": "70282",
+        "hex": "#5fc679"
+      },
+      {
+        "name": "Verde PáLido",
+        "code": "70033",
+        "hex": "#afe19d"
+      },
+      {
+        "name": "Verde Mundano",
+        "code": "70284",
+        "hex": "#a0d84b"
+      },
+      {
+        "name": "Amarelo Luminoso",
+        "code": "70042",
+        "hex": "#e1eb38"
+      },
+      {
+        "name": "Verde Day",
+        "code": "70029",
+        "hex": "#b5e074"
+      },
+      {
+        "name": "Ipanema",
+        "code": "70248",
+        "hex": "#def1b4"
+      },
+      {
+        "name": "Verde Vespa",
+        "code": "70252",
+        "hex": "#cfeba8"
+      },
+      {
+        "name": "Amarelo LimãO",
+        "code": "70200",
+        "hex": "#ddd05b"
+      },
+      {
+        "name": "LimãO",
+        "code": "70201",
+        "hex": "#ecdd51"
+      },
+      {
+        "name": "Amarelo Transparente",
+        "code": "70052",
+        "hex": "#fffbe4"
+      },
+      {
+        "name": "Bambu",
+        "code": "70275",
+        "hex": "#eeb658"
+      },
+      {
+        "name": "Tangerina",
+        "code": "70216",
+        "hex": "#f68c42"
+      },
+      {
+        "name": "Ouro",
+        "code": "70046",
+        "hex": "#a38c5e"
+      },
+      {
+        "name": "Sorvete De Creme",
+        "code": "70209",
+        "hex": "#faeb9d"
+      },
+      {
+        "name": "Marrom Inca",
+        "code": "70210",
+        "hex": "#dec392"
+      },
+      {
+        "name": "Cobre",
+        "code": "70047",
+        "hex": "#c57b71"
+      },
+      {
+        "name": "Shokolate",
+        "code": "70221",
+        "hex": "#bf6167"
+      },
+      {
+        "name": "Lareira",
+        "code": "70222",
+        "hex": "#984b49"
+      },
+      {
+        "name": "Argila",
+        "code": "70038",
+        "hex": "#b8796b"
+      },
+      {
+        "name": "Laranja Tibet",
+        "code": "70215",
+        "hex": "#f1b083"
+      },
+      {
+        "name": "Lhasa",
+        "code": "70213",
+        "hex": "#f9bd91"
+      },
+      {
+        "name": "Laranja Dalai",
+        "code": "70214",
+        "hex": "#fae09d"
+      },
+      {
+        "name": "Ocre",
+        "code": "70040",
+        "hex": "#b2704a"
+      },
+      {
+        "name": "Amarelo óXido",
+        "code": "70276",
+        "hex": "#a77740"
+      },
+      {
+        "name": "Marrom Glacê",
+        "code": "70217",
+        "hex": "#a06051"
+      },
+      {
+        "name": "Mostarda",
+        "code": "70218",
+        "hex": "#9b6250"
+      },
+      {
+        "name": "Mostarda Escura",
+        "code": "70219",
+        "hex": "#7e5045"
+      },
+      {
+        "name": "Marrom Tabaco",
+        "code": "70041",
+        "hex": "#403d41"
+      },
+      {
+        "name": "Marrom BalançA",
+        "code": "70247",
+        "hex": "#5d5656"
+      },
+      {
+        "name": "Bege Mud",
+        "code": "70037",
+        "hex": "#665d59"
+      },
+      {
+        "name": "Preto",
+        "code": "70049",
+        "hex": "#2f3535"
+      },
+      {
+        "name": "Preto Transparente",
+        "code": "70056",
+        "hex": "#c0bfbf"
+      },
+      {
+        "name": "Marrom Transparente",
+        "code": "70286",
+        "hex": "#bca188"
+      },
+      {
+        "name": "Verde DragãO",
+        "code": "70204",
+        "hex": "#866a56"
+      },
+      {
+        "name": "Verde MissãO",
+        "code": "70203",
+        "hex": "#896d45"
+      },
+      {
+        "name": "Amarelo Deserto",
+        "code": "70202",
+        "hex": "#a08b5b"
+      },
+      {
+        "name": "Bege Kraft",
+        "code": "70211",
+        "hex": "#d3b68e"
+      },
+      {
+        "name": "Bege Cobra",
+        "code": "70212",
+        "hex": "#7e6c5f"
+      },
+      {
+        "name": "Bege Brastemp",
+        "code": "70039",
+        "hex": "#8f8067"
+      },
+      {
+        "name": "Lama",
+        "code": "70246",
+        "hex": "#7f7464"
+      },
+      {
+        "name": "TubarãO",
+        "code": "70268",
+        "hex": "#95969d"
+      },
+      {
+        "name": "Cinza Fauna",
+        "code": "70269",
+        "hex": "#6b6f74"
+      },
+      {
+        "name": "Cinza Ashes",
+        "code": "70267",
+        "hex": "#b0b0b7"
+      },
+      {
+        "name": "Cinza",
+        "code": "70266",
+        "hex": "#b3b4b3"
+      },
+      {
+        "name": "Giz",
+        "code": "70265",
+        "hex": "#ecedea"
+      },
+      {
+        "name": "Branco Transparente",
+        "code": "70055",
+        "hex": "#ededed"
+      },
+      {
+        "name": "Cinza Claro",
+        "code": "70027",
+        "hex": "#a7aaaf"
+      },
+      {
+        "name": "Cromo",
+        "code": "70048",
+        "hex": "#808a88"
+      },
+      {
+        "name": "Branco",
+        "code": "70050",
+        "hex": "#f4f4f4"
+      }
+    ],
+    "hasSwatches": true
+  },
+  {
+    "handle": "nou-fosforescente-400ml",
+    "title": "NOU Fosforescente 400ml",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Antes disponível como opção dentro da cartela de cores da NOU Colors 400ml, agora vendido como item individual. Consulte disponibilidade e preço pelo WhatsApp.",
+    "priceRaw": "Consulte",
+    "price": null,
+    "image": "img/produtos/spray-preto-nou-colors-70049.jpg",
+    "specs": [
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      },
+      {
+        "label": "Capacidade",
+        "value": "400ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "nou-verniz-fosco-400ml",
+    "title": "NOU Verniz Fosco 400ml",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Antes disponível como opção dentro da cartela de cores da NOU Colors 400ml, agora vendido como item individual. Consulte disponibilidade e preço pelo WhatsApp.",
+    "priceRaw": "Consulte",
+    "price": null,
+    "image": "img/produtos/spray-preto-nou-colors-70049.jpg",
+    "specs": [
+      {
+        "label": "Acabamento",
+        "value": "Fosco"
+      },
+      {
+        "label": "Capacidade",
+        "value": "400ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "oleo-de-linhaca-acrilex-100-ml",
+    "title": "Óleo de Linhaça - Acrilex 100 ML",
+    "category": "Fine Art",
+    "categorySlug": "fine-art",
+    "description": "Linha fine art pra quem trabalha tela, ilustração e trabalhos de estúdio com mais precisão.",
+    "priceRaw": "R$ 9,90",
+    "price": "9.90",
+    "image": "img/produtos/oleo-de-linhaca-acrilex-100-ml.jpg",
+    "specs": [
+      {
+        "label": "Capacidade",
+        "value": "100ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "orange-silent-cap",
+    "title": "Orange Silent Cap",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/orange-silent-cap.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "pack-de-adesivos-destrutiveis-hubik-30-unidades",
+    "title": "PACK  DE ADESIVOS DESTRUTIVEIS HUBIK® - 30 UNIDADES",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 50,00",
+    "price": "50.00",
+    "image": "img/produtos/pack-de-adesivos-destrutiveis-hubik-30-unidades.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "pack-de-adesivos-destrutiveis-hubik-60-unidades",
+    "title": "PACK  DE ADESIVOS DESTRUTIVEIS HUBIK® - 60 UNIDADES",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 70,00",
+    "price": "70.00",
+    "image": "img/produtos/pack-de-adesivos-destrutiveis-hubik-60-unidades.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "pack-de-adesivos-destrutivel-hubik",
+    "title": "Pack de adesivos destrutível HUBIK®",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 49,90",
+    "price": "49.90",
+    "image": "img/produtos/pack-de-adesivos-destrutivel-hubik.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "pack-stickers-hello-my-name",
+    "title": "Pack Stickers - Hello My Name",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Luvas, máscaras e itens de proteção e apoio pra quem pinta na rua ou no estúdio.",
+    "priceRaw": "R$ 5,00",
+    "price": "5.00",
+    "image": "img/produtos/pack-stickers-hello-my-name.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "pack-stickers-sticker-day-pack-1-pre-venda",
+    "title": "Pack Stickers - Sticker Day (Pack 1) PRÉ-VENDA",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Luvas, máscaras e itens de proteção e apoio pra quem pinta na rua ou no estúdio.",
+    "priceRaw": "R$ 20,00",
+    "price": "20.00",
+    "image": "img/produtos/pack-stickers-sticker-day-pack-1-pre-venda.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "painel-para-pintura-100x100-1-un",
+    "title": "Painel para pintura 100x100 - 1 un",
+    "category": "Fine Art",
+    "categorySlug": "fine-art",
+    "description": "Linha fine art pra quem trabalha tela, ilustração e trabalhos de estúdio com mais precisão.",
+    "priceRaw": "R$ 150,00",
+    "price": "150.00",
+    "image": "img/produtos/painel-para-pintura-100x100-1-un.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Fine Art"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "painel-para-pintura-30x40-1-un",
+    "title": "Painel para pintura 30x40 - 1 un",
+    "category": "Fine Art",
+    "categorySlug": "fine-art",
+    "description": "Linha fine art pra quem trabalha tela, ilustração e trabalhos de estúdio com mais precisão.",
+    "priceRaw": "R$ 45,00",
+    "price": "45.00",
+    "image": "img/produtos/painel-para-pintura-30x40-1-un.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Fine Art"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "pocket-cap",
+    "title": "Pocket Cap",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 4,00",
+    "price": "4.00",
+    "image": "img/produtos/pocket-cap.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "ponta-dripper-squeezer-mop",
+    "title": "Ponta Dripper Squeezer Mop",
+    "category": "Squeezer",
+    "categorySlug": "squeezer",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/ponta-dripper-squeezer-mop.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Squeezer"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "refil-atomik-silver",
+    "title": "Refil ATOMIK® Silver",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 35,00",
+    "price": "35.00",
+    "image": "img/produtos/refil-atomik-silver.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "refil-hubik-200-ml",
+    "title": "Refil HUBIK® - 200 ML",
+    "category": "Squeezer",
+    "categorySlug": null,
+    "description": "Produto original de arte urbana, direto pra sua mochila.",
+    "priceRaw": "R$ 45,00",
+    "price": "45.00",
+    "image": "img/produtos/refil-hubik-200-ml.jpg",
+    "specs": [
+      {
+        "label": "Capacidade",
+        "value": "200ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "refill-permanente-hubik-100ml",
+    "title": "Refill Permanente - HUBIK®  100ml",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 30,00",
+    "price": "30.00",
+    "image": "img/produtos/refill-permanente-hubik-100ml.jpg",
+    "specs": [
+      {
+        "label": "Capacidade",
+        "value": "100ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "respirador-1-4-facial-plastcor-com-1-filtro-incluso",
+    "title": "Respirador 1/4 Facial Plastcor Com 1 Filtro Incluso",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Luvas, máscaras e itens de proteção e apoio pra quem pinta na rua ou no estúdio.",
+    "priceRaw": "R$ 69,90",
+    "price": "69.90",
+    "image": "img/produtos/respirador-1-4-facial-plastcor-com-1-filtro-incluso.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "retentor-para-filtros-3m-501-o-par",
+    "title": "Retentor para Filtros 3M™ 501 (o par)",
+    "category": "Acessórios",
+    "categorySlug": "acessorios",
+    "description": "Luvas, máscaras e itens de proteção e apoio pra quem pinta na rua ou no estúdio.",
+    "priceRaw": "R$ 10,00",
+    "price": "10.00",
+    "image": "img/produtos/retentor-para-filtros-3m-501-o-par.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Acessórios"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "short-gilrs-love-graffiti-high-quality",
+    "title": "Short Gilrs Love Graffiti - HIGH QUALITY",
+    "category": "Vestuário",
+    "categorySlug": "vestuario",
+    "description": "Peças de vestuário da loja — pra usar a marca no corpo.",
+    "priceRaw": "R$ 49,90",
+    "price": "49.90",
+    "image": "img/produtos/short-gilrs-love-graffiti-high-quality.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Vestuário"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "solid-marker-art-primo-hobo-prata",
+    "title": "Solid Marker - Art Primo Hobo (Prata)",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 45,00",
+    "price": "45.00",
+    "image": "img/produtos/solid-marker-art-primo-hobo-prata.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "solid-marker-hubik",
+    "title": "Solid Marker HUBIK®",
+    "category": "Marcadores",
+    "categorySlug": "marcadores",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 69,00",
+    "price": "69.00",
+    "image": "img/produtos/solid-marker-hubik.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Marcadores"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "solvente-caps-saver-nou-300ml",
+    "title": "Solvente Caps Saver - NOU 300ml",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 29,00",
+    "price": "29.00",
+    "image": "img/produtos/solvente-caps-saver-nou-300ml.jpg",
+    "specs": [
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      },
+      {
+        "label": "Capacidade",
+        "value": "300ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "spray-art-cans-400ml",
+    "title": "Spray Art Cans 400ML",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa. Cores aproximadas — a cor exata pode variar de tela pra tela.",
+    "priceRaw": "R$ 25,00",
+    "price": "25.00",
+    "image": "img/produtos/spray-art-cans-aqua-dark-168.jpg",
+    "specs": [
+      {
+        "label": "Cores",
+        "value": "32 cores"
+      },
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      },
+      {
+        "label": "Capacidade",
+        "value": "400ml"
+      }
+    ],
+    "swatches": [
+      {
+        "name": "Anthracite Grey Middle",
+        "code": "187",
+        "hex": "#8a8a8a"
+      },
+      {
+        "name": "Aqua Dark",
+        "code": "168",
+        "hex": "#3fc1c9"
+      },
+      {
+        "name": "Beige Brown",
+        "code": "130",
+        "hex": "#6b4a2f"
+      },
+      {
+        "name": "Black",
+        "code": "150",
+        "hex": "#141414"
+      },
+      {
+        "name": "Blackberry",
+        "code": "132",
+        "hex": "#3d1f3d"
+      },
+      {
+        "name": "Burgundy",
+        "code": "116",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "Cadmium Yellow",
+        "code": "150",
+        "hex": "#f4c515"
+      },
+      {
+        "name": "Dark Blue",
+        "code": "118",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "Erica Light",
+        "code": "119",
+        "hex": "#d9d9d9"
+      },
+      {
+        "name": "Erica Violet",
+        "code": "106",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "Fern Green",
+        "code": "122",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "Grey Neutral",
+        "code": "134",
+        "hex": "#8a8a8a"
+      },
+      {
+        "name": "Lagoon Blue",
+        "code": "164",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "Light Blue",
+        "code": "114",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "Light Blue Light",
+        "code": "140",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "Light Grey Neutral",
+        "code": "184",
+        "hex": "#8a8a8a"
+      },
+      {
+        "name": "Light Orange",
+        "code": "102",
+        "hex": "#f07d1a"
+      },
+      {
+        "name": "Melon Yellow",
+        "code": "104",
+        "hex": "#f4c515"
+      },
+      {
+        "name": "Moss Green",
+        "code": "124",
+        "hex": "#3f8f3f"
+      },
+      {
+        "name": "Nut",
+        "code": "132",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "Ocean Blue",
+        "code": "128",
+        "hex": "#1c4f9c"
+      },
+      {
+        "name": "Ocher",
+        "code": "176",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "Pear",
+        "code": "120",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "Pure Orange",
+        "code": "110",
+        "hex": "#f07d1a"
+      },
+      {
+        "name": "Purple",
+        "code": "112",
+        "hex": "#6a3fa0"
+      },
+      {
+        "name": "Riviera",
+        "code": "126",
+        "hex": "#2e7d8c"
+      },
+      {
+        "name": "Signal Red",
+        "code": "104",
+        "hex": "#c8102e"
+      },
+      {
+        "name": "Sky Blue",
+        "code": "116",
+        "hex": "#7ec8e3"
+      },
+      {
+        "name": "Telemagenta",
+        "code": "108",
+        "hex": "#d0006f"
+      },
+      {
+        "name": "Transparent Black",
+        "code": "155",
+        "hex": "#e8e8e8"
+      },
+      {
+        "name": "Violet",
+        "code": "110",
+        "hex": "#9a9a9a"
+      },
+      {
+        "name": "White",
+        "code": "160",
+        "hex": "#f7f7f7"
+      }
+    ],
+    "hasSwatches": true
+  },
+  {
+    "handle": "spray-colorart-refletivo-permanente-300ml",
+    "title": "Spray Colorart Refletivo Permanente - 300ml",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 50,00",
+    "price": "50.00",
+    "image": "img/produtos/spray-colorart-refletivo-permanente-300ml.jpg",
+    "specs": [
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      },
+      {
+        "label": "Capacidade",
+        "value": "300ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "spray-colorgin-arte-urbana-unidade",
+    "title": "Spray Colorgin Arte Urbana UNIDADE",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 29,00",
+    "price": "29.00",
+    "image": "img/produtos/spray-colorgin-arte-urbana-unidade.jpg",
+    "specs": [
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "spray-paris-68-400ml",
+    "title": "Spray Paris 68 400ML",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa. Cores aproximadas — a cor exata pode variar de tela pra tela.",
+    "priceRaw": "R$ 28,00",
+    "price": "28.00",
+    "image": null,
+    "specs": [
+      {
+        "label": "Cores",
+        "value": "3 cores"
+      },
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      },
+      {
+        "label": "Capacidade",
+        "value": "400ml"
+      }
+    ],
+    "swatches": [
+      {
+        "name": "Azul Lolita",
+        "code": "",
+        "hex": "#2e5fb0"
+      },
+      {
+        "name": "Preto Ribeirão Preto",
+        "code": "",
+        "hex": "#141414"
+      },
+      {
+        "name": "Violeta Paris",
+        "code": "",
+        "hex": "#6a3fa0"
+      }
+    ],
+    "hasSwatches": true
+  },
+  {
+    "handle": "spray-tekbond-preto-fosco-uso-geral-350ml",
+    "title": "Spray TekBond - Preto Fosco (Uso geral) -  350ml",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 12,00",
+    "price": "12.00",
+    "image": "img/produtos/spray-tekbond-preto-fosco-uso-geral-350ml.jpg",
+    "specs": [
+      {
+        "label": "Acabamento",
+        "value": "Fosco"
+      },
+      {
+        "label": "Capacidade",
+        "value": "350ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "spray-tekbond-super-color-400ml",
+    "title": "Spray TekBond Super Color -  400ml",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 18,90",
+    "price": "18.90",
+    "image": "img/produtos/spray-tekbond-super-color-400ml.jpg",
+    "specs": [
+      {
+        "label": "Acabamento",
+        "value": "Brilhante"
+      },
+      {
+        "label": "Capacidade",
+        "value": "400ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "squeezer-metal-tip",
+    "title": "Squeezer Metal Tip",
+    "category": "Squeezer",
+    "categorySlug": "squeezer",
+    "description": "Marcadores de ponta grossa e fina pra escrita, contorno e preenchimento em qualquer superfície.",
+    "priceRaw": "R$ 35,00",
+    "price": "35.00",
+    "image": "img/produtos/squeezer-metal-tip.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Squeezer"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-azulre-cod-b303",
+    "title": "Sta Acrylic Paint - Azulre cod B303",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-azulre-cod-b303.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-black-cod-1000s",
+    "title": "Sta Acrylic Paint - Black cod 1000S",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 20,00",
+    "price": "20.00",
+    "image": "img/produtos/sta-acrylic-paint-black-cod-1000s.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-bud-green-cod-g606",
+    "title": "Sta Acrylic Paint - Bud Green cod G606",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-bud-green-cod-g606.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-cobalt-green-cod-b627",
+    "title": "Sta Acrylic Paint - Cobalt Green cod B627",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-cobalt-green-cod-b627.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-deep-scarlet-red-cod-r108",
+    "title": "Sta Acrylic Paint - Deep Scarlet Red cod R108",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-deep-scarlet-red-cod-r108.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-esmerald-green-cod-g127",
+    "title": "Sta Acrylic Paint - Esmerald Green cod G127",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-esmerald-green-cod-g127.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-gold-cod-m01",
+    "title": "Sta Acrylic Paint - Gold cod M01",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-gold-cod-m01.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-light-aqua-cod-b802",
+    "title": "Sta Acrylic Paint - Light Aqua cod B802",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-light-aqua-cod-b802.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-lightning-yellow-cod-y107",
+    "title": "Sta Acrylic Paint - Lightning Yellow cod Y107",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-lightning-yellow-cod-y107.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-lilac-cod-r714",
+    "title": "Sta Acrylic Paint - Lilac cod R714",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-lilac-cod-r714.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-marigold-cod-y416",
+    "title": "Sta Acrylic Paint - MariGold cod Y416",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-marigold-cod-y416.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-napoleon-blue-cod-b028",
+    "title": "Sta Acrylic Paint - Napoleon Blue cod B028",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-napoleon-blue-cod-b028.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-rose-red-cod-r417",
+    "title": "Sta Acrylic Paint - Rose Red cod R417",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-rose-red-cod-r417.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-shock-blue-cod-b215",
+    "title": "Sta Acrylic Paint - Shock Blue cod B215",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-shock-blue-cod-b215.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-silver-cod-m08",
+    "title": "Sta Acrylic Paint - Silver cod M08",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-silver-cod-m08.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-toner-grey-cod-tg07",
+    "title": "Sta Acrylic Paint - Toner Grey cod TG07",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 15,00",
+    "price": "15.00",
+    "image": "img/produtos/sta-acrylic-paint-toner-grey-cod-tg07.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "sta-acrylic-paint-white-cod-1000w",
+    "title": "Sta Acrylic Paint - White cod 1000W",
+    "category": "Canetas",
+    "categorySlug": "canetas",
+    "description": "Canetas e marcadores de tinta acrílica pra traço fino, tag e ilustração — ponta resistente e cores vibrantes.",
+    "priceRaw": "R$ 20,00",
+    "price": "20.00",
+    "image": "img/produtos/sta-acrylic-paint-white-cod-1000w.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Canetas"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "stencil-cap",
+    "title": "Stencil Cap",
+    "category": "Caps",
+    "categorySlug": "caps",
+    "description": "Válvulas e caps intercambiáveis pra controlar espessura e alcance do jato — do fat cap ao skinny.",
+    "priceRaw": "R$ 20,00",
+    "price": "20.00",
+    "image": "img/produtos/stencil-cap.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Caps"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "tela-para-pintura-15x15-1-un",
+    "title": "Tela para pintura 15x15 - 1 un",
+    "category": "Fine Art",
+    "categorySlug": "fine-art",
+    "description": "Linha fine art pra quem trabalha tela, ilustração e trabalhos de estúdio com mais precisão.",
+    "priceRaw": "R$ 6,00",
+    "price": "6.00",
+    "image": "img/produtos/tela-para-pintura-15x15-1-un.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Fine Art"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "tela-para-pintura-30x30-1-un",
+    "title": "Tela para pintura 30x30 - 1 un",
+    "category": "Fine Art",
+    "categorySlug": "fine-art",
+    "description": "Linha fine art pra quem trabalha tela, ilustração e trabalhos de estúdio com mais precisão.",
+    "priceRaw": "R$ 25,00",
+    "price": "25.00",
+    "image": "img/produtos/tela-para-pintura-30x30-1-un.jpg",
+    "specs": [
+      {
+        "label": "Categoria",
+        "value": "Fine Art"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "tinta-a-oleo-oil-colors-classic-acrilex-37-ml",
+    "title": "Tinta a Óleo - OIL COLORS CLASSIC ACRILEX - 37 ml",
+    "category": "Fine Art",
+    "categorySlug": "fine-art",
+    "description": "Linha fine art pra quem trabalha tela, ilustração e trabalhos de estúdio com mais precisão.",
+    "priceRaw": "R$ 9,90",
+    "price": "9.90",
+    "image": "img/produtos/tinta-a-oleo-oil-colors-classic-acrilex-37-ml.jpg",
+    "specs": [
+      {
+        "label": "Capacidade",
+        "value": "37ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "tinta-acrilica-acrylic-colors-acrilex-59ml-1-un",
+    "title": "Tinta Acrílica - Acrylic Colors Acrilex 59ml - 1 Un",
+    "category": "Fine Art",
+    "categorySlug": "fine-art",
+    "description": "Linha fine art pra quem trabalha tela, ilustração e trabalhos de estúdio com mais precisão.",
+    "priceRaw": "R$ 11,50",
+    "price": "11.50",
+    "image": "img/produtos/tinta-acrilica-acrylic-colors-acrilex-59ml-1-un.jpg",
+    "specs": [
+      {
+        "label": "Capacidade",
+        "value": "59ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "tinta-acrylic-colors-acrilex-estojo-com-8-bisnagas-20ml-cada",
+    "title": "Tinta Acrylic Colors Acrilex - Estojo com 8 Bisnagas - 20ml cada",
+    "category": "Fine Art",
+    "categorySlug": "fine-art",
+    "description": "Linha fine art pra quem trabalha tela, ilustração e trabalhos de estúdio com mais precisão.",
+    "priceRaw": "R$ 39,90",
+    "price": "39.90",
+    "image": "img/produtos/tinta-acrylic-colors-acrilex-estojo-com-8-bisnagas-20ml-cada.jpg",
+    "specs": [
+      {
+        "label": "Capacidade",
+        "value": "20ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "verniz-acrilico-fosco-acrilex-250ml",
+    "title": "Verniz Acrílico Fosco - Acrilex 250ml",
+    "category": "Fine Art",
+    "categorySlug": "fine-art",
+    "description": "Linha fine art pra quem trabalha tela, ilustração e trabalhos de estúdio com mais precisão.",
+    "priceRaw": "R$ 24,90",
+    "price": "24.90",
+    "image": "img/produtos/verniz-acrilico-fosco-acrilex-250ml.jpg",
+    "specs": [
+      {
+        "label": "Capacidade",
+        "value": "250ml"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  },
+  {
+    "handle": "verniz-spray-acrilfix-fosco-acrilex-1-un",
+    "title": "Verniz spray acrilfix (Fosco) - Acrilex 1 UN",
+    "category": "Sprays",
+    "categorySlug": "sprays",
+    "description": "Tintas spray de alta cobertura pra grafite, arte urbana e customização. Secagem rápida, baixa pressão e cartela de cores extensa.",
+    "priceRaw": "R$ 39,00",
+    "price": "39.00",
+    "image": "img/produtos/verniz-spray-acrilfix-fosco-acrilex-1-un.jpg",
+    "specs": [
+      {
+        "label": "Acabamento",
+        "value": "Fosco"
+      }
+    ],
+    "swatches": [],
+    "hasSwatches": false
+  }
+]

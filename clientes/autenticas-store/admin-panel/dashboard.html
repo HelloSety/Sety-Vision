@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel — Autênticas Store</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="brand">
+      <div class="logo-fallback">AS</div>
+      <span>Autênticas Store</span>
+    </div>
+    <nav class="admin-nav">
+      <button type="button" data-view="produtos" class="is-active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Produtos</span>
+      </button>
+      <button type="button" data-view="tema">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <span>Banners &amp; Tema</span>
+      </button>
+      <button type="button" data-view="pedidos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+        <span>Pedidos</span>
+      </button>
+    </nav>
+    <button type="button" class="logout" id="logoutBtn">Sair</button>
+  </aside>
+
+  <main class="admin-main">
+    <!-- Produtos -->
+    <section class="admin-view is-active" id="view-produtos">
+      <div class="admin-header">
+        <h1>Produtos</h1>
+        <button type="button" class="btn-gold" style="width:auto" id="newProductBtn">+ Novo Produto</button>
+      </div>
+      <div class="stat-row" id="productStats"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th></th><th>Produto</th><th>Categoria</th><th>Preço</th><th>Cores</th><th>Destaque</th><th>Status</th><th></th></tr>
+          </thead>
+          <tbody id="productsTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Banners & Tema -->
+    <section class="admin-view" id="view-tema">
+      <div class="admin-header"><h1>Banners &amp; Tema</h1></div>
+
+      <div class="banner-card">
+        <h3>Banner Principal (Hero)</h3>
+        <div class="banner-preview-row">
+          <div class="banner-preview">
+            <span>Desktop</span>
+            <img id="heroDesktopPreview" alt="Prévia hero desktop">
+            <label class="btn-ghost" style="cursor:pointer;display:inline-block;margin-top:8px">Trocar imagem <input type="file" accept="image/*" id="heroDesktopUpload" style="display:none"></label>
+          </div>
+          <div class="banner-preview">
+            <span>Mobile</span>
+            <img id="heroMobilePreview" alt="Prévia hero mobile">
+            <label class="btn-ghost" style="cursor:pointer;display:inline-block;margin-top:8px">Trocar imagem <input type="file" accept="image/*" id="heroMobileUpload" style="display:none"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <h3>Banner Promocional</h3>
+        <div class="banner-preview-row">
+          <div class="banner-preview">
+            <span>Desktop</span>
+            <img id="promoDesktopPreview" alt="Prévia promo desktop">
+            <label class="btn-ghost" style="cursor:pointer;display:inline-block;margin-top:8px">Trocar imagem <input type="file" accept="image/*" id="promoDesktopUpload" style="display:none"></label>
+          </div>
+          <div class="banner-preview">
+            <span>Mobile</span>
+            <img id="promoMobilePreview" alt="Prévia promo mobile">
+            <label class="btn-ghost" style="cursor:pointer;display:inline-block;margin-top:8px">Trocar imagem <input type="file" accept="image/*" id="promoMobileUpload" style="display:none"></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="banner-card">
+        <h3>Cor de Destaque</h3>
+        <div class="color-swatch-row">
+          <div class="color-swatch" id="accentSwatch"></div>
+          <div class="field" style="margin:0;flex:1;max-width:160px"><input type="text" id="accentColorInput" placeholder="#c9962e"></div>
+          <button type="button" class="btn-gold" style="width:auto" id="saveAccentBtn">Salvar cor</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pedidos -->
+    <section class="admin-view" id="view-pedidos">
+      <div class="admin-header"><h1>Pedidos</h1></div>
+      <div class="stat-row" id="orderStats"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Data</th><th>Cliente</th><th>Endereço</th><th>Itens</th><th>Total</th><th>Status</th><th>Pagamento</th></tr>
+          </thead>
+          <tbody id="ordersTable"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Modal de produto -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-card">
+    <h2 id="productModalTitle">Novo Produto</h2>
+    <form id="productForm">
+      <input type="hidden" id="pId">
+      <div class="form-grid">
+        <div class="field"><label>Nome *</label><input id="pName" required></div>
+        <div class="field">
+          <label>Categoria *</label>
+          <select id="pCategory" required>
+            <option value="roupas">Roupas</option>
+            <option value="tenis">Tênis</option>
+            <option value="chinelos">Chinelos</option>
+            <option value="acessorios">Bonés & Acessórios</option>
+          </select>
+        </div>
+        <div class="field"><label>Preço (R$) *</label><input id="pPrice" type="number" step="0.01" min="0" required></div>
+        <div class="field"><label>Preço antigo (R$)</label><input id="pOldPrice" type="number" step="0.01" min="0"></div>
+        <div class="field full"><label>Parcelamento (texto)</label><input id="pInstallment" placeholder="Ex: 3x de R$ 33,30 sem juros"></div>
+        <div class="field full"><label>Descrição curta</label><textarea id="pTagline" rows="2"></textarea></div>
+        <div class="field">
+          <label class="checkbox-row"><input type="checkbox" id="pFeatured"> Produto em destaque</label>
+        </div>
+        <div class="field">
+          <label class="checkbox-row"><input type="checkbox" id="pActive" checked> Ativo (visível na loja)</label>
+        </div>
+      </div>
+
+      <div style="margin-top:18px">
+        <label style="display:block;font-size:12px;font-weight:700;margin-bottom:8px">Cores / Variantes</label>
+        <div id="variantsList"></div>
+        <button type="button" class="btn-ghost" id="addVariantBtn">+ Adicionar cor</button>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" id="closeProductModal">Cancelar</button>
+        <button type="submit" class="btn-gold" style="width:auto">Salvar Produto</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

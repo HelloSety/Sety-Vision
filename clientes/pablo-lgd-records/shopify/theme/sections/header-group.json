@@ -1,0 +1,11 @@
+{
+  "type": "header",
+  "name": "Grupo do Header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {}
+    }
+  },
+  "order": ["header"]
+}

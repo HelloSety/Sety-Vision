@@ -1,0 +1,79 @@
+<div class="page-wrap" style="max-width:800px;margin:80px auto;padding:0 24px;">
+  <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;letter-spacing:4px;margin-bottom:40px;text-align:center;">
+    {{ section.settings.page_title | default: 'SOBRE' }}
+  </h1>
+  <hr style="border:none;border-top:1px solid #E5E5E5;margin-bottom:8px;">
+
+  <div class="accordion-item">
+    <button class="accordion-trigger" aria-expanded="false">
+      <span>{{ section.settings.brand_label | default: 'SOBRE A MARCA' }}</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="accordion-body">
+      <div class="rte">{{ section.settings.brand_text | newline_to_br }}</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-trigger" aria-expanded="false">
+      <span>{{ section.settings.founder_label | default: 'SOBRE A FUNDADORA' }}</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="accordion-body">
+      <div class="rte">{{ section.settings.founder_text | newline_to_br }}</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-wrap .rte { font-family: Jost, sans-serif; font-size: 14px; line-height: 1.8; color: #444; padding: 0 0 24px; }
+</style>
+
+{% schema %}
+{
+  "name": "Sobre (Accordion)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Título da página",
+      "default": "SOBRE"
+    },
+    {
+      "type": "header",
+      "content": "Sobre a Marca"
+    },
+    {
+      "type": "text",
+      "id": "brand_label",
+      "label": "Label do accordion",
+      "default": "SOBRE A MARCA"
+    },
+    {
+      "type": "textarea",
+      "id": "brand_text",
+      "label": "Texto",
+      "default": "O macramê é uma técnica ancestral de nós feitos à mão, transmitida através de gerações e que preserva a beleza do trabalho artesanal. Na marca Natalia Silveira, honramos essa tradição ao transformá-la em alta-costura contemporânea.\n\nCada peça é confeccionada artesanalmente no Brasil, nó por nó, e produzida exclusivamente sob medida para cada cliente. Mais do que roupas, criamos peças atemporais feitas para celebrar momentos inesquecíveis."
+    },
+    {
+      "type": "header",
+      "content": "Sobre a Fundadora"
+    },
+    {
+      "type": "text",
+      "id": "founder_label",
+      "label": "Label do accordion",
+      "default": "SOBRE A FUNDADORA"
+    },
+    {
+      "type": "textarea",
+      "id": "founder_text",
+      "label": "Texto",
+      "default": "Natália Silveira é uma designer brasileira especializada em alta-costura artesanal em macramê. Seu trabalho une técnicas tradicionais ao design contemporâneo, criando peças exclusivas sob medida que valorizam a feminilidade, a confiança e a individualidade.\n\nCada criação reflete seu compromisso em preservar a arte do macramê e levá-la a mulheres ao redor do mundo por meio de peças atemporais, confeccionadas à mão."
+    }
+  ],
+  "presets": [
+    { "name": "Sobre (Accordion)" }
+  ]
+}
+{% endschema %}

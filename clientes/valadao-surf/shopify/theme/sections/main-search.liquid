@@ -1,0 +1,13 @@
+<section class="section container">
+  <div class="section-head-center"><h2>Resultados para "{{ search.terms }}"</h2></div>
+  <p style="text-align:center;color:var(--cinza);margin-bottom:28px">{{ search.results_count }} resultado(s) encontrado(s)</p>
+  <div class="grid">
+    {%- for item in search.results -%}
+      {%- if item.object_type == 'product' -%}
+        {% render 'product-card', product: item %}
+      {%- endif -%}
+    {%- else -%}
+      <p>Nenhum produto encontrado. Tente outra busca.</p>
+    {%- endfor -%}
+  </div>
+</section>

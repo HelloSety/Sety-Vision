@@ -1,0 +1,29 @@
+<div class="benefits">
+  <div class="benefit-item">
+    <p class="benefit-title">{{ section.settings.title_1 | default: '5% de Desconto' }}</p>
+    <p class="benefit-desc">{{ section.settings.desc_1 | default: 'Para pagamentos no PIX' }}</p>
+  </div>
+  <div class="benefit-item">
+    <p class="benefit-title">{{ section.settings.title_2 | default: '2x Sem Juros' }}</p>
+    <p class="benefit-desc">{{ section.settings.desc_2 | default: 'No cartão de crédito' }}</p>
+  </div>
+  <div class="benefit-item">
+    <p class="benefit-title">{{ section.settings.title_3 | default: 'Envio Rápido' }}</p>
+    <p class="benefit-desc">{{ section.settings.desc_3 | default: 'Postagem em até 1 dia útil' }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Benefícios",
+  "settings": [
+    { "type": "text", "id": "title_1", "label": "Título 1", "default": "5% de Desconto" },
+    { "type": "text", "id": "desc_1", "label": "Descrição 1", "default": "Para pagamentos no PIX" },
+    { "type": "text", "id": "title_2", "label": "Título 2", "default": "2x Sem Juros" },
+    { "type": "text", "id": "desc_2", "label": "Descrição 2", "default": "No cartão de crédito" },
+    { "type": "text", "id": "title_3", "label": "Título 3", "default": "Envio Rápido" },
+    { "type": "text", "id": "desc_3", "label": "Descrição 3", "default": "Postagem em até 1 dia útil" }
+  ],
+  "presets": [{ "name": "Benefícios" }]
+}
+{% endschema %}

@@ -1,0 +1,36 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "NOVA COLEÇÃO",
+        "subtitle": "LGD Records — Cultura, Música e Rua.",
+        "cta_text": "VER COLEÇÃO",
+        "cta_url": "/collections/all"
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "settings": {
+        "anchor": "lancamentos",
+        "title": "Lançamentos",
+        "products_to_show": 12
+      }
+    },
+    "benefits-bar": {
+      "type": "benefits-bar",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "title": "ENTRE PRO GRUPO",
+        "subtitle": "Lançamento em primeira mão, direto no seu e-mail.",
+        "placeholder": "Seu e-mail",
+        "button_text": "ASSINAR",
+        "success_text": "Cadastrado! Fica de olho no e-mail."
+      }
+    }
+  },
+  "order": ["hero", "featured-collection", "benefits-bar", "newsletter"]
+}

@@ -1,0 +1,17 @@
+<div style="text-align:center;padding:120px 24px;">
+  <p style="font-size:11px;letter-spacing:0.3em;color:var(--gray);margin-bottom:16px;">ERRO 404</p>
+  <h1 style="font-size:clamp(28px,5vw,44px);margin-bottom:20px;">{{ section.settings.title | default: 'Página não encontrada' }}</h1>
+  <p style="font-size:12px;color:var(--gray);margin-bottom:32px;">{{ section.settings.body | default: 'O link pode estar quebrado ou a página foi removida.' }}</p>
+  <a href="{{ routes.root_url }}" class="btn btn-white">{{ section.settings.cta | default: 'VOLTAR PARA A HOME' }}</a>
+</div>
+
+{% schema %}
+{
+  "name": "Página 404",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "Página não encontrada" },
+    { "type": "text", "id": "body", "label": "Texto", "default": "O link pode estar quebrado ou a página foi removida." },
+    { "type": "text", "id": "cta", "label": "Botão", "default": "VOLTAR PARA A HOME" }
+  ]
+}
+{% endschema %}

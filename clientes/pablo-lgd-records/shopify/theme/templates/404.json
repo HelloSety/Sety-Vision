@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "settings": {
+        "title": "Página não encontrada",
+        "body": "O link pode estar quebrado ou a página foi removida.",
+        "cta": "VOLTAR PARA A HOME"
+      }
+    }
+  },
+  "order": ["main"]
+}

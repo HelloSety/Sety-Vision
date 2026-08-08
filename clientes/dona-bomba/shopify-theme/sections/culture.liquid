@@ -1,0 +1,70 @@
+<section class="culture">
+  <div class="container">
+    <div class="culture-top">
+      <svg viewBox="60 55 110 110" class="culture-mark" aria-hidden="true">
+        <circle cx="100" cy="118" r="33" fill="var(--red)"/>
+        <circle cx="100" cy="118" r="28" fill="var(--black)"/>
+        <path d="M78 141 q-3 10 2 15 q5-5 1-15z" fill="var(--red)"/>
+        <path d="M99 145 q-3 12 2 17 q5-5 1-17z" fill="var(--red)"/>
+        <path d="M120 141 q-3 9 2 13 q4-4 1-13z" fill="var(--red)"/>
+        <ellipse cx="89" cy="105" rx="7" ry="9" fill="var(--white)" opacity="0.85"/>
+        <ellipse cx="102" cy="128" rx="3" ry="4" fill="var(--white)" opacity="0.5"/>
+        <path d="M100 90 Q 108 72 124 76" stroke="var(--white)" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M124 58 l5 11 l11 4 l-11 5 l-4 11 l-5-11 l-11-4 l11-5 z" fill="var(--red)"/>
+      </svg>
+      <div class="culture-headline">
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+      <div class="culture-text">
+        <p>{{ section.settings.text }}</p>
+        {% if section.settings.button_label != blank %}
+          <a class="btn btn-red" href="{{ section.settings.button_link | default: '#' }}" target="_blank" rel="noopener">{{ section.settings.button_label }} →</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="culture-grid">
+      {% for block in section.blocks %}
+        <div class="culture-item" {{ block.shopify_attributes }}>
+          {% if block.settings.image %}
+            <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.label | escape }}" loading="lazy" width="400" height="{{ block.settings.image.height }}">
+          {% endif %}
+          <span>{{ block.settings.label }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cultura / Ações",
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Título (use <br> para quebrar linha)", "default": "NÃO É SÓ<br>LOJA." },
+    { "type": "text", "id": "text", "label": "Texto", "default": "A Dona Bomba é espaço, encontro e movimento. Gestão feminina, valorizando a arte, a cultura e quem faz a rua acontecer." },
+    { "type": "text", "id": "button_label", "label": "Texto do botão", "default": "CONHEÇA NOSSAS AÇÕES" },
+    { "type": "url", "id": "button_link", "label": "Link do botão" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Foto",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagem" },
+        { "type": "text", "id": "label", "label": "Legenda" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Cultura / Ações",
+      "blocks": [
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" },
+        { "type": "item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

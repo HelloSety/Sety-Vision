@@ -1,0 +1,36 @@
+{%- assign compare_price = product.compare_at_price -%}
+{%- assign on_sale = false -%}
+{%- if compare_price > product.price -%}
+  {%- assign on_sale = true -%}
+{%- endif -%}
+{%- assign pix_price = product.price | times: 0.95 | round -%}
+{%- assign install_price = product.price | divided_by: 2 -%}
+
+<a href="{{ product.url }}" class="product-card" data-type="{{ product.type | handleize }}">
+  <div class="pcard-img">
+    {%- if product.featured_image -%}
+      <img class="img-front"
+        src="{{ product.featured_image | image_url: width: 600 }}"
+        alt="{{ product.featured_image.alt | default: product.title }}"
+        loading="lazy" width="600" height="800">
+    {%- endif -%}
+    {%- if product.images.size > 1 -%}
+      <img class="img-back"
+        src="{{ product.images[1] | image_url: width: 600 }}"
+        alt="{{ product.title }}"
+        loading="lazy" width="600" height="800">
+    {%- endif -%}
+    {%- unless product.available -%}
+      <span class="sold-out-badge">Esgotado</span>
+    {%- endunless -%}
+  </div>
+  <p class="pcard-cat">{{ product.type }}</p>
+  <p class="pcard-name">{{ product.title }}</p>
+  {%- if on_sale -%}
+    <p class="pcard-price"><s style="color:#555;font-size:11px;">{{ compare_price | money }}</s> {{ product.price | money }}</p>
+  {%- else -%}
+    <p class="pcard-price">{{ product.price | money }}</p>
+  {%- endif -%}
+  <p class="pcard-pix">{{ pix_price | money }} com Pix</p>
+  <p class="pcard-install">2 x de {{ install_price | money }} sem juros</p>
+</a>

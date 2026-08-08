@@ -1,0 +1,532 @@
+{%- assign is_consult = false -%}
+{%- if product.tags contains 'consultar-preco' -%}
+  {%- assign is_consult = true -%}
+{%- endif -%}
+
+{%- assign is_complemento = false -%}
+{%- if product.tags contains 'complemento-look' -%}
+  {%- assign is_complemento = true -%}
+{%- endif -%}
+
+<!-- Breadcrumb -->
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <a href="{{ routes.root_url }}">Casa</a>
+  <span aria-hidden="true">›</span>
+  <a href="{{ routes.all_products_collection_url }}">Comprar</a>
+  <span aria-hidden="true">›</span>
+  <span>{{ product.title }}</span>
+</nav>
+
+<div class="product-wrapper{% if is_complemento %} colors-premium-only{% endif %}">
+  <!-- GALLERY -->
+  <div class="product-gallery">
+    <div class="gallery-main">
+      {%- if product.featured_image -%}
+        <img id="galleryMain"
+          src="{{ product.featured_image | image_url: width: 900 }}"
+          alt="{{ product.featured_image.alt | default: product.title }}"
+          width="900" height="1100">
+      {%- else -%}
+        <div class="product-card-placeholder" style="aspect-ratio:4/5;"></div>
+      {%- endif -%}
+      <video id="galleryMainVideo" class="gallery-main-video" controls playsinline style="display:none;">
+        <source src="" type="video/mp4">
+      </video>
+    </div>
+    {%- if product.media.size > 1 -%}
+      <div class="gallery-thumbs">
+        {%- for media in product.media -%}
+          {%- if media.media_type == 'video' -%}
+            <div class="gallery-thumb video-thumb{% if forloop.first %} active{% endif %}"
+              data-video="{{ media.sources.last.url }}">
+              <img src="{{ media.preview_image | image_url: width: 120 }}"
+                alt="{{ media.alt | default: product.title }}"
+                loading="lazy" width="120" height="150">
+              <span class="video-thumb-play" aria-hidden="true">▶</span>
+            </div>
+          {%- else -%}
+            <div class="gallery-thumb{% if forloop.first %} active{% endif %}"
+              data-src="{{ media | image_url: width: 900 }}">
+              <img src="{{ media | image_url: width: 120 }}"
+                alt="{{ media.alt | default: product.title }}"
+                loading="lazy" width="120" height="150">
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <!-- INFO -->
+  <div class="product-info">
+    <h1 class="product-title">{{ product.title }}</h1>
+    {%- if product.type != blank -%}
+      <p class="product-type">{{ product.type }}</p>
+    {%- endif -%}
+
+    {%- if is_consult -%}
+      <p class="product-price consult">Sob consulta</p>
+    {%- else -%}
+      <p class="product-price" data-price="{{ product.price }}">{{ product.price | money }}</p>
+    {%- endif -%}
+
+    <hr class="product-divider">
+
+    {%- form 'product', product, id: 'productForm' -%}
+      <input type="hidden" name="id" id="variantId" value="{{ product.selected_or_first_available_variant.id }}">
+
+      <!-- TAMANHO -->
+      <p class="option-label">TAMANHO</p>
+      <div class="size-buttons">
+        {%- for variant in product.variants -%}
+          <button type="button"
+            class="size-btn{% if variant == product.selected_or_first_available_variant %} active{% endif %}{% unless variant.available %} unavailable{% endunless %}"
+            data-sz="{{ variant.option1 }}"
+            data-variant-id="{{ variant.id }}">
+            {{ variant.option1 }}
+          </button>
+        {%- endfor -%}
+      </div>
+
+      <!-- COR -->
+      <p class="option-label">
+        COR — <span id="colorSelected">Selecione uma cor</span>
+        <a href="/pages/tabela-de-cores" target="_blank" class="color-table-link">Ver tabela de cores completa ↗</a>
+      </p>
+      <div class="color-panel active" id="cp-premium"></div>
+
+      <input type="hidden" name="properties[Cor]" id="selectedColorInput" value="">
+      <input type="hidden" name="properties[Linha de Cor]" id="selectedLineInput" value="">
+
+      <hr class="product-divider">
+
+      <!-- QUANTIDADE -->
+      {%- if section.settings.show_quantity -%}
+        <p class="option-label">QUANTIDADE</p>
+        <div class="qty-wrap">
+          <button type="button" class="qty-btn" id="qtyMinus">−</button>
+          <input type="number" class="qty-num" id="qtyNum" name="quantity" value="1" min="1" max="10" readonly>
+          <button type="button" class="qty-btn" id="qtyPlus">+</button>
+        </div>
+      {%- endif -%}
+
+      <!-- BOTÕES -->
+      <button type="submit" class="btn-add-cart">
+        {{ section.settings.cart_btn_text | default: 'ADICIONAR AO CARRINHO' }}
+      </button>
+    {%- endform -%}
+
+    {%- if section.settings.enable_wpp -%}
+      <a id="btnWpp" href="https://wa.me/{{ settings.wpp_number }}" target="_blank" class="btn-wpp">
+        {{ section.settings.wpp_btn_text | default: 'COMPRAR PELO WHATSAPP' }}
+      </a>
+    {%- endif -%}
+
+    <!-- FEITO SOB ENCOMENDA -->
+    {%- if section.settings.bespoke_title != blank -%}
+      <div class="bespoke-box">
+        <p class="bespoke-title">{{ section.settings.bespoke_title }}</p>
+        <p class="bespoke-body">{{ section.settings.bespoke_body }}</p>
+      </div>
+    {%- endif -%}
+
+    <!-- ACCORDION -->
+    <div class="accordion-item">
+      <button class="accordion-trigger" aria-expanded="false">
+        <span>{{ section.settings.acc_details_label | default: 'DETALHES DA PEÇA' }}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="accordion-body">
+        {{ product.description }}
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" aria-expanded="false">
+        <span>{{ section.settings.acc_size_label | default: 'TABELA DE MEDIDAS' }}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="accordion-body">
+        <div class="size-table-wrap">
+          <table class="size-table">
+            <thead>
+              <tr>
+                <th>Brasil</th>
+                <th>EUA (US)</th>
+                <th>Europa (EU)</th>
+                <th>Busto (cm)</th>
+                <th>Cintura (cm)</th>
+                <th>Quadril (cm)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>36</td><td>2</td><td>34</td><td>80–84</td><td>62–66</td><td>88–92</td></tr>
+              <tr><td>38</td><td>4</td><td>36</td><td>84–88</td><td>66–70</td><td>92–96</td></tr>
+              <tr><td>40</td><td>6</td><td>38</td><td>88–92</td><td>70–74</td><td>96–100</td></tr>
+              <tr><td>42</td><td>8</td><td>40</td><td>92–96</td><td>74–78</td><td>100–104</td></tr>
+              <tr><td>44</td><td>10</td><td>42</td><td>96–100</td><td>78–82</td><td>104–108</td></tr>
+            </tbody>
+          </table>
+          <div class="size-note">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <p>Todas as peças são feitas à mão e sob medida. A tabela acima serve apenas como referência. Após a compra, nossa equipe entra em contato para solicitar as medidas corporais da cliente, garantindo um caimento perfeito e exclusivo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" aria-expanded="false">
+        <span>{{ section.settings.acc_colors_label | default: 'TABELA DE CORES' }}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="accordion-body">
+        <div class="color-ref-grid">
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#F2EEE8;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)"></span><span>Branco</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#E2D4B8"></span><span>Creme</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#C8B890"></span><span>Porcelana</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#7A4830"></span><span>Castanha</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#B84E20"></span><span>Valência</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#A83A1A"></span><span>Terracota</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#A05018"></span><span>Cobre</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#4A2010"></span><span>Chocolate</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#B82808"></span><span>Brasa</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#B80C18"></span><span>Vermelho Círculo</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#7A0C18"></span><span>Valentino</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#0A2CC8"></span><span>Azul Bic</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#404C24"></span><span>Militar</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#283018"></span><span>Musgo</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#A8A090;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)"></span><span>Pergaminho</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#8A8A8A"></span><span>Alumínio</span></div>
+          <div class="color-ref-item"><span class="color-ref-swatch" style="background:#1A1210"></span><span>Preto</span></div>
+        </div>
+        <p class="color-ref-note">A cor final da peça pode variar levemente conforme o monitor. Em caso de dúvida, confirme pelo WhatsApp antes de encomendar.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" aria-expanded="false">
+        <span>{{ section.settings.acc_shipping_label | default: 'ENVIO E PRAZO' }}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="accordion-body">
+        <p>{{ section.settings.accordion_shipping | newline_to_br }}</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" aria-expanded="false">
+        <span>{{ section.settings.acc_care_label | default: 'CUIDADOS COM A PEÇA' }}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="accordion-body">
+        <p>{{ section.settings.accordion_care }}</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-trigger" aria-expanded="false">
+        <span>{{ section.settings.acc_returns_label | default: 'TROCAS E DEVOLUÇÕES' }}</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="accordion-body">
+        <p>{{ section.settings.accordion_returns | newline_to_br }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLETE SEU LOOK -->
+{%- unless is_complemento -%}
+  {%- assign look_handles = 'shortinho-vanuza,saia-marcela,hotpants-eduarda' | split: ',' -%}
+  {%- assign look_count = 0 -%}
+  <section class="look-section">
+    <h2 class="look-title">{{ section.settings.look_title | default: 'COMPLETE SEU LOOK' }}</h2>
+    <div class="look-grid">
+      {%- for handle in look_handles -%}
+        {%- assign look_product = all_products[handle] -%}
+        {%- if look_product != blank and look_product.id != product.id -%}
+          {%- assign look_count = look_count | plus: 1 -%}
+          <div class="look-card" onclick="window.location='{{ look_product.url }}'">
+            <div class="look-card-image">
+              {%- if look_product.featured_image -%}
+                <img src="{{ look_product.featured_image | image_url: width: 400 }}"
+                  alt="{{ look_product.title }}" loading="lazy" width="400" height="500">
+              {%- else -%}
+                <div class="product-card-placeholder" style="aspect-ratio:4/5;"></div>
+              {%- endif -%}
+            </div>
+            <p class="look-card-name">{{ look_product.title }}</p>
+            <p class="look-card-price">{{ look_product.price | money }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endunless -%}
+
+<!-- PRODUTOS RELACIONADOS -->
+{%- if section.settings.show_related -%}
+  <section class="recs-section">
+    <h2 class="recs-title">{{ section.settings.related_title | default: 'VOCÊ TAMBÉM VAI AMAR' }}</h2>
+    <div class="recs-grid">
+      {%- assign rec_count = 0 -%}
+      {%- assign limit = section.settings.related_count | default: 4 -%}
+      {%- for rec in collections.all.products -%}
+        {%- if rec.id != product.id and rec_count < limit -%}
+          <div class="rec-card" onclick="window.location='{{ rec.url }}'">
+            <div class="rec-card-image">
+              {%- if rec.featured_image -%}
+                <img src="{{ rec.featured_image | image_url: width: 400 }}"
+                  alt="{{ rec.title }}" loading="lazy" width="400" height="500">
+              {%- else -%}
+                <div class="product-card-placeholder" style="aspect-ratio:4/5;"></div>
+              {%- endif -%}
+            </div>
+            <p class="rec-card-name">{{ rec.title }}</p>
+            {%- if rec.tags contains 'consultar-preco' -%}
+              <p class="rec-card-price consult">Sob consulta</p>
+            {%- else -%}
+              <p class="rec-card-price">{{ rec.price | money }}</p>
+            {%- endif -%}
+          </div>
+          {%- assign rec_count = rec_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+<style>
+  .size-table-wrap { padding: 4px 0 8px; }
+  .size-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Jost, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .size-table th {
+    background: #F7F3EE;
+    padding: 10px 8px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #E5E0D8;
+    color: #111;
+  }
+  .size-table td {
+    padding: 9px 8px;
+    text-align: center;
+    border-bottom: 1px solid #F0EBE4;
+    color: #444;
+  }
+  .size-table tbody tr:hover td { background: #FAF7F4; }
+  .size-table tbody tr:last-child td { border-bottom: none; }
+  .size-note {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    background: #FAF7F4;
+    border: 1px solid #E5E0D8;
+    border-radius: 6px;
+    padding: 12px 14px;
+    color: #767676;
+    font-family: Jost, sans-serif;
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.3px;
+  }
+  @media (max-width: 600px) {
+    .size-table { font-size: 10px; }
+    .size-table th, .size-table td { padding: 7px 4px; }
+  }
+
+  .color-table-link { display: block; font-size: 11px; color: #C4946A; text-decoration: underline; margin-top: 6px; letter-spacing: 0.3px; }
+  .color-ref-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 4px 0 16px; }
+  .color-ref-item { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+  .color-ref-swatch { width: 32px; height: 32px; border-radius: 50%; }
+  .color-ref-item span:last-child { font-family: Jost, sans-serif; font-size: 10px; letter-spacing: 0.3px; color: #444; line-height: 1.3; }
+  .color-ref-note { font-family: Jost, sans-serif; font-size: 11px; color: #767676; line-height: 1.6; padding-bottom: 8px; }
+  @media (max-width: 600px) {
+    .color-ref-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  }
+
+  .gallery-main-video { width: 100%; height: 100%; object-fit: cover; background: #000; }
+  .video-thumb { position: relative; }
+  .video-thumb-play {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 14px; background: rgba(0,0,0,.28); pointer-events: none;
+  }
+
+  .look-section { padding: 48px 40px 64px; border-top: 1px solid var(--border); }
+  .look-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 22px; letter-spacing: 3px; text-align: center; margin-bottom: 28px; }
+  .look-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+  .look-card { cursor: pointer; text-align: center; }
+  .look-card-image { aspect-ratio: 4/5; overflow: hidden; margin-bottom: 10px; background: #F7F3EE; }
+  .look-card-image img { width: 100%; height: 100%; object-fit: cover; }
+  .look-card-name { font-size: 12px; letter-spacing: 1px; margin-bottom: 2px; }
+  .look-card-price { font-size: 12px; color: #767676; }
+  @media (max-width: 600px) {
+    .look-section { padding: 36px 16px 48px; }
+    .look-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.color-swatch').forEach(sw => {
+    sw.addEventListener('click', () => {
+      document.getElementById('selectedColorInput').value = sw.title;
+      document.getElementById('selectedLineInput').value = sw.dataset.line || '';
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Produto",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Página do Produto"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_quantity",
+      "label": "Mostrar seletor de quantidade",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Botões"
+    },
+    {
+      "type": "text",
+      "id": "cart_btn_text",
+      "label": "Texto botão carrinho",
+      "default": "ADICIONAR AO CARRINHO"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_wpp",
+      "label": "Mostrar botão WhatsApp",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "wpp_btn_text",
+      "label": "Texto botão WhatsApp",
+      "default": "COMPRAR PELO WHATSAPP"
+    },
+    {
+      "type": "header",
+      "content": "Caixa Feito sob Encomenda"
+    },
+    {
+      "type": "text",
+      "id": "bespoke_title",
+      "label": "Título",
+      "default": "FEITO SOB ENCOMENDA"
+    },
+    {
+      "type": "textarea",
+      "id": "bespoke_body",
+      "label": "Texto",
+      "default": "Cada peça é produzida exclusivamente sob medida. Prazo: até 20 dias corridos além do envio."
+    },
+    {
+      "type": "header",
+      "content": "Labels do Accordion"
+    },
+    {
+      "type": "text",
+      "id": "acc_details_label",
+      "label": "Label: Detalhes",
+      "default": "DETALHES DA PEÇA"
+    },
+    {
+      "type": "text",
+      "id": "acc_size_label",
+      "label": "Label: Tabela de Medidas",
+      "default": "TABELA DE MEDIDAS"
+    },
+    {
+      "type": "text",
+      "id": "acc_colors_label",
+      "label": "Label: Tabela de Cores",
+      "default": "TABELA DE CORES"
+    },
+    {
+      "type": "text",
+      "id": "acc_shipping_label",
+      "label": "Label: Envio",
+      "default": "ENVIO E PRAZO"
+    },
+    {
+      "type": "text",
+      "id": "acc_care_label",
+      "label": "Label: Cuidados",
+      "default": "CUIDADOS COM A PEÇA"
+    },
+    {
+      "type": "text",
+      "id": "acc_returns_label",
+      "label": "Label: Trocas",
+      "default": "TROCAS E DEVOLUÇÕES"
+    },
+    {
+      "type": "header",
+      "content": "Conteúdo do Accordion"
+    },
+    {
+      "type": "textarea",
+      "id": "accordion_shipping",
+      "label": "Texto: Envio e Prazo",
+      "default": "Enviamos para todo o Brasil e realizamos envios internacionais via DHL.\n\nPrazo de produção: 20 dias corridos. O prazo de entrega varia conforme a cidade e o país de destino.\n\nSe precisar do seu look com urgência, entre em contato pelo WhatsApp para verificarmos a disponibilidade de encaixe na produção."
+    },
+    {
+      "type": "textarea",
+      "id": "accordion_care",
+      "label": "Texto: Cuidados",
+      "default": "Lavar à mão com água fria e sabão neutro. Não torcer. Secar à sombra, esticada. Guardar em local seco e arejado. Evitar exposição prolongada ao sol."
+    },
+    {
+      "type": "textarea",
+      "id": "accordion_returns",
+      "label": "Texto: Trocas e Devoluções",
+      "default": "Cada peça da Natalia Silveira é confeccionada artesanalmente e produzida exclusivamente de acordo com as medidas, a cor e o modelo escolhidos pela cliente.\n\nPor esse motivo, não aceitamos trocas ou devoluções por arrependimento, preferência de cor, escolha do modelo ou informações de medidas fornecidas incorretamente pela cliente.\n\nCaso seja necessário algum ajuste para melhorar o caimento da peça, realizamos o ajuste sem custo de mão de obra, ficando apenas o frete de envio e retorno sob responsabilidade da cliente.\n\nSe a peça apresentar defeito de fabricação ou estiver diferente das especificações aprovadas no pedido, entre em contato conosco em até 7 dias após o recebimento, para que possamos analisar o caso e oferecer a solução adequada."
+    },
+    {
+      "type": "header",
+      "content": "Complete seu Look"
+    },
+    {
+      "type": "text",
+      "id": "look_title",
+      "label": "Título da seção",
+      "default": "COMPLETE SEU LOOK"
+    },
+    {
+      "type": "header",
+      "content": "Produtos Relacionados"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_related",
+      "label": "Mostrar produtos relacionados",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "related_title",
+      "label": "Título dos produtos relacionados",
+      "default": "VOCÊ TAMBÉM VAI AMAR"
+    },
+    {
+      "type": "range",
+      "id": "related_count",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4,
+      "label": "Quantidade de produtos relacionados"
+    }
+  ]
+}
+{% endschema %}

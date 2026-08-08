@@ -1,0 +1,252 @@
+/* ══════════════════════════════════════════════════════
+   SETY STUDIO — PREMIUM REFINEMENTS
+   Design system unificado · v1.0
+══════════════════════════════════════════════════════ */
+
+/* ─── DESIGN SYSTEM VARS ─────────────────────────── */
+:root {
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 250ms;
+  --dur-med: 380ms;
+  --dur-slow: 500ms;
+  --shadow-card: 0 2px 8px rgba(0,0,0,.05), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-hover: 0 16px 48px rgba(0,87,255,.10), 0 4px 14px rgba(0,0,0,.07);
+  --shadow-lift: 0 24px 64px rgba(0,87,255,.13), 0 6px 20px rgba(0,0,0,.08);
+  --border-subtle: rgba(0,0,0,.05);
+  --border-focus: rgba(0,87,255,.15);
+}
+
+*, *::before, *::after {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── 1. RESULTADOS E FEEDBACKS ──────────────────── */
+
+/* Cards de prova social — base */
+button[aria-label*="Ampliar"] {
+  background: linear-gradient(145deg, #F6F9FF 0%, #EBF1FF 100%) !important;
+  border: 1px solid rgba(0,87,255,.08) !important;
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.9) !important;
+  transition:
+    transform var(--dur-med) var(--ease-spring),
+    box-shadow var(--dur-med) var(--ease-spring),
+    border-color var(--dur-fast) ease !important;
+}
+
+button[aria-label*="Ampliar"]:hover {
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--border-focus) !important;
+  transform: translateY(-6px) scale(1.01) !important;
+}
+
+/* Imagens dos resultados — sem padding excessivo, contain preserva proporção */
+button[aria-label*="Ampliar"] img {
+  padding: 4px !important;
+}
+
+/* Label inferior — sempre levemente visível */
+button[aria-label*="Ampliar"] > div:last-child {
+  opacity: 0.65 !important;
+  transition: opacity var(--dur-fast) ease !important;
+}
+
+button[aria-label*="Ampliar"]:hover > div:last-child {
+  opacity: 1 !important;
+}
+
+/* ─── 2. BANNERS — FIX CORTE CRÍTICO ─────────────── */
+
+/* Mostrar arte completa sem cortar */
+[style*="scrollbar-width:none"] img {
+  object-fit: contain !important;
+  background: #0a0a0d;
+}
+
+/* Container do carousel de banners */
+[style*="scrollbar-width:none"] {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px !important;
+}
+
+/* Cada item do carousel */
+[style*="scrollbar-width:none"] > [class*="rounded-2xl"] {
+  scroll-snap-align: start;
+  box-shadow: 0 4px 20px rgba(0,0,0,.12), 0 1px 4px rgba(0,0,0,.06) !important;
+  transition:
+    transform var(--dur-med) var(--ease-spring),
+    box-shadow var(--dur-med) var(--ease-spring) !important;
+  outline: 1px solid rgba(255,255,255,.06);
+}
+
+[style*="scrollbar-width:none"] > [class*="rounded-2xl"]:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,.22), 0 6px 20px rgba(0,0,0,.12) !important;
+  transform: translateY(-6px) scale(1.015) !important;
+}
+
+/* ─── 3. PORTFOLIO DE SITES — POLIMENTO ──────────── */
+
+/* Cards dos sites entregues */
+#portfolio [style*="aspect-ratio:16/10"] {
+  background: linear-gradient(135deg, #EBF1FF 0%, #F2F5FF 100%) !important;
+}
+
+/* Label de tecnologia (chip) */
+#portfolio [class*="bg-white/95"] {
+  box-shadow: 0 2px 8px rgba(0,0,0,.10) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* Hover no card — mais expressivo */
+#portfolio [class*="group"][class*="cursor-pointer"]:hover {
+  transform: translateY(-6px) !important;
+}
+
+/* ─── 4. COPA 2026 — PRODUTO PROTAGONISTA ─────────── */
+
+/* Reduzir padding das imagens de produto */
+#copa2026 img[class*="object-contain"] {
+  padding: 8px !important;
+}
+
+/* Card hero do produto — sombra premium */
+#copa2026 [style*="min-height:380px"] {
+  box-shadow: 0 32px 80px rgba(0,0,0,.45), 0 8px 32px rgba(0,0,0,.25) !important;
+  border-color: rgba(255,255,255,.14) !important;
+}
+
+/* Cards de miniatura das seleções */
+#copa2026 [class*="cursor-pointer"] {
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    box-shadow var(--dur-fast) ease,
+    border-color var(--dur-fast) ease !important;
+}
+
+#copa2026 [class*="cursor-pointer"]:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+}
+
+/* ─── 5. CARDS — SISTEMA UNIFICADO ──────────────── */
+
+.card {
+  box-shadow: var(--shadow-card) !important;
+  transition:
+    transform var(--dur-med) var(--ease-spring),
+    box-shadow var(--dur-med) var(--ease-spring),
+    border-color var(--dur-fast) ease !important;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover) !important;
+  transform: translateY(-5px) !important;
+}
+
+/* ─── 6. DEPOIMENTOS — CARD PREMIUM ─────────────── */
+
+#cases [class*="rounded-3xl"][class*="bg-white"] {
+  box-shadow: 0 4px 28px rgba(0,0,0,.07), 0 1px 4px rgba(0,0,0,.04) !important;
+}
+
+/* Grid dos resultados — mais espaçado */
+#cases [class*="grid-cols-2"] {
+  gap: 14px !important;
+}
+
+/* ─── 7. MICROINTERAÇÕES GLOBAIS ─────────────────── */
+
+/* Botões primários */
+[class*="bg-\[#0057FF\]"],
+[class*="btn-primary"],
+.btn-primary {
+  transition:
+    background var(--dur-fast) ease,
+    transform var(--dur-fast) var(--ease-spring),
+    box-shadow var(--dur-fast) ease !important;
+}
+
+[class*="bg-\[#0057FF\]"]:hover,
+[class*="btn-primary"]:hover,
+.btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0,87,255,.35) !important;
+}
+
+/* Botões de nav do carousel */
+[aria-label="Anterior"],
+[aria-label="Próximo"] {
+  transition: all var(--dur-fast) ease !important;
+}
+
+[aria-label="Próximo"]:hover {
+  box-shadow: 0 4px 16px rgba(0,87,255,.4) !important;
+  transform: scale(1.08) !important;
+}
+
+[aria-label="Anterior"]:hover {
+  background: rgba(0,0,0,.06) !important;
+  transform: scale(1.08) !important;
+}
+
+/* Links com seta — animação sutil */
+[class*="items-center"][class*="gap-1"]:hover svg {
+  transform: translateX(3px);
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+
+/* ─── 8. RESPONSIVIDADE ──────────────────────────── */
+
+/* Fix crítico: grids com lg:grid-cols-[...] colapsam pra 1 coluna no mobile,
+   mas os itens do grid herdam min-width:auto (padrão do CSS Grid) e não
+   encolhem abaixo do conteúdo interno — isso estourava a largura da página
+   inteira (~14-30px), cortando o site de lado e descentralizando tudo.
+   Afeta a seção de depoimentos/resultados (#cases) e o grid de 4 colunas. */
+.grid[class*="lg:grid-cols-["] > * {
+  min-width: 0 !important;
+}
+
+@media (max-width: 768px) {
+  button[aria-label*="Ampliar"] {
+    border-radius: 20px !important;
+  }
+
+  #copa2026 img[class*="object-contain"] {
+    padding: 6px !important;
+  }
+
+  [style*="scrollbar-width:none"] > [class*="rounded-2xl"]:hover {
+    transform: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  button[aria-label*="Ampliar"] img {
+    padding: 2px !important;
+  }
+
+  #cases [class*="grid-cols-2"] {
+    gap: 10px !important;
+  }
+}
+
+/* ─── SCROLLBAR GLOBAL REFINADA ──────────────────── */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,.15);
+  border-radius: 99px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,87,255,.4);
+}

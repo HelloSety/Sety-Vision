@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Imperial Store — Política de Privacidade</title>
+<meta name="description" content="Política de Privacidade da Imperial Store — como coletamos, usamos e protegemos seus dados.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: 'Montserrat', sans-serif; color: #1a1a1a;
+    --sety-accent: #D4AF37;
+    --sety-accent-2: #F5D171;
+    --sety-gold-gradient: linear-gradient(135deg, #FCE7A6 0%, #E8C158 30%, #D4AF37 55%, #B8860B 80%, #8a6a14 100%);
+    --sety-accent-text: #000000;
+    --sety-dark: #000000;
+    --sety-text-soft: #6b6b6b;
+    --sety-border: #e2e2e2;
+    --sety-radius: 6px;
+    --sety-font-heading: 'Sora', sans-serif;
+  }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .imperial-logo { display: flex; align-items: center; gap: 10px; }
+  .imperial-logo__img { height: 68px; width: auto; display: block; }
+  .sety-footer .imperial-logo__img { height: 60px; }
+
+  .sety-topbar {
+    background: #111; color: rgba(255,255,255,.85); font-size: 13px;
+    display: flex; align-items: center; justify-content: space-between; padding: 8px 24px;
+  }
+  .sety-topbar__contatos { display: flex; gap: 20px; align-items: center; }
+  .sety-topbar__contatos a { display: flex; align-items: center; gap: 6px; color: inherit; }
+  .sety-topbar__contatos svg { width: 15px; height: 15px; }
+  @media (max-width: 760px) { .sety-topbar__contatos span:not(:first-child) { display: none; } }
+
+  .sety-header {
+    background: var(--sety-dark); color: #fff; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 24px rgba(0,0,0,.25);
+  }
+  .sety-nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  .sety-nav a { padding: 10px; font-size: 12.5px; font-weight: 600; text-transform: uppercase; color: rgba(255,255,255,.82); letter-spacing: .4px; transition: color .2s; }
+  .sety-nav a:hover { color: var(--sety-accent-2); }
+  .sety-header__acoes { display: flex; align-items: center; gap: 18px; }
+  .sety-header__acoes svg { width: 20px; height: 20px; cursor: pointer; }
+  .sety-header__carrinho { position: relative; }
+  .sety-header__carrinho-count {
+    position: absolute; top: -8px; right: -8px; background: var(--sety-gold-gradient); color: var(--sety-accent-text);
+    font-size: 10px; font-weight: 700; border-radius: 50%; width: 16px; height: 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @media (max-width: 900px) { .sety-nav { display: none; } }
+
+  .sety-institucional-hero { background: var(--sety-dark); color: #fff; padding: 56px 24px; text-align: center; }
+  .sety-institucional-hero h1 { font-family: var(--sety-font-heading); font-size: clamp(26px, 4.5vw, 38px); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px; }
+  .sety-institucional-hero p { color: rgba(255,255,255,.6); font-size: 13.5px; margin: 0; }
+
+  .sety-institucional { max-width: 760px; margin: 0 auto; padding: 56px 24px 88px; line-height: 1.7; }
+  .sety-institucional h2 { font-family: var(--sety-font-heading); font-size: 18px; text-transform: uppercase; letter-spacing: .3px; margin: 36px 0 12px; }
+  .sety-institucional h2:first-child { margin-top: 0; }
+  .sety-institucional p { font-size: 14.5px; color: #383838; margin: 0 0 14px; }
+  .sety-institucional ul { margin: 0 0 14px; padding-left: 20px; font-size: 14.5px; color: #383838; }
+  .sety-institucional li { margin-bottom: 6px; }
+  .sety-institucional strong { color: #111; }
+  .sety-institucional__atualizado { font-size: 12.5px; color: var(--sety-text-soft); margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--sety-border); }
+
+  .sety-footer { background: #0a0a0a; color: rgba(255,255,255,.85); padding: 64px 24px 24px; }
+  .sety-footer__grid { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr; gap: 32px; }
+  @media (max-width: 900px) { .sety-footer__grid { grid-template-columns: 1fr 1fr; } }
+  .sety-footer__social { display: flex; gap: 12px; margin-top: 16px; }
+  .sety-footer__social svg { width: 20px; height: 20px; }
+  .sety-footer__titulo { font-size: 12.5px; font-weight: 700; margin: 0 0 16px; text-transform: uppercase; letter-spacing: .6px; color: rgba(255,255,255,.9); }
+  .sety-footer__links { display: flex; flex-direction: column; gap: 10px; }
+  .sety-footer__links a { font-size: 13px; color: rgba(255,255,255,.62); transition: color .2s; }
+  .sety-footer__links a:hover { color: #fff; }
+  .sety-footer__pagamento { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .sety-footer__pagamento svg { height: 22px; width: auto; }
+  .sety-footer__copy {
+    max-width: 1280px; margin: 32px auto 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.12);
+    font-size: 12px; color: rgba(255,255,255,.45); text-align: center;
+  }
+  .sety-footer__selo-sety { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 10px; }
+  .sety-footer__selo-sety img { height: 16px; width: auto; opacity: .7; }
+
+  .sety-whatsapp-float {
+    position: fixed; bottom: 24px; right: 24px; width: 58px; height: 58px; border-radius: 50%;
+    background: #25D366; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,.28); z-index: 999; text-decoration: none; transition: transform .2s;
+  }
+  .sety-whatsapp-float:hover { transform: scale(1.08); }
+  .sety-whatsapp-float svg { width: 30px; height: 30px; }
+</style>
+</head>
+<body>
+
+<div class="sety-topbar">
+  <div class="sety-topbar__contatos">
+    <a href="https://wa.me/5561999999999" target="_blank"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25D366"/><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2z"/></svg> WhatsApp</a>
+    <span>Feira dos Importados do SIA — Brasília/DF</span>
+    <span>Envios para todo o país</span>
+  </div>
+</div>
+
+<header class="sety-header">
+  <a href="index.html" class="imperial-logo">
+    <img src="assets/logo/imperial-store-logo-header.png" alt="Imperial Store" class="imperial-logo__img">
+  </a>
+  <nav class="sety-nav">
+    <a href="index.html">Início</a>
+    <a href="colecao.html">Todos os Produtos</a>
+    <a href="colecao.html?cat=Camisetas">Camisetas</a>
+    <a href="colecao.html?cat=Moletons">Moletons</a>
+    <a href="index.html#sety-faq-home">Perguntas Frequentes</a>
+  </nav>
+  <div class="sety-header__acoes">
+    <a href="checkout.html" class="sety-header__carrinho" aria-label="Ver sacola">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8h12l1 12H5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="sety-header__carrinho-count">0</span>
+    </a>
+  </div>
+</header>
+
+<section class="sety-institucional-hero">
+  <h1>Política de Privacidade</h1>
+  <p>Como cuidamos dos seus dados na Imperial Store</p>
+</section>
+
+<section class="sety-institucional">
+
+  <h2>1. Quais dados coletamos</h2>
+  <p>Para processar seu pedido, coletamos apenas o necessário: nome completo, telefone/WhatsApp, endereço de entrega e, quando aplicável, dados de pagamento (processados diretamente pela operadora de cartão ou instituição financeira — nunca armazenamos números de cartão em nossos sistemas).</p>
+
+  <h2>2. Como usamos seus dados</h2>
+  <ul>
+    <li>Confirmar e processar seu pedido;</li>
+    <li>Calcular frete e emitir a etiqueta de envio;</li>
+    <li>Enviar atualizações sobre o status da compra e código de rastreio via WhatsApp;</li>
+    <li>Responder dúvidas e solicitações de troca ou devolução.</li>
+  </ul>
+  <p>Não vendemos, alugamos ou compartilhamos seus dados com terceiros para fins de marketing sem a sua autorização.</p>
+
+  <h2>3. Com quem compartilhamos</h2>
+  <p>Compartilhamos dados estritamente com quem participa da entrega da sua compra: transportadoras (Correios) para envio, e processadoras de pagamento para confirmação da transação.</p>
+
+  <h2>4. Seus direitos (LGPD)</h2>
+  <p>Como titular dos dados, você pode a qualquer momento solicitar:</p>
+  <ul>
+    <li>Confirmação da existência de tratamento de dados;</li>
+    <li>Acesso, correção ou atualização dos seus dados;</li>
+    <li>Exclusão dos seus dados de nossa base, respeitadas obrigações legais de guarda de nota fiscal;</li>
+    <li>Informação sobre com quem compartilhamos seus dados.</li>
+  </ul>
+  <p>Para exercer qualquer um desses direitos, fale com a gente pelo <a href="https://wa.me/5561999999999" target="_blank" style="text-decoration:underline;">WhatsApp</a>.</p>
+
+  <h2>5. Segurança</h2>
+  <p>Adotamos medidas técnicas e organizacionais para proteger seus dados contra acesso não autorizado, perda ou uso indevido, incluindo conexão segura (HTTPS) em todo o site.</p>
+
+  <p class="sety-institucional__atualizado">Última atualização: agosto de 2026. Em caso de dúvidas sobre esta política, entre em contato pelo WhatsApp ou visite nossa loja física na Feira dos Importados do SIA, Brasília/DF.</p>
+
+</section>
+
+<footer class="sety-footer">
+  <div class="sety-footer__grid">
+    <div>
+      <a href="index.html" class="imperial-logo">
+        <img src="assets/logo/imperial-store-logo-header.png" alt="Imperial Store" class="imperial-logo__img">
+      </a>
+      <div class="sety-footer__social">
+        <a href="https://www.instagram.com/_imperialstorebsb2/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="sety-footer__titulo">Menu</p>
+      <div class="sety-footer__links">
+        <a href="index.html">Início</a><a href="colecao.html">Todos os Produtos</a><a href="colecao.html?cat=Camisetas">Camisetas</a><a href="colecao.html?cat=Moletons">Moletons</a>
+      </div>
+    </div>
+    <div>
+      <p class="sety-footer__titulo">Institucional</p>
+      <div class="sety-footer__links">
+        <a href="index.html#sety-faq-home">Perguntas Frequentes</a><a href="prazos-entrega.html">Prazos e Entregas</a><a href="politica-trocas.html">Política de Trocas</a><a href="politica-privacidade.html">Política de Privacidade</a>
+      </div>
+    </div>
+    <div>
+      <p class="sety-footer__titulo">Contato</p>
+      <div class="sety-footer__links">
+        <a href="https://wa.me/5561999999999" target="_blank">WhatsApp</a><a href="https://www.instagram.com/_imperialstorebsb2/" target="_blank">Instagram</a><a href="#">Feira dos Importados do SIA — Brasília/DF</a>
+      </div>
+    </div>
+    <div>
+      <p class="sety-footer__titulo">Pagamento e Segurança</p>
+      <div class="sety-footer__pagamento">
+        <svg viewBox="0 0 48 32" width="38" height="25"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+        <svg viewBox="0 0 48 32" width="38" height="25"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+        <svg viewBox="0 0 48 32" width="38" height="25"><rect width="48" height="32" rx="4" fill="#fff"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+      </div>
+    </div>
+  </div>
+  <p class="sety-footer__copy">
+    © 2026 Imperial Store — Todos os direitos reservados.
+    <span class="sety-footer__selo-sety"><img src="assets/sety-studio-logo.svg" alt="Sety Studio"><a href="https://setystudio.com.br" target="_blank">Feito por Sety Studio</a></span>
+  </p>
+</footer>
+
+<a href="https://wa.me/5561999999999" class="sety-whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 32 32"><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+</a>
+
+<script src="js/catalogo.js"></script>
+<script src="js/carrinho.js"></script>
+
+</body>
+</html>

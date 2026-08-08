@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Produto — L2 Store</title>
+  <meta name="description" content="Camisetas, tênis, calças, bonés e jaquetas originais e de primeira linha. Compre direto pelo WhatsApp com a L2 Store.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Anton&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background:#fff; margin:0;">
+
+  <!-- ===== Barra de anúncio giratória ===== -->
+  <div class="anuncio" style="border-radius:0;">
+    <button aria-label="Anterior" onclick="anuncioNav(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <span id="anuncio-texto">10% OFF comprando no Pix</span>
+    <button aria-label="Próximo" onclick="anuncioNav(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header class="site-header">
+    <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="L2 Store"></a>
+    <nav class="main-nav">
+      <a href="index.html">Início</a>
+      <a href="index.html#catalogo">Catálogo</a>
+    </nav>
+    <div class="header-icons">
+      <a class="icon-link" href="https://www.instagram.com/l2_store___/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a class="icon-link" href="#" data-whats-link target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5C10.1 9 9.5 7.6 9.3 7c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 2-1.4.2-.7.2-1.2.1-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <section class="produto">
+
+    <nav class="breadcrumb">
+      <a href="index.html">Página Inicial</a> / <span id="p-breadcrumb-nome">Produto</span>
+    </nav>
+
+    <div class="produto__grid">
+
+      <!-- ===== Galeria ===== -->
+      <div class="galeria">
+        <div class="galeria__main"><img id="p-imagem" src="" alt=""></div>
+      </div>
+
+      <!-- ===== Informações do produto ===== -->
+      <div class="produto__info">
+
+        <div class="badges">
+          <span class="badge badge--exemplo" id="p-badge-exemplo" style="display:none;">Exemplo</span>
+          <span class="badge badge--qualidade">Qualidade Premium</span>
+        </div>
+
+        <span class="p-vendor" id="p-vendor"></span>
+        <h1 class="p-titulo" id="p-titulo"></h1>
+
+        <div class="preco-linha">
+          <span class="preco-atual" id="p-preco"></span>
+        </div>
+        <p class="preco-parcelas" id="p-parcelas"></p>
+
+        <div class="pix">
+          <svg viewBox="0 0 512 512"><path d="M242.4 292.5C247.9 298 257.1 298 262.6 292.5L339.3 215.8C334.8 210.5 328.1 207 320.6 207H239.5C232 207 225.3 210.5 220.8 215.8L242.4 292.5zM384.4 168.9L322.9 107.4C307.6 92.1 288 84 267.9 82.3V17.1C267.9 7.7 260.2 0 250.8 0S233.8 7.7 233.8 17.1V82.3C213.7 84 194.1 92.1 178.8 107.4L117.4 168.9C102.1 184.2 94 203.8 92.3 223.9H17.1C7.7 223.9 0 231.6 0 241S7.7 258.1 17.1 258.1H92.3C94 278.2 102.1 297.8 117.4 313.1L178.9 374.6C194.2 389.9 213.8 398 233.9 399.7V464.9C233.9 474.3 241.6 482 251 482S268.1 474.3 268.1 464.9V399.7C288.2 398 307.8 389.9 323.1 374.6L384.6 313.1C399.9 297.8 408 278.2 409.7 258.1H474.9C484.3 258.1 492 250.4 492 241S484.3 223.9 474.9 223.9H409.7C407.9 203.8 399.8 184.2 384.4 168.9z" fill="#32BCAD"/></svg>
+          <div><strong id="p-pix-valor"></strong><span class="economia">10% de desconto pagando no Pix</span></div>
+        </div>
+
+        <!-- Seletor de tamanho -->
+        <div class="opcao">
+          <span class="opcao__label">Tamanho: <span id="p-tamanho-selecionado"></span></span>
+          <div class="swatch-list" id="p-swatch-tamanho"></div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="ctas">
+          <a href="#" id="p-btn-comprar" class="btn btn--primario" target="_blank" rel="noopener">Comprar pelo WhatsApp</a>
+          <a href="#" id="p-btn-duvidas" class="btn btn--outline" target="_blank" rel="noopener">
+            <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25D366"/><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2z"/></svg>
+            Tirar Dúvidas no WhatsApp
+          </a>
+        </div>
+
+        <!-- Formas de pagamento -->
+        <div class="pagamento">
+          <span class="pagamento__titulo">FORMAS DE PAGAMENTO</span>
+          <div class="pagamento__icones">
+            <svg viewBox="0 0 48 32" width="42" height="28"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+            <svg viewBox="0 0 48 32" width="42" height="28"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+            <svg viewBox="0 0 48 32" width="42" height="28"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+            <svg viewBox="0 0 48 32" width="42" height="28"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#333" text-anchor="middle">DINHEIRO</text></svg>
+          </div>
+        </div>
+
+        <!-- Selo de segurança -->
+        <div class="info-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <p>Compra 100% segura, direto com a loja<br>Atendimento humano em todas as etapas.</p>
+        </div>
+
+        <!-- Retirada/entrega -->
+        <div class="info-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg>
+          <div>
+            <strong>Retirada ou Entrega</strong>
+            <p>Retire na loja (Rua Serra dos Parecis, 239) ou combine a entrega direto pelo WhatsApp.</p>
+          </div>
+        </div>
+
+        <!-- Devoluções -->
+        <div class="info-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+          <div>
+            <strong>Trocas Facilitadas</strong>
+            <p>Problema com tamanho ou modelo? Resolvemos direto com você pelo WhatsApp.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== Abas Descrição / Trocas ===== -->
+    <div class="tabs">
+      <div class="tabs__nav">
+        <button type="button" class="tabs__item is-active" data-tab="descricao">Descrição</button>
+        <button type="button" class="tabs__item" data-tab="trocas">Trocas e Devoluções</button>
+      </div>
+
+      <div class="tabs__content is-active" data-tab-content="descricao">
+        <h2>Qualidade premium e preço justo</h2>
+        <p id="p-descricao"></p>
+        <h2>Compre com confiança</h2>
+        <p>Escolha o seu produto com carinho — trabalhamos com fornecedores de alta qualidade pra garantir que você receba exatamente o que viu na loja.</p>
+        <h2>Entrega rápida e segura</h2>
+        <p>Combinamos com você o melhor jeito de receber: retirada na loja ou entrega, direto pelo WhatsApp.</p>
+
+        <div class="trust-links">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Rua Serra dos Parecis, 239</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M23 8V4H1V8M23 8V20H1V8M23 8H1M5 12H8M19 12V16H12V12H19Z"/></svg> Parcele sua compra!</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10C4 10 3.5 2 12 2C20.5 2 20 10 20 10M4 10C3.3 10.3 2 11 2 12.5C2 14 3 15 4 15C4.8 15 5.7 15 6 15V10H4ZM20 10C20.7 10.2 22 10.9 22 12.5C22 14.1 20.7 14.8 20 15M20 10H18V15H20M20 15C20.2 16.5 19.6 19.5 16 19.5"/></svg> Suporte pelo WhatsApp</span>
+        </div>
+      </div>
+
+      <div class="tabs__content" data-tab-content="trocas">
+        <h2>Como funciona a troca</h2>
+        <p>Se o tamanho ou modelo não servir, é só chamar a gente no WhatsApp em até 7 dias após a retirada/entrega — combinamos a troca sem burocracia.</p>
+        <h2>Condição da peça</h2>
+        <p>A peça precisa estar sem uso, com etiqueta, pra garantir a troca.</p>
+      </div>
+    </div>
+
+    <!-- ===== Formas de pagamento completas + selos de confiança ===== -->
+    <div class="seguranca-completa">
+      <div class="pagamento__icones">
+        <svg viewBox="0 0 48 32" width="42" height="28"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+        <svg viewBox="0 0 48 32" width="42" height="28"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+        <svg viewBox="0 0 48 32" width="42" height="28"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+      </div>
+      <div class="selos-confianca">
+        <span class="selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg> COMPRA 100% SEGURA</span>
+        <span class="selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg> LOJA VERIFICADA</span>
+      </div>
+    </div>
+
+    <!-- ===== Você também vai gostar ===== -->
+    <div class="secao-produtos">
+      <h3>Você também vai gostar</h3>
+      <div class="produtos-grid" id="p-relacionados"></div>
+    </div>
+
+    <!-- ===== FAQ ===== -->
+    <div class="produto-faq faq" id="p-faq">
+      <h2>Dúvidas Frequentes</h2>
+      <p>Atendemos direto pelo WhatsApp, todos os dias.</p>
+
+      <div class="faq-item">
+        <button type="button" class="faq-q">O site é seguro?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a">Sim! A compra é fechada diretamente com a loja pelo WhatsApp, sem intermediário.</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">E se o produto não servir?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a">Sem estresse! É só chamar no WhatsApp em até 7 dias que combinamos a troca de tamanho ou modelo.</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">Quais formas de pagamento vocês aceitam?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a">Pix (com desconto), cartão de crédito parcelado e dinheiro na retirada.</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">Vocês entregam ou só retirada?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        <div class="faq-a">Combinamos o melhor jeito direto com você — retirada na loja ou entrega.</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="assets/img/logo.png" alt="L2 Store">
+        <p class="footer-desc">Artigos do corre: camisetas, tênis, calças, bonés e jaquetas originais e de primeira linha.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/l2_store___/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-titulo">Navegação</p>
+        <div class="footer-links">
+          <a href="index.html">Início</a>
+          <a href="index.html#catalogo">Catálogo</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-titulo">Central de Atendimento</p>
+        <ul class="footer-contato">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Rua Serra dos Parecis, 239</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.9.6 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.8.6a2 2 0 0 1 1.8 2Z"/></svg> (11) 98538-5239</li>
+        </ul>
+        <a class="footer-whats" href="#" data-whats-link target="_blank" rel="noopener">
+          <svg viewBox="0 0 32 32"><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2z"/></svg>
+          Atendimento via WhatsApp
+        </a>
+      </div>
+      <div>
+        <p class="footer-titulo">Loja Verificada</p>
+        <div class="trust-badges">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg> Produtos Originais</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Compra Segura</span>
+        </div>
+      </div>
+    </div>
+    <p class="footer-copy">
+      © 2026 L2 Store — Todos os direitos reservados.
+      <span class="footer-selo-sety"><a href="https://setystudio.com.br" target="_blank" rel="noopener"><img src="assets/img/sety-studio-logo.svg" alt=""> Feito por Sety Studio</a></span>
+    </p>
+  </footer>
+
+  <a class="whats-float" href="#" id="p-whats-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32"><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+  </a>
+
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/produto.js"></script>
+</body>
+</html>

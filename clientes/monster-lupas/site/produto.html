@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monster Lupas — Óculos com Atitude, Estilo e Visão</title>
+<meta name="description" content="Óculos de alta performance e estilo para quem vive a vida intensamente. Proteção UV400, lentes polarizadas e frete grátis para todo o Brasil.">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Marquee -->
+<div class="marquee">
+  <div class="marquee__track" id="marqueeTrack"></div>
+</div>
+
+<!-- Barra de contato -->
+<div class="contact-bar">
+  <div class="contact-bar__left">
+    <a href="#" data-whats-cta>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.87.51 3.63 1.4 5.13L2 22l4.99-1.35A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+      WhatsApp
+    </a>
+    <a href="mailto:monsterlupas@gmail.com">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>
+      monsterlupas@gmail.com
+    </a>
+  </div>
+  <div class="contact-bar__social">
+    <a href="#" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site-header" id="siteHeader">
+  <div class="header-top">
+    <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Abrir menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+
+    <a href="index.html" class="logo" aria-label="Monster Lupas — página inicial">
+      <img src="assets/brand/monster-lupas-logo.png" alt="Monster Lupas">
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="index.html">Início</a>
+      <a href="index.html#produtos">Produtos</a>
+      <a href="index.html#promo">Promoções</a>
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#contato">Contato</a>
+    </nav>
+
+    <div class="header-icons">
+      <button class="icon-btn search-mobile" id="searchToggle" aria-label="Buscar produtos">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <a class="icon-btn" href="index.html#contato" aria-label="Atendimento">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <button class="icon-btn cart-btn" id="cartToggle" aria-label="Carrinho">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="search-bar" id="searchBar">
+  <div class="search-bar__inner">
+    <input type="text" id="searchInputMobile" placeholder="Buscar modelo de óculos...">
+  </div>
+</div>
+
+<main>
+  <!-- Breadcrumb -->
+  <div class="container breadcrumb" id="breadcrumb"></div>
+
+  <!-- Produto -->
+  <section class="section container product-detail" id="productDetail"><!-- gerado via JS --></section>
+
+  <!-- Outros modelos -->
+  <section class="section container reveal">
+    <div class="section-head"><h2>Outros <span>Modelos</span></h2></div>
+    <div class="products-row-wrap">
+      <button type="button" class="row-arrow row-arrow-prev" data-row-prev aria-label="Anterior">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="products-row" id="relatedRow"><!-- gerado via JS --></div>
+      <button type="button" class="row-arrow row-arrow-next" data-row-next aria-label="Próximo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+  </section>
+</main>
+
+<!-- Faixa Instagram -->
+<div class="ig-banner">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+  <span class="ig-banner__label">Siga-nos no Instagram</span>
+  <a class="ig-banner__handle" href="#" aria-label="Instagram Monster Lupas">@monsterlupas</a>
+</div>
+
+<!-- Newsletter -->
+<div class="newsletter-bar">
+  <div class="container newsletter-bar__inner">
+    <div class="newsletter-bar__label">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>
+      Receba nossas novidades por e-mail
+    </div>
+    <form class="newsletter-form" onsubmit="return false">
+      <input type="text" placeholder="Nome completo">
+      <input type="tel" placeholder="Fone/WhatsApp">
+      <input type="email" placeholder="E-mail">
+      <button type="submit">OK</button>
+    </form>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer" id="contato">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img class="footer-logo" src="assets/brand/monster-lupas-logo.png" alt="Monster Lupas">
+        <p>Óculos de atitude, estilo e proteção. A coleção Monster Lupas é feita para quem impõe presença.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#produtos">Produtos</a></li>
+          <li><a href="index.html#promo">Promoções</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="index.html#faq">Perguntas Frequentes</a></li>
+          <li><a href="index.html#faq">Política de Trocas</a></li>
+          <li><a href="index.html#faq">Política de Privacidade</a></li>
+          <li><a href="index.html#faq">Termos de Uso</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Central de Atendimento</h4>
+        <ul>
+          <li>Atendimento: seg. a sáb. 9h às 18h</li>
+          <li><a href="mailto:monsterlupas@gmail.com">monsterlupas@gmail.com</a></li>
+        </ul>
+        <a class="footer-whats" href="#" data-whats-cta>💬 Atendimento via WhatsApp</a>
+      </div>
+
+      <div>
+        <h4>Formas de Pagamento</h4>
+        <div class="payment-icons">
+          <span>VISA</span><span>MASTER</span><span>PIX</span><span>ELO</span><span>AMEX</span><span>BOLETO</span>
+        </div>
+        <h4 style="margin-top:26px">Segurança</h4>
+        <div class="trust-badges">
+          <span>🔒 Site Seguro SSL</span>
+          <span>✓ Compra Garantida</span>
+          <span>✓ Garantia 7 Dias</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Monster Lupas. Todos os direitos reservados.
+      <a class="footer-credit" href="https://setystudio.com.br" target="_blank" rel="noopener">
+        Feito por <img src="assets/sety-studio-logo.svg" alt="Sety Studio">
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp flutuante -->
+<a href="#" class="whats-float" id="whatsFloat" aria-label="Falar no WhatsApp" data-whats-cta>💬</a>
+
+<!-- Carrinho -->
+<div class="overlay" id="overlay"></div>
+<aside id="cart-drawer">
+  <div class="cart-header">
+    <span>Seu Carrinho (<b id="cartCount">0</b>)</span>
+    <button id="cartClose" aria-label="Fechar carrinho" type="button">✕</button>
+  </div>
+  <div class="cart-gamify" id="cartGamify"></div>
+  <div class="cart-body" id="cartItems">
+    <p class="cart-empty">Carrinho vazio. Escolha seus óculos e garanta a oferta exclusiva!</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total-row"><span>Subtotal</span><span id="cartTotal">R$ 0,00</span></div>
+    <div class="cart-pix-row" id="cartPixRow"><span>No Pix (5% off)</span><span id="cartPixTotal">R$ 0,00</span></div>
+    <a href="#" class="btn-primary cart-checkout-btn" id="cartCheckout" data-whats-cta>
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12.04 2c-5.5 0-10 4.5-10 10 0 1.76.46 3.48 1.34 5L2 22l5.14-1.35A9.97 9.97 0 0 0 12.04 22c5.5 0 10-4.5 10-10s-4.5-10-10-10zm0 18.13c-1.6 0-3.16-.43-4.52-1.24l-.32-.19-3.05.8.82-2.97-.21-.3a8.13 8.13 0 1 1 7.28 3.9z"/></svg>
+      Finalizar no WhatsApp
+    </a>
+    <span class="cart-footer-note">Pagamento e entrega combinados direto com a loja</span>
+  </div>
+</aside>
+
+<script src="js/catalog.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/product.js"></script>
+</body>
+</html>

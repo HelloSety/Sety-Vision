@@ -1,0 +1,23 @@
+# Dados de cliente ficam em clientes/<nome>/ai-audit/ (fora desta pasta) —
+# regras de ignore desses dados vivem no .gitignore raiz do MazyOS.
+
+# Variáveis de ambiente
+.env
+
+# Temporários
+.tmp/
+**/.tmp/
+
+# Claude config local
+.claude/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db

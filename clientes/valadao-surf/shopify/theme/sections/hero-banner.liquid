@@ -1,0 +1,28 @@
+<section class="hero">
+  <a class="hero-img" href="{{ section.settings.hero_link | default: routes.all_products_collection_url }}">
+    <picture>
+      {%- if section.settings.hero_image_mobile -%}
+        <source media="(max-width: 860px)" srcset="{{ section.settings.hero_image_mobile | image_url: width: 750 }}">
+      {%- else -%}
+        <source media="(max-width: 860px)" srcset="{{ 'banner-welcome-mobile.png' | asset_img_url: '750x' }}">
+      {%- endif -%}
+      {%- if section.settings.hero_image -%}
+        {{ section.settings.hero_image | image_tag: width: 1800, alt: shop.name, loading: 'eager' }}
+      {%- else -%}
+        <img src="{{ 'banner-welcome-desktop.png' | asset_img_url: '1800x' }}" alt="{{ shop.name }}" width="1800" height="600">
+      {%- endif -%}
+    </picture>
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "Banner Principal",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "Imagem do banner (desktop, recomendado: 1800x600px)" },
+    { "type": "image_picker", "id": "hero_image_mobile", "label": "Imagem do banner (mobile, recomendado: 750x1100px)" },
+    { "type": "url", "id": "hero_link", "label": "Link do banner" }
+  ],
+  "presets": [{ "name": "Banner Principal" }]
+}
+{% endschema %}

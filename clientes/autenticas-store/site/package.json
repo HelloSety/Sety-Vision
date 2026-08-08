@@ -1,0 +1,20 @@
+{
+  "name": "autenticas-store",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Autênticas Store — site + checkout Mercado Pago (Vercel Functions + Neon Postgres). Admin fica em projeto separado.",
+  "scripts": {
+    "seed": "node scripts/seed.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "@vercel/blob": "^2.7.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "mercadopago": "^2.0.15",
+    "resend": "^6.18.1"
+  },
+  "devDependencies": {
+    "dotenv": "^17.4.2"
+  }
+}

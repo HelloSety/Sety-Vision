@@ -1,0 +1,1577 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link [ref=e7] [cursor=pointer]:
+        - /url: https://www.mantossportslem.com.br
+        - img "Mantos Sports" [ref=e8]
+      - generic [ref=e12]:
+        - searchbox "O que você está buscando?" [ref=e13]
+        - button "Buscar" [ref=e14] [cursor=pointer]
+      - generic [ref=e22]:
+        - generic [ref=e23]:
+          - text: Olá!
+          - link "Faça login" [ref=e24] [cursor=pointer]:
+            - /url: /account/login/
+        - link "Ou cadastre-se" [ref=e25] [cursor=pointer]:
+          - /url: /account/register
+      - link "0" [ref=e29] [cursor=pointer]:
+        - /url: "#"
+    - generic [ref=e34]:
+      - link "Categorias" [ref=e37] [cursor=pointer]:
+        - /url: /produtos/
+      - list [ref=e42]:
+        - listitem [ref=e46]:
+          - link "Início" [ref=e47] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e48]:
+          - link "Produtos" [ref=e50] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/
+        - listitem [ref=e51]:
+          - link "Contato" [ref=e52] [cursor=pointer]:
+            - /url: /contato/
+        - listitem [ref=e53]:
+          - link "Como Comprar" [ref=e54] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/como-comprar/
+        - listitem [ref=e55]:
+          - link "Trocas e Devoluções" [ref=e56] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/trocas-e-devolucoes/
+        - listitem [ref=e57]:
+          - link "Trocas e Devoluções" [ref=e58] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/trocas-e-devolucoes1/
+  - generic [ref=e64]:
+    - generic [ref=e65]:
+      - text: Ao navegar por este site
+      - strong [ref=e66]: você aceita o uso de cookies
+      - text: para agilizar a sua experiência de compra.
+    - link "Entendi" [ref=e68] [cursor=pointer]:
+      - /url: "#"
+  - generic [ref=e69]:
+    - generic [ref=e78]:
+      - img "Carrossel 3" [ref=e81]
+      - img "Carrossel 1" [ref=e85]
+      - img "Carrossel 2" [ref=e88]
+      - img "Carrossel 3" [ref=e92]
+      - img "Carrossel 1" [ref=e96]
+    - generic [ref=e110]:
+      - heading "Nossos Clientes" [level=2] [ref=e113]
+      - generic [ref=e117]:
+        - link "Carrossel 1" [ref=e120] [cursor=pointer]:
+          - /url: https://www.instagram.com/mantossportslem1?igsh=MXMwM3I2NHQxMGF0Yw==
+          - generic [ref=e121]:
+            - img "Banner de Mantos Sports" [ref=e122]
+            - generic [ref=e123]: VER NO INSTAGRAN
+        - link "Carrossel 2" [ref=e127] [cursor=pointer]:
+          - /url: https://www.instagram.com/mantossportslem1?igsh=MXMwM3I2NHQxMGF0Yw==
+          - generic [ref=e128]:
+            - img "Banner de Mantos Sports" [ref=e129]
+            - generic [ref=e130]: VER NO INSTAGRAN
+        - link "Carrossel 3" [ref=e134] [cursor=pointer]:
+          - /url: https://www.instagram.com/mantossportslem1?igsh=MXMwM3I2NHQxMGF0Yw==
+          - generic [ref=e135]:
+            - img "Banner de Mantos Sports" [ref=e136]
+            - generic [ref=e138]: VER NO INSTAGRAN
+        - img "Banner de Mantos Sports" [ref=e143]
+        - img "Banner de Mantos Sports" [ref=e148]
+        - img "Banner de Mantos Sports" [ref=e153]
+        - img "Banner de Mantos Sports" [ref=e158]
+        - img "Banner de Mantos Sports" [ref=e163]
+        - img "Banner de Mantos Sports" [ref=e168]
+        - img "Banner de Mantos Sports" [ref=e173]
+        - img "Banner de Mantos Sports" [ref=e178]
+        - img "Banner de Mantos Sports" [ref=e183]
+        - link "Carrossel 13" [ref=e187] [cursor=pointer]:
+          - /url: https://www.instagram.com/mantossportslem1?igsh=MXMwM3I2NHQxMGF0Yw==
+          - img "Banner de Mantos Sports" [ref=e189]
+    - generic [ref=e199]:
+      - heading "Categorias" [level=2] [ref=e201]
+      - generic [ref=e204]:
+        - generic [ref=e205]:
+          - link "Categoria 1":
+            - /url: https://www.mantossportslem.com.br/promocoes/
+            - generic [ref=e206] [cursor=pointer]:
+              - img "Categoria 1" [ref=e208]
+              - generic [ref=e209]: PROMOÇÕES
+        - generic [ref=e210]:
+          - link "Categoria 2":
+            - /url: https://www.mantossportslem.com.br/camisa-de-time-tailandesa/
+            - generic [ref=e211] [cursor=pointer]:
+              - img "Categoria 2" [ref=e213]
+              - generic [ref=e214]: CAMISA DE TIME TAILANDESA
+        - generic [ref=e215]:
+          - link "Categoria 3":
+            - /url: https://www.mantossportslem.com.br/acessorios/
+            - generic [ref=e216] [cursor=pointer]:
+              - img "Categoria 3" [ref=e218]
+              - generic [ref=e219]: ACESSÓRIOS
+        - generic [ref=e220]:
+          - link "Categoria 4":
+            - /url: https://www.mantossportslem.com.br/tenis-premium1/
+            - generic [ref=e221] [cursor=pointer]:
+              - img "Categoria 4" [ref=e223]
+              - generic [ref=e224]: TÊNIS PREMIUM
+        - generic [ref=e225]:
+          - link "Categoria 5":
+            - /url: https://www.mantossportslem.com.br/calca/
+            - generic [ref=e226] [cursor=pointer]:
+              - img "Categoria 5" [ref=e228]
+              - generic [ref=e229]: CALÇA
+        - generic [ref=e230]:
+          - link "Categoria 6":
+            - /url: https://www.mantossportslem.com.br/camisa/
+            - generic [ref=e231] [cursor=pointer]:
+              - img "Categoria 6" [ref=e233]
+              - generic [ref=e234]: CAMISA
+        - generic [ref=e235]:
+          - link "Categoria 7":
+            - /url: https://www.mantossportslem.com.br/camisa-de-time/
+            - generic [ref=e236] [cursor=pointer]:
+              - img "Categoria 7" [ref=e238]
+              - generic [ref=e240]: CAMISA DE TIME
+        - generic [ref=e241]:
+          - link "Categoria 8":
+            - /url: https://www.mantossportslem.com.br/agasalho/
+            - generic [ref=e242] [cursor=pointer]:
+              - img "Categoria 8" [ref=e244]
+              - generic [ref=e246]: AGASALHO
+        - generic [ref=e247]:
+          - link "Categoria 9":
+            - /url: https://www.mantossportslem.com.br/conjunto-dri-fit/
+            - generic [ref=e248] [cursor=pointer]:
+              - img "Categoria 9" [ref=e250]
+              - generic [ref=e252]: CONJUNTO
+        - generic [ref=e253]:
+          - link "Categoria 10":
+            - /url: https://www.mantossportslem.com.br/camisa/oversized/
+            - generic [ref=e254] [cursor=pointer]:
+              - img "Categoria 10" [ref=e256]
+              - generic [ref=e258]: OVERSIZED
+        - generic [ref=e259]:
+          - link "Categoria 11":
+            - /url: https://www.mantossportslem.com.br/bermuda/
+            - generic [ref=e260] [cursor=pointer]:
+              - img "Categoria 11" [ref=e262]
+              - generic [ref=e264]: BERMUDA
+        - generic [ref=e265]:
+          - link "Categoria 12":
+            - /url: https://www.mantossportslem.com.br/bone/
+            - generic [ref=e266] [cursor=pointer]:
+              - img "Categoria 12" [ref=e268]
+              - generic [ref=e270]: BONÉ
+        - generic [ref=e271]:
+          - link "Categoria 13":
+            - /url: https://www.mantossportslem.com.br/camisa-polo/
+            - generic [ref=e272] [cursor=pointer]:
+              - img "Categoria 13" [ref=e274]
+              - generic [ref=e276]: CAMISA POLO
+        - generic [ref=e277]:
+          - link "Categoria 14":
+            - /url: https://www.mantossportslem.com.br/chinelos/
+            - generic [ref=e278] [cursor=pointer]:
+              - img "Categoria 14" [ref=e280]
+              - generic [ref=e282]: CHINELOS
+        - generic [ref=e283]:
+          - link "Categoria 15":
+            - /url: https://www.mantossportslem.com.br/2-por-179/
+            - generic [ref=e284] [cursor=pointer]:
+              - img "Categoria 15" [ref=e286]
+              - generic [ref=e288]: 2 POR 179
+    - generic [ref=e298]:
+      - heading "MAIS VENDIDOS" [level=2] [ref=e299]
+      - generic [ref=e300]:
+        - generic [ref=e303]:
+          - generic [ref=e305]:
+            - link "CAMISA I CR FLAMENGO 26 TORCEDOR MALHA TAILANDESA":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-i-cr-flamengo-26-torcedor-malha-tailandesa-4hfer/
+              - img "CAMISA I CR FLAMENGO 26 TORCEDOR MALHA TAILANDESA" [ref=e306] [cursor=pointer]
+          - link "CAMISA I CR FLAMENGO 26 TORCEDOR MALHA TAILANDESA" [ref=e309] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-i-cr-flamengo-26-torcedor-malha-tailandesa-4hfer/
+            - generic [ref=e311]: COMPRE 3 PAGUE 2
+            - generic [ref=e313]:
+              - text: R$180,00
+              - generic [ref=e314]: R$171,00 com Pix
+              - generic [ref=e316]:
+                - text: "4"
+                - generic [ref=e317]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de CAMISA I CR FLAMENGO 26 TORCEDOR MALHA TAILANDESA" [ref=e320]: Comprar
+        - generic [ref=e326]:
+          - generic [ref=e328]:
+            - link "CAMISA I DO PALMEIRAS 26/27 VERDE MALHA TAILANDESA":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-i-do-palmeiras-26-27-verde-malha-tailandesa-1xyxz/
+              - img "CAMISA I DO PALMEIRAS 26/27 VERDE MALHA TAILANDESA" [ref=e329] [cursor=pointer]
+          - link "CAMISA I DO PALMEIRAS 26/27 VERDE MALHA TAILANDESA" [ref=e332] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-i-do-palmeiras-26-27-verde-malha-tailandesa-1xyxz/
+            - generic [ref=e334]: COMPRE 3 PAGUE 2
+            - generic [ref=e336]:
+              - text: R$180,00
+              - generic [ref=e337]: R$171,00 com Pix
+              - generic [ref=e339]:
+                - text: "4"
+                - generic [ref=e340]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de CAMISA I DO PALMEIRAS 26/27 VERDE MALHA TAILANDESA" [ref=e343]: Comprar
+        - generic [ref=e349]:
+          - generic [ref=e351]:
+            - link "CAMISA II DO PALMEIRAS 26/27 BRANCA MALHA TAILANDESA":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-ii-do-palmeiras-26-27-branca-malha-tailandesa-pmo6f/
+              - img "CAMISA II DO PALMEIRAS 26/27 BRANCA MALHA TAILANDESA" [ref=e352] [cursor=pointer]
+          - link "CAMISA II DO PALMEIRAS 26/27 BRANCA MALHA TAILANDESA" [ref=e355] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-ii-do-palmeiras-26-27-branca-malha-tailandesa-pmo6f/
+            - generic [ref=e357]: COMPRE 3 PAGUE 2
+            - generic [ref=e359]:
+              - text: R$180,00
+              - generic [ref=e360]: R$171,00 com Pix
+              - generic [ref=e362]:
+                - text: "4"
+                - generic [ref=e363]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de CAMISA II DO PALMEIRAS 26/27 BRANCA MALHA TAILANDESA" [ref=e366]: Comprar
+        - generic [ref=e372]:
+          - generic [ref=e374]:
+            - link "CAMISA II CR DO FLAMENGO BRANCA 26/27 MALHA TAILANDESA":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-ii-cr-do-flamengo-branca-26-27-malha-tailandesa-1u3ss/
+              - img "CAMISA II CR DO FLAMENGO BRANCA 26/27 MALHA TAILANDESA" [ref=e375] [cursor=pointer]
+          - link "CAMISA II CR DO FLAMENGO BRANCA 26/27 MALHA TAILANDESA" [ref=e378] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-ii-cr-do-flamengo-branca-26-27-malha-tailandesa-1u3ss/
+            - generic [ref=e380]: COMPRE 3 PAGUE 2
+            - generic [ref=e382]:
+              - text: R$180,00
+              - generic [ref=e383]: R$171,00 com Pix
+              - generic [ref=e385]:
+                - text: "4"
+                - generic [ref=e386]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de CAMISA II CR DO FLAMENGO BRANCA 26/27 MALHA TAILANDESA" [ref=e389]: Comprar
+        - generic [ref=e395]:
+          - generic [ref=e397]:
+            - link "CAMISA 1 DO CORINTHIANS 26/27 50 ANOS MALHA TAILANDESA":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-1-do-corinthians-26-27-50-anos-1do3v/
+              - img "CAMISA 1 DO CORINTHIANS 26/27 50 ANOS MALHA TAILANDESA" [ref=e398] [cursor=pointer]
+          - link "CAMISA 1 DO CORINTHIANS 26/27 50 ANOS MALHA TAILANDESA" [ref=e401] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-1-do-corinthians-26-27-50-anos-1do3v/
+            - generic [ref=e403]: COMPRE 3 PAGUE 2
+            - generic [ref=e405]:
+              - text: R$180,00
+              - generic [ref=e406]: R$171,00 com Pix
+              - generic [ref=e408]:
+                - text: "4"
+                - generic [ref=e409]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de CAMISA 1 DO CORINTHIANS 26/27 50 ANOS MALHA TAILANDESA" [ref=e412]: Comprar
+        - generic [ref=e418]:
+          - generic [ref=e420]:
+            - link "MOLETON OSASCORTE GRAU":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-grau-mgks5/
+              - img "MOLETON OSASCORTE GRAU" [ref=e421] [cursor=pointer]
+          - link "MOLETON OSASCORTE GRAU" [ref=e424] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-grau-mgks5/
+            - generic [ref=e427]:
+              - generic [ref=e428]: "-50%"
+              - text: "OFF"
+            - generic [ref=e429]:
+              - text: R$149,99
+              - generic [ref=e430]: R$299,00
+              - generic [ref=e431]: R$142,49 com Pix
+              - generic [ref=e433]:
+                - text: "4"
+                - generic [ref=e434]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE GRAU" [ref=e437]: Comprar
+        - generic [ref=e443]:
+          - generic [ref=e445]:
+            - link "MOLETON OSASCORTE 244":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-oeeog/
+              - img "MOLETON OSASCORTE 244" [ref=e446] [cursor=pointer]
+          - link "MOLETON OSASCORTE 244" [ref=e449] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-oeeog/
+            - generic [ref=e452]:
+              - generic [ref=e453]: "-32%"
+              - text: "OFF"
+            - generic [ref=e454]:
+              - text: R$149,99
+              - generic [ref=e455]: R$219,00
+              - generic [ref=e456]: R$142,49 com Pix
+              - generic [ref=e458]:
+                - text: "4"
+                - generic [ref=e459]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE 244" [ref=e462]: Comprar
+        - generic [ref=e468]:
+          - generic [ref=e470]:
+            - link "MOLETON OSASCORTE PERNA LONGA AZUL":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-perna-longa-azul-k7fkt/
+              - img "MOLETON OSASCORTE PERNA LONGA AZUL" [ref=e471] [cursor=pointer]
+          - link "MOLETON OSASCORTE PERNA LONGA AZUL" [ref=e474] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-perna-longa-azul-k7fkt/
+            - generic [ref=e477]:
+              - generic [ref=e478]: "-32%"
+              - text: "OFF"
+            - generic [ref=e479]:
+              - text: R$149,99
+              - generic [ref=e480]: R$219,00
+              - generic [ref=e481]: R$142,49 com Pix
+              - generic [ref=e483]:
+                - text: "4"
+                - generic [ref=e484]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE PERNA LONGA AZUL" [ref=e487]: Comprar
+        - generic [ref=e493]:
+          - generic [ref=e495]:
+            - link "CONJUNTO DO FLAMENGO PRETO/ROSA":
+              - /url: https://www.mantossportslem.com.br/produtos/conjunto-do-flamengo-preto-rosa-czdht/
+              - img "CONJUNTO DO FLAMENGO PRETO/ROSA" [ref=e496] [cursor=pointer]
+          - link "CONJUNTO DO FLAMENGO PRETO/ROSA" [ref=e499] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/conjunto-do-flamengo-preto-rosa-czdht/
+            - generic [ref=e501]: 30% OFF
+            - generic [ref=e503]:
+              - text: R$59,50
+              - generic [ref=e504]: R$85,00
+              - generic [ref=e506]:
+                - text: "2"
+                - generic [ref=e507]: x de
+                - text: R$29,75 sem juros
+            - generic "Compra rápida de CONJUNTO DO FLAMENGO PRETO/ROSA" [ref=e510]: Comprar
+        - generic [ref=e516]:
+          - generic [ref=e518]:
+            - link "CONJUNTO FEMININO DO FLAMENGO PRETO/AZUL":
+              - /url: https://www.mantossportslem.com.br/produtos/conjunto-feminino-do-flamrngo-preto-azul-f70h5/
+              - img "CONJUNTO FEMININO DO FLAMENGO PRETO/AZUL" [ref=e519] [cursor=pointer]
+          - link "CONJUNTO FEMININO DO FLAMENGO PRETO/AZUL" [ref=e522] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/conjunto-feminino-do-flamrngo-preto-azul-f70h5/
+            - generic [ref=e524]: 30% OFF
+            - generic [ref=e526]:
+              - text: R$59,50
+              - generic [ref=e527]: R$85,00
+              - generic [ref=e529]:
+                - text: "2"
+                - generic [ref=e530]: x de
+                - text: R$29,75 sem juros
+            - generic "Compra rápida de CONJUNTO FEMININO DO FLAMENGO PRETO/AZUL" [ref=e533]: Comprar
+        - generic [ref=e539]:
+          - generic [ref=e541]:
+            - link "TÊNIS MIZUNO WAVE PROPHENCY LS FLOR DE LÓTUS BRANCO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophency-ls-flor-de-lotus-branco-1n0fs/
+              - img "TÊNIS MIZUNO WAVE PROPHENCY LS FLOR DE LÓTUS BRANCO" [ref=e542] [cursor=pointer]
+          - link "TÊNIS MIZUNO WAVE PROPHENCY LS FLOR DE LÓTUS BRANCO" [ref=e545] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophency-ls-flor-de-lotus-branco-1n0fs/
+            - generic [ref=e547]:
+              - text: R$180,00
+              - generic [ref=e548]: R$171,00 com Pix
+              - generic [ref=e550]:
+                - text: "4"
+                - generic [ref=e551]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO WAVE PROPHENCY LS FLOR DE LÓTUS BRANCO" [ref=e554]: Comprar
+        - generic [ref=e560]:
+          - generic [ref=e562]:
+            - link "TÊNIS MIZUNO WAVE PROPHENCY LS":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophency-ls/
+              - img "TÊNIS MIZUNO WAVE PROPHENCY LS" [ref=e563] [cursor=pointer]
+          - link "TÊNIS MIZUNO WAVE PROPHENCY LS" [ref=e566] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophency-ls/
+            - generic [ref=e568]:
+              - text: R$180,00
+              - generic [ref=e569]: R$171,00 com Pix
+              - generic [ref=e571]:
+                - text: "4"
+                - generic [ref=e572]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO WAVE PROPHENCY LS" [ref=e575]: Comprar
+        - generic [ref=e581]:
+          - generic [ref=e583]:
+            - link "TÊNIS MIZUNO FLOR DE LÓTUS BEGE":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-flor-de-lotus-bege/
+              - img "TÊNIS MIZUNO FLOR DE LÓTUS BEGE" [ref=e584] [cursor=pointer]
+          - link "TÊNIS MIZUNO FLOR DE LÓTUS BEGE" [ref=e587] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-flor-de-lotus-bege/
+            - generic [ref=e589]:
+              - text: R$180,00
+              - generic [ref=e590]: R$171,00 com Pix
+              - generic [ref=e592]:
+                - text: "4"
+                - generic [ref=e593]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO FLOR DE LÓTUS BEGE" [ref=e596]: Comprar
+        - generic [ref=e602]:
+          - generic [ref=e604]:
+            - link "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-ls-flor-de-lotus-preto-roxo/
+              - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e605] [cursor=pointer]
+          - link "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e608] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-ls-flor-de-lotus-preto-roxo/
+            - generic [ref=e611]:
+              - generic [ref=e612]: "-0%"
+              - text: "OFF"
+            - generic [ref=e613]:
+              - text: R$180,00
+              - generic [ref=e614]: R$180,00
+              - generic [ref=e615]: R$171,00 com Pix
+              - generic [ref=e617]:
+                - text: "4"
+                - generic [ref=e618]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e621]: Comprar
+        - generic [ref=e627]:
+          - generic [ref=e629]:
+            - link "CAMISA POLO DRI-FIT OSASCORTE LOGO":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-polo-dri-fit-osascorte-logo-eldyl/
+              - img "CAMISA POLO DRI-FIT OSASCORTE LOGO" [ref=e630] [cursor=pointer]
+          - link "CAMISA POLO DRI-FIT OSASCORTE LOGO" [ref=e633] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-polo-dri-fit-osascorte-logo-eldyl/
+            - generic [ref=e635]:
+              - text: R$80,00
+              - generic [ref=e636]: R$76,00 com Pix
+              - generic [ref=e638]:
+                - text: "4"
+                - generic [ref=e639]: x de
+                - text: R$20,00 sem juros
+            - generic "Compra rápida de CAMISA POLO DRI-FIT OSASCORTE LOGO" [ref=e642]: Comprar
+        - generic [ref=e648]:
+          - generic [ref=e650]:
+            - link "CAMISA POLO DRI-FIT OSASCORTE GRAU":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-polo-dri-fit-osascorte-grau-jv4fa/
+              - img "CAMISA POLO DRI-FIT OSASCORTE GRAU" [ref=e651] [cursor=pointer]
+          - link "CAMISA POLO DRI-FIT OSASCORTE GRAU" [ref=e654] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-polo-dri-fit-osascorte-grau-jv4fa/
+            - generic [ref=e656]:
+              - text: R$80,00
+              - generic [ref=e657]: R$76,00 com Pix
+              - generic [ref=e659]:
+                - text: "4"
+                - generic [ref=e660]: x de
+                - text: R$20,00 sem juros
+            - generic "Compra rápida de CAMISA POLO DRI-FIT OSASCORTE GRAU" [ref=e663]: Comprar
+        - generic [ref=e669]:
+          - generic [ref=e671]:
+            - link "CAMISA POLO DRI-FIT LACOSTE MIAMI OPEN":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-polo-dri-fit-lacoste-miami-open-18amw/
+              - img "CAMISA POLO DRI-FIT LACOSTE MIAMI OPEN" [ref=e672] [cursor=pointer]
+          - link "CAMISA POLO DRI-FIT LACOSTE MIAMI OPEN" [ref=e675] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-polo-dri-fit-lacoste-miami-open-18amw/
+            - generic [ref=e677]:
+              - text: R$80,00
+              - generic [ref=e678]: R$76,00 com Pix
+              - generic [ref=e680]:
+                - text: "4"
+                - generic [ref=e681]: x de
+                - text: R$20,00 sem juros
+            - generic "Compra rápida de CAMISA POLO DRI-FIT LACOSTE MIAMI OPEN" [ref=e684]: Comprar
+        - generic [ref=e690]:
+          - generic [ref=e692]:
+            - link "TÊNIS LOUIS VUITTON LV SKATE BRANCO/CINZA":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-louis-vuitton-lv-skate-branco-cinza-hg86s/
+              - img "TÊNIS LOUIS VUITTON LV SKATE BRANCO/CINZA" [ref=e693] [cursor=pointer]
+          - link "TÊNIS LOUIS VUITTON LV SKATE BRANCO/CINZA" [ref=e696] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-louis-vuitton-lv-skate-branco-cinza-hg86s/
+            - generic [ref=e698]:
+              - text: R$199,00
+              - generic [ref=e699]: R$189,05 com Pix
+              - generic [ref=e701]:
+                - text: "4"
+                - generic [ref=e702]: x de
+                - text: R$49,75 sem juros
+            - generic "Compra rápida de TÊNIS LOUIS VUITTON LV SKATE BRANCO/CINZA" [ref=e705]: Comprar
+        - generic [ref=e711]:
+          - generic [ref=e713]:
+            - link "TÊNIS AIR FORCE 1 SUEDE PRETO/BRANCO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-air-force-1-suede-preto-branco-u6ovp/
+              - img "TÊNIS AIR FORCE 1 SUEDE PRETO/BRANCO" [ref=e714] [cursor=pointer]
+          - link "TÊNIS AIR FORCE 1 SUEDE PRETO/BRANCO" [ref=e717] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-air-force-1-suede-preto-branco-u6ovp/
+            - generic [ref=e719]:
+              - text: R$180,00
+              - generic [ref=e720]: R$171,00 com Pix
+              - generic [ref=e722]:
+                - text: "4"
+                - generic [ref=e723]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS AIR FORCE 1 SUEDE PRETO/BRANCO" [ref=e726]: Comprar
+        - generic [ref=e732]:
+          - generic [ref=e734]:
+            - link "TÊNIS NIKE 1'07 PANDA PRETO/BRANCO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-107-panda-preto-branco-1x7dr/
+              - img "TÊNIS NIKE 1'07 PANDA PRETO/BRANCO" [ref=e735] [cursor=pointer]
+          - link "TÊNIS NIKE 1'07 PANDA PRETO/BRANCO" [ref=e738] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-107-panda-preto-branco-1x7dr/
+            - generic [ref=e740]:
+              - text: R$180,00
+              - generic [ref=e741]: R$171,00 com Pix
+              - generic [ref=e743]:
+                - text: "4"
+                - generic [ref=e744]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS NIKE 1'07 PANDA PRETO/BRANCO" [ref=e747]: Comprar
+        - generic [ref=e753]:
+          - generic [ref=e755]:
+            - link "TÊNIS NIKE AIR FORCE 1 BEGE/VINHO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-force-1-bege-vinho-92dws/
+              - img "TÊNIS NIKE AIR FORCE 1 BEGE/VINHO" [ref=e756] [cursor=pointer]
+          - link "TÊNIS NIKE AIR FORCE 1 BEGE/VINHO" [ref=e759] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-force-1-bege-vinho-92dws/
+            - generic [ref=e761]:
+              - text: R$180,00
+              - generic [ref=e762]: R$171,00 com Pix
+              - generic [ref=e764]:
+                - text: "4"
+                - generic [ref=e765]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS NIKE AIR FORCE 1 BEGE/VINHO" [ref=e768]: Comprar
+        - generic [ref=e774]:
+          - generic [ref=e776]:
+            - link "TÊNIS NIKE AIR FORCE 1 BRANCO/VERDE":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-force-1-branco-verde-1n2kc/
+              - img "TÊNIS NIKE AIR FORCE 1 BRANCO/VERDE" [ref=e777] [cursor=pointer]
+          - link "TÊNIS NIKE AIR FORCE 1 BRANCO/VERDE" [ref=e780] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-force-1-branco-verde-1n2kc/
+            - generic [ref=e782]:
+              - text: R$180,00
+              - generic [ref=e783]: R$171,00 com Pix
+              - generic [ref=e785]:
+                - text: "4"
+                - generic [ref=e786]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS NIKE AIR FORCE 1 BRANCO/VERDE" [ref=e789]: Comprar
+        - generic [ref=e795]:
+          - generic [ref=e797]:
+            - link "CAMISA OVERSIZED \" JESUS VIVE \"":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-oversized-jesus-vive-1oc9v/
+              - img "CAMISA OVERSIZED \" JESUS VIVE \"" [ref=e798] [cursor=pointer]
+          - link "CAMISA OVERSIZED \" JESUS VIVE \"" [ref=e801] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-oversized-jesus-vive-1oc9v/
+            - generic [ref=e803]:
+              - text: R$99,00
+              - generic [ref=e804]: R$94,05 com Pix
+              - generic [ref=e806]:
+                - text: "4"
+                - generic [ref=e807]: x de
+                - text: R$24,75 sem juros
+            - generic "Compra rápida de CAMISA OVERSIZED \" JESUS VIVE \"" [ref=e810]: Comprar
+        - generic [ref=e816]:
+          - generic [ref=e818]:
+            - link "CAMISA OVERSIZED '' JESUS ME SALVOU ''":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-oversized-jeses-me-salvou-wg5v4/
+              - img "CAMISA OVERSIZED '' JESUS ME SALVOU ''" [ref=e819] [cursor=pointer]
+          - link "CAMISA OVERSIZED '' JESUS ME SALVOU ''" [ref=e822] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-oversized-jeses-me-salvou-wg5v4/
+            - generic [ref=e824]:
+              - text: R$99,00
+              - generic [ref=e825]: R$94,05 com Pix
+              - generic [ref=e827]:
+                - text: "4"
+                - generic [ref=e828]: x de
+                - text: R$24,75 sem juros
+            - generic "Compra rápida de CAMISA OVERSIZED '' JESUS ME SALVOU ''" [ref=e831]: Comprar
+        - generic [ref=e837]:
+          - generic [ref=e839]:
+            - link "CAMISA OVERSIZED '' TUPAC ''":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-oversized-tupac-1s3b5/
+              - img "CAMISA OVERSIZED '' TUPAC ''" [ref=e840] [cursor=pointer]
+          - link "CAMISA OVERSIZED '' TUPAC ''" [ref=e843] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-oversized-tupac-1s3b5/
+            - generic [ref=e845]:
+              - text: R$99,00
+              - generic [ref=e846]: R$94,05 com Pix
+              - generic [ref=e848]:
+                - text: "4"
+                - generic [ref=e849]: x de
+                - text: R$24,75 sem juros
+            - generic "Compra rápida de CAMISA OVERSIZED '' TUPAC ''" [ref=e852]: Comprar
+        - generic [ref=e858]:
+          - generic [ref=e860]:
+            - link "CAMISA OVERSIZED \" LOS ANGELES \"":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-oversized-los-angeles-19ip8/
+              - img "CAMISA OVERSIZED \" LOS ANGELES \"" [ref=e861] [cursor=pointer]
+          - link "CAMISA OVERSIZED \" LOS ANGELES \"" [ref=e864] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-oversized-los-angeles-19ip8/
+            - generic [ref=e866]:
+              - text: R$99,00
+              - generic [ref=e867]: R$94,05 com Pix
+              - generic [ref=e869]:
+                - text: "4"
+                - generic [ref=e870]: x de
+                - text: R$24,75 sem juros
+            - generic "Compra rápida de CAMISA OVERSIZED \" LOS ANGELES \"" [ref=e873]: Comprar
+        - generic [ref=e879]:
+          - generic [ref=e881]:
+            - link "CAMISA OVERSIZED NIKE \"OPEN YOUR EYES''":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-oversized-nike-open-your-eyes-ett5n/
+              - img "CAMISA OVERSIZED NIKE \"OPEN YOUR EYES''" [ref=e882] [cursor=pointer]
+          - link "CAMISA OVERSIZED NIKE \"OPEN YOUR EYES''" [ref=e885] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-oversized-nike-open-your-eyes-ett5n/
+            - generic [ref=e887]:
+              - text: R$99,00
+              - generic [ref=e888]: R$94,05 com Pix
+              - generic [ref=e890]:
+                - text: "4"
+                - generic [ref=e891]: x de
+                - text: R$24,75 sem juros
+            - generic "Compra rápida de CAMISA OVERSIZED NIKE \"OPEN YOUR EYES''" [ref=e894]: Comprar
+        - generic [ref=e900]:
+          - generic [ref=e902]:
+            - link "JULIET REFLEXIVA AZUL":
+              - /url: https://www.mantossportslem.com.br/produtos/huliete-reflexiva-azul-54eei/
+              - img "JULIET REFLEXIVA AZUL" [ref=e903] [cursor=pointer]
+          - link "JULIET REFLEXIVA AZUL" [ref=e906] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/huliete-reflexiva-azul-54eei/
+            - generic [ref=e908]:
+              - text: R$150,00
+              - generic [ref=e909]: R$142,50 com Pix
+              - generic [ref=e911]:
+                - text: "4"
+                - generic [ref=e912]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de JULIET REFLEXIVA AZUL" [ref=e915]: Comprar
+        - generic [ref=e921]:
+          - generic [ref=e923]:
+            - link "JULIET REFLEXIVA PRETA":
+              - /url: https://www.mantossportslem.com.br/produtos/juliete-reflexiva-preta-tn5e5/
+              - img "JULIET REFLEXIVA PRETA" [ref=e924] [cursor=pointer]
+          - link "JULIET REFLEXIVA PRETA" [ref=e927] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/juliete-reflexiva-preta-tn5e5/
+            - generic [ref=e929]:
+              - text: R$150,00
+              - generic [ref=e930]: R$142,50 com Pix
+              - generic [ref=e932]:
+                - text: "4"
+                - generic [ref=e933]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de JULIET REFLEXIVA PRETA" [ref=e936]: Comprar
+        - generic [ref=e942]:
+          - generic [ref=e944]:
+            - link "ÓCULOS LUPA OAKLEY C/MOLA":
+              - /url: https://www.mantossportslem.com.br/produtos/oculos-lupa-okaley-qso9h/
+              - img "ÓCULOS LUPA OAKLEY C/MOLA" [ref=e945] [cursor=pointer]
+          - link "ÓCULOS LUPA OAKLEY C/MOLA" [ref=e948] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/oculos-lupa-okaley-qso9h/
+            - generic [ref=e950]:
+              - text: R$85,00
+              - generic [ref=e951]: R$80,75 com Pix
+              - generic [ref=e953]:
+                - text: "4"
+                - generic [ref=e954]: x de
+                - text: R$21,25 sem juros
+            - generic "Compra rápida de ÓCULOS LUPA OAKLEY C/MOLA" [ref=e957]: Comprar
+        - generic [ref=e963]:
+          - generic [ref=e965]:
+            - link "MEIA CANO ALTO NIKE BRANCA":
+              - /url: https://www.mantossportslem.com.br/produtos/meia-cano-alto-nike-branca-1stro/
+              - img "MEIA CANO ALTO NIKE BRANCA" [ref=e966] [cursor=pointer]
+          - link "MEIA CANO ALTO NIKE BRANCA" [ref=e969] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/meia-cano-alto-nike-branca-1stro/
+            - generic [ref=e971]:
+              - text: R$29,99
+              - generic [ref=e972]: R$28,49 com Pix
+            - generic "Compra rápida de MEIA CANO ALTO NIKE BRANCA" [ref=e975]: Comprar
+        - generic [ref=e981]:
+          - generic [ref=e983]:
+            - link "RELÓGIO BVLGARI SKELETON PRETO":
+              - /url: https://www.mantossportslem.com.br/produtos/relogio-bvlgari-skeleton-preto-1bs16/
+              - img "RELÓGIO BVLGARI SKELETON PRETO" [ref=e984] [cursor=pointer]
+          - link "RELÓGIO BVLGARI SKELETON PRETO" [ref=e987] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/relogio-bvlgari-skeleton-preto-1bs16/
+            - generic [ref=e989]:
+              - text: R$250,00
+              - generic [ref=e990]: R$237,50 com Pix
+              - generic [ref=e992]:
+                - text: "4"
+                - generic [ref=e993]: x de
+                - text: R$62,50 sem juros
+            - generic "Compra rápida de RELÓGIO BVLGARI SKELETON PRETO" [ref=e996]: Comprar
+        - generic [ref=e1002]:
+          - generic [ref=e1004]:
+            - link "RELÓGIO BVLGARI PRATA COBRA":
+              - /url: https://www.mantossportslem.com.br/produtos/relogio-bvlgari-prata-cobra-1fiby/
+              - img "RELÓGIO BVLGARI PRATA COBRA" [ref=e1005] [cursor=pointer]
+          - link "RELÓGIO BVLGARI PRATA COBRA" [ref=e1008] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/relogio-bvlgari-prata-cobra-1fiby/
+            - generic [ref=e1010]:
+              - text: R$250,00
+              - generic [ref=e1011]: R$237,50 com Pix
+              - generic [ref=e1013]:
+                - text: "4"
+                - generic [ref=e1014]: x de
+                - text: R$62,50 sem juros
+            - generic "Compra rápida de RELÓGIO BVLGARI PRATA COBRA" [ref=e1017]: Comprar
+        - generic [ref=e1023]:
+          - generic [ref=e1025]:
+            - link "RELÓGIO ROLEX YACHT-MASTER 40 DOURADO":
+              - /url: https://www.mantossportslem.com.br/produtos/relogio-rolex-yacht-master-40-dourado-9ez0i/
+              - img "RELÓGIO ROLEX YACHT-MASTER 40 DOURADO" [ref=e1026] [cursor=pointer]
+          - link "RELÓGIO ROLEX YACHT-MASTER 40 DOURADO" [ref=e1029] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/relogio-rolex-yacht-master-40-dourado-9ez0i/
+            - generic [ref=e1031]:
+              - text: R$199,99
+              - generic [ref=e1032]: R$189,99 com Pix
+              - generic [ref=e1034]:
+                - text: "4"
+                - generic [ref=e1035]: x de
+                - text: R$50,00 sem juros
+            - generic "Compra rápida de RELÓGIO ROLEX YACHT-MASTER 40 DOURADO" [ref=e1038]: Comprar
+        - generic [ref=e1044]:
+          - generic [ref=e1046]:
+            - link "CONJUNTO DO FLAMENGO ROSA":
+              - /url: https://www.mantossportslem.com.br/produtos/conjunto-do-flamengo-rosa-1q22s/
+              - img "CONJUNTO DO FLAMENGO ROSA" [ref=e1047] [cursor=pointer]
+          - link "CONJUNTO DO FLAMENGO ROSA" [ref=e1050] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/conjunto-do-flamengo-rosa-1q22s/
+            - generic [ref=e1052]: 30% OFF
+            - generic [ref=e1054]:
+              - text: R$59,50
+              - generic [ref=e1055]: R$85,00
+              - generic [ref=e1057]:
+                - text: "2"
+                - generic [ref=e1058]: x de
+                - text: R$29,75 sem juros
+            - generic "Compra rápida de CONJUNTO DO FLAMENGO ROSA" [ref=e1061]: Comprar
+        - generic [ref=e1067]:
+          - generic [ref=e1069]:
+            - link "CALÇA JOGADOR PREMIUM":
+              - /url: https://www.mantossportslem.com.br/produtos/calca-jogador-premium-1dyj6/
+              - img "CALÇA JOGADOR PREMIUM" [ref=e1070] [cursor=pointer]
+          - link "CALÇA JOGADOR PREMIUM" [ref=e1073] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/calca-jogador-premium-1dyj6/
+            - generic [ref=e1075]:
+              - text: R$240,00
+              - generic [ref=e1076]: R$228,00 com Pix
+              - generic [ref=e1078]:
+                - text: "4"
+                - generic [ref=e1079]: x de
+                - text: R$60,00 sem juros
+            - generic "Compra rápida de CALÇA JOGADOR PREMIUM" [ref=e1082]: Comprar
+        - generic [ref=e1088]:
+          - generic [ref=e1090]:
+            - link "CALÇA JOGADOR PREMIUM":
+              - /url: https://www.mantossportslem.com.br/produtos/calca-jogador-premium-u7yla/
+              - img "CALÇA JOGADOR PREMIUM" [ref=e1091] [cursor=pointer]
+          - link "CALÇA JOGADOR PREMIUM" [ref=e1094] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/calca-jogador-premium-u7yla/
+            - generic [ref=e1096]:
+              - text: R$240,00
+              - generic [ref=e1097]: R$228,00 com Pix
+              - generic [ref=e1099]:
+                - text: "4"
+                - generic [ref=e1100]: x de
+                - text: R$60,00 sem juros
+            - generic "Compra rápida de CALÇA JOGADOR PREMIUM" [ref=e1103]: Comprar
+        - generic [ref=e1109]:
+          - generic [ref=e1111]:
+            - link "CALÇA JOGADOR PREMIUM":
+              - /url: https://www.mantossportslem.com.br/produtos/calca-basica-jogador-premium-1rdh1/
+              - img "CALÇA JOGADOR PREMIUM" [ref=e1112] [cursor=pointer]
+          - link "CALÇA JOGADOR PREMIUM" [ref=e1115] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/calca-basica-jogador-premium-1rdh1/
+            - generic [ref=e1117]:
+              - text: R$240,00
+              - generic [ref=e1118]: R$228,00 com Pix
+              - generic [ref=e1120]:
+                - text: "4"
+                - generic [ref=e1121]: x de
+                - text: R$60,00 sem juros
+            - generic "Compra rápida de CALÇA JOGADOR PREMIUM" [ref=e1124]: Comprar
+        - generic [ref=e1130]:
+          - generic [ref=e1132]:
+            - link "CALÇA JEANS BALÃO HUGO BOSS":
+              - /url: https://www.mantossportslem.com.br/produtos/calca-jeans-balao-hugo-boss-1iken/
+              - img "CALÇA JEANS BALÃO HUGO BOSS" [ref=e1133] [cursor=pointer]
+          - link "CALÇA JEANS BALÃO HUGO BOSS" [ref=e1136] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/calca-jeans-balao-hugo-boss-1iken/
+            - generic [ref=e1138]:
+              - text: R$120,00
+              - generic [ref=e1139]: R$114,00 com Pix
+              - generic [ref=e1141]:
+                - text: "4"
+                - generic [ref=e1142]: x de
+                - text: R$30,00 sem juros
+            - generic "Compra rápida de CALÇA JEANS BALÃO HUGO BOSS" [ref=e1145]: Comprar
+        - generic [ref=e1151]:
+          - generic [ref=e1153]:
+            - link "CALÇA JEANS BALÃO HUGO BOSS":
+              - /url: https://www.mantossportslem.com.br/produtos/calca-jeans-balao-hugo-boss-os9p4/
+              - img "CALÇA JEANS BALÃO HUGO BOSS" [ref=e1154] [cursor=pointer]
+          - link "CALÇA JEANS BALÃO HUGO BOSS" [ref=e1157] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/calca-jeans-balao-hugo-boss-os9p4/
+            - generic [ref=e1159]:
+              - text: R$120,00
+              - generic [ref=e1160]: R$114,00 com Pix
+              - generic [ref=e1162]:
+                - text: "4"
+                - generic [ref=e1163]: x de
+                - text: R$30,00 sem juros
+            - generic "Compra rápida de CALÇA JEANS BALÃO HUGO BOSS" [ref=e1166]: Comprar
+    - generic [ref=e1173]:
+      - heading "TÊNIS MAIS VENDIDOS" [level=2] [ref=e1174]
+      - generic [ref=e1176]:
+        - generic [ref=e1180]:
+          - generic [ref=e1182]:
+            - link "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-ls-flor-de-lotus-preto-roxo/
+              - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e1183] [cursor=pointer]
+          - link "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e1186] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-ls-flor-de-lotus-preto-roxo/
+            - generic [ref=e1189]:
+              - generic [ref=e1190]: "-0%"
+              - text: "OFF"
+            - generic [ref=e1191]:
+              - text: R$180,00
+              - generic [ref=e1192]: R$180,00
+              - generic [ref=e1193]: R$171,00 com Pix
+              - generic [ref=e1195]:
+                - text: "4"
+                - generic [ref=e1196]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e1199]: Comprar
+        - generic [ref=e1206]:
+          - generic [ref=e1208]:
+            - link "TÊNIS MIZUNO WAVE PROPHENCY X BRANCO/VERDE":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophency-x-branco-verde/
+              - img "TÊNIS MIZUNO WAVE PROPHENCY X BRANCO/VERDE" [ref=e1209] [cursor=pointer]
+          - link "TÊNIS MIZUNO WAVE PROPHENCY X BRANCO/VERDE" [ref=e1212] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophency-x-branco-verde/
+            - generic [ref=e1214]:
+              - text: R$180,00
+              - generic [ref=e1215]: R$171,00 com Pix
+              - generic [ref=e1217]:
+                - text: "4"
+                - generic [ref=e1218]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO WAVE PROPHENCY X BRANCO/VERDE" [ref=e1221]: Comprar
+        - generic [ref=e1228]:
+          - generic [ref=e1230]:
+            - link "TÊNIS NIKE AIR MAX PLUS TN CINZA":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-max-plus-tn-cinza/
+              - img "TÊNIS NIKE AIR MAX PLUS TN CINZA" [ref=e1231] [cursor=pointer]
+          - link "TÊNIS NIKE AIR MAX PLUS TN CINZA" [ref=e1234] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-max-plus-tn-cinza/
+            - generic [ref=e1236]: 9% OFF Comprando 2 ou mais
+            - generic [ref=e1238]:
+              - text: R$99,00
+              - generic [ref=e1239]: R$160,00
+              - generic [ref=e1240]: R$94,05 com Pix
+              - generic [ref=e1242]:
+                - text: "4"
+                - generic [ref=e1243]: x de
+                - text: R$24,75 sem juros
+            - generic "Compra rápida de TÊNIS NIKE AIR MAX PLUS TN CINZA" [ref=e1246]: Comprar
+        - generic [ref=e1253]:
+          - generic [ref=e1255]:
+            - link "TÊNIS NIKE AIR MAX PLUS TN PRETO/ROXO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-max-plus-tn-preto-roxo/
+              - img "TÊNIS NIKE AIR MAX PLUS TN PRETO/ROXO" [ref=e1256] [cursor=pointer]
+            - generic: Esgotado
+          - link "TÊNIS NIKE AIR MAX PLUS TN PRETO/ROXO" [ref=e1259] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-max-plus-tn-preto-roxo/
+            - generic [ref=e1261]:
+              - text: R$160,00
+              - generic [ref=e1262]: R$152,00 com Pix
+              - generic [ref=e1264]:
+                - text: "4"
+                - generic [ref=e1265]: x de
+                - text: R$40,00 sem juros
+        - generic [ref=e1269]:
+          - generic [ref=e1271]:
+            - link "COPO TERMICO DA SELEÇÃO":
+              - /url: https://www.mantossportslem.com.br/produtos/copo-termico-da-selecao-1fawz/
+              - img "COPO TERMICO DA SELEÇÃO" [ref=e1272] [cursor=pointer]
+            - generic: Esgotado
+          - link "COPO TERMICO DA SELEÇÃO" [ref=e1275] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/copo-termico-da-selecao-1fawz/
+            - generic [ref=e1277]:
+              - text: R$49,99
+              - generic [ref=e1278]: R$89,99
+              - generic [ref=e1279]: R$47,49 com Pix
+              - generic [ref=e1281]:
+                - text: "2"
+                - generic [ref=e1282]: x de
+                - text: R$25,00 sem juros
+        - generic [ref=e1286]:
+          - generic [ref=e1288]:
+            - link "TÊNIS NIKE DUNK TWIST BRANCO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-dunk-twist-branco-r4csz/
+              - img "TÊNIS NIKE DUNK TWIST BRANCO" [ref=e1289] [cursor=pointer]
+          - link "TÊNIS NIKE DUNK TWIST BRANCO" [ref=e1292] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-dunk-twist-branco-r4csz/
+            - generic [ref=e1294]:
+              - text: R$190,00
+              - generic [ref=e1295]: R$180,50 com Pix
+              - generic [ref=e1297]:
+                - text: "4"
+                - generic [ref=e1298]: x de
+                - text: R$47,50 sem juros
+            - generic "Compra rápida de TÊNIS NIKE DUNK TWIST BRANCO" [ref=e1301]: Comprar
+        - generic [ref=e1308]:
+          - generic [ref=e1310]:
+            - link "TÊNIS SPORTIVO NIKE AIR ZOOM PEGASUS 41":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-sportivo-nike-air-zoom-pegasus-41-139js/
+              - img "TÊNIS SPORTIVO NIKE AIR ZOOM PEGASUS 41" [ref=e1311] [cursor=pointer]
+          - link "TÊNIS SPORTIVO NIKE AIR ZOOM PEGASUS 41" [ref=e1314] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-sportivo-nike-air-zoom-pegasus-41-139js/
+            - generic [ref=e1316]:
+              - text: R$160,00
+              - generic [ref=e1317]: R$152,00 com Pix
+              - generic [ref=e1319]:
+                - text: "4"
+                - generic [ref=e1320]: x de
+                - text: R$40,00 sem juros
+            - generic "Compra rápida de TÊNIS SPORTIVO NIKE AIR ZOOM PEGASUS 41" [ref=e1323]: Comprar
+        - generic [ref=e1330]:
+          - generic [ref=e1332]:
+            - link "TÊNIS MIZUNO WAVE PROPHECY 14 PRETO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophecy-14-preto-pd504/
+              - img "TÊNIS MIZUNO WAVE PROPHECY 14 PRETO" [ref=e1333] [cursor=pointer]
+          - link "TÊNIS MIZUNO WAVE PROPHECY 14 PRETO" [ref=e1336] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophecy-14-preto-pd504/
+            - generic [ref=e1338]:
+              - text: R$180,00
+              - generic [ref=e1339]: R$171,00 com Pix
+              - generic [ref=e1341]:
+                - text: "4"
+                - generic [ref=e1342]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO WAVE PROPHECY 14 PRETO" [ref=e1345]: Comprar
+        - generic [ref=e1352]:
+          - generic [ref=e1354]:
+            - link "TÊNIS MIZUNO FLOR DE LÓTUS PRETO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-flor-de-lotus-preto/
+              - img "TÊNIS MIZUNO FLOR DE LÓTUS PRETO" [ref=e1355] [cursor=pointer]
+          - link "TÊNIS MIZUNO FLOR DE LÓTUS PRETO" [ref=e1358] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-flor-de-lotus-preto/
+            - generic [ref=e1360]:
+              - text: R$180,00
+              - generic [ref=e1361]: R$171,00 com Pix
+              - generic [ref=e1363]:
+                - text: "4"
+                - generic [ref=e1364]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO FLOR DE LÓTUS PRETO" [ref=e1367]: Comprar
+        - generic [ref=e1374]:
+          - generic [ref=e1376]:
+            - link "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-ls-flor-de-lotus-preto-roxo/
+              - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e1377] [cursor=pointer]
+          - link "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e1380] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-ls-flor-de-lotus-preto-roxo/
+            - generic [ref=e1383]:
+              - generic [ref=e1384]: "-0%"
+              - text: "OFF"
+            - generic [ref=e1385]:
+              - text: R$180,00
+              - generic [ref=e1386]: R$180,00
+              - generic [ref=e1387]: R$171,00 com Pix
+              - generic [ref=e1389]:
+                - text: "4"
+                - generic [ref=e1390]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e1393]: Comprar
+        - generic [ref=e1400]:
+          - generic [ref=e1402]:
+            - link "TÊNIS MIZUNO WAVE PROPHENCY X BRANCO/VERDE":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophency-x-branco-verde/
+              - img "TÊNIS MIZUNO WAVE PROPHENCY X BRANCO/VERDE" [ref=e1403] [cursor=pointer]
+          - link "TÊNIS MIZUNO WAVE PROPHENCY X BRANCO/VERDE" [ref=e1406] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophency-x-branco-verde/
+            - generic [ref=e1408]:
+              - text: R$180,00
+              - generic [ref=e1409]: R$171,00 com Pix
+              - generic [ref=e1411]:
+                - text: "4"
+                - generic [ref=e1412]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO WAVE PROPHENCY X BRANCO/VERDE" [ref=e1415]: Comprar
+        - generic [ref=e1422]:
+          - generic [ref=e1424]:
+            - link "TÊNIS NIKE AIR MAX PLUS TN CINZA":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-max-plus-tn-cinza/
+              - img "TÊNIS NIKE AIR MAX PLUS TN CINZA" [ref=e1425] [cursor=pointer]
+          - link "TÊNIS NIKE AIR MAX PLUS TN CINZA" [ref=e1428] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-max-plus-tn-cinza/
+            - generic [ref=e1430]: 9% OFF Comprando 2 ou mais
+            - generic [ref=e1432]:
+              - text: R$99,00
+              - generic [ref=e1433]: R$160,00
+              - generic [ref=e1434]: R$94,05 com Pix
+              - generic [ref=e1436]:
+                - text: "4"
+                - generic [ref=e1437]: x de
+                - text: R$24,75 sem juros
+            - generic "Compra rápida de TÊNIS NIKE AIR MAX PLUS TN CINZA" [ref=e1440]: Comprar
+        - generic [ref=e1447]:
+          - generic [ref=e1449]:
+            - link "TÊNIS NIKE AIR MAX PLUS TN PRETO/ROXO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-max-plus-tn-preto-roxo/
+              - img "TÊNIS NIKE AIR MAX PLUS TN PRETO/ROXO" [ref=e1450] [cursor=pointer]
+            - generic: Esgotado
+          - link "TÊNIS NIKE AIR MAX PLUS TN PRETO/ROXO" [ref=e1453] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-max-plus-tn-preto-roxo/
+            - generic [ref=e1455]:
+              - text: R$160,00
+              - generic [ref=e1456]: R$152,00 com Pix
+              - generic [ref=e1458]:
+                - text: "4"
+                - generic [ref=e1459]: x de
+                - text: R$40,00 sem juros
+        - generic [ref=e1463]:
+          - generic [ref=e1465]:
+            - link "COPO TERMICO DA SELEÇÃO":
+              - /url: https://www.mantossportslem.com.br/produtos/copo-termico-da-selecao-1fawz/
+              - img "COPO TERMICO DA SELEÇÃO" [ref=e1466] [cursor=pointer]
+            - generic: Esgotado
+          - link "COPO TERMICO DA SELEÇÃO" [ref=e1469] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/copo-termico-da-selecao-1fawz/
+            - generic [ref=e1471]:
+              - text: R$49,99
+              - generic [ref=e1472]: R$89,99
+              - generic [ref=e1473]: R$47,49 com Pix
+              - generic [ref=e1475]:
+                - text: "2"
+                - generic [ref=e1476]: x de
+                - text: R$25,00 sem juros
+        - generic [ref=e1480]:
+          - generic [ref=e1482]:
+            - link "TÊNIS NIKE DUNK TWIST BRANCO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-dunk-twist-branco-r4csz/
+              - img "TÊNIS NIKE DUNK TWIST BRANCO" [ref=e1483] [cursor=pointer]
+          - link "TÊNIS NIKE DUNK TWIST BRANCO" [ref=e1486] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-dunk-twist-branco-r4csz/
+            - generic [ref=e1488]:
+              - text: R$190,00
+              - generic [ref=e1489]: R$180,50 com Pix
+              - generic [ref=e1491]:
+                - text: "4"
+                - generic [ref=e1492]: x de
+                - text: R$47,50 sem juros
+            - generic "Compra rápida de TÊNIS NIKE DUNK TWIST BRANCO" [ref=e1495]: Comprar
+        - generic [ref=e1502]:
+          - generic [ref=e1504]:
+            - link "TÊNIS SPORTIVO NIKE AIR ZOOM PEGASUS 41":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-sportivo-nike-air-zoom-pegasus-41-139js/
+              - img "TÊNIS SPORTIVO NIKE AIR ZOOM PEGASUS 41" [ref=e1505] [cursor=pointer]
+          - link "TÊNIS SPORTIVO NIKE AIR ZOOM PEGASUS 41" [ref=e1508] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-sportivo-nike-air-zoom-pegasus-41-139js/
+            - generic [ref=e1510]:
+              - text: R$160,00
+              - generic [ref=e1511]: R$152,00 com Pix
+              - generic [ref=e1513]:
+                - text: "4"
+                - generic [ref=e1514]: x de
+                - text: R$40,00 sem juros
+            - generic "Compra rápida de TÊNIS SPORTIVO NIKE AIR ZOOM PEGASUS 41" [ref=e1517]: Comprar
+        - generic [ref=e1524]:
+          - generic [ref=e1526]:
+            - link "TÊNIS MIZUNO WAVE PROPHECY 14 PRETO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophecy-14-preto-pd504/
+              - img "TÊNIS MIZUNO WAVE PROPHECY 14 PRETO" [ref=e1527] [cursor=pointer]
+          - link "TÊNIS MIZUNO WAVE PROPHECY 14 PRETO" [ref=e1530] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-wave-prophecy-14-preto-pd504/
+            - generic [ref=e1532]:
+              - text: R$180,00
+              - generic [ref=e1533]: R$171,00 com Pix
+              - generic [ref=e1535]:
+                - text: "4"
+                - generic [ref=e1536]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO WAVE PROPHECY 14 PRETO" [ref=e1539]: Comprar
+        - generic [ref=e1546]:
+          - generic [ref=e1548]:
+            - link "TÊNIS MIZUNO FLOR DE LÓTUS PRETO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-flor-de-lotus-preto/
+              - img "TÊNIS MIZUNO FLOR DE LÓTUS PRETO" [ref=e1549] [cursor=pointer]
+          - link "TÊNIS MIZUNO FLOR DE LÓTUS PRETO" [ref=e1552] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-flor-de-lotus-preto/
+            - generic [ref=e1554]:
+              - text: R$180,00
+              - generic [ref=e1555]: R$171,00 com Pix
+              - generic [ref=e1557]:
+                - text: "4"
+                - generic [ref=e1558]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO FLOR DE LÓTUS PRETO" [ref=e1561]: Comprar
+        - generic [ref=e1568]:
+          - generic [ref=e1570]:
+            - link "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-ls-flor-de-lotus-preto-roxo/
+              - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e1571] [cursor=pointer]
+          - link "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e1574] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-mizuno-ls-flor-de-lotus-preto-roxo/
+            - generic [ref=e1577]:
+              - generic [ref=e1578]: "-0%"
+              - text: "OFF"
+            - generic [ref=e1579]:
+              - text: R$180,00
+              - generic [ref=e1580]: R$180,00
+              - generic [ref=e1581]: R$171,00 com Pix
+              - generic [ref=e1583]:
+                - text: "4"
+                - generic [ref=e1584]: x de
+                - text: R$45,00 sem juros
+            - generic "Compra rápida de TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e1587]: Comprar
+    - generic [ref=e1600]:
+      - heading "Categorias" [level=2] [ref=e1603]
+      - generic [ref=e1607]:
+        - link "Carrossel 1" [ref=e1610] [cursor=pointer]:
+          - /url: https://www.mantossportslem.com.br/tenis-premium1/
+          - img "Banner de Mantos Sports" [ref=e1612]
+          - generic [ref=e1614]:
+            - generic [ref=e1615]: TÊNIS PREMIUM
+            - generic [ref=e1616]: VER MAIS
+        - link "Carrossel 2" [ref=e1619] [cursor=pointer]:
+          - /url: https://www.mantossportslem.com.br/2-por-179/
+          - img "Banner de Mantos Sports" [ref=e1621]
+          - generic [ref=e1623]:
+            - generic [ref=e1624]: 2 POR 180
+            - generic [ref=e1625]: VER MAIS
+        - link "Carrossel 3" [ref=e1628] [cursor=pointer]:
+          - /url: https://www.mantossportslem.com.br/camisa-de-time/
+          - img "Banner de Mantos Sports" [ref=e1630]
+          - generic [ref=e1632]:
+            - generic [ref=e1633]: CAMISA DE TIME
+            - generic [ref=e1634]: VER MAIS
+        - link "Carrossel 4" [ref=e1637] [cursor=pointer]:
+          - /url: https://www.mantossportslem.com.br/camisa-de-time/selecao/
+          - img "Banner de Mantos Sports" [ref=e1639]
+          - generic [ref=e1641]:
+            - generic [ref=e1642]: CAMISAS DO BRASIL
+            - generic [ref=e1643]: VER MAIS
+    - generic [ref=e1646]:
+      - heading "Mais vendidos" [level=2] [ref=e1648]
+      - generic [ref=e1651]:
+        - generic [ref=e1655]:
+          - generic [ref=e1657]:
+            - link "MOLETON OSASCORTE 244":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-oeeog/
+              - img "MOLETON OSASCORTE 244" [ref=e1658] [cursor=pointer]
+          - link "MOLETON OSASCORTE 244" [ref=e1661] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-oeeog/
+            - generic [ref=e1664]:
+              - generic [ref=e1665]: "-32%"
+              - text: "OFF"
+            - generic [ref=e1666]:
+              - text: R$149,99
+              - generic [ref=e1667]: R$219,00
+              - generic [ref=e1668]: R$142,49 com Pix
+              - generic [ref=e1670]:
+                - text: "4"
+                - generic [ref=e1671]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE 244" [ref=e1674]: Comprar
+        - generic [ref=e1681]:
+          - generic [ref=e1683]:
+            - link "MOLETON OSASCORTE GRAU":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-grau-mgks5/
+              - img "MOLETON OSASCORTE GRAU" [ref=e1684] [cursor=pointer]
+          - link "MOLETON OSASCORTE GRAU" [ref=e1687] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-grau-mgks5/
+            - generic [ref=e1690]:
+              - generic [ref=e1691]: "-50%"
+              - text: "OFF"
+            - generic [ref=e1692]:
+              - text: R$149,99
+              - generic [ref=e1693]: R$299,00
+              - generic [ref=e1694]: R$142,49 com Pix
+              - generic [ref=e1696]:
+                - text: "4"
+                - generic [ref=e1697]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE GRAU" [ref=e1700]: Comprar
+        - generic [ref=e1707]:
+          - generic [ref=e1709]:
+            - link "Camisa Seleção Brasileira 2026 /2027":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-selecao-brasileira-2026-2027-162mi/
+              - img "Camisa Seleção Brasileira 2026 /2027" [ref=e1710] [cursor=pointer]
+            - generic: Esgotado
+          - link "Camisa Seleção Brasileira 2026 /2027" [ref=e1713] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-selecao-brasileira-2026-2027-162mi/
+            - generic [ref=e1715]:
+              - text: R$101,50
+              - generic [ref=e1716]: R$160,00
+              - generic [ref=e1718]:
+                - text: "4"
+                - generic [ref=e1719]: x de
+                - text: R$25,38 sem juros
+        - generic [ref=e1723]:
+          - generic [ref=e1725]:
+            - link "MOLETON OSASCORTE 244":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-ldcd0/
+              - img "MOLETON OSASCORTE 244" [ref=e1726] [cursor=pointer]
+          - link "MOLETON OSASCORTE 244" [ref=e1729] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-ldcd0/
+            - generic [ref=e1732]:
+              - generic [ref=e1733]: "-32%"
+              - text: "OFF"
+            - generic [ref=e1734]:
+              - text: R$149,99
+              - generic [ref=e1735]: R$219,00
+              - generic [ref=e1736]: R$142,49 com Pix
+              - generic [ref=e1738]:
+                - text: "4"
+                - generic [ref=e1739]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE 244" [ref=e1742]: Comprar
+        - generic [ref=e1749]:
+          - generic [ref=e1751]:
+            - link "MOLETON OSASCORTE PERNA LONGA AZUL":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-perna-longa-azul-k7fkt/
+              - img "MOLETON OSASCORTE PERNA LONGA AZUL" [ref=e1752] [cursor=pointer]
+          - link "MOLETON OSASCORTE PERNA LONGA AZUL" [ref=e1755] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-perna-longa-azul-k7fkt/
+            - generic [ref=e1758]:
+              - generic [ref=e1759]: "-32%"
+              - text: "OFF"
+            - generic [ref=e1760]:
+              - text: R$149,99
+              - generic [ref=e1761]: R$219,00
+              - generic [ref=e1762]: R$142,49 com Pix
+              - generic [ref=e1764]:
+                - text: "4"
+                - generic [ref=e1765]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE PERNA LONGA AZUL" [ref=e1768]: Comprar
+        - generic [ref=e1775]:
+          - generic [ref=e1777]:
+            - link "MOLETON OSASCORTE 244":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-oeeog/
+              - img "MOLETON OSASCORTE 244" [ref=e1778] [cursor=pointer]
+          - link "MOLETON OSASCORTE 244" [ref=e1781] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-oeeog/
+            - generic [ref=e1784]:
+              - generic [ref=e1785]: "-32%"
+              - text: "OFF"
+            - generic [ref=e1786]:
+              - text: R$149,99
+              - generic [ref=e1787]: R$219,00
+              - generic [ref=e1788]: R$142,49 com Pix
+              - generic [ref=e1790]:
+                - text: "4"
+                - generic [ref=e1791]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE 244" [ref=e1794]: Comprar
+        - generic [ref=e1801]:
+          - generic [ref=e1803]:
+            - link "MOLETON OSASCORTE GRAU":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-grau-mgks5/
+              - img "MOLETON OSASCORTE GRAU" [ref=e1804] [cursor=pointer]
+          - link "MOLETON OSASCORTE GRAU" [ref=e1807] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-grau-mgks5/
+            - generic [ref=e1810]:
+              - generic [ref=e1811]: "-50%"
+              - text: "OFF"
+            - generic [ref=e1812]:
+              - text: R$149,99
+              - generic [ref=e1813]: R$299,00
+              - generic [ref=e1814]: R$142,49 com Pix
+              - generic [ref=e1816]:
+                - text: "4"
+                - generic [ref=e1817]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE GRAU" [ref=e1820]: Comprar
+        - generic [ref=e1827]:
+          - generic [ref=e1829]:
+            - link "Camisa Seleção Brasileira 2026 /2027":
+              - /url: https://www.mantossportslem.com.br/produtos/camisa-selecao-brasileira-2026-2027-162mi/
+              - img "Camisa Seleção Brasileira 2026 /2027" [ref=e1830] [cursor=pointer]
+            - generic: Esgotado
+          - link "Camisa Seleção Brasileira 2026 /2027" [ref=e1833] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/camisa-selecao-brasileira-2026-2027-162mi/
+            - generic [ref=e1835]:
+              - text: R$101,50
+              - generic [ref=e1836]: R$160,00
+              - generic [ref=e1838]:
+                - text: "4"
+                - generic [ref=e1839]: x de
+                - text: R$25,38 sem juros
+        - generic [ref=e1843]:
+          - generic [ref=e1845]:
+            - link "MOLETON OSASCORTE 244":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-ldcd0/
+              - img "MOLETON OSASCORTE 244" [ref=e1846] [cursor=pointer]
+          - link "MOLETON OSASCORTE 244" [ref=e1849] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-ldcd0/
+            - generic [ref=e1852]:
+              - generic [ref=e1853]: "-32%"
+              - text: "OFF"
+            - generic [ref=e1854]:
+              - text: R$149,99
+              - generic [ref=e1855]: R$219,00
+              - generic [ref=e1856]: R$142,49 com Pix
+              - generic [ref=e1858]:
+                - text: "4"
+                - generic [ref=e1859]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE 244" [ref=e1862]: Comprar
+        - generic [ref=e1869]:
+          - generic [ref=e1871]:
+            - link "MOLETON OSASCORTE PERNA LONGA AZUL":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-perna-longa-azul-k7fkt/
+              - img "MOLETON OSASCORTE PERNA LONGA AZUL" [ref=e1872] [cursor=pointer]
+          - link "MOLETON OSASCORTE PERNA LONGA AZUL" [ref=e1875] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-perna-longa-azul-k7fkt/
+            - generic [ref=e1878]:
+              - generic [ref=e1879]: "-32%"
+              - text: "OFF"
+            - generic [ref=e1880]:
+              - text: R$149,99
+              - generic [ref=e1881]: R$219,00
+              - generic [ref=e1882]: R$142,49 com Pix
+              - generic [ref=e1884]:
+                - text: "4"
+                - generic [ref=e1885]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE PERNA LONGA AZUL" [ref=e1888]: Comprar
+        - generic [ref=e1895]:
+          - generic [ref=e1897]:
+            - link "MOLETON OSASCORTE 244":
+              - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-oeeog/
+              - img "MOLETON OSASCORTE 244" [ref=e1898] [cursor=pointer]
+          - link "MOLETON OSASCORTE 244" [ref=e1901] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/moleton-osascorte-244-oeeog/
+            - generic [ref=e1904]:
+              - generic [ref=e1905]: "-32%"
+              - text: "OFF"
+            - generic [ref=e1906]:
+              - text: R$149,99
+              - generic [ref=e1907]: R$219,00
+              - generic [ref=e1908]: R$142,49 com Pix
+              - generic [ref=e1910]:
+                - text: "4"
+                - generic [ref=e1911]: x de
+                - text: R$37,50 sem juros
+            - generic "Compra rápida de MOLETON OSASCORTE 244" [ref=e1914]: Comprar
+    - generic [ref=e1929]:
+      - generic [ref=e1937]:
+        - heading "Entrega rapída" [level=3] [ref=e1938]
+        - paragraph [ref=e1939]: Enviamos para todo o Brasil
+      - generic [ref=e1947]:
+        - heading "Pague Parcelado" [level=3] [ref=e1948]
+        - paragraph [ref=e1949]: Em até 12x
+      - generic [ref=e1957]:
+        - heading "Entre em contato" [level=3] [ref=e1958]
+        - paragraph [ref=e1959]: E tire suas duvidas
+    - generic [ref=e1962]:
+      - heading "Promoções" [level=2] [ref=e1964]
+      - generic [ref=e1967]:
+        - generic [ref=e1971]:
+          - generic [ref=e1973]:
+            - link "TÊNIS NIKE TN PRETO/ ROXO":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-tn-preto-roxo/
+              - img "TÊNIS NIKE TN PRETO/ ROXO" [ref=e1974] [cursor=pointer]
+          - link "TÊNIS NIKE TN PRETO/ ROXO" [ref=e1977] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-tn-preto-roxo/
+            - generic [ref=e1979]: 9% OFF Comprando 2 ou mais
+            - generic [ref=e1981]:
+              - text: R$99,00
+              - generic [ref=e1982]: R$140,00
+              - generic [ref=e1983]: R$94,05 com Pix
+              - generic [ref=e1985]:
+                - text: "4"
+                - generic [ref=e1986]: x de
+                - text: R$24,75 sem juros
+            - generic "Compra rápida de TÊNIS NIKE TN PRETO/ ROXO" [ref=e1989]: Comprar
+        - generic [ref=e1996]:
+          - generic [ref=e1998]:
+            - link "TÊNIS NK VAPORMAX RUN UTILITY":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nk-vapormax-run-utility-o5vtq/
+              - img "TÊNIS NK VAPORMAX RUN UTILITY" [ref=e1999] [cursor=pointer]
+          - link "TÊNIS NK VAPORMAX RUN UTILITY" [ref=e2002] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nk-vapormax-run-utility-o5vtq/
+            - generic [ref=e2004]: 9% OFF Comprando 2 ou mais
+            - generic [ref=e2006]:
+              - text: R$89,00
+              - generic [ref=e2007]: R$170,00
+              - generic [ref=e2008]: R$84,55 com Pix
+              - generic [ref=e2010]:
+                - text: "4"
+                - generic [ref=e2011]: x de
+                - text: R$22,25 sem juros
+            - generic "Compra rápida de TÊNIS NK VAPORMAX RUN UTILITY" [ref=e2014]: Comprar
+        - generic [ref=e2021]:
+          - generic [ref=e2023]:
+            - link "TÊNIS NIKE AIR MAX PLUS TN BRANCO/LARANJA":
+              - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-max-plus-tn-branco-laranja/
+              - img "TÊNIS NIKE AIR MAX PLUS TN BRANCO/LARANJA" [ref=e2024] [cursor=pointer]
+          - link "TÊNIS NIKE AIR MAX PLUS TN BRANCO/LARANJA" [ref=e2027] [cursor=pointer]:
+            - /url: https://www.mantossportslem.com.br/produtos/tenis-nike-air-max-plus-tn-branco-laranja/
+            - generic [ref=e2029]: 9% OFF Comprando 2 ou mais
+            - generic [ref=e2031]:
+              - text: R$99,00
+              - generic [ref=e2032]: R$160,00
+              - generic [ref=e2033]: R$94,05 com Pix
+              - generic [ref=e2035]:
+                - text: "4"
+                - generic [ref=e2036]: x de
+                - text: R$24,75 sem juros
+            - generic "Compra rápida de TÊNIS NIKE AIR MAX PLUS TN BRANCO/LARANJA" [ref=e2039]: Comprar
+    - generic [ref=e2046]:
+      - heading "Depoimentos" [level=2] [ref=e2048]
+      - generic [ref=e2053]:
+        - img "Emerso Silva" [ref=e2055]
+        - heading "Emerso Silva" [level=3] [ref=e2057]
+        - paragraph [ref=e2058]: Produtos de otima qualidade, chegou rápido!
+    - generic [ref=e2063]:
+      - heading "Newsletter" [level=2] [ref=e2064]
+      - paragraph [ref=e2065]: Quer receber nossas ofertas? Cadastre-se e comece a recebê-las!
+      - generic [ref=e2067]:
+        - textbox "E-mail" [ref=e2070]
+        - button "Enviar" [ref=e2072] [cursor=pointer]
+    - generic [ref=e2077]:
+      - generic [ref=e2079]:
+        - generic [ref=e2087]:
+          - link [ref=e2089] [cursor=pointer]:
+            - /url: "#"
+            - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e2090]
+          - link [ref=e2092] [cursor=pointer]:
+            - /url: "#"
+            - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO - comprar online" [ref=e2093]
+          - link [ref=e2095] [cursor=pointer]:
+            - /url: "#"
+            - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO na internet" [ref=e2096]
+          - link [ref=e2098] [cursor=pointer]:
+            - /url: "#"
+            - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO - Mantos Sports" [ref=e2099]
+        - generic [ref=e2106]:
+          - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [ref=e2109]
+          - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO - comprar online" [ref=e2112]
+          - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO na internet" [ref=e2115]
+          - img "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO - Mantos Sports" [ref=e2118]
+      - generic [ref=e2119]:
+        - generic [ref=e2120]:
+          - heading "TÊNIS MIZUNO LS FLOR DE LÓTUS PRETO/ROXO" [level=2] [ref=e2121]
+          - generic [ref=e2123]:
+            - generic [ref=e2124]: "-0%"
+            - text: "OFF"
+          - generic [ref=e2125]:
+            - generic [ref=e2126]:
+              - generic [ref=e2127]: R$180,00
+              - generic [ref=e2129]: R$180,00
+              - generic [ref=e2131]: R$171,00 com Pix
+            - generic [ref=e2133]:
+              - text: "4"
+              - generic [ref=e2134]: x de
+              - text: R$45,00 sem juros
+            - generic [ref=e2135]: 5% de desconto pagando com Pix
+            - generic [ref=e2136]:
+              - text: Frete grátis
+              - generic [ref=e2137]: a partir de R$299,00
+          - generic [ref=e2138]:
+            - generic [ref=e2139]:
+              - generic [ref=e2140]:
+                - generic [ref=e2141]:
+                  - text: "Cor:"
+                  - strong [ref=e2142]: PRETO/ROXO
+                - generic "PRETO/ROXO" [ref=e2143] [cursor=pointer]
+              - generic [ref=e2146]:
+                - generic [ref=e2147]:
+                  - text: "Tamanho:"
+                  - strong [ref=e2148]: "39"
+                - generic "39" [ref=e2149] [cursor=pointer]
+                - generic "40" [ref=e2151] [cursor=pointer]
+                - generic "41" [ref=e2153] [cursor=pointer]
+                - generic "42" [ref=e2155] [cursor=pointer]
+                - generic "43" [ref=e2157] [cursor=pointer]
+                - generic "38" [ref=e2159] [cursor=pointer]
+            - generic [ref=e2161]:
+              - spinbutton "Alterar quantidade" [ref=e2169]: "1"
+              - button "Comprar" [ref=e2174] [cursor=pointer]
+        - generic [ref=e2176]:
+          - generic [ref=e2177]:
+            - heading "TÊNIS MIZUNO LS FLOR DE LÓTUS" [level=2] [ref=e2178]
+            - heading "Descrição do Produto" [level=3] [ref=e2179]
+            - paragraph [ref=e2180]:
+              - text: Descubra o
+              - strong [ref=e2181]: TÊNIS MIZUNO LS FLOR DE LÓTUS
+              - text: ", a combinação perfeita de estilo e"
+              - strong [ref=e2182]: conforto
+              - text: "! Este tênis foi projetado para quem não abre mão de um look moderno, mas também valoriza o bem-estar durante o dia a dia."
+            - paragraph [ref=e2183]: Confeccionado com materiais de alta qualidade, o TÊNIS MIZUNO oferece um ajuste ideal e uma sensação de leveza a cada passo. Seja para uma corrida ao ar livre ou para o lazer, esse modelo garante suporte e estabilidade, permitindo que você se mova com liberdade.
+            - heading "Destaques:" [level=3] [ref=e2184]
+            - list [ref=e2185]:
+              - listitem [ref=e2186]:
+                - strong [ref=e2187]: Confortável
+                - text: ": Ideal para o dia a dia, proporciona uma experiência agradável em qualquer atividade."
+              - listitem [ref=e2188]:
+                - strong [ref=e2189]: Design Moderno
+                - text: ": A combinação de preto e roxo traz um toque de elegância e estilo ao seu visual."
+              - listitem [ref=e2190]:
+                - strong [ref=e2191]: Versatilidade
+                - text: ": Perfeito para diversas ocasiões, do treino à saída com amigos."
+            - paragraph [ref=e2192]:
+              - text: Adicione o
+              - strong [ref=e2193]: TÊNIS MIZUNO LS FLOR DE LÓTUS
+              - text: à sua coleção e sinta a diferença no seu desempenho e estilo!
+              - strong [ref=e2194]: Garantia do Fabricante
+              - text: ": Contra defeito de fabricação"
+              - strong [ref=e2195]: Origem
+              - text: ": 1ª Linha Nacional"
+              - strong [ref=e2196]: Fotos
+              - text: ": Reais"
+            - paragraph [ref=e2197]
+            - paragraph [ref=e2198]
+          - generic [ref=e2199]: Ver mais
+  - link "Fale conosco pelo WhatsApp" [ref=e2201] [cursor=pointer]:
+    - /url: https://wa.me/5577988380352
+  - contentinfo [ref=e2204]:
+    - link "instagram Mantos Sports" [ref=e2206] [cursor=pointer]:
+      - /url: https://instagram.com/mantosspoprtslme
+    - generic [ref=e2210]:
+      - generic [ref=e2211]:
+        - generic [ref=e2212]: Departamentos
+        - list [ref=e2215]:
+          - listitem [ref=e2216]:
+            - link "Início" [ref=e2217] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e2218]:
+            - link "Produtos" [ref=e2219] [cursor=pointer]:
+              - /url: https://www.mantossportslem.com.br/produtos/
+          - listitem [ref=e2220]:
+            - link "Contato" [ref=e2221] [cursor=pointer]:
+              - /url: /contato/
+          - listitem [ref=e2222]:
+            - link "Como Comprar" [ref=e2223] [cursor=pointer]:
+              - /url: https://www.mantossportslem.com.br/como-comprar/
+          - listitem [ref=e2224]:
+            - link "Trocas e Devoluções" [ref=e2225] [cursor=pointer]:
+              - /url: https://www.mantossportslem.com.br/trocas-e-devolucoes/
+          - listitem [ref=e2226]:
+            - link "Trocas e Devoluções" [ref=e2227] [cursor=pointer]:
+              - /url: https://www.mantossportslem.com.br/trocas-e-devolucoes1/
+      - generic [ref=e2228]:
+        - generic [ref=e2229]: Entre em contato
+        - list [ref=e2232]:
+          - listitem [ref=e2233]:
+            - link "5577988380352" [ref=e2234] [cursor=pointer]:
+              - /url: https://wa.me/5577988380352
+          - listitem [ref=e2235]:
+            - link "77981191096" [ref=e2236] [cursor=pointer]:
+              - /url: tel:77981191096
+          - listitem [ref=e2237]:
+            - link "mantossportsba@gmail.com" [ref=e2238] [cursor=pointer]:
+              - /url: mailto:mantossportsba@gmail.com
+          - listitem [ref=e2239]: Rua José Cardoso de Lima Centro 721
+      - generic [ref=e2241]:
+        - generic [ref=e2242]: Newsletter
+        - generic [ref=e2244]:
+          - textbox "E-mail" [ref=e2247]:
+            - /placeholder: Cadastre seu e-mail...
+          - button "Enviar" [ref=e2249] [cursor=pointer]
+    - generic [ref=e2252]:
+      - generic [ref=e2253]:
+        - generic [ref=e2254]: Meios de pagamento
+        - generic [ref=e2255]:
+          - img "visa" [ref=e2256]
+          - img "mastercard" [ref=e2257]
+          - img "amex" [ref=e2258]
+          - img "diners" [ref=e2259]
+          - img "br_aura" [ref=e2260]
+          - img "br_elo" [ref=e2261]
+          - img "br_hipercard" [ref=e2262]
+          - img "br_discover" [ref=e2263]
+          - img "boleto" [ref=e2264]
+          - img "payment-method-types_pix" [ref=e2265]
+      - generic [ref=e2266]:
+        - generic [ref=e2267]: Meios de envio
+        - generic [ref=e2268]:
+          - img "api_4190" [ref=e2269]
+          - img "api_8257" [ref=e2270]
+    - generic [ref=e2273]:
+      - generic [ref=e2274]: Copyright Mantos Sports Lem - 48902900000150 - 2026. Todos os direitos reservados.
+      - link [ref=e2278] [cursor=pointer]:
+        - /url: https://www.nuvemshop.com.br?utm_source=www.mantossportslem.com.br&utm_medium=referral&utm_campaign=footerSlogan
+        - img "Nuvemshop" [ref=e2279]

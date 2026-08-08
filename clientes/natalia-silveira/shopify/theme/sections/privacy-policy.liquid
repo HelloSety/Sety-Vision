@@ -1,0 +1,35 @@
+<div class="page-wrap" style="max-width:800px;margin:80px auto;padding:0 24px;">
+  <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;letter-spacing:4px;margin-bottom:32px;text-align:center;">
+    {{ section.settings.page_title | default: 'POLÍTICA DE PRIVACIDADE' }}
+  </h1>
+  <hr style="border:none;border-top:1px solid #E5E5E5;margin-bottom:32px;">
+  <div class="rte">{{ section.settings.body_text | newline_to_br }}</div>
+</div>
+
+<style>
+  .page-wrap .rte { font-family: Jost, sans-serif; font-size: 14px; line-height: 1.8; color: #444; }
+</style>
+
+{% schema %}
+{
+  "name": "Política de Privacidade",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Título da página",
+      "default": "POLÍTICA DE PRIVACIDADE"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Texto",
+      "default": "A Natalia Silveira respeita a sua privacidade e segue a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018) no tratamento de todas as informações fornecidas por nossas clientes.\n\nQuais dados coletamos\n\nColetamos nome, e-mail, telefone, endereço de entrega e, quando necessário para a confecção da peça sob medida, medidas corporais informadas voluntariamente pela cliente após a confirmação do pedido.\n\nComo usamos seus dados\n\nUtilizamos essas informações exclusivamente para processar pedidos, confeccionar peças sob medida, realizar entregas, prestar atendimento e, mediante autorização, enviar novidades e ofertas por e-mail ou WhatsApp.\n\nCompartilhamento\n\nNão vendemos nem compartilhamos seus dados com terceiros, exceto com parceiros essenciais à operação (transportadoras e meios de pagamento), estritamente para viabilizar a entrega e o processamento do pedido.\n\nArmazenamento e segurança\n\nSeus dados são armazenados em ambiente seguro e mantidos apenas pelo tempo necessário para cumprir as finalidades descritas nesta política ou obrigações legais.\n\nSeus direitos\n\nVocê pode, a qualquer momento, solicitar acesso, correção, exclusão ou portabilidade dos seus dados, além de revogar consentimentos dados anteriormente, entrando em contato pelo WhatsApp ou e-mail informados no rodapé do site.\n\nCookies\n\nUtilizamos cookies para melhorar sua experiência de navegação e personalizar conteúdo. Você pode desativá-los nas configurações do seu navegador a qualquer momento."
+    }
+  ],
+  "presets": [
+    { "name": "Política de Privacidade" }
+  ]
+}
+{% endschema %}
+</content>

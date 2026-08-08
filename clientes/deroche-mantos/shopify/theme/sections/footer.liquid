@@ -1,0 +1,56 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        {%- if settings.logo -%}
+          {{ settings.logo | image_tag: width: 400, alt: shop.name }}
+        {%- else -%}
+          <img src="{{ 'logo-real-dark.png' | asset_url }}" alt="{{ shop.name }}" width="500" height="490">
+        {%- endif -%}
+        <p>{{ section.settings.footer_text | default: 'Camisas de futebol, NBA, streetwear, perfumes, óculos e acessórios com qualidade premium.' }}</p>
+      </div>
+      <div>
+        <h4>Menu do Rodapé</h4>
+        <ul>
+          {%- for link in linklists[section.settings.footer_menu].links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      <div>
+        <h4>Central de Atendimento</h4>
+        <ul>
+          <li>{{ section.settings.support_hours | default: 'Atendimento: seg. a sáb. 9h às 18h' }}</li>
+          <li>Contato: {{ section.settings.support_phone | default: '(69) 99380-6867' }}</li>
+          <li>Email: {{ section.settings.support_email | default: 'suportederoche@outlook.com' }}</li>
+        </ul>
+        <a class="footer-whats" href="https://wa.me/{{ settings.whatsapp_number | default: '556993806867' }}" target="_blank" rel="noopener">💬 Atendimento via WhatsApp</a>
+      </div>
+      <div>
+        <h4>Formas de Pagamento</h4>
+        <div class="payment-icons">
+          <span>VISA</span><span>MASTER</span><span>PIX</span><span>ELO</span><span>AMEX</span><span>BOLETO</span>
+        </div>
+        <h4 style="margin-top:26px">Loja Verificada</h4>
+        <div class="trust-badges">
+          <span>✓ Google Seguro</span>
+          <span>✓ Compra Segura</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© {{ 'now' | date: '%Y' }} {{ shop.name }}. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Rodapé",
+  "settings": [
+    { "type": "link_list", "id": "footer_menu", "label": "Menu do rodapé", "default": "footer" },
+    { "type": "textarea", "id": "footer_text", "label": "Texto institucional curto" },
+    { "type": "text", "id": "support_hours", "label": "Horário de atendimento" },
+    { "type": "text", "id": "support_phone", "label": "Telefone de atendimento" },
+    { "type": "text", "id": "support_email", "label": "Email de atendimento" }
+  ]
+}
+{% endschema %}

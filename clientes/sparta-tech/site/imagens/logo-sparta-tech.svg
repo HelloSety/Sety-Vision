@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 64" fill="none">
+  <!-- Ícone: capacete espartano estilizado em low-poly/circuito -->
+  <g transform="translate(2,4)">
+    <path d="M28 2 L52 14 L52 34 C52 46 40 54 28 58 C16 54 4 46 4 34 L4 14 Z" fill="#151A23" stroke="#2E6BFF" stroke-width="2"/>
+    <path d="M28 2 L28 58" stroke="#2E6BFF" stroke-width="2"/>
+    <path d="M4 22 L52 22" stroke="#2E6BFF" stroke-width="1.4" opacity="0.55"/>
+    <path d="M14 40 C14 30 20 24 28 24 C36 24 42 30 42 40" stroke="#7C8798" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="28" cy="14" r="3.2" fill="#2E6BFF"/>
+  </g>
+  <text x="72" y="30" font-family="Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="0.5" fill="#0B0E14">SPARTA</text>
+  <text x="72" y="52" font-family="Arial, sans-serif" font-size="26" font-weight="800" letter-spacing="2" fill="#2E6BFF">TECH</text>
+</svg>

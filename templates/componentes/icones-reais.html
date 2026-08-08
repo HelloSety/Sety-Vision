@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sety Studio — Sprite de Ícones Reais (nunca emoji)</title>
+<style>
+  body { font-family: system-ui, sans-serif; background:#f4f4f4; padding: 32px; color:#111; }
+  h1 { font-size: 20px; }
+  p.regra { background:#111; color:#fff; padding:12px 16px; border-radius:8px; font-size:14px; max-width:640px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap:16px; margin-top:24px; }
+  .item { background:#fff; border:1px solid #e2e2e2; border-radius:10px; padding:16px; display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .item svg, .item img { height:28px; }
+  .item code { font-size:11px; color:#666; text-align:center; }
+  section { margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<h1>Sety Studio — Biblioteca de Ícones Reais</h1>
+<p class="regra">Regra fixa: nunca usar emoji (nem Unicode 🔒📦💳, nem Apple emoji) em site de cliente. Todo ícone é SVG real de marca/função — copiar o &lt;svg&gt; inline daqui, nunca imagem rasterizada.</p>
+
+<section>
+<h2>Formas de pagamento (bloco "Formas de Pagamento" no checkout)</h2>
+<div class="grid">
+
+<div class="item">
+<svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+<code>Visa</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+<code>Mastercard</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><circle cx="18" cy="16" r="7" fill="#FFCB05"/><circle cx="27" cy="16" r="7" fill="#00A4E0" fill-opacity="0.85"/><circle cx="22.5" cy="21" r="7" fill="#EF4123" fill-opacity="0.85"/></svg>
+<code>Elo</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#B4151B"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#fff" text-anchor="middle">Hipercard</text></svg>
+<code>Hipercard</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#2E77BC"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#fff" text-anchor="middle">AMEX</text></svg>
+<code>American Express</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><circle cx="18" cy="16" r="8" fill="#F68121"/><text x="30" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="8" fill="#111">DISC</text></svg>
+<code>Discover</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+<code>Pix</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#003087">boleto</text></svg>
+<code>Boleto</code>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>WhatsApp (botão flutuante + CTA "Comprar pelo WhatsApp")</h2>
+<div class="grid">
+<div class="item">
+<svg viewBox="0 0 32 32" width="32" height="32"><circle cx="16" cy="16" r="16" fill="#25D366"/><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+<code>WhatsApp (botão flutuante)</code>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Confiança / frete / segurança (nunca 🔒 📦 ✅)</h2>
+<div class="grid">
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+<code>Selo de segurança</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg>
+<code>Frete grátis (caminhão)</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+<code>Compra segura (cadeado)</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h13l4 4v8h-3"/><circle cx="7.5" cy="18.5" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/><path d="M3 6v10h4"/></svg>
+<code>Envio prioritário</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#111" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l6-9h6l6 9-6 9H9z"/><path d="M9 12h6M12 9v6"/></svg>
+<code>Régua / tabela de medidas</code>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>Interface (sacola, busca, usuário, seta de carrossel, quantidade)</h2>
+<div class="grid">
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l1 12H5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+<code>Sacola / carrinho</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+<code>Busca</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+<code>Usuário / login</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.5" fill="#fff" stroke="#ddd"/><path d="M14 8l-4 4 4 4"/></svg>
+<code>Seta carrossel (esquerda)</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#111" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10.5" fill="#fff" stroke="#ddd"/><path d="M10 8l4 4-4 4"/></svg>
+<code>Seta carrossel (direita)</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/></svg>
+<code>Quantidade −</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+<code>Quantidade +</code>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>Redes sociais (footer)</h2>
+<div class="grid">
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="6" fill="#111"/><path fill="#fff" d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.5 6.5a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0z"/></svg>
+<code>Instagram</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="6" fill="#111"/><path fill="#fff" d="M14 8.6h1.8V6h-2c-2 0-3.3 1.3-3.3 3.4V11H8.7v2.6h1.8V19h2.7v-5.4h1.8l.4-2.6h-2.2V9.6c0-.6.3-1 1-1z"/></svg>
+<code>Facebook</code>
+</div>
+
+<div class="item">
+<svg viewBox="0 0 24 24" width="24" height="24"><rect width="24" height="24" rx="6" fill="#111"/><path fill="#fff" d="M16.7 6c.3 1.4 1.2 2.4 2.6 2.6v1.9c-.9 0-1.8-.3-2.6-.8v4.6c0 2.4-1.9 4-4.1 4-1.7 0-3.2-1-3.8-2.5-.9-2.2.4-4.9 3.1-5.3.3 0 .6-.1.9 0v2c-.2 0-.5-.1-.8 0-1.1.2-1.8 1.2-1.6 2.3.2 1.1 1.3 1.8 2.4 1.6.9-.2 1.5-1 1.5-2V6h2.4z"/></svg>
+<code>TikTok</code>
+</div>
+
+</div>
+</section>
+
+</body>
+</html>

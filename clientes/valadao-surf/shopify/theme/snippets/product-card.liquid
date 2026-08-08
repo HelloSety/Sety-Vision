@@ -1,0 +1,23 @@
+{%- comment -%} Espera variável `product` no escopo {%- endcomment -%}
+<a class="card" href="{{ product.url }}">
+  <div class="card-img">
+    {%- if product.available == false -%}
+      <span class="badge badge-esgotado">Esgotado</span>
+    {%- endif -%}
+    {%- if product.compare_at_price > product.price -%}
+      <span class="badge-desconto">-{{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% NO PIX</span>
+    {%- else -%}
+      <span class="badge-desconto">-10% NO PIX</span>
+    {%- endif -%}
+    {%- if product.featured_image -%}
+      <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | default: product.title }}" loading="lazy" width="800" height="{{ 800 | divided_by: product.featured_image.aspect_ratio }}">
+    {%- else -%}
+      <img src="{{ 'default-hero.jpg' | asset_url }}" alt="{{ product.title }}" loading="lazy" width="800" height="533">
+    {%- endif -%}
+  </div>
+  <div class="card-body">
+    <h3>{{ product.title }}</h3>
+    <div class="price-row"><span class="price-now">{{ product.price | money }}</span></div>
+    <span class="price-pix">{{ product.price | times: 0.9 | money }} no Pix (10% OFF)</span>
+  </div>
+</a>

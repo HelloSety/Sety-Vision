@@ -1,0 +1,47 @@
+<header class="site-header">
+  <div class="header-top">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" name="q" placeholder="O que você está buscando?" value="{{ search.terms | escape }}">
+    </form>
+
+    <a href="{{ routes.root_url }}" class="logo">
+      {%- if settings.logo -%}
+        {{ settings.logo | image_tag: width: 400, alt: shop.name }}
+      {%- else -%}
+        <img src="{{ 'logo-white.png' | asset_url }}" alt="{{ shop.name }}" width="420" height="210">
+      {%- endif -%}
+    </a>
+
+    <div class="header-icons">
+      <a class="icon-link" href="{{ routes.account_url }}">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>{% if customer %}Minha Conta{% else %}Entrar{% endif %}</span>
+      </a>
+      <a class="icon-link cart-trigger" href="{{ routes.cart_url }}">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+
+  <nav class="main-nav">
+    {%- for link in linklists[settings.main_menu].links -%}
+      <a href="{{ link.url }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a>
+    {%- endfor -%}
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Cabeçalho",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "main_menu",
+      "label": "Menu de navegação",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

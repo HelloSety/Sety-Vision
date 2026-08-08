@@ -1,0 +1,189 @@
+{%- assign product = product -%}
+{%- assign personalizable_tag = false -%}
+{%- for tag in product.tags -%}
+  {%- if tag == 'personalizavel' -%}{%- assign personalizable_tag = true -%}{%- endif -%}
+{%- endfor -%}
+
+<section class="product-page container">
+  <div class="breadcrumb">
+    <a href="{{ routes.root_url }}">Início</a> /
+    <a href="{{ routes.all_products_collection_url }}">Produtos</a> /
+    <span>{{ product.title }}</span>
+  </div>
+
+  {%- form 'product', product, class: 'product-layout', id: 'product-form' -%}
+    <div class="product-media">
+      <div class="product-img">
+        {%- if product.selected_or_first_available_variant.image -%}
+          <img id="main-product-img" src="{{ product.selected_or_first_available_variant.image | image_url: width: 1200 }}" alt="{{ product.title }}" width="1200" height="{{ 1200 | divided_by: product.selected_or_first_available_variant.image.aspect_ratio }}" loading="eager">
+        {%- elsif product.featured_image -%}
+          <img id="main-product-img" src="{{ product.featured_image | image_url: width: 1200 }}" alt="{{ product.title }}" width="1200" height="{{ 1200 | divided_by: product.featured_image.aspect_ratio }}" loading="eager">
+        {%- else -%}
+          <img id="main-product-img" src="{{ 'default-hero.jpg' | asset_url }}" alt="{{ product.title }}" width="1600" height="1067">
+        {%- endif -%}
+      </div>
+      {%- if product.images.size > 1 -%}
+        <div class="gallery-thumbs" id="gallery-thumbs">
+          {%- for image in product.images -%}
+            <button type="button" class="{% if forloop.first %}active{% endif %}" data-full="{{ image | image_url: width: 1200 }}" aria-label="Ver imagem {{ forloop.index }} de {{ product.title }}">
+              <img src="{{ image | image_url: width: 160 }}" alt="{{ product.title }} - imagem {{ forloop.index }}" width="160" height="160" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="product-info">
+      <div class="pd-badges">
+        <span class="badge-offer">10% OFF NO PIX</span>
+        <span class="badge-quality">PEÇA ORIGINAL</span>
+      </div>
+      {%- if product.vendor != blank -%}
+        <span class="vendor" style="font-size:11.5px;font-weight:800;text-transform:uppercase;color:var(--accent-ink);letter-spacing:.4px;margin-bottom:6px;display:block">{{ product.vendor }}</span>
+      {%- endif -%}
+      <h1>{{ product.title }}</h1>
+
+      <div class="product-price-row">
+        {%- if product.compare_at_price > product.price -%}
+          <span class="price-old">{{ product.compare_at_price | money }}</span>
+        {%- endif -%}
+        <span class="price-now">{{ product.price | money }}</span>
+      </div>
+      <span class="price-pix">ou em até 3x de {{ product.price | divided_by: 3.0 | money }} sem juros</span>
+
+      <div class="pix-block">
+        <svg width="26" height="26" viewBox="0 0 24 24"><g transform="translate(12,12)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+        <span>{{ product.price | times: 0.9 | money }} no Pix (10% OFF)</span>
+        <span class="badge-priority" style="margin-left:auto">Envio Prioritário</span>
+      </div>
+
+      {%- assign size_option_index = -1 -%}
+      {%- for option in product.options_with_values -%}
+        {%- if option.name == 'Tamanho' or option.name == 'Size' -%}
+          {%- assign size_option_index = forloop.index0 -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      {%- if size_option_index > -1 -%}
+        <span class="size-label">Tamanho</span>
+        <div class="size-grid" id="size-grid">
+          {%- assign opt_key = size_option_index | plus: 1 | prepend: 'option' -%}
+          {%- for value in product.options_with_values[size_option_index].values -%}
+            {%- assign variant_for_value = product.variants | where: opt_key, value | first -%}
+            <div class="size-opt {% if variant_for_value.available == false %}disabled{% endif %} {% if forloop.first %}active{% endif %}"
+                 data-value="{{ value | escape }}"
+                 data-variant-id="{{ variant_for_value.id }}"
+                 title="{% if variant_for_value.available %}Disponível{% else %}Esgotado{% endif %}">{{ value }}</div>
+          {%- endfor -%}
+        </div>
+        <select name="id" id="variant-id-select" style="display:none">
+          {%- for variant in product.variants -%}
+            <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>{{ variant.title }}</option>
+          {%- endfor -%}
+        </select>
+      {%- else -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      {%- endif -%}
+
+      {%- if personalizable_tag -%}
+        <div class="personalize-box">
+          <label>Personalização (opcional)</label>
+          <div class="personalize-row">
+            <input type="text" name="properties[Nome]" placeholder="Nome" maxlength="15">
+            <input type="text" name="properties[Número]" placeholder="Número" maxlength="3" style="max-width:90px">
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="product-desc">{{ product.description }}</div>
+
+      {%- if product.available -%}
+        <div class="add-cart-row">
+          <div class="qty-selector">
+            <button type="button" id="qty-dec" aria-label="Diminuir quantidade">−</button>
+            <input type="number" name="quantity" id="qty-input" value="1" min="1">
+            <button type="button" id="qty-inc" aria-label="Aumentar quantidade">+</button>
+          </div>
+          <button type="submit" class="btn-primary" id="add-cart-btn">Adicionar ao Carrinho</button>
+        </div>
+      {%- else -%}
+        <button type="button" class="btn-primary" disabled style="width:100%;margin-bottom:20px">Esgotado</button>
+      {%- endif -%}
+
+      {%- if settings.whatsapp_number != blank -%}
+      <a href="https://wa.me/{{ settings.whatsapp_number }}?text={{ 'Olá! Tenho uma dúvida sobre este produto: ' | append: product.title | url_param_escape }}" target="_blank" rel="noopener" class="btn-whats-outline whats-doubt-link">
+        <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"><path d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+        Tirar Dúvida no WhatsApp
+      </a>
+      {%- endif -%}
+
+      <div class="payment-box">
+        <span class="payment-box-title">Formas de Pagamento</span>
+        <div class="payment-icons">
+          <span class="pay-icon"><img src="{{ 'visa.svg' | asset_url }}" alt="Visa" width="34" height="20" loading="lazy"></span>
+          <span class="pay-icon"><img src="{{ 'mastercard.svg' | asset_url }}" alt="Mastercard" width="34" height="20" loading="lazy"></span>
+          <span class="pay-icon"><img src="{{ 'elo.svg' | asset_url }}" alt="Elo" width="34" height="20" loading="lazy"></span>
+          <span class="pay-icon"><img src="{{ 'pix.svg' | asset_url }}" alt="Pix" width="34" height="20" loading="lazy"></span>
+          <span class="pay-icon pay-icon-boleto">Boleto</span>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <div>
+          <strong>Compra 100% Segura</strong>
+          <p>Pagamentos e informações protegidos<br>Loja oficial Valadão Street Wear</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg>
+        <div>
+          <strong>Frete Grátis</strong>
+          <p>Em pedidos acima de R$299<br>Entrega realizada pelos Correios</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        <div>
+          <strong>Troca Garantida</strong>
+          <p>Troca de tamanho sem custo<br>Até 7 dias após o recebimento</p>
+        </div>
+      </div>
+    </div>
+  {%- endform -%}
+
+  <div class="related">
+    <div class="section-head"><h2>Você também pode <span>gostar</span></h2></div>
+    <div class="grid">
+      {%- assign related_count = 0 -%}
+      {%- assign is_infantil = false -%}
+      {%- for tag in product.tags -%}
+        {%- if tag == 'infantil' -%}{%- assign is_infantil = true -%}{%- endif -%}
+      {%- endfor -%}
+      {%- if is_infantil -%}
+        {%- assign related_collection_handle = 'infantil' -%}
+      {%- else -%}
+        {%- case product.type -%}
+          {%- when 'Bermuda' or 'Calça' -%}{%- assign related_collection_handle = 'bermudas-calcas' -%}
+          {%- when 'Moletom' -%}{%- assign related_collection_handle = 'moletons' -%}
+          {%- when 'Jaqueta' -%}{%- assign related_collection_handle = 'jaquetas' -%}
+          {%- when 'Boné' -%}{%- assign related_collection_handle = 'bones' -%}
+          {%- when 'Chinelo' -%}{%- assign related_collection_handle = 'chinelos' -%}
+          {%- else -%}{%- assign related_collection_handle = 'all' -%}
+        {%- endcase -%}
+      {%- endif -%}
+      {%- assign related_products = collections[related_collection_handle].products -%}
+      {%- if related_products.size <= 1 -%}
+        {%- assign related_products = collections['all'].products -%}
+      {%- endif -%}
+      {%- for p in related_products -%}
+        {%- if p.id != product.id and related_count < 5 -%}
+          {% render 'product-card', product: p %}
+          {%- assign related_count = related_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,47 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Dona Bomba",
+    "theme_version": "1.0.0",
+    "theme_author": "Sety Studio",
+    "theme_documentation_url": "https://setystudio.com.br",
+    "theme_support_url": "https://setystudio.com.br"
+  },
+  {
+    "name": "Cores",
+    "settings": [
+      { "type": "color", "id": "color_black", "label": "Preto (base)", "default": "#111111" },
+      { "type": "color", "id": "color_red", "label": "Laranja (destaque)", "default": "#F25C05" },
+      { "type": "color", "id": "color_white", "label": "Fundo claro", "default": "#FAF7F1" }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      { "type": "image_picker", "id": "favicon", "label": "Ícone do navegador" }
+    ]
+  },
+  {
+    "name": "Contato",
+    "settings": [
+      { "type": "text", "id": "whatsapp_number", "label": "WhatsApp (só números, com DDI+DDD)", "default": "5521983913873" },
+      { "type": "text", "id": "whatsapp_display", "label": "WhatsApp (formato exibido)", "default": "(21) 98391-3873" },
+      { "type": "text", "id": "contact_email", "label": "E-mail de contato", "default": "donabombashop@gmail.com" },
+      { "type": "text", "id": "business_hours", "label": "Horário de atendimento", "default": "Seg-Sex 11h-19h / Sáb 11h-16h" },
+      { "type": "text", "id": "cnpj", "label": "CNPJ", "default": "41.396.323/0001-23" }
+    ]
+  },
+  {
+    "name": "Redes sociais",
+    "settings": [
+      { "type": "url", "id": "instagram_url", "label": "Link do Instagram", "default": "https://www.instagram.com/donabomba__/" }
+    ]
+  },
+  {
+    "name": "Rodapé",
+    "settings": [
+      { "type": "text", "id": "footer_tagline", "label": "Frase curta abaixo do logo", "default": "Tudo pra rua: tinta spray, canetas, caps e material de arte urbana." },
+      { "type": "text", "id": "footer_quote", "label": "Frase de destaque no rodapé", "default": "A Dona Bomba é mais que uma loja. É cultura, é resistência, é arte que ocupa." }
+    ]
+  }
+]

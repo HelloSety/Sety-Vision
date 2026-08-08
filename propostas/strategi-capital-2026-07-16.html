@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta · Strategi Capital · Sety Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0A0A; --card:#141414; --bd:rgba(255,255,255,0.1); --txt:#FFFFFF;
+    --muted:rgba(255,255,255,0.42); --red:#FF2A2A; --green:#4ADE80;
+  }
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--txt);font-family:'Montserrat',sans-serif;-webkit-font-smoothing:antialiased;}
+  .slide{width:100%;min-height:100vh;display:flex;flex-direction:column;}
+  .hd{display:flex;align-items:center;justify-content:space-between;padding:22px 44px;border-bottom:1px solid var(--bd);}
+  .hd-logo{height:22px;}
+  .hd-logo-txt{font-size:14px;font-weight:800;letter-spacing:-0.02em;}
+  .hd-meta{font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);}
+  .body{flex:1;padding:40px 44px;display:flex;flex-direction:column;}
+  .pill{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border:1px solid rgba(255,255,255,0.14);border-radius:100px;font-size:11px;font-weight:500;color:var(--muted);align-self:flex-start;margin-bottom:26px;}
+  .pill-arrow{opacity:.4;}
+  .ttl{font-size:44px;font-weight:900;line-height:1.05;letter-spacing:-0.04em;margin-bottom:16px;}
+  .sub{font-size:13px;color:var(--muted);line-height:1.65;max-width:600px;margin-bottom:30px;}
+  .sub b{color:rgba(255,255,255,0.75);}
+
+  .incl-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:18px;}
+  .incl-card{border:1px solid var(--bd);padding:18px 16px;}
+  .incl-ic{font-size:20px;margin-bottom:10px;}
+  .incl-t{font-size:12px;font-weight:700;margin-bottom:5px;}
+  .incl-d{font-size:10.5px;color:var(--muted);line-height:1.4;}
+
+  .value-banner{
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--card);border:1px solid rgba(255,255,255,0.16);padding:20px 26px;margin-bottom:28px;
+  }
+  .value-banner .vb-l{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
+  .value-banner .vb-v{font-size:22px;font-weight:900;letter-spacing:-0.02em;margin-top:4px;line-height:1.3;}
+  .value-banner .vb-r{font-size:11px;color:var(--green);font-weight:700;max-width:300px;text-align:right;line-height:1.5;}
+
+  .flow{border:1px solid var(--bd);padding:22px 24px;margin-top:auto;}
+  .flow-lbl{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+  .flow-steps{display:flex;gap:10px;}
+  .flow-step{flex:1;font-size:11px;color:rgba(255,255,255,0.7);line-height:1.4;}
+  .flow-step b{display:block;color:var(--txt);font-size:12px;margin-bottom:4px;}
+  .flow-arrow{color:var(--muted);align-self:center;font-size:14px;}
+
+  .ft{display:flex;align-items:center;justify-content:space-between;padding:18px 44px;border-top:1px solid var(--bd);}
+  .ft-num{font-size:10px;font-weight:500;letter-spacing:0.08em;color:var(--muted);}
+  .ft-more{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+
+  /* PLANOS — slide 2 */
+  .lbl{font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+  .plans-ttl{font-size:40px;font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:8px;}
+  .plans-sub{font-size:12.5px;color:var(--muted);margin-bottom:30px;max-width:640px;}
+  .plans-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;flex:1;}
+  .plan-card{border:1px solid var(--bd);padding:28px 26px;display:flex;flex-direction:column;position:relative;}
+  .plan-card.rec{border-color:rgba(255,255,255,0.3);background:var(--card);}
+  .rec-badge{position:absolute;top:0;right:0;background:var(--txt);color:var(--bg);font-size:8px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;}
+  .plan-name{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .plan-h{font-size:20px;font-weight:800;margin-bottom:16px;}
+  .plan-price{font-size:28px;font-weight:900;letter-spacing:-0.02em;line-height:1.1;margin-bottom:2px;}
+  .plan-price sup{font-size:14px;font-weight:700;vertical-align:top;margin-top:3px;display:inline-block;}
+  .plan-mes{font-size:11px;color:var(--muted);margin-bottom:6px;}
+  .plan-mes b{color:var(--red);font-size:13px;}
+  .plan-var{font-size:10px;color:var(--muted);margin-bottom:18px;font-style:italic;}
+  .plan-items{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:0;}
+  .plan-items li{display:flex;align-items:flex-start;gap:8px;font-size:11.5px;font-weight:500;color:rgba(255,255,255,0.68);line-height:1.4;}
+  .ic{width:14px;height:14px;border-radius:50%;border:1px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:7px;color:rgba(255,255,255,0.45);}
+  .plan-for{font-size:10px;color:var(--muted);font-style:italic;margin-top:16px;padding-top:14px;border-top:1px solid var(--bd);}
+
+  /* PAGAMENTO — slide 3 */
+  .pay-ttl{font-size:40px;font-weight:900;letter-spacing:-0.03em;line-height:1.05;margin-bottom:10px;}
+  .pay-sub{font-size:12.5px;color:var(--muted);margin-bottom:32px;}
+  .pay-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:560px;margin-bottom:26px;}
+  .pay-card{background:var(--card);border:1px solid var(--bd);padding:22px 20px;}
+  .c-type{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+  .c-val{font-size:24px;font-weight:900;letter-spacing:-0.02em;line-height:1;margin-bottom:6px;}
+  .c-hint{font-size:10px;color:var(--muted);line-height:1.4;}
+  .fine{font-size:10.5px;color:var(--muted);line-height:1.7;max-width:600px;margin-bottom:auto;}
+  .fine b{color:rgba(255,255,255,0.7);}
+  .cta-row{margin-top:32px;padding-top:28px;border-top:1px solid var(--bd);display:flex;align-items:flex-end;justify-content:space-between;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border:1px solid rgba(255,255,255,0.2);background:transparent;color:var(--txt);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;text-decoration:none;}
+  .btn.red{background:var(--red);border-color:var(--red);}
+  .author{text-align:right;}
+  .author-name{font-size:13px;font-weight:700;}
+  .author-co{font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;}
+
+  @media print{ .slide{page-break-after:always;min-height:100vh;} }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 — DIAGNÓSTICO / SOLUÇÃO -->
+<section class="slide">
+  <header class="hd">
+    <img src="../identidade/logo-branco.png" alt="Sety Studio" class="hd-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span class="hd-logo-txt" style="display:none">Sety Studio</span>
+    <span class="hd-meta">Proposta · Julho 2026</span>
+  </header>
+  <div class="body">
+    <div class="pill"><span>Strategi Capital</span><span class="pill-arrow">→</span><span>Sety Studio</span></div>
+    <h1 class="ttl">Sua base de leads<br>virando reunião marcada,<br>todo dia — sem seu time<br>discando um por um.</h1>
+    <p class="sub">Um Agente de Voz e um Agente de WhatsApp ligam e conversam com cada lead da sua base: confirmam se é a pessoa certa, explicam em poucos segundos o que a Strategi Capital faz e verificam se há interesse real. <b>Não vendem nada</b> — só qualificam. Quando o lead diz sim, a conversa é encerrada ali e o contato cai direto na mão do seu time comercial, pronto pra fechar.</p>
+
+    <div class="incl-grid">
+      <div class="incl-card"><div class="incl-ic">📞</div><div class="incl-t">Agente de Voz</div><div class="incl-d">Liga, confirma identidade, explica e pergunta sobre interesse</div></div>
+      <div class="incl-card"><div class="incl-ic">💬</div><div class="incl-t">Agente de WhatsApp</div><div class="incl-d">Mesma qualificação por texto — cobre quem não atende ligação</div></div>
+      <div class="incl-card"><div class="incl-ic">🗂️</div><div class="incl-t">Importação de listas</div><div class="incl-d">Conecta direto nas bases que vocês já enriquecem</div></div>
+      <div class="incl-card"><div class="incl-ic">🔥</div><div class="incl-t">Fila de leads quentes</div><div class="incl-d">Só chega no seu time quem já confirmou interesse</div></div>
+      <div class="incl-card"><div class="incl-ic">📊</div><div class="incl-t">Painel de resultados</div><div class="incl-d">Ligados, respondidos, qualificados e taxa de conversão</div></div>
+    </div>
+
+    <div class="value-banner">
+      <div><div class="vb-l">O que isso substitui</div><div class="vb-v">Um time inteiro de SDR discando lista fria, hora após hora</div></div>
+      <div class="vb-r">Seu time humano só entra na conversa quando já existe um "sim" — o resto é conduzido pela IA.</div>
+    </div>
+
+    <div class="flow">
+      <div class="flow-lbl">Como funciona, na prática</div>
+      <div class="flow-steps">
+        <div class="flow-step"><b>1. Lista entra</b>Sua base enriquecida é importada no sistema</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>2. IA aborda</b>Voz liga primeiro; quem não atende recebe WhatsApp</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>3. Confirma e explica</b>Identidade certa + o que a Strategi faz, em segundos</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>4. Verifica interesse</b>Pergunta direta, sem empurrar venda</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step"><b>5. Encaminha</b>Se sim, encerra e manda pro time humano na hora</div>
+      </div>
+    </div>
+  </div>
+  <footer class="ft"><span class="ft-num">01 / 03</span><span class="ft-more">CONTINUA →</span></footer>
+</section>
+
+<!-- SLIDE 2 — PLANOS -->
+<section class="slide">
+  <header class="hd">
+    <img src="../identidade/logo-branco.png" alt="Sety Studio" class="hd-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span class="hd-logo-txt" style="display:none">Sety Studio</span>
+    <span class="hd-meta">Proposta · Julho 2026</span>
+  </header>
+  <div class="body">
+    <div class="lbl">Investimento</div>
+    <h2 class="plans-ttl">Dois jeitos de<br>começar a rodar.</h2>
+    <p class="plans-sub">Implantação única + mensalidade de operação e manutenção. O custo variável de ligações e mensagens é repassado a preço de custo do provedor — sem markup — e escala junto com o volume de leads que vocês quiserem trabalhar por mês.</p>
+
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name">Fase 1</div>
+        <div class="plan-h">WhatsApp Ativo</div>
+        <div class="plan-price"><sup>R$</sup>4.900</div>
+        <div class="plan-mes">implantação + <b>R$1.497/mês</b></div>
+        <div class="plan-var">+ custo de mensagens, repassado a preço de custo</div>
+        <ul class="plan-items">
+          <li><span class="ic">✓</span>Agente de WhatsApp qualificando a base inteira</li>
+          <li><span class="ic">✓</span>Confirmação de identidade + explicação + verificação de interesse</li>
+          <li><span class="ic">✓</span>Fila de leads quentes encaminhada pro seu time</li>
+          <li><span class="ic">✓</span>Painel de resultados e taxa de conversão</li>
+          <li style="opacity:.4"><span class="ic">–</span>Agente de Voz (não incluso nesta fase)</li>
+        </ul>
+        <div class="plan-for">Para validar a abordagem rápido, com o menor custo de entrada.</div>
+      </div>
+
+      <div class="plan-card rec">
+        <div class="rec-badge">Recomendado</div>
+        <div class="plan-name">Fase 1 + 2</div>
+        <div class="plan-h">Voz + WhatsApp</div>
+        <div class="plan-price"><sup>R$</sup>9.900</div>
+        <div class="plan-mes">implantação + <b>R$2.997/mês</b></div>
+        <div class="plan-var">+ custo de ligações e mensagens, repassado a preço de custo</div>
+        <ul class="plan-items">
+          <li><span class="ic">✓</span>Agente de Voz ligando ativamente pra base inteira</li>
+          <li><span class="ic">✓</span>Agente de WhatsApp cobrindo quem não atende</li>
+          <li><span class="ic">✓</span>Confirmação de identidade + explicação + verificação de interesse nos dois canais</li>
+          <li><span class="ic">✓</span>Fila de leads quentes encaminhada pro seu time em tempo real</li>
+          <li><span class="ic">✓</span>Painel de resultados e taxa de conversão por canal</li>
+        </ul>
+        <div class="plan-for">O sistema completo de prospecção massificada, do jeito que vocês descreveram.</div>
+      </div>
+    </div>
+  </div>
+  <footer class="ft"><span class="ft-num">02 / 03</span><span class="ft-more">CONTINUA →</span></footer>
+</section>
+
+<!-- SLIDE 3 — CONDIÇÕES -->
+<section class="slide">
+  <header class="hd">
+    <img src="../identidade/logo-branco.png" alt="Sety Studio" class="hd-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span class="hd-logo-txt" style="display:none">Sety Studio</span>
+    <span class="hd-meta">Proposta · Julho 2026</span>
+  </header>
+  <div class="body">
+    <div class="lbl">Condições</div>
+    <h2 class="pay-ttl">Como fechamos<br>e o que acontece<br>depois.</h2>
+    <p class="pay-sub">Pagamento da implantação: 50% para iniciar + 50% na entrega. Mensalidade começa quando o sistema estiver rodando de verdade.</p>
+
+    <div class="pay-cards">
+      <div class="pay-card"><div class="c-type">Início</div><div class="c-val">50%</div><div class="c-hint">Para começar a implantação</div></div>
+      <div class="pay-card"><div class="c-type">Entrega</div><div class="c-val">50%</div><div class="c-hint">No dia em que o sistema entra no ar</div></div>
+    </div>
+
+    <p class="fine"><b>Prazo de implantação:</b> Fase 1 (WhatsApp) em 10 a 15 dias após aprovação. Fase 2 (Voz), quando incluída, +15 a 20 dias adicionais de integração e testes de script.<br><br>
+    <b>Volume e valor variável:</b> o custo de ligações e mensagens depende de quantos leads vocês querem trabalhar por mês — calibramos esse número numa reunião de diagnóstico antes de fechar, pra não chutar valor sem saber a escala real da operação de vocês.<br><br>
+    <b>Compliance:</b> cadência de contato dentro de horário comercial, opt-out simples e alinhado à LGPD fazem parte do script desde o primeiro dia — reduz reclamação e protege a reputação do número/linha de vocês.<br><br>
+    Prazo desta proposta: 5 dias úteis.</p>
+
+    <div class="cta-row">
+      <a href="https://wa.me/5519988090110?text=Oi%20Seven!%20Vi%20a%20proposta%20da%20Strategi%20Capital%20e%20quero%20marcar%20a%20call%20de%20diagn%C3%B3stico." class="btn red">Marcar reunião de diagnóstico →</a>
+      <div class="author"><div class="author-name">Seven</div><div class="author-co">Sety Studio</div></div>
+    </div>
+  </div>
+  <footer class="ft"><span class="ft-num">03 / 03</span></footer>
+</section>
+
+</body>
+</html>

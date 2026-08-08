@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>LGD Records</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#000;color:#fff;font-family:'Inter',-apple-system,sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;transition:opacity .5s}
+body.out{opacity:0}
+.bg{position:fixed;inset:0;z-index:0}
+.bg img{width:100%;height:100%;object-fit:cover;filter:blur(20px) brightness(.3) saturate(.65);transform:scale(1.15);opacity:0;animation:bgFade 1.6s ease forwards,bgZoom 20s ease-out forwards}
+@keyframes bgFade{to{opacity:1}}
+@keyframes bgZoom{from{transform:scale(1.15)}to{transform:scale(1.02)}}
+.content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;padding:24px;width:min(380px,90vw)}
+.logo{width:130px;height:auto;display:block;margin:0 auto 26px;opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.16,1,.3,1) .2s forwards}
+.headline{font-size:22px;font-weight:700;letter-spacing:.02em;color:#fff;text-align:center;margin-bottom:8px;opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.16,1,.3,1) .35s forwards}
+.tagline{font-size:12px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.5);text-align:center;margin-bottom:32px;opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.16,1,.3,1) .5s forwards}
+@keyframes rise{to{opacity:1;transform:translateY(0)}}
+.form{display:flex;width:100%;border:1px solid rgba(255,255,255,.18);opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.16,1,.3,1) .65s forwards;transition:border-color .2s}
+.form:focus-within{border-color:rgba(255,255,255,.4)}
+.form input{flex:1;min-width:0;background:rgba(255,255,255,.03);border:none;padding:16px 18px;color:#fff;font-size:13px;font-family:'Inter',sans-serif;outline:none;letter-spacing:.03em}
+.form input::placeholder{color:rgba(255,255,255,.3)}
+.form button{background:#fff;color:#000;border:none;padding:16px 22px;font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:opacity .2s;font-family:'Inter',sans-serif}
+.form button:hover{opacity:.85}
+.error{font-size:11px;color:#ff3a3a;margin-top:10px;text-align:center;display:none}
+.error.show{display:block}
+.divider{display:flex;align-items:center;gap:12px;width:100%;color:rgba(255,255,255,.3);font-size:10px;letter-spacing:.2em;text-transform:uppercase;margin:26px 0 20px;opacity:0;animation:rise .8s ease .78s forwards}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.14)}
+.wpp-label{font-size:11px;color:rgba(255,255,255,.5);text-align:center;margin-bottom:12px;opacity:0;animation:rise .8s ease .85s forwards}
+.wpp-success{font-size:11px;color:#ff3a3a;text-align:center;display:none}
+.wpp-success.show{display:block}
+.benefits{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin-top:28px;opacity:0;transform:translateY(14px);animation:rise .8s cubic-bezier(.16,1,.3,1) .95s forwards}
+.benefits span{font-size:10px;letter-spacing:.03em;color:rgba(255,255,255,.4)}
+.social{display:flex;gap:16px;margin-top:22px;opacity:0;animation:rise .8s ease 1.05s forwards}
+.social a{color:rgba(255,255,255,.5);transition:color .2s}
+.social a:hover{color:#fff}
+</style>
+</head>
+<body>
+<div class="bg"><img src="assets/hero-banner.jpg" alt=""></div>
+<div class="content">
+  <img class="logo" src="assets/logo.png" alt="LGD Records">
+  <p class="headline">Revolução Nordestina</p>
+  <p class="tagline">LGD Records — Cultura, Música e Rua.</p>
+
+  <form class="form" id="pwForm">
+    <input type="password" id="pwInput" placeholder="Digite a senha" required autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" value="" readonly onfocus="this.removeAttribute('readonly')">
+    <button type="submit">Entrar</button>
+  </form>
+  <p class="error" id="pwError">Senha incorreta. Tente novamente.</p>
+
+  <div class="divider">ou</div>
+
+  <p class="wpp-label" id="wppLabel">Ainda não tem acesso? Deixe seu contato que a gente te chama.</p>
+  <form class="form" id="wppForm">
+    <input id="wppInput" placeholder="Digite seu contato" required>
+    <button type="submit">Enviar</button>
+  </form>
+  <p class="wpp-success" id="wppSuccess">Recebemos seu contato — te chamamos em breve.</p>
+
+  <div class="benefits">
+    <span>✓ Atendimento rápido</span>
+    <span>✓ Produtos premium</span>
+    <span>✓ Frete p/ todo Brasil</span>
+  </div>
+  <div class="social">
+    <a href="https://www.instagram.com/lgd_rec0rds/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+    </a>
+  </div>
+</div>
+<script>
+function clearPwField(){ document.getElementById('pwInput').value = ''; }
+window.addEventListener('pageshow', clearPwField);
+window.addEventListener('load', () => { clearPwField(); setTimeout(clearPwField, 300); });
+
+function unlock(){
+  document.body.classList.add('out');
+  setTimeout(()=>{ window.location.href = 'shop'; }, 440);
+}
+
+(async () => {
+  let gate = { enabled: true, password: 'revolução nordestina', contactMethod: 'whatsapp' };
+  try{
+    const r = await fetch('/api/settings');
+    const settings = await r.json();
+    if(settings.gate) gate = settings.gate;
+  }catch(_e){}
+
+  if(!gate.enabled){ unlock(); return; }
+
+  const isEmail = gate.contactMethod === 'email';
+  const contactInput = document.getElementById('wppInput');
+  contactInput.type = isEmail ? 'email' : 'tel';
+  contactInput.placeholder = isEmail ? 'Digite seu e-mail' : 'Digite seu WhatsApp';
+  contactInput.autocomplete = isEmail ? 'email' : 'tel';
+  document.getElementById('wppLabel').textContent = isEmail
+    ? 'Ainda não tem acesso? Deixe seu e-mail que a gente te chama.'
+    : 'Ainda não tem acesso? Deixe seu WhatsApp que a gente te chama.';
+
+  document.getElementById('pwForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    const val = document.getElementById('pwInput').value.trim().toLowerCase();
+    const errorEl = document.getElementById('pwError');
+    if(val === (gate.password || '').trim().toLowerCase()){
+      errorEl.classList.remove('show');
+      unlock();
+    } else {
+      errorEl.classList.add('show');
+    }
+  });
+
+  document.getElementById('wppForm').addEventListener('submit', e=>{
+    e.preventDefault();
+    const val = contactInput.value.trim();
+    if(val){
+      localStorage.setItem('lgd_visitor_whatsapp', val);
+      fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(isEmail ? { email: val, source: 'modal_gate' } : { whatsapp: val, source: 'modal_gate' }),
+      }).catch(()=>{});
+      document.getElementById('wppLabel').style.display = 'none';
+      document.getElementById('wppForm').style.display = 'none';
+      document.getElementById('wppSuccess').classList.add('show');
+    }
+  });
+})();
+</script>
+</body>
+</html>

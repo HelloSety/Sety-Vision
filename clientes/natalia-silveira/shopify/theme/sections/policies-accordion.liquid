@@ -1,0 +1,79 @@
+<div class="page-wrap" style="max-width:800px;margin:80px auto;padding:0 24px;">
+  <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;letter-spacing:4px;margin-bottom:40px;text-align:center;">
+    {{ section.settings.page_title | default: 'POLÍTICAS' }}
+  </h1>
+  <hr style="border:none;border-top:1px solid #E5E5E5;margin-bottom:8px;">
+
+  <div class="accordion-item">
+    <button class="accordion-trigger" aria-expanded="false">
+      <span>{{ section.settings.shipping_label | default: 'ENVIO E PRAZO' }}</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="accordion-body">
+      <div class="rte">{{ section.settings.shipping_text | newline_to_br }}</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <button class="accordion-trigger" aria-expanded="false">
+      <span>{{ section.settings.returns_label | default: 'TROCAS E DEVOLUÇÕES' }}</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
+    <div class="accordion-body">
+      <div class="rte">{{ section.settings.returns_text | newline_to_br }}</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .page-wrap .rte { font-family: Jost, sans-serif; font-size: 14px; line-height: 1.8; color: #444; padding: 0 0 24px; }
+</style>
+
+{% schema %}
+{
+  "name": "Políticas (Accordion)",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Título da página",
+      "default": "POLÍTICAS"
+    },
+    {
+      "type": "header",
+      "content": "Envio e Prazo"
+    },
+    {
+      "type": "text",
+      "id": "shipping_label",
+      "label": "Label do accordion",
+      "default": "ENVIO E PRAZO"
+    },
+    {
+      "type": "textarea",
+      "id": "shipping_text",
+      "label": "Texto",
+      "default": "Enviamos para todo o Brasil e realizamos envios internacionais via DHL.\n\nPrazo de produção: 20 dias corridos. O prazo de entrega varia conforme a cidade e o país de destino.\n\nSe precisar do seu look com urgência, entre em contato pelo WhatsApp para verificarmos a disponibilidade de encaixe na produção."
+    },
+    {
+      "type": "header",
+      "content": "Trocas e Devoluções"
+    },
+    {
+      "type": "text",
+      "id": "returns_label",
+      "label": "Label do accordion",
+      "default": "TROCAS E DEVOLUÇÕES"
+    },
+    {
+      "type": "textarea",
+      "id": "returns_text",
+      "label": "Texto",
+      "default": "Cada peça da Natalia Silveira é confeccionada artesanalmente e produzida exclusivamente de acordo com as medidas, a cor e o modelo escolhidos pela cliente.\n\nPor esse motivo, não aceitamos trocas ou devoluções por arrependimento, preferência de cor, escolha do modelo ou informações de medidas fornecidas incorretamente pela cliente.\n\nCaso seja necessário algum ajuste para melhorar o caimento da peça, realizamos o ajuste sem custo de mão de obra, ficando apenas o frete de envio e retorno sob responsabilidade da cliente.\n\nSe a peça apresentar defeito de fabricação ou estiver diferente das especificações aprovadas no pedido, entre em contato conosco em até 7 dias após o recebimento, para que possamos analisar o caso e oferecer a solução adequada."
+    }
+  ],
+  "presets": [
+    { "name": "Políticas (Accordion)" }
+  ]
+}
+{% endschema %}

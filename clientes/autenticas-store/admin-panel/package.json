@@ -1,0 +1,12 @@
+{
+  "name": "autenticas-store-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Autênticas Store — painel administrativo (produtos, banners, tema, pedidos). Projeto Vercel separado do site de vendas.",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "@vercel/blob": "^2.7.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

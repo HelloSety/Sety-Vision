@@ -1,0 +1,54 @@
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-contact">
+      {% if settings.whatsapp_number %}
+        <a href="https://api.whatsapp.com/send/?phone={{ settings.whatsapp_number }}&text=Ol%C3%A1!+Achei+voc%C3%AA+pelo+SITE!&type=phone_number&app_absent=0" target="_blank" rel="noopener">{% render 'icon-whatsapp' %}{{ settings.whatsapp_display }}</a>
+      {% endif %}
+      <span class="topbar-msg">{{ settings.contact_email }}</span>
+    </div>
+    <div class="topbar-social">
+      {% if settings.instagram_url %}
+        <a href="{{ settings.instagram_url }}" aria-label="Instagram" target="_blank" rel="noopener">{% render 'icon-instagram' %}</a>
+      {% endif %}
+      {% if settings.whatsapp_number %}
+        <a href="https://api.whatsapp.com/send/?phone={{ settings.whatsapp_number }}&text=Ol%C3%A1!+Achei+voc%C3%AA+pelo+SITE!&type=phone_number&app_absent=0" aria-label="WhatsApp" target="_blank" rel="noopener">{% render 'icon-whatsapp' %}</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<header class="header">
+  <div class="container">
+    <a class="logo" href="{{ routes.root_url }}">
+      {% render 'icon-bomb', class: 'logo-mark' %}
+      {% render 'wordmark' %}
+    </a>
+    <button class="nav-toggle" aria-label="{{ 'header.open_menu' | t }}" data-nav-toggle>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav>
+      <ul class="nav-main">
+        {% for link in linklists['main-menu'].links %}
+          <li><a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <div class="header-actions" style="display:flex; align-items:center; gap:18px;">
+      <form action="{{ routes.search_url }}" method="get" role="search" class="header-search">
+        <input type="text" name="q" placeholder="{{ 'header.search_placeholder' | t }}" value="{{ search.terms | escape }}">
+        <input type="hidden" name="type" value="product">
+        <button type="submit" aria-label="{{ 'header.search' | t }}">{% render 'icon-search' %}</button>
+      </form>
+      <a href="{{ routes.cart_url }}" class="header-cart" aria-label="{{ 'header.cart' | t }}">
+        {% render 'icon-cart' %}
+        {% if cart.item_count > 0 %}<span class="header-cart-count">{{ cart.item_count }}</span>{% endif %}
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

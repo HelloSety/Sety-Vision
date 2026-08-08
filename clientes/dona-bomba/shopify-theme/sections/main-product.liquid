@@ -1,0 +1,104 @@
+{% liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign color_option_index = null
+  for option in product.options_with_values
+    if option.name == 'Cor'
+      assign color_option_index = forloop.index0
+    endif
+  endfor
+%}
+<main class="container product-page">
+  <div class="breadcrumb">
+    <a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a>
+    {% if product.collections.first %} / <a href="{{ product.collections.first.url }}">{{ product.collections.first.title }}</a>{% endif %}
+    / {{ product.title }}
+  </div>
+  <div class="product-layout">
+    <div class="product-info">
+      {% if product.collections.first %}<span class="badge-category">{{ product.collections.first.title }}</span>{% endif %}
+      <h1>{{ product.title }}</h1>
+      {% if product.description != blank %}
+        <div class="desc">{{ product.description }}</div>
+      {% endif %}
+
+      {% form 'product', product, id: 'product-form', class: 'product-form' %}
+        <input type="hidden" name="return_to" value="{{ routes.cart_url }}">
+
+        {% if color_option_index != nil and product.variants.size > 1 %}
+          <div class="variant-picker">
+            <span class="variant-picker-label">{{ 'products.color' | t }}</span>
+            <div class="variant-swatches">
+              {% for variant in product.variants %}
+                {% assign value = variant.options[color_option_index] %}
+                <label class="variant-swatch">
+                  <input
+                    type="radio"
+                    name="id"
+                    value="{{ variant.id }}"
+                    {% if variant == current_variant %}checked{% endif %}
+                    {% unless variant.available %}disabled{% endunless %}
+                  >
+                  <span class="variant-swatch-color" style="background: {{ variant.metafields.custom.hex | default: '#cccccc' }}"></span>
+                  {{ value }}
+                </label>
+              {% endfor %}
+            </div>
+          </div>
+        {% else %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+        {% endif %}
+
+        <div class="product-price">
+          {% if product.price_varies and color_option_index == nil %}
+            {{ 'products.from' | t }} {{ product.price_min | money }}
+          {% else %}
+            {{ current_variant.price | money }}
+          {% endif %}
+        </div>
+
+        <div class="qty-selector">
+          <button type="button" class="qty-minus" aria-label="{{ 'products.decrease' | t }}">−</button>
+          <input type="number" name="quantity" value="1" min="1">
+          <button type="button" class="qty-plus" aria-label="{{ 'products.increase' | t }}">+</button>
+        </div>
+
+        <div class="stack-actions">
+          {% if current_variant.available %}
+            <button type="submit" class="btn-block">{{ 'products.add_to_cart' | t }}</button>
+          {% else %}
+            <button type="submit" class="btn-block is-sold-out" disabled>{{ 'products.sold_out' | t }}</button>
+          {% endif %}
+        </div>
+      {% endform %}
+    </div>
+    <div class="product-gallery">
+      <div class="gallery-main">
+        {% if product.featured_image %}
+          <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" id="ProductMainImage" width="800" height="{{ product.featured_image.height }}">
+        {% else %}
+          <img src="{{ 'placeholder-generico.svg' | asset_url }}" alt="{{ product.title | escape }}" width="400" height="400">
+        {% endif %}
+      </div>
+      {% if product.images.size > 1 %}
+        <div class="gallery-thumbs">
+          {% for image in product.images %}
+            <img class="gallery-thumb" src="{{ image | image_url: width: 150 }}" alt="{{ image.alt | escape }}" width="150" height="{{ image.height }}">
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if product.collections.first.products.size > 1 %}
+    <h2 class="related-title">{{ 'products.you_may_like' | t }}</h2>
+    <div class="category-grid">
+      {% assign related_count = 0 %}
+      {% for related in product.collections.first.products %}
+        {% if related.id != product.id and related_count < 4 %}
+          {% render 'product-card', product: related %}
+          {% assign related_count = related_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</main>

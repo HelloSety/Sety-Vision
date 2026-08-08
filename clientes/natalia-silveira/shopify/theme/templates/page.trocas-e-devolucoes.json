@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "trocas-devolucoes",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "color-table",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

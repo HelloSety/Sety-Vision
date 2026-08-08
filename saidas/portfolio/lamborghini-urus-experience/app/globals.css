@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  --color-ink: #0a0a0a;
+  --color-charcoal: #1d1d1f;
+  --color-panel: #f5f5f7;
+  --color-lime: #b3121a;
+  --color-orange: #7a0d12;
+  --color-white: #ffffff;
+  --color-mist: #86868b;
+  --color-line: rgba(10, 10, 10, 0.08);
+}
+
+@theme inline {
+  --color-ink: var(--color-ink);
+  --color-charcoal: var(--color-charcoal);
+  --color-panel: var(--color-panel);
+  --color-lime: var(--color-lime);
+  --color-orange: var(--color-orange);
+  --color-white: var(--color-white);
+  --color-mist: var(--color-mist);
+  --color-line: var(--color-line);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-space-mono);
+
+  --animate-pulse-glow: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--color-white); }
+
+body {
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-lime);
+  color: var(--color-white);
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-panel); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-lime), var(--color-orange));
+  border-radius: 10px;
+}
+
+@media (pointer: fine) {
+  a, button, [data-cursor] { cursor: none; }
+  body { cursor: none; }
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, var(--color-ink) 0%, #4a4a4d 55%, var(--color-lime) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-light {
+  background: linear-gradient(100deg, var(--color-white) 0%, #d8d8da 55%, var(--color-lime) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid var(--color-line);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 10, 0.5);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+.vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(0,0,0,0.28) 100%);
+}

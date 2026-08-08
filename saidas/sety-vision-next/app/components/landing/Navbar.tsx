@@ -1,0 +1,271 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronRight, Menu, X } from "lucide-react";
+import { colors, radius, shadow, motion as M } from "@/lib/tokens";
+import { openWhatsApp, WA_MSG } from "@/lib/whatsapp";
+
+const NAV_LINKS = [
+  { label: "Home",       href: "/" },
+  { label: "Serviços",   href: "/servicos" },
+  { label: "Portfólio",  href: "/portfolio" },
+  { label: "Resultados", href: "/resultados" },
+  { label: "Contato",    href: "/contato" },
+];
+
+function Logo() {
+  return (
+    <a href="/" aria-label="Sety Studio"
+      style={{ display: "flex", alignItems: "center", gap: 8, textDecoration: "none", flexShrink: 0 }}>
+      <div style={{
+        width: 24, height: 24, borderRadius: 7,
+        background: colors.purple,
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+            stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+      <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: "-0.3px", color: colors.text }}>
+        Sety Studio
+      </span>
+    </a>
+  );
+}
+
+export function Navbar() {
+  const [scrolled, setScrolled]     = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 72);
+    fn();
+    window.addEventListener("scroll", fn, { passive: true });
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  /* ── ESTADO 1: Barra integrada (topo da página) ── */
+  if (!scrolled) {
+    return (
+      <motion.header
+        key="bar"
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: M.ease }}
+        style={{
+          position: "fixed",
+          top: 0, left: 0, right: 0,
+          zIndex: 50,
+          height: 64,
+          background: "rgba(255,255,255,0.72)",
+          backdropFilter: "blur(28px) saturate(180%)",
+          WebkitBackdropFilter: "blur(28px) saturate(180%)",
+          borderBottom: "1px solid rgba(255,255,255,0.55)",
+          boxShadow: "0 1px 0 rgba(0,0,0,0.05)",
+        }}
+      >
+        <div style={{
+          maxWidth: 1280, margin: "0 auto", padding: "0 32px",
+          height: "100%", display: "flex", alignItems: "center",
+          justifyContent: "space-between",
+        }}>
+          <Logo />
+
+          {/* Desktop nav links */}
+          <nav className="hidden md:flex" style={{ alignItems: "center", gap: 0 }}>
+            {NAV_LINKS.map((l) => (
+              <a key={l.href} href={l.href}
+                style={{
+                  padding: "6px 14px", borderRadius: radius.md,
+                  fontSize: 13, fontWeight: 500,
+                  color: colors.textSecondary, background: "transparent",
+                  textDecoration: "none", cursor: "pointer", whiteSpace: "nowrap",
+                  transition: "color 0.15s, background 0.15s",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = colors.purple; e.currentTarget.style.background = "rgba(124,58,237,0.07)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = colors.textSecondary; e.currentTarget.style.background = "transparent"; }}
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* CTAs */}
+          <div className="hidden md:flex" style={{ alignItems: "center", gap: 8 }}>
+            <motion.a href={openWhatsApp(WA_MSG.agendar)} target="_blank" rel="noopener noreferrer" style={{
+              display: "flex", alignItems: "center", gap: 5,
+              background: colors.purple, color: colors.white,
+              padding: "8px 18px", borderRadius: radius.full,
+              fontSize: 13, fontWeight: 700, textDecoration: "none",
+              boxShadow: shadow.purple,
+            }}
+              whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
+            >
+              Agendar demonstração <ChevronRight size={11} />
+            </motion.a>
+          </div>
+
+          {/* Mobile hamburger */}
+          <button className="md:hidden" onClick={() => setMobileOpen((v) => !v)}
+            style={{ padding: "6px 8px", borderRadius: radius.md, border: "none", background: "transparent", color: colors.textSecondary, cursor: "pointer" }}>
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
+
+        {/* Mobile dropdown */}
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.18 }}
+              className="md:hidden"
+              style={{
+                background: "rgba(255,255,255,0.97)", backdropFilter: "blur(20px)",
+                borderBottom: "1px solid rgba(0,0,0,0.07)", padding: "8px 16px 12px", overflow: "hidden",
+              }}
+            >
+              {NAV_LINKS.map((l) => (
+                <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)}
+                  style={{ display: "block", width: "100%", textAlign: "left", padding: "10px 12px", borderRadius: radius.md, fontSize: 14, fontWeight: 500, color: colors.textSecondary, background: "transparent", textDecoration: "none", cursor: "pointer" }}>
+                  {l.label}
+                </a>
+              ))}
+              <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", marginTop: 6, paddingTop: 8, display: "flex", flexDirection: "column", gap: 6 }}>
+                <a href={openWhatsApp(WA_MSG.agendar)} target="_blank" rel="noopener noreferrer" style={{ padding: "10px 14px", textAlign: "center", borderRadius: radius.md, fontSize: 14, color: colors.white, background: colors.purple, textDecoration: "none", fontWeight: 700 }}>Agendar demonstração</a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+    );
+  }
+
+  /* ── ESTADO 2: Pill flutuante (após scroll) ──
+     Separar posicionamento (wrapper div) da animação (motion.header)
+     para evitar que Framer Motion sobrescreva o translateX(-50%)        */
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: 20,
+        left: "50%",
+        transform: "translateX(-50%)",
+        zIndex: 50,
+        width: "max-content",
+        maxWidth: "calc(100vw - 32px)",
+      }}
+    >
+      {/* Ambient glow atrás da pill */}
+      <div aria-hidden style={{
+        position: "absolute",
+        top: "50%", left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 500, height: 180,
+        background: "radial-gradient(circle, rgba(124,58,237,0.15), transparent 70%)",
+        filter: "blur(60px)",
+        opacity: 0.7,
+        zIndex: -1,
+        pointerEvents: "none",
+      }} />
+
+      <motion.header
+        key="pill"
+        initial={{ opacity: 0, y: -10, filter: "blur(8px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          borderRadius: radius.full,
+          background: "rgba(255,255,255,0.72)",
+          backdropFilter: "blur(28px) saturate(180%)",
+          WebkitBackdropFilter: "blur(28px) saturate(180%)",
+          border: "1px solid rgba(255,255,255,0.55)",
+          boxShadow: [
+            "0 12px 40px rgba(124,58,237,0.10)",
+            "0 4px 20px rgba(255,255,255,0.45)",
+            "0 0 0 1px rgba(255,255,255,0.40)",
+          ].join(", "),
+        }}
+      >
+        <div style={{
+          height: 48, padding: "0 8px 0 16px",
+          display: "flex", alignItems: "center", gap: 4, minWidth: 0,
+        }}>
+          <Logo />
+
+          <div style={{ width: 1, height: 16, background: "rgba(0,0,0,0.08)", margin: "0 8px", flexShrink: 0 }} />
+
+          <nav className="hidden md:flex" style={{ alignItems: "center", gap: 0 }}>
+            {NAV_LINKS.map((l) => (
+              <a key={l.href} href={l.href}
+                style={{
+                  padding: "6px 12px", borderRadius: radius.md,
+                  fontSize: 13, fontWeight: 500,
+                  color: colors.textSecondary, background: "transparent",
+                  textDecoration: "none", cursor: "pointer", whiteSpace: "nowrap",
+                  transition: "color 0.15s, background 0.15s",
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = colors.purple; e.currentTarget.style.background = "rgba(124,58,237,0.07)"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = colors.textSecondary; e.currentTarget.style.background = "transparent"; }}
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="hidden md:block" style={{ width: 1, height: 16, background: "rgba(0,0,0,0.08)", margin: "0 6px", flexShrink: 0 }} />
+
+          <div className="hidden md:flex" style={{ alignItems: "center", gap: 4, flexShrink: 0 }}>
+            <motion.a href={openWhatsApp(WA_MSG.agendar)} target="_blank" rel="noopener noreferrer" style={{
+              display: "flex", alignItems: "center", gap: 5,
+              background: colors.purple, color: colors.white,
+              padding: "7px 16px", borderRadius: radius.full,
+              fontSize: 13, fontWeight: 700, textDecoration: "none", whiteSpace: "nowrap",
+              boxShadow: shadow.purple,
+            }}
+              whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
+            >
+              Agendar demonstração <ChevronRight size={11} />
+            </motion.a>
+          </div>
+
+          <button className="md:hidden" onClick={() => setMobileOpen((v) => !v)}
+            style={{ padding: "6px 8px", borderRadius: radius.md, border: "none", background: "transparent", color: colors.textSecondary, cursor: "pointer", flexShrink: 0 }}>
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
+
+        <AnimatePresence>
+          {mobileOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.18 }}
+              className="md:hidden"
+              style={{
+                borderTop: "1px solid rgba(0,0,0,0.07)",
+                padding: "8px 8px 10px", overflow: "hidden",
+                background: "rgba(255,255,255,0.97)",
+                borderRadius: `0 0 ${radius.xl}px ${radius.xl}px`,
+              }}
+            >
+              {NAV_LINKS.map((l) => (
+                <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)}
+                  style={{ display: "block", width: "100%", textAlign: "left", padding: "10px 12px", borderRadius: radius.md, fontSize: 14, fontWeight: 500, color: colors.textSecondary, background: "transparent", textDecoration: "none", cursor: "pointer" }}>
+                  {l.label}
+                </a>
+              ))}
+              <div style={{ borderTop: "1px solid rgba(0,0,0,0.06)", marginTop: 6, paddingTop: 8, display: "flex", flexDirection: "column", gap: 6 }}>
+                <a href={openWhatsApp(WA_MSG.agendar)} target="_blank" rel="noopener noreferrer" style={{ padding: "10px 14px", textAlign: "center", borderRadius: radius.md, fontSize: 14, color: colors.white, background: colors.purple, textDecoration: "none", fontWeight: 700 }}>Agendar demonstração</a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+    </div>
+  );
+}

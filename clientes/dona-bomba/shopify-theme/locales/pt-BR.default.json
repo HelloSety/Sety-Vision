@@ -1,0 +1,78 @@
+{
+  "accessibility": {
+    "skip_to_content": "Pular para o conteúdo"
+  },
+  "general": {
+    "home": "Início"
+  },
+  "trust": {
+    "shipping": "Envio pra todo o Brasil",
+    "secure": "Compra segura",
+    "original": "Produto original, sem falsificação",
+    "support": "Suporte via WhatsApp"
+  },
+  "header": {
+    "open_menu": "Abrir menu",
+    "search_placeholder": "Pesquisar",
+    "search": "Pesquisar",
+    "cart": "Carrinho"
+  },
+  "footer": {
+    "info": "Informações",
+    "support": "Atendimento",
+    "whatsapp": "WhatsApp",
+    "newsletter": "Newsletter",
+    "newsletter_text": "Receba novidades, promoções e conteúdos exclusivos.",
+    "newsletter_success": "Cadastro recebido! Em breve você recebe nossas novidades.",
+    "newsletter_placeholder": "seu e-mail",
+    "subscribe": "Inscrever",
+    "card": "Cartão",
+    "boleto": "Boleto",
+    "rights": "Todos os direitos reservados",
+    "made_by": "Feito por"
+  },
+  "sections": {
+    "banner_slideshow": {
+      "aria_label": "Banners promocionais",
+      "placeholder": "Adicione uma imagem a este banner",
+      "previous": "Banner anterior",
+      "next": "Próximo banner"
+    }
+  },
+  "products": {
+    "from": "A partir de",
+    "colors": "cores",
+    "see_colors": "VER CORES",
+    "see_product": "VER PRODUTO",
+    "view_all": "Ver todos os produtos",
+    "color": "Cor",
+    "decrease": "Diminuir quantidade",
+    "increase": "Aumentar quantidade",
+    "add_to_cart": "COMPRAR",
+    "sold_out": "ESGOTADO",
+    "you_may_like": "Você também pode gostar",
+    "products": "produtos",
+    "no_products": "Nenhum produto encontrado nesta categoria."
+  },
+  "cart": {
+    "title": "Carrinho",
+    "product": "Produto",
+    "quantity": "Quantidade",
+    "total": "Total",
+    "remove": "Remover",
+    "subtotal": "Subtotal",
+    "update": "Atualizar carrinho",
+    "checkout": "FINALIZAR COMPRA",
+    "empty": "Seu carrinho está vazio.",
+    "continue_shopping": "VER PRODUTOS"
+  },
+  "errors": {
+    "404_title": "Página não encontrada",
+    "404_text": "O link pode estar quebrado, ou a página pode ter sido removida.",
+    "back_home": "VOLTAR PRA HOME"
+  },
+  "search": {
+    "title": "Resultados da busca",
+    "no_results": "Nenhum resultado encontrado."
+  }
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Fist Street",
+    "theme_version": "1.0.0",
+    "theme_author": "Sety Studio",
+    "theme_documentation_url": "https://setystudio.com.br",
+    "theme_support_email": "contato@fiststreet.com.br"
+  },
+  {
+    "name": "Identidade da loja",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo (fundo transparente aceito, será usado em fundo claro e escuro)" },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
+      { "type": "url", "id": "instagram_url", "label": "Link do Instagram" }
+    ]
+  },
+  {
+    "name": "Contato e WhatsApp",
+    "settings": [
+      { "type": "text", "id": "whatsapp_number", "label": "Número do WhatsApp (só números, com DDI)" }
+    ]
+  },
+  {
+    "name": "Barra de topo",
+    "settings": [
+      { "type": "text", "id": "topbar_highlight", "label": "Texto em destaque (verde)", "default": "FRETE GRÁTIS" },
+      { "type": "text", "id": "topbar_text", "label": "Restante do texto", "default": "acima de R$299 — Parcele em até 12x" }
+    ]
+  },
+  {
+    "name": "Navegação",
+    "settings": [
+      { "type": "link_list", "id": "main_menu", "label": "Menu principal", "default": "main-menu" }
+    ]
+  },
+  {
+    "name": "Cores",
+    "settings": [
+      { "type": "color", "id": "color_preto", "label": "Preto (identidade)", "default": "#0a0a0a" },
+      { "type": "color", "id": "color_verde", "label": "Verde neon (identidade)", "default": "#39ff14" }
+    ]
+  }
+]

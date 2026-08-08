@@ -1,0 +1,47 @@
+<section class="section container" style="padding-top:0">
+  <div class="cat-cards">
+    {%- for block in section.blocks -%}
+      {%- assign col = collections[block.settings.collection] -%}
+      <a class="cat-card" href="{{ col.url | default: '#' }}">
+        {%- if block.settings.image -%}
+          {{ block.settings.image | image_tag: width: 620, alt: block.settings.label, loading: 'lazy' }}
+        {%- else -%}
+          {%- case block.settings.collection -%}
+            {%- when 'sneakers' -%}
+              <img src="{{ 'cat-sneakers.jpg' | asset_img_url: '620x' }}" alt="{{ block.settings.label }}" width="620" height="715" loading="lazy">
+            {%- when 'camisetas' -%}
+              <img src="{{ 'cat-camisetas.jpg' | asset_img_url: '620x' }}" alt="{{ block.settings.label }}" width="620" height="715" loading="lazy">
+            {%- when 'moletons-jaquetas' -%}
+              <img src="{{ 'cat-moletons-jaquetas.jpg' | asset_img_url: '620x' }}" alt="{{ block.settings.label }}" width="620" height="715" loading="lazy">
+            {%- when 'shorts' -%}
+              <img src="{{ 'cat-shorts.jpg' | asset_img_url: '620x' }}" alt="{{ block.settings.label }}" width="620" height="715" loading="lazy">
+            {%- when 'calcas' -%}
+              <img src="{{ 'cat-calcas.jpg' | asset_img_url: '620x' }}" alt="{{ block.settings.label }}" width="620" height="715" loading="lazy">
+            {%- else -%}
+              <img src="{{ 'cat-outros.jpg' | asset_img_url: '620x' }}" alt="{{ block.settings.label }}" width="620" height="715" loading="lazy">
+          {%- endcase -%}
+        {%- endif -%}
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cards de Categoria",
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Coleção" },
+        { "type": "text", "id": "label", "label": "Nome exibido (usado como alt/SEO)" },
+        { "type": "image_picker", "id": "image", "label": "Imagem (opcional, usa a arte padrão da categoria se vazio)" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Cards de Categoria", "blocks": [{ "type": "card" }, { "type": "card" }, { "type": "card" }] }
+  ]
+}
+{% endschema %}

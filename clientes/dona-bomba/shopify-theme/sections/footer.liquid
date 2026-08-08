@@ -1,0 +1,68 @@
+<footer class="footer">
+  <svg class="footer-edge" viewBox="0 0 1200 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,24 L0,10 Q30,0 60,12 T120,10 T180,14 T240,6 T300,14 T360,4 T420,12 T480,8 T540,16 T600,6 T660,14 T720,8 T780,16 T840,6 T900,12 T960,8 T1020,16 T1080,6 T1140,12 T1200,10 L1200,24 Z" fill="#000000"/>
+  </svg>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          {% render 'icon-bomb', class: 'logo-mark' %}
+          {% render 'wordmark' %}
+        </div>
+        <p>{{ settings.footer_tagline }}</p>
+        <div class="social-icons">
+          {% if settings.instagram_url %}
+            <a href="{{ settings.instagram_url }}" aria-label="Instagram" target="_blank" rel="noopener">{% render 'icon-instagram' %}</a>
+          {% endif %}
+          {% if settings.whatsapp_number %}
+            <a href="https://api.whatsapp.com/send/?phone={{ settings.whatsapp_number }}&text=Ol%C3%A1!+Achei+voc%C3%AA+pelo+SITE!&type=phone_number&app_absent=0" aria-label="WhatsApp" target="_blank" rel="noopener">{% render 'icon-whatsapp' %}</a>
+          {% endif %}
+        </div>
+      </div>
+      <div>
+        <h4>{{ 'footer.info' | t }}</h4>
+        {% for link in linklists['footer'].links %}
+          <p><a href="{{ link.url }}">{{ link.title }}</a></p>
+        {% endfor %}
+      </div>
+      <div>
+        <h4>{{ 'footer.support' | t }}</h4>
+        <p>{{ settings.contact_email }}</p>
+        <p>{{ 'footer.whatsapp' | t }}: {{ settings.whatsapp_display }}</p>
+        <p>{{ settings.business_hours }}</p>
+      </div>
+      <div>
+        <h4>{{ 'footer.newsletter' | t }}</h4>
+        <p>{{ 'footer.newsletter_text' | t }}</p>
+        {% form 'customer' %}
+          {% if form.posted_successfully? %}
+            <p>{{ 'footer.newsletter_success' | t }}</p>
+          {% endif %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="newsletter-form">
+            <input type="email" name="contact[email]" placeholder="{{ 'footer.newsletter_placeholder' | t }}" required>
+            <button type="submit" aria-label="{{ 'footer.subscribe' | t }}">→</button>
+          </div>
+        {% endform %}
+        <div class="payment-badges">
+          <span>PIX</span>
+          <span>{{ 'footer.card' | t }}</span>
+          <span>{{ 'footer.boleto' | t }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-quote">{{ settings.footer_quote }}</div>
+    <div class="footer-bottom">
+      <span>{{ shop.name | upcase }}{% if settings.cnpj != blank %} — CNPJ {{ settings.cnpj }}{% endif %}</span>
+      <span>{{ 'footer.rights' | t }}</span>
+      <a class="footer-credit" href="https://setystudio.com.br" target="_blank" rel="noopener">{{ 'footer.made_by' | t }} <img src="{{ 'sety-studio-logo.svg' | asset_url }}" alt="Sety Studio" width="80" height="20"></a>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,117 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "LGD Records",
+    "theme_version": "1.0.0",
+    "theme_author": "Sety Studio",
+    "theme_documentation_url": "https://setystudio.com",
+    "theme_support_url": "https://setystudio.com"
+  },
+  {
+    "name": "Marca",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
+      { "type": "image_picker", "id": "social_share_image", "label": "Imagem padrão de compartilhamento (redes sociais)" },
+      {
+        "type": "text",
+        "id": "wpp_number",
+        "label": "Número WhatsApp (apenas dígitos, com DDI)",
+        "placeholder": "5585999999999",
+        "info": "Exemplo: 558581670451"
+      },
+      { "type": "text", "id": "wpp_display", "label": "Número exibido no rodapé", "placeholder": "(85) 8167-0451" },
+      { "type": "text", "id": "instagram", "label": "Instagram (sem @)", "placeholder": "lgd_rec0rds" },
+      { "type": "text", "id": "tiktok", "label": "TikTok (sem @)" }
+    ]
+  },
+  {
+    "name": "Cores",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Cor de destaque (Pix, promoções, botão WhatsApp)",
+        "default": "#FF3A3A",
+        "info": "Fundo preto e texto branco são a identidade da marca e não são configuráveis por aqui — só a cor de destaque."
+      }
+    ]
+  },
+  {
+    "name": "Frete",
+    "settings": [
+      {
+        "type": "text",
+        "id": "free_shipping_threshold",
+        "label": "Valor mínimo para frete grátis (ex: 299)",
+        "info": "Deixe em branco pra não mostrar o aviso de frete grátis"
+      }
+    ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "seo_default_description",
+        "label": "Meta description padrão (usada quando a página não tem uma própria)",
+        "default": "LGD Records — camisetas, regatas, cuecas e streetwear autoral. Cultura, música e rua."
+      },
+      {
+        "type": "text",
+        "id": "gsc_verification",
+        "label": "Código de verificação do Google Search Console",
+        "info": "Cole apenas o conteúdo da tag meta google-site-verification, disponível em search.google.com/search-console"
+      }
+    ]
+  },
+  {
+    "name": "Página de Senha (Pré-lançamento)",
+    "settings": [
+      { "type": "image_picker", "id": "password_hero_image", "label": "Imagem de fundo (hero fullscreen)" },
+      { "type": "text", "id": "password_headline", "label": "Título", "default": "Legacy Company" },
+      { "type": "text", "id": "password_subheadline", "label": "Subtítulo", "default": "A nova coleção está chegando." },
+      {
+        "type": "text",
+        "id": "password_launch_date",
+        "label": "Data de lançamento (contagem regressiva)",
+        "placeholder": "2026-08-01T00:00",
+        "info": "Formato AAAA-MM-DDTHH:mm. Deixe em branco para não mostrar contagem regressiva."
+      },
+      {
+        "type": "textarea",
+        "id": "password_wpp_message",
+        "label": "Mensagem automática do botão WhatsApp",
+        "default": "Olá! Gostaria de receber acesso antecipado à loja Legacy Company. Pode me colocar na lista VIP?"
+      }
+    ]
+  },
+  {
+    "name": "Tracking e Conversão",
+    "settings": [
+      {
+        "type": "text",
+        "id": "ga4_id",
+        "label": "Google Analytics 4 — Measurement ID",
+        "placeholder": "G-XXXXXXXXXX"
+      },
+      {
+        "type": "text",
+        "id": "meta_pixel_id",
+        "label": "Meta Pixel ID",
+        "placeholder": "123456789012345"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_head_code",
+        "label": "Código customizado — antes de </head>",
+        "info": "Para outros pixels/scripts de terceiros que não sejam GA4 ou Meta Pixel"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_body_code",
+        "label": "Código customizado — antes de </body>"
+      }
+    ]
+  }
+]

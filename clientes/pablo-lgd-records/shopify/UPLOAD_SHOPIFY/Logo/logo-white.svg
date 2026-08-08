@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" fill="none">
+  <ellipse cx="110" cy="30" rx="106" ry="26" stroke="white" stroke-width="2.5"/>
+  <text x="110" y="36" font-family="Georgia, serif" font-size="22" font-style="italic" font-weight="700" fill="white" text-anchor="middle" letter-spacing="2">Legado</text>
+  <circle cx="194" cy="14" r="3" fill="white" opacity="0.7"/>
+</svg>

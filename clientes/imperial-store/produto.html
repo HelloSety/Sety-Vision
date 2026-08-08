@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Imperial Store — Produto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; font-family: 'Montserrat', sans-serif; }
+
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  :root {
+    --sety-accent: #D4AF37;
+    --sety-accent-2: #F5D171;
+    --sety-gold-gradient: linear-gradient(135deg, #FCE7A6 0%, #E8C158 30%, #D4AF37 55%, #B8860B 80%, #8a6a14 100%);
+    --sety-accent-text: #000000;
+    --sety-dark: #000000;
+    --sety-text-soft: #6b6b6b;
+    --sety-border: #e2e2e2;
+    --sety-font-heading: 'Sora', sans-serif;
+  }
+  .sety-toast-carrinho {
+    position: fixed; bottom: 96px; right: 24px; background: var(--sety-dark); color: #fff; border: 1px solid rgba(212,175,55,.5);
+    padding: 12px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; z-index: 1000;
+    opacity: 0; transform: translateY(10px); transition: opacity .25s, transform .25s; box-shadow: 0 6px 20px rgba(0,0,0,.3);
+  }
+  .sety-toast-carrinho.is-visivel { opacity: 1; transform: translateY(0); }
+
+  /* ===== Logo Imperial Store ===== */
+  .imperial-logo { display: flex; align-items: center; gap: 10px; }
+  .imperial-logo__selo {
+    width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+    background: radial-gradient(circle at 30% 30%, #fff6de, var(--sety-accent-2) 35%, var(--sety-accent) 65%, #8a6a14 100%);
+    display: flex; align-items: center; justify-content: center; padding: 3px;
+  }
+  .imperial-logo__selo-inner {
+    width: 100%; height: 100%; border-radius: 50%; background: #000;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--sety-font-heading); color: var(--sety-accent-2); font-size: 9px; font-weight: 800; letter-spacing: .3px;
+  }
+  .imperial-logo__texto { font-family: var(--sety-font-heading); line-height: 1; }
+  .imperial-logo__texto strong {
+    display: block; font-size: 19px; font-weight: 800; letter-spacing: 1px;
+    background: var(--sety-gold-gradient); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .imperial-logo__texto span { display: block; font-size: 9px; font-weight: 600; color: #fff; letter-spacing: 4px; margin-top: 2px; }
+  .imperial-logo__img { height: 68px; width: auto; display: block; }
+
+  /* ===== Topbar / header (iguais à home) ===== */
+  .sety-topo-anuncio {
+    background: var(--sety-dark); color: #fff; display: flex; align-items: center; justify-content: center;
+    padding: 8px 16px; font-size: 13px; border-bottom: 1px solid rgba(212,175,55,.25);
+  }
+  .sety-header {
+    background: var(--sety-dark); color: #fff; padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 24px rgba(0,0,0,.25);
+  }
+  .sety-nav { display: flex; gap: 4px; flex-wrap: wrap; }
+  .sety-nav a { padding: 10px; font-size: 12.5px; font-weight: 600; text-transform: uppercase; color: rgba(255,255,255,.82); letter-spacing: .4px; transition: color .2s; }
+  .sety-nav a:hover { color: var(--sety-accent-2); }
+  .sety-header__acoes { display: flex; align-items: center; gap: 18px; }
+  .sety-header__acoes svg { width: 20px; height: 20px; cursor: pointer; }
+  .sety-header__carrinho { position: relative; }
+  .sety-header__carrinho-count {
+    position: absolute; top: -8px; right: -8px; background: var(--sety-gold-gradient); color: var(--sety-accent-text);
+    font-size: 10px; font-weight: 700; border-radius: 50%; width: 16px; height: 16px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  @media (max-width: 900px) { .sety-nav { display: none; } }
+
+  .sety-produto {
+    --sety-radius: 7px; --sety-radius-sm: 4px; --sety-bg-soft: #f6f6f8; --sety-text: #282828;
+    font-family: 'Montserrat', sans-serif; color: var(--sety-text);
+    max-width: 1200px; margin: 0 auto; padding: 24px; box-sizing: border-box;
+  }
+  .sety-produto *, .sety-produto *::before, .sety-produto *::after { box-sizing: border-box; }
+
+  .sety-breadcrumb { font-size: 13px; color: var(--sety-text-soft); margin-bottom: 20px; }
+  .sety-breadcrumb a { color: var(--sety-text-soft); }
+  .sety-breadcrumb a:hover { text-decoration: underline; }
+
+  .sety-produto__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; padding-top: 8px; }
+  @media (max-width: 860px) { .sety-produto__grid { grid-template-columns: 1fr; gap: 28px; } }
+
+  .sety-galeria__main { border-radius: 12px; overflow: hidden; background: #0a0a0a; box-shadow: 0 20px 48px rgba(0,0,0,.1); }
+  .sety-galeria__main img { width: 100%; height: auto; aspect-ratio: .85; object-fit: cover; display: block; }
+
+  .sety-badges { display: flex; gap: 6px; margin-bottom: 10px; }
+  .sety-badge { font-size: 10px; font-weight: 600; padding: 4px 6px; border-radius: 3px; text-transform: uppercase; }
+  .sety-badge--oferta { background: var(--sety-gold-gradient); color: var(--sety-accent-text); }
+  .sety-badge--qualidade { background: var(--sety-dark); color: #fff; }
+
+  .sety-titulo { font-family: var(--sety-font-heading); font-size: 22px; text-transform: uppercase; letter-spacing: .2px; margin: 8px 0 14px; font-weight: 700; }
+
+  .sety-preco-linha { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .sety-preco-atual { font-size: 29px; font-weight: 700; color: var(--sety-text); }
+  .sety-preco-riscado { font-size: 16px; text-decoration: line-through; color: var(--sety-text-soft); }
+  .sety-preco-desconto {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+    background: var(--sety-gold-gradient); color: var(--sety-accent-text); padding: 2px 7px; border-radius: var(--sety-radius-sm);
+  }
+  .sety-parcelamento { font-size: 14px; display: flex; align-items: center; gap: 6px; margin: 8px 0; }
+  .sety-parcelamento svg { width: 16px; height: 16px; }
+
+  .sety-pix {
+    display: flex; align-items: center; gap: 8px; background: #f1f1f1; border-radius: var(--sety-radius);
+    padding: 10px 14px; margin: 12px 0 20px; box-shadow: 1px 1px 4px -2px rgba(0,0,0,.35);
+  }
+  .sety-pix svg { width: 22px; height: 22px; fill: #32BCAD; flex-shrink: 0; }
+  .sety-pix strong { font-size: 13px; }
+  .sety-pix span.envio { font-size: 11px; font-weight: 600; text-transform: uppercase; background: #fff; border-radius: 3px; padding: 2px 6px; margin-left: 8px; }
+
+  .sety-opcao { margin-bottom: 20px; }
+  .sety-opcao__label { font-size: 13px; font-weight: 600; margin-bottom: 8px; display: block; }
+  .sety-opcao__label span { font-weight: 400; color: var(--sety-text-soft); margin-left: 4px; }
+  .sety-swatch-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sety-swatch {
+    border: 1px solid var(--sety-border); border-radius: 6px; padding: 8px 16px; font-size: 14px;
+    background: #fff; cursor: pointer; min-width: 44px; text-align: center; transition: border-color .15s, transform .15s;
+  }
+  .sety-swatch:hover { border-color: var(--sety-accent); }
+  .sety-swatch.is-selected { border: 2px solid var(--sety-dark); font-weight: 600; }
+
+  .sety-qtd { display: inline-flex; align-items: center; border: 1px solid var(--sety-border); border-radius: var(--sety-radius); overflow: hidden; }
+  .sety-qtd button { width: 46px; height: 46px; border: none; background: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+  .sety-qtd button:hover { background: var(--sety-bg-soft); }
+  .sety-qtd input { width: 46px; height: 46px; border: none; border-left: 1px solid var(--sety-border); border-right: 1px solid var(--sety-border); text-align: center; font-size: 16px; }
+
+  .sety-ctas { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+  .sety-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px; height: 55px; border-radius: var(--sety-radius);
+    font-size: 14.5px; font-weight: 600; text-decoration: none; cursor: pointer; border: none; width: 100%;
+    transition: filter .2s, transform .15s;
+  }
+  .sety-btn:active { transform: scale(.98); }
+  .sety-btn svg { width: 20px; height: 20px; }
+  .sety-btn--primario { background: var(--sety-gold-gradient); color: var(--sety-accent-text); text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 6px 18px rgba(212,175,55,.25); }
+  .sety-btn--primario:hover { filter: brightness(1.05); }
+  .sety-btn--secundario { background: var(--sety-dark); color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+  .sety-btn--secundario:hover { filter: brightness(1.3); }
+  .sety-btn--outline { background: #fff; color: #36B376; border: 2px solid #36B376; }
+  .sety-btn--outline:hover { background: #36B376; color: #fff; }
+  .sety-btn--outline svg { color: #25D366; }
+  .sety-btn--outline:hover svg { color: #fff; }
+
+  .sety-pagamento {
+    background: #fbfbfc; border: 1px solid #f0f0f2; border-radius: 8px;
+    padding: 12px; text-align: center; margin-bottom: 10px;
+  }
+  .sety-pagamento__titulo { display: inline-block; background: #fff; border: 1px solid #eee; border-radius: 4px; padding: 4px 10px; font-size: 11.5px; font-weight: 700; margin-bottom: 10px; }
+  .sety-pagamento__icones { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .sety-pagamento__icones svg { height: 28px; width: auto; }
+
+  .sety-info-box {
+    display: flex; align-items: flex-start; gap: 14px; background: #fbfbfc; border: 1px solid #f0f0f2;
+    border-radius: 8px; padding: 14px 16px; margin-top: 10px;
+  }
+  .sety-info-box svg { width: 22px; height: 22px; flex-shrink: 0; color: var(--sety-text); }
+  .sety-info-box strong { display: block; font-size: 14px; margin-bottom: 2px; }
+  .sety-info-box p { margin: 0; font-size: 12px; color: var(--sety-text-soft); line-height: 1.5; }
+
+  .sety-tabs { margin-top: 72px; }
+  .sety-tabs__nav { display: flex; gap: 32px; border-bottom: 1px solid var(--sety-border); margin-bottom: 28px; }
+  .sety-tabs__item {
+    background: none; border: none; cursor: pointer; padding: 0 0 18px; font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .5px; color: var(--sety-text-soft); border-bottom: 2px solid transparent; margin-bottom: -1px;
+    transition: color .2s;
+  }
+  .sety-tabs__item:hover { color: var(--sety-text); }
+  .sety-tabs__item.is-active { color: var(--sety-text); border-bottom-color: var(--sety-accent); }
+  .sety-tabs__content { display: none; max-width: 760px; }
+  .sety-tabs__content.is-active { display: block; }
+  .sety-tabs__content h2 { font-size: 20px; text-transform: uppercase; font-weight: 400; margin: 24px 0 8px; }
+  .sety-tabs__content h2:first-child { margin-top: 0; }
+  .sety-tabs__content p { font-size: 15px; line-height: 1.6; color: var(--sety-text); margin: 0 0 8px; }
+  .sety-trust-links { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 28px; }
+  .sety-trust-links button { background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--sety-text-soft); padding: 0; }
+  .sety-trust-links svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+  .sety-banner-cartao {
+    display: flex; align-items: center; gap: 14px; background: var(--sety-dark); color: #fff;
+    border-radius: var(--sety-radius); padding: 16px 20px; margin-top: 24px;
+  }
+  .sety-banner-cartao svg { width: 30px; height: 30px; flex-shrink: 0; color: var(--sety-accent); }
+  .sety-banner-cartao p { margin: 0; font-size: 14px; letter-spacing: .2px; }
+
+  .sety-seguranca-completa { margin-top: 16px; padding: 20px; border: 1px solid var(--sety-bg-soft); border-radius: var(--sety-radius); box-shadow: 0 5px 6px -5px var(--sety-bg-soft); }
+  .sety-seguranca-completa .sety-pagamento__icones { margin-bottom: 16px; justify-content: flex-start; }
+  .sety-selos-confianca { display: flex; flex-wrap: wrap; gap: 24px; border-top: 1px solid var(--sety-bg-soft); padding-top: 16px; }
+  .sety-selo { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; }
+  .sety-selo svg { width: 20px; height: 20px; color: #1a9c4c; }
+
+  .sety-secao-produtos { margin-top: 80px; }
+  .sety-secao-produtos h3 { text-align: center; font-family: var(--sety-font-heading); font-size: 19px; text-transform: uppercase; letter-spacing: .8px; font-weight: 700; margin-bottom: 32px; }
+  .sety-produtos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  @media (max-width: 860px) { .sety-produtos-grid { grid-template-columns: repeat(2, 1fr); } }
+  .sety-produto-card { text-align: center; transition: transform .25s; }
+  .sety-produto-card:hover { transform: translateY(-3px); }
+  .sety-produto-card__imagem-wrap { position: relative; border-radius: 10px; overflow: hidden; background: #0a0a0a; margin-bottom: 12px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  .sety-produto-card:hover .sety-produto-card__imagem-wrap { box-shadow: 0 16px 32px rgba(0,0,0,.1); }
+  .sety-produto-card img { width: 100%; aspect-ratio: .85; object-fit: cover; display: block; transition: transform .4s; }
+  .sety-produto-card:hover img { transform: scale(1.06); }
+  .sety-produto-card__titulo { font-size: 14px; margin: 0 0 6px; }
+  .sety-produto-card__preco { font-size: 15px; font-weight: 600; }
+
+  .sety-faq { margin-top: 80px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .sety-faq h2 { text-align: center; font-family: var(--sety-font-heading); font-size: 24px; text-transform: uppercase; letter-spacing: .5px; font-weight: 700; margin-bottom: 8px; }
+  .sety-faq > p { text-align: center; color: var(--sety-text-soft); font-size: 14px; margin-bottom: 24px; }
+  .sety-faq__item { border-top: 1px solid var(--sety-border); }
+  .sety-faq__item:last-child { border-bottom: 1px solid var(--sety-border); }
+  .sety-faq__pergunta {
+    width: 100%; background: none; border: none; cursor: pointer; text-align: left; display: flex;
+    justify-content: space-between; align-items: center; padding: 21px 4px; font-size: 15px; font-weight: 600;
+  }
+  .sety-faq__pergunta svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform .2s; }
+  .sety-faq__item.is-aberto .sety-faq__pergunta svg { transform: rotate(45deg); }
+  .sety-faq__resposta { display: none; padding: 0 4px 21px; font-size: 14px; line-height: 1.6; color: var(--sety-text-soft); }
+  .sety-faq__item.is-aberto .sety-faq__resposta { display: block; }
+
+  .sety-footer { background: #0a0a0a; color: #fff; margin-top: 80px; padding: 64px 24px 24px; font-family: 'Montserrat', sans-serif; }
+  .sety-footer__grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 32px; }
+  @media (max-width: 760px) { .sety-footer__grid { grid-template-columns: 1fr 1fr; } }
+  .sety-footer__marca .imperial-logo__img { height: 60px; }
+  .sety-footer__social { display: flex; gap: 12px; margin-top: 16px; }
+  .sety-footer__social svg { width: 20px; height: 20px; }
+  .sety-footer__titulo { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .6px; margin: 0 0 16px; color: rgba(255,255,255,.9); }
+  .sety-footer__links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .sety-footer__links a { color: rgba(255,255,255,.62); text-decoration: none; font-size: 13px; transition: color .2s; }
+  .sety-footer__links a:hover { color: #fff; }
+  .sety-footer__atendimento p { font-size: 13px; margin: 0 0 8px; display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,.85); }
+  .sety-footer__atendimento svg { width: 15px; height: 15px; flex-shrink: 0; }
+  .sety-footer-whats { display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #fff; border-radius: 5px; padding: 10px 18px; text-decoration: none; font-size: 13px; font-weight: 600; margin-top: 8px; }
+  .sety-footer-whats svg { width: 20px; height: 20px; }
+  .sety-footer__pagamento-icones { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .sety-footer__pagamento-icones svg { height: 24px; width: auto; }
+  .sety-footer__selos { display: flex; flex-wrap: wrap; gap: 16px; border-top: 1px solid rgba(255,255,255,.15); padding-top: 16px; }
+  .sety-footer__selo { display: flex; align-items: center; gap: 6px; font-size: 11px; color: rgba(255,255,255,.7); }
+  .sety-footer__selo svg { width: 16px; height: 16px; }
+  .sety-footer__copy { max-width: 1200px; margin: 32px auto 0; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.15); font-size: 12px; color: rgba(255,255,255,.5); text-align: center; }
+  .sety-footer__selo-sety { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 10px; }
+  .sety-footer__selo-sety img { height: 16px; width: auto; opacity: .7; }
+
+  .sety-whatsapp-float {
+    position: fixed; bottom: 24px; right: 24px; width: 58px; height: 58px; border-radius: 50%; background: #25D366;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,.28); z-index: 999; text-decoration: none;
+    transition: transform .2s;
+  }
+  .sety-whatsapp-float:hover { transform: scale(1.08); }
+  .sety-whatsapp-float svg { width: 30px; height: 30px; }
+</style>
+</head>
+<body>
+
+<div class="sety-topo-anuncio">10% OFF comprando no Pix</div>
+
+<header class="sety-header">
+  <a href="index.html" class="imperial-logo">
+    <img src="assets/logo/imperial-store-logo-header.png" alt="Imperial Store" class="imperial-logo__img">
+  </a>
+  <nav class="sety-nav">
+    <a href="index.html">Início</a>
+    <a href="colecao.html">Todos os Produtos</a>
+    <a href="colecao.html?cat=Camisetas">Camisetas</a>
+    <a href="colecao.html?cat=Moletons">Moletons</a>
+    <a href="index.html#sety-faq-home">Perguntas Frequentes</a>
+  </nav>
+  <div class="sety-header__acoes">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    <a href="checkout.html" class="sety-header__carrinho" aria-label="Ver sacola">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8h12l1 12H5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="sety-header__carrinho-count">0</span>
+    </a>
+  </div>
+</header>
+
+<section class="sety-produto">
+
+  <nav class="sety-breadcrumb">
+    <a href="index.html">Página Inicial</a> / <span id="sety-breadcrumb-produto">Produto</span>
+  </nav>
+
+  <div class="sety-produto__grid">
+
+    <div class="sety-galeria">
+      <div class="sety-galeria__main"><img id="sety-imagem-principal" src="" alt=""></div>
+    </div>
+
+    <div class="sety-produto__info">
+
+      <div class="sety-badges">
+        <span class="sety-badge sety-badge--oferta" id="sety-badge-desconto">OFERTA</span>
+        <span class="sety-badge sety-badge--qualidade">QUALIDADE PREMIUM</span>
+      </div>
+
+      <h1 class="sety-titulo" id="sety-nome-produto">Produto</h1>
+
+      <div class="sety-preco-linha">
+        <span class="sety-preco-atual" id="sety-preco-atual">R$ 0,00</span>
+        <span class="sety-preco-riscado" id="sety-preco-original">R$ 0,00</span>
+        <span class="sety-preco-desconto" id="sety-preco-desconto">-15%</span>
+      </div>
+
+      <p class="sety-parcelamento">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 9h20"/></svg>
+        em até 3x sem juros de <b id="sety-valor-parcela">R$ 0,00</b>
+      </p>
+
+      <div class="sety-pix">
+        <svg viewBox="0 0 512 512"><path d="M242.4 292.5C247.9 298 257.1 298 262.6 292.5L339.3 215.8C334.8 210.5 328.1 207 320.6 207H239.5C232 207 225.3 210.5 220.8 215.8L242.4 292.5zM384.4 168.9L322.9 107.4C307.6 92.1 288 84 267.9 82.3V17.1C267.9 7.7 260.2 0 250.8 0S233.8 7.7 233.8 17.1V82.3C213.7 84 194.1 92.1 178.8 107.4L117.4 168.9C102.1 184.2 94 203.8 92.3 223.9H17.1C7.7 223.9 0 231.6 0 241S7.7 258.1 17.1 258.1H92.3C94 278.2 102.1 297.8 117.4 313.1L178.9 374.6C194.2 389.9 213.8 398 233.9 399.7V464.9C233.9 474.3 241.6 482 251 482S268.1 474.3 268.1 464.9V399.7C288.2 398 307.8 389.9 323.1 374.6L384.6 313.1C399.9 297.8 408 278.2 409.7 258.1H474.9C484.3 258.1 492 250.4 492 241S484.3 223.9 474.9 223.9H409.7C407.9 203.8 399.8 184.2 384.4 168.9z" fill="#32BCAD"/></svg>
+        <div><strong>10% OFF</strong> no pix <span class="envio">+ Envio Prioritário</span></div>
+      </div>
+
+      <div class="sety-opcao">
+        <span class="sety-opcao__label">Tamanho: <span id="sety-tamanho-selecionado">M</span></span>
+        <div class="sety-swatch-list" id="sety-swatch-tamanho">
+          <button type="button" class="sety-swatch">P</button>
+          <button type="button" class="sety-swatch is-selected">M</button>
+          <button type="button" class="sety-swatch">G</button>
+          <button type="button" class="sety-swatch">GG</button>
+        </div>
+      </div>
+
+      <div class="sety-opcao">
+        <span class="sety-opcao__label">Quantidade:</span>
+        <div class="sety-qtd">
+          <button type="button" onclick="setyAlterarQtd(-1)" aria-label="Diminuir quantidade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></button>
+          <input type="text" id="sety-qtd-input" value="1" inputmode="numeric" aria-label="Quantidade">
+          <button type="button" onclick="setyAlterarQtd(1)" aria-label="Aumentar quantidade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+      </div>
+
+      <div class="sety-ctas">
+        <button type="button" id="sety-btn-adicionar-sacola" class="sety-btn sety-btn--primario">Adicionar à Sacola</button>
+        <a id="sety-cta-whatsapp-comprar" href="#" target="_blank" class="sety-btn sety-btn--outline">
+          <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25D366"/><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+          Comprar pelo WhatsApp
+        </a>
+      </div>
+
+      <div class="sety-pagamento">
+        <span class="sety-pagamento__titulo">FORMAS DE PAGAMENTO</span>
+        <div class="sety-pagamento__icones">
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#B4151B"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#fff" text-anchor="middle">Hipercard</text></svg>
+          <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+        </div>
+      </div>
+
+      <div class="sety-info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <p>Pagamentos e informações estão seguros<br>Site oficial com todos os direitos reservados</p>
+      </div>
+
+      <div class="sety-info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg>
+        <div><strong>Frete Grátis</strong><p>Frete grátis em pedidos acima de R$250<br>Entrega realizada pelos Correios.</p></div>
+      </div>
+
+      <div class="sety-info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        <div><strong>Devoluções Gratuitas</strong><p>Estorno de 100% do seu dinheiro<br>7 dias após o recebimento da mercadoria.</p></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="sety-tabs">
+    <div class="sety-tabs__nav">
+      <button type="button" class="sety-tabs__item is-active" data-sety-tab="descricao">Descrição</button>
+      <button type="button" class="sety-tabs__item" data-sety-tab="medidas">Tabelas de Medidas</button>
+    </div>
+
+    <div class="sety-tabs__content is-active" data-sety-tab-content="descricao">
+      <h2>Qualidade premium e preço justo</h2>
+      <p>Cansado de pagar caro em produtos de marca? Na Imperial Store você encontra peças com estilo, qualidade e conforto por um preço justo.</p>
+      <h2>Compre com confiança</h2>
+      <p>Loja física na Feira dos Importados do SIA (Brasília/DF) — trabalhamos com fornecedores de alta qualidade pra garantir que você receba exatamente o que viu na loja.</p>
+      <h2>A compra é segura?</h2>
+      <p><strong>A compra é 100% segura!</strong> Se você comprar e não se agradar com a qualidade, pode solicitar a devolução em até 7 dias após o recebimento.</p>
+      <h2>Entrega rápida e segura</h2>
+      <p>Assim que a compra for confirmada, nossa equipe entra em contato via WhatsApp com o código de rastreamento, que pode ser acompanhado em tempo real.</p>
+
+      <div class="sety-trust-links">
+        <button type="button"><svg viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M17 17H8.68C8.68 17 8 16 7 16M17 17V8M17 17H19.32M17 8V3H1V17H5.32M17 8H23.5L25 12.5V17H22.68C22.68 17 22 16 21 16M21 16C22 16 23 17 23 18C23 19 22 20 21 20C20 20 19 19 19 18C19 17.65 19.12 17.3 19.32 17M21 16C20.35 16 19.69 16.43 19.32 17M7 16C8 16 9 17 9 18C9 19 8 20 7 20C6 20 5 19 5 18C5 17.65 5.12 17.3 5.32 17M7 16C6.35 16 5.69 16.43 5.32 17"/></svg> Rastreio</button>
+        <button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M23 8V4H1V8M23 8V20H1V8M23 8H1M5 12H8M19 12V16H12V12H19Z"/></svg> Parcele sua compra!</button>
+        <button type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10C4 10 3.5 2 12 2C20.5 2 20 10 20 10M4 10C3.3 10.3 2 11 2 12.5C2 14 3 15 4 15C4.8 15 5.7 15 6 15V10H4ZM20 10C20.7 10.2 22 10.9 22 12.5C22 14.1 20.7 14.8 20 15M20 10H18V15H20M20 15C20.2 16.5 19.6 19.5 16 19.5"/></svg> Suporte Profissional</button>
+      </div>
+    </div>
+
+    <div class="sety-tabs__content" data-sety-tab-content="medidas">
+      <p>Camisetas: P (até 88cm tórax) · M (até 96cm) · G (até 104cm) · GG (até 112cm). Moletons e jaquetas seguem numeração 1 tamanho acima do habitual (oversized). Em caso de dúvida, fale com a gente pelo WhatsApp antes de comprar.</p>
+    </div>
+  </div>
+
+  <div class="sety-banner-cartao">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 9h22"/></svg>
+    <p>Compras feitas no <strong>cartão de crédito</strong> são processadas e enviadas <strong>mais rapidamente</strong>.</p>
+  </div>
+
+  <div class="sety-seguranca-completa">
+    <div class="sety-pagamento__icones">
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#003087" text-anchor="middle">boleto</text></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+    </div>
+    <div class="sety-selos-confianca">
+      <span class="sety-selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg> COMPRA 100% SEGURA</span>
+      <span class="sety-selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> AMBIENTE CRIPTOGRAFADO</span>
+    </div>
+  </div>
+
+  <div class="sety-secao-produtos">
+    <h3>Você também vai gostar</h3>
+    <div class="sety-produtos-grid" id="sety-relacionados"></div>
+  </div>
+
+  <div class="sety-faq" id="sety-faq">
+    <h2>Dúvidas Frequentes</h2>
+    <p>Conte conosco! Atendemos de segunda a sábado, das 9h às 18h, em todos os nossos canais de suporte.</p>
+
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">O site é seguro?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Sim! Todos os seus dados são criptografados para garantir 100% de segurança.</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">E se o produto não servir?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Sem estresse! Você pode solicitar a troca em até 7 dias após o recebimento, seja por tamanho, modelo ou até mesmo devolução.</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">Como acompanho meu pedido?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Após a compra, você recebe pelo WhatsApp o número de rastreio. É só clicar no link e acompanhar o trajeto em tempo real.</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">Quais formas de pagamento vocês aceitam?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Aceitamos cartão de crédito (todas as bandeiras), Pix e boleto. No Pix, seu produto já entra em processo de separação na hora — mais rápido pra chegar até você!</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">Em quanto tempo meu produto chega?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">O prazo varia de acordo com o frete escolhido, mas normalmente as entregas acontecem entre 4 a 8 dias úteis. Você recebe o código de rastreio para acompanhar cada passo.</div>
+    </div>
+  </div>
+
+</section>
+
+<footer class="sety-footer">
+  <div class="sety-footer__grid">
+    <div class="sety-footer__marca">
+      <a href="index.html" class="imperial-logo">
+        <img src="assets/logo/imperial-store-logo-header.png" alt="Imperial Store" class="imperial-logo__img">
+      </a>
+      <div class="sety-footer__social">
+        <a href="https://www.instagram.com/_imperialstorebsb2/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="sety-footer__titulo">Menu do Rodapé</p>
+      <ul class="sety-footer__links">
+        <li><a href="index.html#sety-faq-home">FAQ - Perguntas Frequentes</a></li>
+        <li><a href="politica-privacidade.html">Política de Privacidade</a></li>
+        <li><a href="prazos-entrega.html">Políticas de Envio e Prazo de Entrega</a></li>
+        <li><a href="politica-trocas.html">Políticas de Trocas e Devoluções</a></li>
+      </ul>
+    </div>
+    <div class="sety-footer__atendimento">
+      <p class="sety-footer__titulo">Central de Atendimento</p>
+      <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Atendimento: seg. à sáb. 09 às 18h</p>
+      <a href="https://wa.me/5561999999999" target="_blank" class="sety-footer-whats">
+        <svg viewBox="0 0 32 32"><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2z"/></svg>
+        Atendimento via WhatsApp
+      </a>
+    </div>
+    <div>
+      <p class="sety-footer__titulo">Formas de Pagamento</p>
+      <div class="sety-footer__pagamento-icones">
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#fff"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#003087" text-anchor="middle">boleto</text></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#fff"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+      </div>
+      <div class="sety-footer__selos">
+        <span class="sety-footer__selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg> Site Seguro</span>
+        <span class="sety-footer__selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg> Loja Verificada</span>
+        <span class="sety-footer__selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Certificado SSL</span>
+      </div>
+    </div>
+  </div>
+  <p class="sety-footer__copy">
+    © 2026 Imperial Store | Todos os direitos reservados.
+    <span class="sety-footer__selo-sety"><img src="assets/sety-studio-logo.svg" alt="Sety Studio"><a href="https://setystudio.com.br" target="_blank" style="color:rgba(255,255,255,.5);">Feito por Sety Studio</a></span>
+  </p>
+</footer>
+
+<a href="https://wa.me/5561999999999" class="sety-whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 32 32"><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+</a>
+
+<script src="js/catalogo.js"></script>
+<script src="js/carrinho.js"></script>
+<script>
+  var WHATS_NUMERO = IMPERIAL_WHATS_NUMERO;
+  var SLUG_ATUAL = 'nocta';
+
+  function formatarPreco(v) { return imperialFormatarPreco(v); }
+
+  function renderProduto() {
+    var params = new URLSearchParams(window.location.search);
+    var slug = params.get('p') || 'nocta';
+    if (!IMPERIAL_CATALOGO[slug]) slug = 'nocta';
+    SLUG_ATUAL = slug;
+    var p = IMPERIAL_CATALOGO[slug];
+
+    var precoOriginal = Math.round((p.preco / 0.85) * 100) / 100;
+    var desconto = Math.round((1 - p.preco / precoOriginal) * 100);
+    var parcela = p.preco / 3;
+
+    document.title = 'Imperial Store — ' + p.nome;
+    document.getElementById('sety-breadcrumb-produto').textContent = p.nome;
+    document.getElementById('sety-nome-produto').textContent = p.nome + ' — ' + p.variacao;
+    document.getElementById('sety-imagem-principal').src = p.imagem;
+    document.getElementById('sety-imagem-principal').alt = p.nome;
+    document.getElementById('sety-preco-atual').textContent = formatarPreco(p.preco);
+    document.getElementById('sety-preco-original').textContent = formatarPreco(precoOriginal);
+    document.getElementById('sety-preco-desconto').textContent = '-' + desconto + '%';
+    document.getElementById('sety-valor-parcela').textContent = formatarPreco(parcela);
+
+    var msgComprar = encodeURIComponent('Olá, quero comprar: ' + p.nome + ' (' + p.variacao + ') — ' + formatarPreco(p.preco));
+    document.getElementById('sety-cta-whatsapp-comprar').href = 'https://wa.me/' + WHATS_NUMERO + '?text=' + msgComprar;
+
+    var relacionadosEl = document.getElementById('sety-relacionados');
+    relacionadosEl.innerHTML = '';
+    var chaves = Object.keys(IMPERIAL_CATALOGO).filter(function(k){ return k !== slug; }).slice(0, 4);
+    chaves.forEach(function(k) {
+      var rp = IMPERIAL_CATALOGO[k];
+      var card = document.createElement('a');
+      card.href = 'produto.html?p=' + k;
+      card.className = 'sety-produto-card';
+      card.innerHTML = '<div class="sety-produto-card__imagem-wrap"><img src="' + rp.imagem + '" alt="' + rp.nome + '"></div>' +
+        '<p class="sety-produto-card__titulo">' + rp.nome + '</p>' +
+        '<p class="sety-produto-card__preco">' + formatarPreco(rp.preco) + '</p>';
+      relacionadosEl.appendChild(card);
+    });
+  }
+  renderProduto();
+
+  document.getElementById('sety-swatch-tamanho').addEventListener('click', function(e) {
+    var btn = e.target.closest('.sety-swatch');
+    if (!btn) return;
+    this.querySelectorAll('.sety-swatch').forEach(function(b){ b.classList.remove('is-selected'); });
+    btn.classList.add('is-selected');
+    document.getElementById('sety-tamanho-selecionado').textContent = btn.textContent;
+  });
+
+  function setyAlterarQtd(delta) {
+    var input = document.getElementById('sety-qtd-input');
+    var novo = Math.max(1, parseInt(input.value || '1', 10) + delta);
+    input.value = novo;
+  }
+
+  document.getElementById('sety-btn-adicionar-sacola').addEventListener('click', function () {
+    var tamanho = document.getElementById('sety-tamanho-selecionado').textContent;
+    var quantidade = parseInt(document.getElementById('sety-qtd-input').value || '1', 10);
+    carrinhoAdicionar(SLUG_ATUAL, tamanho, quantidade);
+  });
+
+  document.querySelector('.sety-tabs__nav').addEventListener('click', function(e) {
+    var btn = e.target.closest('.sety-tabs__item');
+    if (!btn) return;
+    var alvo = btn.dataset.setyTab;
+    this.querySelectorAll('.sety-tabs__item').forEach(function(b){ b.classList.remove('is-active'); });
+    btn.classList.add('is-active');
+    document.querySelectorAll('.sety-tabs__content').forEach(function(c){
+      c.classList.toggle('is-active', c.dataset.setyTabContent === alvo);
+    });
+  });
+
+  document.getElementById('sety-faq').addEventListener('click', function(e) {
+    var btn = e.target.closest('.sety-faq__pergunta');
+    if (!btn) return;
+    btn.closest('.sety-faq__item').classList.toggle('is-aberto');
+  });
+</script>
+
+</body>
+</html>

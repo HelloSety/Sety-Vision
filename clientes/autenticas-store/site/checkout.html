@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizar Compra — Autênticas Store</title>
+<meta name="description" content="Finalize sua compra na Autênticas Store com pagamento seguro via Mercado Pago (Pix, cartão ou boleto).">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Sora:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .checkout-wrap { max-width: 720px; margin: 0 auto; padding: 32px 20px 80px; }
+  .checkout-wrap h1 { font-size: 24px; text-transform: uppercase; margin-bottom: 4px; }
+  .checkout-wrap .checkout-sub { color: var(--cinza); font-size: 13.5px; margin-bottom: 28px; }
+  .checkout-section { background: #fff; border: 1px solid var(--borda); border-radius: 14px; padding: 22px; margin-bottom: 18px; }
+  .checkout-section h2 { font-size: 14px; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .checkout-section h2 svg { width: 18px; height: 18px; color: var(--gold-text); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .form-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .form-row.cols-cep { grid-template-columns: 160px 1fr; }
+  @media (max-width: 560px) { .form-row, .form-row.cols-3, .form-row.cols-cep { grid-template-columns: 1fr; } }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field label { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .field input, .field select { padding: 12px 14px; border: 1px solid var(--borda); border-radius: 10px; font-size: 14px; font-family: inherit; background: #fff; }
+  .field input:focus, .field select:focus { outline: none; border-color: var(--gold); }
+  .checkout-items { display: flex; flex-direction: column; gap: 14px; margin-bottom: 14px; }
+  .checkout-item { display: flex; gap: 12px; align-items: center; }
+  .checkout-item img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; background: var(--bg-soft); }
+  .checkout-item-info { flex: 1; min-width: 0; }
+  .checkout-item-info h4 { font-size: 13.5px; font-weight: 700; margin-bottom: 2px; }
+  .checkout-item-info span { font-size: 12px; color: var(--cinza); }
+  .checkout-item-price { font-size: 13.5px; font-weight: 700; white-space: nowrap; }
+  .checkout-totals { border-top: 1px solid var(--borda); padding-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .checkout-totals .row { display: flex; justify-content: space-between; font-size: 13.5px; }
+  .checkout-totals .row.total { font-size: 17px; font-weight: 800; }
+  .checkout-totals .row.note { font-size: 12px; color: var(--cinza); }
+  .checkout-submit-row { position: sticky; bottom: 0; background: linear-gradient(180deg, transparent, #fff 30%); padding: 18px 0 4px; }
+  #checkoutError { display: none; background: #fdeaea; border: 1px solid #f2b8b8; color: #a12727; padding: 12px 14px; border-radius: 10px; font-size: 13px; margin-bottom: 14px; }
+  #checkoutSubmit[disabled] { opacity: .6; pointer-events: none; }
+  .checkout-empty { text-align: center; padding: 60px 20px; }
+  .checkout-empty a { color: var(--gold-text); font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="marquee">
+  <div class="marquee__track" id="marqueeTrack"></div>
+</div>
+
+<header class="site-header" id="siteHeader">
+  <div class="header-top">
+    <a href="index.html" class="logo" aria-label="Autênticas Store — página inicial">
+      <img src="assets/logo.png" alt="Autênticas Store">
+      <span>AUTÊNTICAS STORE</span>
+    </a>
+    <nav class="main-nav" style="margin-left:auto">
+      <a href="index.html">Voltar à loja</a>
+    </nav>
+  </div>
+</header>
+
+<main class="checkout-wrap">
+  <h1>Finalizar Compra</h1>
+  <p class="checkout-sub">Pagamento processado com segurança pelo Mercado Pago — Pix, cartão ou boleto.</p>
+
+  <div id="checkoutEmpty" class="checkout-empty" style="display:none">
+    <p>Seu carrinho está vazio.</p>
+    <a href="index.html#produtos">Ver coleção</a>
+  </div>
+
+  <form id="checkoutForm">
+    <section class="checkout-section">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg> Seus dados</h2>
+      <div class="form-row">
+        <div class="field"><label for="custName">Nome completo *</label><input id="custName" name="name" required autocomplete="name"></div>
+        <div class="field"><label for="custPhone">WhatsApp *</label><input id="custPhone" name="phone" required autocomplete="tel" placeholder="(67) 99999-9999"></div>
+      </div>
+      <div class="form-row">
+        <div class="field"><label for="custEmail">E-mail</label><input id="custEmail" name="email" type="email" autocomplete="email"></div>
+      </div>
+    </section>
+
+    <section class="checkout-section">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="7" width="15" height="11" rx="1"/><path d="M16 11h3.5L22 15.5V18h-6"/><circle cx="6" cy="20" r="1.6"/><circle cx="17.5" cy="20" r="1.6"/></svg> Endereço de entrega</h2>
+      <div class="form-row cols-cep">
+        <div class="field"><label for="addrCep">CEP *</label><input id="addrCep" name="cep" required inputmode="numeric" maxlength="9" placeholder="00000-000"></div>
+        <div class="field"><label for="addrStreet">Rua *</label><input id="addrStreet" name="street" required></div>
+      </div>
+      <div class="form-row cols-3">
+        <div class="field"><label for="addrNumber">Número *</label><input id="addrNumber" name="number" required></div>
+        <div class="field"><label for="addrComplement">Complemento</label><input id="addrComplement" name="complement"></div>
+        <div class="field"><label for="addrDistrict">Bairro *</label><input id="addrDistrict" name="district" required></div>
+      </div>
+      <div class="form-row cols-cep">
+        <div class="field"><label for="addrCity">Cidade *</label><input id="addrCity" name="city" required></div>
+        <div class="field"><label for="addrState">Estado *</label><input id="addrState" name="state" required maxlength="2" placeholder="UF"></div>
+      </div>
+    </section>
+
+    <section class="checkout-section">
+      <h2><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Seu pedido</h2>
+      <div class="checkout-items" id="checkoutItems"></div>
+      <div class="checkout-totals">
+        <div class="row"><span>Subtotal</span><span id="checkoutSubtotal">R$ 0,00</span></div>
+        <div class="row total"><span>Total</span><span id="checkoutTotal">R$ 0,00</span></div>
+        <div class="row note">Frete calculado e combinado após a confirmação do pedido.</div>
+      </div>
+    </section>
+
+    <div id="checkoutError"></div>
+
+    <div class="checkout-submit-row">
+      <button type="submit" class="btn-primary btn-block" id="checkoutSubmit">Pagar com Mercado Pago</button>
+      <div class="payment-icons" style="margin-top:12px"></div>
+    </div>
+  </form>
+</main>
+
+<script src="js/catalog.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

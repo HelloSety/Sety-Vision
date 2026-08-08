@@ -1,0 +1,73 @@
+<div class="cart-page" style="padding:48px 24px 80px;max-width:720px;margin:0 auto;">
+  <h1 class="sec-title" style="padding-top:0;">{{ section.settings.title | default: 'MEU CARRINHO' }}</h1>
+
+  {%- if cart.item_count > 0 -%}
+    {%- form 'cart', cart -%}
+      {%- for item in cart.items -%}
+        <div class="cart-line">
+          <div class="cart-line-img">
+            {%- if item.image -%}<img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title }}" width="120" height="150">{%- endif -%}
+          </div>
+          <div class="cart-line-info">
+            <p class="cart-line-name">{{ item.product.title }}</p>
+            <p class="cart-line-variant">{{ item.variant.title }}</p>
+            <div class="cart-line-qty">
+              <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}">−</a>
+              <span>{{ item.quantity }}</span>
+              <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}">+</a>
+            </div>
+            <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="cart-remove">Remover</a>
+          </div>
+          <p class="cart-line-price">{{ item.line_price | money }}</p>
+        </div>
+      {%- endfor -%}
+
+      <div class="cart-totals">
+        <span>TOTAL</span>
+        <span>{{ cart.total_price | money }}</span>
+      </div>
+
+      <button type="submit" name="checkout" class="btn btn-white" style="display:block;width:100%;text-align:center;margin-top:16px;">
+        {{ section.settings.checkout_text | default: 'FINALIZAR PEDIDO' }}
+      </button>
+    {%- endform -%}
+
+    <div style="margin-top:20px;text-align:center;">
+      <p style="font-size:11px;color:var(--gray);margin-bottom:12px;">{{ section.settings.wpp_checkout_text | default: 'Prefere confirmar pelo WhatsApp?' }}</p>
+      <a href="https://wa.me/{{ settings.wpp_number }}?text={{ 'Olá! Quero finalizar meu pedido pelo WhatsApp.' | url_encode }}" target="_blank" rel="noopener" class="btn" style="border:1px solid var(--border);color:var(--white);">
+        {{ section.settings.wpp_btn_text | default: 'FINALIZAR PELO WHATSAPP' }}
+      </a>
+    </div>
+  {%- else -%}
+    <div style="text-align:center;padding:60px 0;">
+      <p style="font-size:12px;color:var(--gray);margin-bottom:24px;">{{ section.settings.empty_text | default: 'Seu carrinho está vazio.' }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn-white">{{ section.settings.continue_text | default: 'EXPLORAR COLEÇÃO' }}</a>
+    </div>
+  {%- endif -%}
+</div>
+
+<style>
+  .cart-line { display:grid; grid-template-columns:80px 1fr auto; gap:16px; padding:18px 0; border-bottom:1px solid var(--border); align-items:start; }
+  .cart-line-img img { width:80px; height:100px; object-fit:cover; }
+  .cart-line-name { font-size:13px; margin-bottom:4px; }
+  .cart-line-variant { font-size:11px; color:var(--gray); margin-bottom:8px; }
+  .cart-line-qty { display:flex; align-items:center; gap:12px; font-size:14px; margin-bottom:6px; }
+  .cart-line-qty a { color:var(--white); }
+  .cart-remove { font-size:10px; color:var(--gray); text-decoration:underline; }
+  .cart-line-price { font-size:13px; }
+  .cart-totals { display:flex; justify-content:space-between; font-size:14px; font-weight:600; padding:16px 0; border-top:1px solid var(--border); margin-top:8px; }
+</style>
+
+{% schema %}
+{
+  "name": "Carrinho",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "MEU CARRINHO" },
+    { "type": "text", "id": "checkout_text", "label": "Botão finalizar", "default": "FINALIZAR PEDIDO" },
+    { "type": "text", "id": "empty_text", "label": "Texto vazio", "default": "Seu carrinho está vazio." },
+    { "type": "text", "id": "continue_text", "label": "Botão continuar", "default": "EXPLORAR COLEÇÃO" },
+    { "type": "text", "id": "wpp_checkout_text", "label": "Texto acima do WhatsApp", "default": "Prefere confirmar pelo WhatsApp?" },
+    { "type": "text", "id": "wpp_btn_text", "label": "Botão WhatsApp", "default": "FINALIZAR PELO WHATSAPP" }
+  ]
+}
+{% endschema %}

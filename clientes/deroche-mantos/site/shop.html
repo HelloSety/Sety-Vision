@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo Completo — Deroche Mantos</title>
+<meta name="description" content="Catálogo completo Deroche Mantos: Futebol, NBA, Streetwear, Perfumes, Óculos, Calçados, Mochilas, Bonés, Academia, Eletrônicos, Bolas, Infantil e Acessórios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="topbar">🔥 <strong>10% de desconto</strong> pagando no Pix &nbsp;|&nbsp; Frete grátis acima de R$299 &nbsp;|&nbsp; Parcele em até 12x</div>
+
+<header class="site-header">
+  <div class="header-top">
+    <div class="search-box">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="search-input" placeholder="O que você está buscando?">
+    </div>
+    <a href="index.html" class="logo"><img src="assets/logo-real.png" alt="Deroche Mantos"></a>
+    <div class="header-icons">
+      <a class="icon-link" href="https://wa.me/556993806867" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Entrar</span>
+      </a>
+      <a class="icon-link cart-trigger" href="shop.html">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <a href="index.html">Início</a>
+    <a href="shop.html?cat=futebol">Futebol</a>
+    <a href="shop.html?cat=nba">NBA</a>
+    <a href="shop.html?cat=streetwear">Streetwear</a>
+    <a href="shop.html?cat=perfumes">Perfumes</a>
+    <a href="shop.html?cat=oculos">Óculos</a>
+    <a href="shop.html?cat=calcados">Calçados</a>
+    <a href="shop.html?cat=mochilas">Mochilas</a>
+    <a href="shop.html?cat=bones">Bonés</a>
+    <a href="shop.html?cat=academia">Academia</a>
+    <a href="shop.html?cat=eletronicos">Eletrônicos</a>
+    <a href="shop.html?cat=bolas">Bolas</a>
+    <a href="shop.html?cat=infantil">Infantil</a>
+    <a href="shop.html?cat=acessorios">Acessórios</a>
+  </nav>
+</header>
+
+<section class="section container">
+  <div class="section-head"><h2 id="page-title">Todos os <span>Produtos</span></h2></div>
+  <div class="filters" id="filters"></div>
+  <p id="result-count" style="color:var(--cinza); font-size:13px; margin-bottom:18px"></p>
+  <div class="grid" id="product-grid"></div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <img src="assets/logo-real-dark.png" alt="Deroche Mantos">
+        <p>Camisas de futebol, NBA, streetwear, perfumes, óculos e acessórios com qualidade premium.</p>
+      </div>
+      <div>
+        <h4>Menu do Rodapé</h4>
+        <ul>
+          <li><a href="#">Aviso Legal</a></li>
+          <li><a href="index.html#faq-list">FAQ — Perguntas Frequentes</a></li>
+          <li><a href="#">Política de Origem do Produto</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="#">Políticas de Envio e Prazo de Entrega</a></li>
+          <li><a href="#">Políticas de Trocas e Devoluções</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Central de Atendimento</h4>
+        <ul>
+          <li>Atendimento: seg. a sáb. 9h às 18h</li>
+          <li>Contato: (69) 99380-6867</li>
+          <li>Email: suportederoche@outlook.com</li>
+        </ul>
+        <a class="footer-whats" href="https://wa.me/556993806867" target="_blank" rel="noopener">💬 Atendimento via WhatsApp</a>
+      </div>
+      <div>
+        <h4>Formas de Pagamento</h4>
+        <div class="payment-icons">
+          <span>VISA</span><span>MASTER</span><span>PIX</span><span>ELO</span><span>AMEX</span><span>BOLETO</span>
+        </div>
+        <h4 style="margin-top:26px">Loja Verificada</h4>
+        <div class="trust-badges">
+          <span>✓ Google Seguro</span>
+          <span>✓ Compra Segura</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Deroche Mantos. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<a class="whats-float" href="https://wa.me/556993806867" target="_blank" rel="noopener">💬</a>
+
+<script src="catalog.js"></script>
+<script src="cart.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  let currentCat = params.get('cat') || 'todos';
+  let searchTerm = '';
+
+  const cats = [
+    { id: 'todos', label: 'Todos' },
+    { id: 'futebol', label: 'Futebol' },
+    { id: 'nba', label: 'NBA' },
+    { id: 'streetwear', label: 'Streetwear' },
+    { id: 'perfumes', label: 'Perfumes' },
+    { id: 'oculos', label: 'Óculos' },
+    { id: 'calcados', label: 'Calçados' },
+    { id: 'mochilas', label: 'Mochilas' },
+    { id: 'bones', label: 'Bonés' },
+    { id: 'academia', label: 'Academia' },
+    { id: 'eletronicos', label: 'Eletrônicos' },
+    { id: 'bolas', label: 'Bolas' },
+    { id: 'infantil', label: 'Infantil' },
+    { id: 'acessorios', label: 'Acessórios' },
+  ];
+
+  function render() {
+    document.getElementById('filters').innerHTML = cats.map(c =>
+      `<button class="filter-btn ${c.id===currentCat?'active':''}" data-cat="${c.id}">${c.label}</button>`
+    ).join('');
+
+    let ids = Object.keys(PRODUCTS).filter(id => matchesCat(id, currentCat));
+    if (searchTerm) {
+      const t = searchTerm.toLowerCase();
+      ids = ids.filter(id => PRODUCTS[id].name.toLowerCase().includes(t));
+    }
+    document.getElementById('product-grid').innerHTML = ids.map(productCardHTML).join('') || '<p>Nenhum produto encontrado.</p>';
+    document.getElementById('result-count').textContent = `${ids.length} produto${ids.length!==1?'s':''} encontrado${ids.length!==1?'s':''}`;
+
+    const catObj = cats.find(c => c.id === currentCat);
+    document.getElementById('page-title').innerHTML = currentCat === 'todos'
+      ? 'Todos os <span>Produtos</span>'
+      : `${catObj.label} <span>Deroche</span>`;
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        currentCat = btn.dataset.cat;
+        history.replaceState(null, '', `shop.html?cat=${currentCat}`);
+        render();
+      });
+    });
+  }
+  render();
+
+  document.getElementById('search-input').addEventListener('input', (e) => {
+    searchTerm = e.target.value;
+    render();
+  });
+</script>
+</body>
+</html>

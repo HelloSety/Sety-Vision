@@ -1,0 +1,39 @@
+<section class="section container" style="padding-top:0">
+  <div class="benefits-grid">
+    {%- for block in section.blocks -%}
+      <div class="benefit-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">{{ block.settings.icon_svg }}</svg>
+        <h4>{{ block.settings.title }}</h4>
+        <p>{{ block.settings.text }}</p>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Benefícios",
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefício",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "textarea", "id": "text", "label": "Texto" },
+        { "type": "html", "id": "icon_svg", "label": "SVG do ícone (avançado)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefícios",
+      "blocks": [
+        { "type": "benefit", "settings": { "title": "Frete Grátis", "text": "Para o Brasil todo acima de R$299 — sem taxa surpresa", "icon_svg": "<rect x=\"1\" y=\"7\" width=\"15\" height=\"11\" rx=\"1\"/><path d=\"M16 11h3.5L22 15.5V18h-6\"/><circle cx=\"6\" cy=\"20\" r=\"1.6\"/><circle cx=\"17.5\" cy=\"20\" r=\"1.6\"/>" } },
+        { "type": "benefit", "settings": { "title": "Suporte ao Cliente", "text": "Segunda a sábado para responder suas dúvidas", "icon_svg": "<path d=\"M3 11a9 9 0 0 1 18 0v6a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3\"/><path d=\"M3 11v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3\"/>" } },
+        { "type": "benefit", "settings": { "title": "Primeira Compra", "text": "Use o cupom PRIMEIRACOMPRA e ganhe desconto", "icon_svg": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M16 2v4M8 2v4M3 10h18\"/>" } },
+        { "type": "benefit", "settings": { "title": "Compra Segura", "text": "Suas informações de pagamento são processadas com segurança", "icon_svg": "<path d=\"M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z\"/><path d=\"m9 12 2 2 4-4\"/>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

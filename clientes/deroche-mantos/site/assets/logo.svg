@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" width="400" height="160">
+  <circle cx="200" cy="34" r="28" fill="#ff6a1a" stroke="#0d0d0d" stroke-width="4"/>
+  <path d="M200 6 V62 M172 34 H228 M180 14 Q200 34 180 54 M220 14 Q200 34 220 54" stroke="#0d0d0d" stroke-width="3" fill="none"/>
+  <text x="200" y="98" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="40" fill="#ffffff" stroke="#0d0d0d" stroke-width="2" paint-order="stroke">DEROCHE</text>
+  <text x="200" y="126" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="22" fill="#ff6a1a" letter-spacing="4">MANTOS</text>
+  <path d="M160 138 L170 158 M175 138 L182 158 M190 138 L194 158 M200 138 L200 160 M210 138 L206 158 M225 138 L218 158 M240 138 L230 158" stroke="#9a9a9a" stroke-width="2" fill="none"/>
+</svg>

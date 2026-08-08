@@ -1,0 +1,21 @@
+<div class="container" style="padding: 40px 0 80px;">
+  <div class="tiles-title">
+    <h1>{{ 'search.title' | t }}{% if search.performed %}: "{{ search.terms }}"{% endif %}</h1>
+  </div>
+  {% if search.performed %}
+    {% paginate search.results by 24 %}
+      {% if search.results.size > 0 %}
+        <div class="category-grid">
+          {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+              {% render 'product-card', product: item %}
+            {% endif %}
+          {% endfor %}
+        </div>
+        {{ paginate | default_pagination }}
+      {% else %}
+        <div class="collection-empty">{{ 'search.no_results' | t }}</div>
+      {% endif %}
+    {% endpaginate %}
+  {% endif %}
+</div>

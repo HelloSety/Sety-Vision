@@ -1,0 +1,175 @@
+<nav class="breadcrumb" aria-label="breadcrumb">
+  <a href="{{ routes.root_url }}">Shop</a>
+  <span aria-hidden="true">›</span>
+  <a href="{{ routes.all_products_collection_url }}">{{ collection.title | default: 'Coleção' }}</a>
+  <span aria-hidden="true">›</span>
+  <span>{{ product.title }}</span>
+</nav>
+
+<div class="prod-page">
+  <div class="prod-gallery">
+    <div class="prod-thumbs">
+      {%- for image in product.images -%}
+        <div class="prod-thumb{% if forloop.first %} active{% endif %}" data-src="{{ image | image_url: width: 900 }}">
+          <img src="{{ image | image_url: width: 120 }}" alt="{{ image.alt | default: product.title }}" loading="lazy" width="120" height="150">
+        </div>
+      {%- endfor -%}
+    </div>
+    <div class="prod-main-img">
+      {%- if product.featured_image -%}
+        <img id="galleryMain" src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.featured_image.alt | default: product.title }}" width="900" height="1125">
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="prod-info">
+    <p class="prod-brand">LGD RECORDS</p>
+    <h1 class="prod-name">{{ product.title }}</h1>
+
+    <p class="prod-price-main" id="prodPrice" data-price="{{ product.selected_or_first_available_variant.price }}">
+      {{ product.selected_or_first_available_variant.price | money }}
+    </p>
+    <p class="prod-pix" id="prodPix"></p>
+    <p class="prod-install" id="prodInstall"></p>
+
+    {%- if settings.free_shipping_threshold != blank -%}
+      <p class="prod-shipping-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Frete grátis a partir de {{ settings.free_shipping_threshold | times: 100 | money }}
+      </p>
+    {%- endif -%}
+
+    {%- form 'product', product, id: 'productForm' -%}
+      <input type="hidden" name="id" id="variantId" value="{{ product.selected_or_first_available_variant.id }}">
+
+      {%- for option in product.options_with_values -%}
+        {%- if option.name == 'Tamanho' -%}
+          <div class="prod-opt-group">
+            <p class="prod-opt-label">TAMANHO</p>
+            <div class="size-row">
+              {%- for value in option.values -%}
+                <button type="button" class="sz-btn" data-opt-index="{{ forloop.parentloop.index }}" data-opt-value="{{ value }}">{{ value }}</button>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- elsif option.name == 'Cor' -%}
+          {%- assign opt_key = 'option' | append: forloop.index -%}
+          <div class="prod-opt-group">
+            <p class="prod-opt-label">COR — <span id="colorSelected">{{ product.selected_or_first_available_variant.option2 | default: option.values.first }}</span></p>
+            <div class="color-row">
+              {%- for value in option.values -%}
+                {%- assign swatch_variant = product.variants | where: opt_key, value | first -%}
+                {%- assign swatch_img = swatch_variant.featured_image | default: product.featured_image -%}
+                <div class="color-swatch" data-opt-index="{{ forloop.parentloop.index }}" data-opt-value="{{ value }}" data-name="{{ value }}" title="{{ value }}"
+                  {%- if swatch_img -%} style="background-image:url('{{ swatch_img | image_url: width: 80 }}');background-size:cover;background-position:center;"{%- endif -%}></div>
+              {%- endfor -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+      <div class="prod-buy-row">
+        <div class="qty-wrap">
+          <button type="button" class="qty-minus" id="qtyMinus">−</button>
+          <input type="number" class="qty-n" id="qtyNum" name="quantity" value="1" min="1" max="10" readonly>
+          <button type="button" class="qty-plus" id="qtyPlus">+</button>
+        </div>
+        <button type="submit" class="btn-buy" id="btnAddCart">
+          {{ section.settings.cart_btn_text | default: 'ADICIONAR AO CARRINHO' }}
+        </button>
+      </div>
+    {%- endform -%}
+
+    {%- if section.settings.enable_wpp -%}
+      <a id="btnWpp" href="https://wa.me/{{ settings.wpp_number }}" target="_blank" rel="noopener" class="btn btn-white" style="display:block;text-align:center;margin-bottom:16px;">
+        {{ section.settings.wpp_btn_text | default: 'COMPRAR PELO WHATSAPP' }}
+      </a>
+    {%- endif -%}
+
+    <div class="accordion" id="accDesc">
+      <button class="accordion-toggle" data-acc="accDesc">
+        <span>DESCRIÇÃO</span><span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body"><p>{{ product.description }}</p></div>
+    </div>
+
+    <div class="accordion" id="accSize">
+      <button class="accordion-toggle" data-acc="accSize">
+        <span>{{ section.settings.acc_size_label | default: 'TABELA DE MEDIDAS' }}</span><span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body">
+        <div class="size-table-wrap">
+          <table class="size-table">
+            <thead><tr><th>Tamanho</th><th>Largura (cm)</th><th>Comprimento (cm)</th></tr></thead>
+            <tbody>
+              <tr><td>P</td><td>48</td><td>68</td></tr>
+              <tr><td>M</td><td>52</td><td>70</td></tr>
+              <tr><td>G</td><td>56</td><td>72</td></tr>
+              <tr><td>GG</td><td>60</td><td>74</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion" id="accShip">
+      <button class="accordion-toggle" data-acc="accShip">
+        <span>{{ section.settings.acc_shipping_label | default: 'ENTREGA E PRAZO' }}</span><span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body"><p>{{ section.settings.accordion_shipping }}</p></div>
+    </div>
+
+    <div class="accordion" id="accReturn">
+      <button class="accordion-toggle" data-acc="accReturn">
+        <span>{{ section.settings.acc_returns_label | default: 'TROCAS E DEVOLUÇÕES' }}</span><span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-body"><p>{{ section.settings.accordion_returns }}</p></div>
+    </div>
+  </div>
+</div>
+
+{%- if section.settings.show_related -%}
+  <section class="related-section">
+    <h2 class="sec-title">{{ section.settings.related_title | default: 'Você também pode gostar' }}</h2>
+    <div class="product-grid">
+      {%- assign rec_count = 0 -%}
+      {%- assign limit = section.settings.related_count | default: 4 -%}
+      {%- for rec in collections.all.products -%}
+        {%- if rec.id != product.id and rec_count < limit -%}
+          {%- render 'product-card', product: rec -%}
+          {%- assign rec_count = rec_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+<script type="application/json" id="productVariants">
+  {{ product.variants | json }}
+</script>
+
+<style>
+  .size-table-wrap { padding: 4px 0 8px; }
+  .size-table { width:100%; border-collapse:collapse; font-size:11px; letter-spacing:0.03em; margin-bottom:8px; }
+  .size-table th { background:#111; padding:10px 8px; text-align:center; font-weight:600; border-bottom:1px solid var(--border); color:#fff; }
+  .size-table td { padding:9px 8px; text-align:center; border-bottom:1px solid var(--border); color:var(--gray); }
+</style>
+
+{% schema %}
+{
+  "name": "Produto",
+  "settings": [
+    { "type": "text", "id": "cart_btn_text", "label": "Texto botão carrinho", "default": "ADICIONAR AO CARRINHO" },
+    { "type": "checkbox", "id": "enable_wpp", "label": "Mostrar botão WhatsApp", "default": true },
+    { "type": "text", "id": "wpp_btn_text", "label": "Texto botão WhatsApp", "default": "COMPRAR PELO WHATSAPP" },
+    { "type": "text", "id": "acc_size_label", "label": "Label: Tabela de Medidas", "default": "TABELA DE MEDIDAS" },
+    { "type": "text", "id": "acc_shipping_label", "label": "Label: Entrega", "default": "ENTREGA E PRAZO" },
+    { "type": "text", "id": "acc_returns_label", "label": "Label: Trocas", "default": "TROCAS E DEVOLUÇÕES" },
+    { "type": "textarea", "id": "accordion_shipping", "label": "Texto: Entrega e Prazo", "default": "Postagem em até 1 dia útil. Envio para todo o Brasil pelos Correios ou transportadora, com código de rastreio." },
+    { "type": "textarea", "id": "accordion_returns", "label": "Texto: Trocas e Devoluções", "default": "Trocas em até 7 dias corridos após o recebimento, produto sem uso e com etiqueta. Fale com a gente pelo WhatsApp para combinar." },
+    { "type": "checkbox", "id": "show_related", "label": "Mostrar produtos relacionados", "default": true },
+    { "type": "text", "id": "related_title", "label": "Título dos relacionados", "default": "Você também pode gostar" },
+    { "type": "range", "id": "related_count", "min": 2, "max": 8, "step": 1, "default": 4, "label": "Quantidade de relacionados" }
+  ]
+}
+{% endschema %}

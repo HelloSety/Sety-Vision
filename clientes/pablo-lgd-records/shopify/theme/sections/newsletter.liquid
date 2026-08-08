@@ -1,0 +1,40 @@
+<div class="newsletter">
+  <p class="newsletter-title">{{ section.settings.title | default: 'ENTRE PRO GRUPO' }}</p>
+  <p class="newsletter-sub">{{ section.settings.subtitle | default: 'Lançamento em primeira mão, direto no seu e-mail.' }}</p>
+
+  {%- form 'customer', id: 'newsletterForm', class: 'newsletter-form' -%}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    {%- if form.posted_successfully? -%}
+      <p class="newsletter-success">{{ section.settings.success_text | default: 'Cadastrado! Fica de olho no e-mail.' }}</p>
+    {%- else -%}
+      <input class="newsletter-input" type="email" name="contact[email]" placeholder="{{ section.settings.placeholder | default: 'Seu e-mail' }}" required autocomplete="email">
+      <button type="submit" class="newsletter-btn">{{ section.settings.button_text | default: 'ASSINAR' }}</button>
+    {%- endif -%}
+  {%- endform -%}
+</div>
+
+<style>
+  .newsletter { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 48px 24px; text-align: center; }
+  .newsletter-title { font-size: 14px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 8px; }
+  .newsletter-sub { font-size: 12px; color: var(--gray); margin-bottom: 24px; }
+  .newsletter-form { max-width: 380px; margin: 0 auto; display: flex; border-bottom: 1px solid #2a2a2a; }
+  .newsletter-input { flex: 1; background: none; border: none; color: var(--white); font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.04em; padding: 12px 0; outline: none; }
+  .newsletter-input::placeholder { color: #555; }
+  .newsletter-btn { background: none; border: none; color: var(--gray); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 12px 0 12px 16px; transition: color 0.2s; }
+  .newsletter-btn:hover { color: var(--white); }
+  .newsletter-success { font-size: 12px; color: var(--pix); }
+</style>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "ENTRE PRO GRUPO" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Lançamento em primeira mão, direto no seu e-mail." },
+    { "type": "text", "id": "placeholder", "label": "Placeholder do campo", "default": "Seu e-mail" },
+    { "type": "text", "id": "button_text", "label": "Texto do botão", "default": "ASSINAR" },
+    { "type": "text", "id": "success_text", "label": "Mensagem de sucesso", "default": "Cadastrado! Fica de olho no e-mail." }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

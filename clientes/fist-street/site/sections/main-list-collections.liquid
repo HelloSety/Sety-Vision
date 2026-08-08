@@ -1,0 +1,10 @@
+<section class="section container">
+  <div class="section-head-center"><h2>Todas as Categorias</h2></div>
+  <div class="cat-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+    {%- for collection in collections -%}
+      <a class="cat-item" href="{{ collection.url }}" style="background:var(--cinza-claro);border-radius:14px;padding:20px;text-align:center;font-weight:800;text-transform:uppercase;font-size:13px">
+        {{ collection.title }}
+      </a>
+    {%- endfor -%}
+  </div>
+</section>

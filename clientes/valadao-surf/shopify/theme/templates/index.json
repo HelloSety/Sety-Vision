@@ -1,0 +1,236 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "hero_image": "",
+        "hero_image_mobile": "",
+        "hero_link": ""
+      }
+    },
+    "category-cards": {
+      "type": "category-cards",
+      "blocks": {
+        "c1": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "collection_handle": "moletons",
+            "label": "Moletons"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "collection_handle": "jaquetas",
+            "label": "Jaquetas & Corta-Vento"
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "collection_handle": "bermudas-calcas",
+            "label": "Bermudas & Calças"
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "collection_handle": "bones",
+            "label": "Bonés"
+          }
+        },
+        "c5": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "collection_handle": "chinelos",
+            "label": "Chinelos"
+          }
+        },
+        "c6": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "collection_handle": "infantil",
+            "label": "Infantil"
+          }
+        }
+      },
+      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6"],
+      "settings": {
+        "heading": "Compre por Modelo",
+        "subheading": "Coleções"
+      }
+    },
+    "mais-vendidos": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "",
+        "heading": "Mais Vendidos",
+        "subheading": "",
+        "cta_label": "Ver Catálogo",
+        "products_to_show": 8,
+        "no_top_padding": false,
+        "show_best_seller": true,
+        "show_center_cta": false
+      }
+    },
+    "banner-colecao": {
+      "type": "promo-banner",
+      "settings": {
+        "banner_image": "",
+        "banner_image_mobile": "",
+        "banner_link": "",
+        "banner_alt": "Bonés Premium Valadão Street Wear"
+      }
+    },
+    "colecao-moletons": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "",
+        "collection_handle": "moletons",
+        "heading": "Coleção Moletons",
+        "subheading": "",
+        "cta_label": "Ver Todos",
+        "products_to_show": 10,
+        "no_top_padding": false,
+        "show_best_seller": false,
+        "show_center_cta": false
+      }
+    },
+    "colecao-bermudas": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "",
+        "collection_handle": "bermudas-calcas",
+        "heading": "Coleção Bermudas & Calças",
+        "subheading": "",
+        "cta_label": "Ver Todos",
+        "products_to_show": 10,
+        "no_top_padding": false,
+        "show_best_seller": false,
+        "show_center_cta": true
+      }
+    },
+    "benefits": {
+      "type": "benefits",
+      "blocks": {
+        "be1": {
+          "type": "benefit",
+          "settings": {
+            "title": "Frete Grátis",
+            "text": "Para o Brasil todo acima de R$299 — sem taxa surpresa",
+            "icon_svg": "<rect x=\"1\" y=\"7\" width=\"15\" height=\"11\" rx=\"1\"></rect><path d=\"M16 11h3.5L22 15.5V18h-6\"></path><circle cx=\"6\" cy=\"20\" r=\"1.6\"></circle><circle cx=\"17.5\" cy=\"20\" r=\"1.6\"></circle>"
+          }
+        },
+        "be2": {
+          "type": "benefit",
+          "settings": {
+            "title": "Atendimento via WhatsApp",
+            "text": "Segunda a sábado, das 9h às 18h, direto com a gente",
+            "icon_svg": "<path d=\"M3 11a9 9 0 0 1 18 0v6a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3\"></path><path d=\"M3 11v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3\"></path>"
+          }
+        },
+        "be3": {
+          "type": "benefit",
+          "settings": {
+            "title": "Peças Originais",
+            "text": "Curadoria própria de marcas como MCD, Lost, Quiksilver e Chronic",
+            "icon_svg": "<path d=\"M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z\"></path><path d=\"m9 12 2 2 4-4\"></path>"
+          }
+        },
+        "be4": {
+          "type": "benefit",
+          "settings": {
+            "title": "Troca Garantida",
+            "text": "Até 7 dias após o recebimento para trocar o tamanho",
+            "icon_svg": "<rect x=\"3\" y=\"4\" width=\"18\" height=\"18\" rx=\"2\"></rect><path d=\"M16 2v4M8 2v4M3 10h18\"></path>"
+          }
+        }
+      },
+      "block_order": ["be1", "be2", "be3", "be4"],
+      "settings": {}
+    },
+    "about": {
+      "type": "about",
+      "settings": {
+        "heading": "O que é a Valadão Street Wear",
+        "text": "A Valadão Street Wear nasceu da cultura de rua: moletons, jaquetas, bermudas, bonés e chinelos de marca para quem vive o streetwear de verdade. Curadoria própria com peças de marcas como MCD, Lost, Quiksilver e Chronic — qualidade que se sente e estilo que representa."
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "f1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "A Valadão Street Wear é confiável?",
+            "answer": "Sim — loja própria com atendimento direto pelo WhatsApp, fotos reais dos produtos e milhares de pedidos entregues em todo o Brasil."
+          }
+        },
+        "f2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "As fotos são reais?",
+            "answer": "Sim! Todas as fotos do catálogo mostram o produto real, feitas pela nossa própria equipe."
+          }
+        },
+        "f3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Como faço para comprar?",
+            "answer": "É só escolher o produto, selecionar o tamanho e adicionar ao carrinho — ou clicar em \"Tirar Dúvida no WhatsApp\" pra gente te ajudar direto."
+          }
+        },
+        "f4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "E se o produto não servir?",
+            "answer": "Você tem até 7 dias após o recebimento para solicitar troca de tamanho, sem custo adicional."
+          }
+        },
+        "f5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Como acompanho meu pedido?",
+            "answer": "Assim que o pedido é despachado, você recebe o código de rastreio direto no WhatsApp."
+          }
+        },
+        "f6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Quais formas de pagamento vocês aceitam?",
+            "answer": "Pix (com desconto), cartão de crédito parcelado e boleto bancário."
+          }
+        },
+        "f7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Em quanto tempo meu pedido chega?",
+            "answer": "O prazo médio é de 7 a 15 dias úteis, variando conforme sua região."
+          }
+        }
+      },
+      "block_order": ["f1", "f2", "f3", "f4", "f5", "f6", "f7"],
+      "settings": {
+        "heading": "Dúvidas Frequentes",
+        "subheading": "Atendemos de segunda a sábado, das 9h às 18h, pelo WhatsApp"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "category-cards",
+    "mais-vendidos",
+    "banner-colecao",
+    "colecao-moletons",
+    "colecao-bermudas",
+    "benefits",
+    "about",
+    "faq"
+  ]
+}

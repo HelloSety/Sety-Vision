@@ -1,0 +1,34 @@
+<div class="page-wrap" style="max-width:800px;margin:80px auto;padding:0 24px;">
+  <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;letter-spacing:4px;margin-bottom:32px;text-align:center;">
+    {{ section.settings.page_title | default: 'TEMPO DE PRODUÇÃO' }}
+  </h1>
+  <hr style="border:none;border-top:1px solid #E5E5E5;margin-bottom:32px;">
+  <div class="rte">{{ section.settings.body_text | newline_to_br }}</div>
+</div>
+
+<style>
+  .page-wrap .rte { font-family: Jost, sans-serif; font-size: 14px; line-height: 1.8; color: #444; }
+</style>
+
+{% schema %}
+{
+  "name": "Tempo de Produção",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Título da página",
+      "default": "TEMPO DE PRODUÇÃO"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Texto",
+      "default": "Como cada peça é confeccionada artesanalmente e produzida exclusivamente sob medida, nosso prazo de produção é de até 20 dias corridos, além do prazo de envio.\n\nSe você precisa do seu look com mais urgência, entre em contato conosco antes de finalizar o pedido para verificarmos nossa agenda de produção e a disponibilidade de encaixe."
+    }
+  ],
+  "presets": [
+    { "name": "Tempo de Produção" }
+  ]
+}
+{% endschema %}

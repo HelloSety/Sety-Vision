@@ -1,0 +1,50 @@
+DONA BOMBA — PACOTE SHOPIFY
+============================
+
+Este pacote tem 3 partes:
+
+1) dona-bomba-tema-shopify.zip
+   Tema completo pronto pra instalar (Home, Categoria/Coleção, Produto, Carrinho).
+   Como instalar:
+   - No admin da loja Shopify: Loja Online > Temas > Adicionar tema > Fazer upload de arquivo ZIP
+   - Envie o arquivo dona-bomba-tema-shopify.zip
+   - Depois de instalado, clique em Personalizar para ver a home e ajustar textos/imagens pelo editor visual
+
+2) products-teste-2produtos.csv  ⚠️ IMPORTAR ESSE PRIMEIRO
+   Só 2 produtos de amostra — um simples (Airbrush Cap) e um com cartela de cores
+   (Colorgin Arte Urbana, 83 variantes) — pra testar se a importação funciona certinho
+   antes de subir o catálogo inteiro. Sobe esse primeiro, confere se os 2 produtos
+   apareceram certos no admin (foto, preço, variantes de cor), e só depois importa o
+   products.csv completo. Se algo der errado, o estrago fica limitado a 2 produtos,
+   fáceis de apagar e tentar de novo.
+
+3) products.csv
+   Catálogo completo (107 produtos) pronto pra importar.
+   Como importar (os dois arquivos, nessa ordem):
+   - No admin da loja Shopify: Produtos > Importar > Adicionar arquivo
+   - Envie primeiro o products-teste-2produtos.csv, confira o resultado
+   - Depois envie o products.csv
+   - O Shopify baixa as fotos automaticamente (elas estão publicadas em https://public-delta-lyart-86.vercel.app)
+
+AVISOS IMPORTANTES (revisar antes de vender):
+- 4 produtos estão com preço "0,00" porque no site original estava como "Consulte":
+  Marcador Squeezer Torpe, MTN 94 400ML, NOU Fosforescente 400ml, NOU Verniz Fosco 400ml
+  -> ajustar o preço real de cada um no admin depois da importação.
+
+- 5 produtos foram importados sem foto (não existe foto real deles no catálogo atual):
+  Lápis de cor Fine Art 72 cores, Marcador Squeezer Torpe, MTN 94 400ML, MTN Hardcore 400ML, Spray Paris 68 400ML
+  -> subir foto manualmente quando tiver.
+
+- 3 produtos com cartela de cores MUITO grande foram cortados em 100 cores porque o Shopify
+  só permite 100 variantes por produto (limite da plataforma, todo plano):
+  MTN 94 400ML (tinha 216 cores, ficaram 100), MTN Hardcore 400ML (tinha 141, ficaram 100),
+  NOU Colors 400ML (tinha 142, ficaram 100).
+  -> pra vender o catálogo completo de cores desses 3, o caminho é ou usar um app de variantes
+  estendidas (existem apps gratuitos/pagos na Shopify App Store pra isso) ou aceitar cores limitadas.
+
+- Todo produto entra com 10 unidades de estoque fictício (pra não aparecer "esgotado" assim que
+  a loja abrir) — ajustar o estoque real depois.
+
+- Peso não foi definido (fica 0) — se for calcular frete por peso, ajustar depois.
+
+Qualquer dúvida, fala com a Sety Studio.

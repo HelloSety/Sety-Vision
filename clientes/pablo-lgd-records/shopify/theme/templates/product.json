@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "cart_btn_text": "ADICIONAR AO CARRINHO",
+        "enable_wpp": true,
+        "wpp_btn_text": "COMPRAR PELO WHATSAPP",
+        "accordion_shipping": "Postagem em até 1 dia útil. Envio para todo o Brasil pelos Correios ou transportadora, com código de rastreio.",
+        "accordion_returns": "Trocas em até 7 dias corridos após o recebimento, produto sem uso e com etiqueta. Fale com a gente pelo WhatsApp para combinar.",
+        "show_related": true,
+        "related_title": "Você também pode gostar",
+        "related_count": 4
+      }
+    }
+  },
+  "order": ["main"]
+}

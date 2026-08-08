@@ -1,0 +1,50 @@
+{%- assign col = section.settings.collection -%}
+{%- if col == blank and section.settings.collection_handle != blank -%}
+  {%- assign col = collections[section.settings.collection_handle] -%}
+{%- endif -%}
+{%- if col == blank -%}
+  {%- assign col = collections.all -%}
+{%- endif -%}
+<section class="section container" {% if section.settings.no_top_padding %}style="padding-top:0"{% endif %}>
+  <div class="section-head">
+    <h2>{{ section.settings.heading | default: col.title }}</h2>
+    {%- if col.url -%}<a href="{{ col.url }}" class="ver-tudo">{{ section.settings.cta_label | default: 'Ver Todos' }}</a>{%- endif -%}
+  </div>
+  {%- if section.settings.subheading != blank -%}
+    <p class="section-sub" style="text-align:left;margin-bottom:0">{{ section.settings.subheading }}</p>
+  {%- endif -%}
+  <div class="destaques-carrossel" data-carrossel>
+    <button class="carrossel-seta carrossel-seta--prev" type="button" data-carrossel-prev aria-label="Anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="destaques-track" data-carrossel-track>
+      {%- for product in col.products limit: section.settings.products_to_show -%}
+        {% render 'dest-card', product: product, show_best_seller: section.settings.show_best_seller %}
+      {%- endfor -%}
+    </div>
+    <button class="carrossel-seta carrossel-seta--next" type="button" data-carrossel-next aria-label="Próximo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+  {%- if section.settings.show_center_cta and col.url -%}
+    <div class="center-cta"><a href="{{ col.url }}" class="btn-outline">Ver Catálogo Completo</a></div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Carrossel de Coleção",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Coleção" },
+    { "type": "text", "id": "collection_handle", "label": "Handle (usado só se 'Coleção' estiver vazio; vazio = todos)" },
+    { "type": "text", "id": "heading", "label": "Título (opcional, usa o nome da coleção se vazio)" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo" },
+    { "type": "text", "id": "cta_label", "label": "Texto do link 'ver todos'", "default": "Ver Todos" },
+    { "type": "range", "id": "products_to_show", "min": 4, "max": 12, "step": 1, "default": 8, "label": "Quantos produtos mostrar" },
+    { "type": "checkbox", "id": "no_top_padding", "label": "Remover espaço acima", "default": true },
+    { "type": "checkbox", "id": "show_best_seller", "label": "Mostrar selo 'Mais Vendido' nos cards", "default": false },
+    { "type": "checkbox", "id": "show_center_cta", "label": "Mostrar botão 'Ver Catálogo Completo' abaixo", "default": false }
+  ],
+  "presets": [{ "name": "Carrossel de Coleção" }]
+}
+{% endschema %}

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel Geovana Stiehl | Sety Vision</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF7F1; --charcoal:#2E2A25; --muted:#8A8175; --gold:#B98D5D; --gold-soft:#E4CFAF;
+    --line:rgba(46,42,37,0.1); --card:#ffffff; --green:#4C8B5E; --green-bg:#E8F3EA;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+  body{background:#F6F3EE;color:var(--charcoal);display:flex;min-height:100vh;}
+  h1,h2,h3{font-family:'Playfair Display',serif;font-weight:600;}
+
+  /* SIDEBAR */
+  .sidebar{width:240px;background:var(--charcoal);color:var(--cream);padding:28px 20px;flex-shrink:0;}
+  .brand{font-family:'Playfair Display',serif;font-size:19px;margin-bottom:4px;}
+  .brand span{color:var(--gold);}
+  .brand-sub{font-size:11px;color:rgba(251,247,241,0.4);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;}
+  .plan-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(185,141,93,0.18);color:var(--gold);font-size:10.5px;font-weight:700;padding:6px 12px;border-radius:100px;margin-bottom:28px;}
+  .nav-item{
+    display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;
+    font-size:13.5px;font-weight:500;color:rgba(251,247,241,0.65);margin-bottom:4px;cursor:pointer;
+    border:none;background:none;width:100%;text-align:left;font-family:'Poppins',sans-serif;
+  }
+  .nav-item.active{background:rgba(255,255,255,0.08);color:#fff;}
+  .nav-item:hover{background:rgba(255,255,255,0.05);}
+
+  /* MAIN */
+  .main{flex:1;padding:32px 40px;overflow-x:hidden;}
+  .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;}
+  .topbar h1{font-size:26px;}
+  .topbar p{color:var(--muted);font-size:13px;margin-top:4px;}
+  .demo-tag{background:var(--gold-soft);color:#7A5A32;font-size:11px;font-weight:600;padding:6px 12px;border-radius:100px;white-space:nowrap;}
+
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* KPI GRID */
+  .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:32px;}
+  .kpi-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;}
+  .kpi-label{font-size:12px;color:var(--muted);margin-bottom:10px;}
+  .kpi-val{font-size:28px;font-weight:700;font-family:'Playfair Display',serif;}
+  .kpi-delta{font-size:11.5px;color:var(--green);margin-top:6px;font-weight:600;}
+
+  /* TWO COL */
+  .grid-2{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;margin-bottom:24px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:24px;}
+  .panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+  .panel-head h3{font-size:16px;}
+  .panel-head a,.panel-head button{font-size:12px;color:var(--gold);font-weight:600;background:none;border:none;cursor:pointer;font-family:'Poppins',sans-serif;}
+
+  /* KANBAN */
+  .kanban{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+  .kanban-col h4{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:10px;}
+  .post-card{background:#F9F6F1;border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:8px;font-size:12px;}
+  .post-card .tag{display:inline-block;font-size:9.5px;font-weight:700;padding:3px 8px;border-radius:100px;margin-bottom:6px;}
+  .tag.reels{background:#FDE8D8;color:#B5651D;}
+  .tag.feed{background:#E4CFAF;color:#7A5A32;}
+  .tag.story{background:#DCE8FB;color:#2E5C9E;}
+  .post-card .t{font-weight:600;margin-bottom:2px;}
+  .post-card .d{color:var(--muted);font-size:11px;}
+
+  /* STATUS LIST */
+  .status-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);}
+  .status-row:last-child{border-bottom:none;}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--green);flex-shrink:0;}
+  .status-row .info{flex:1;}
+  .status-row .info b{font-size:13.5px;display:block;}
+  .status-row .info span{font-size:11.5px;color:var(--muted);}
+  .status-badge{background:var(--green-bg);color:var(--green);font-size:10.5px;font-weight:700;padding:5px 10px;border-radius:100px;white-space:nowrap;}
+
+  /* CALENDAR */
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;text-align:center;}
+  .cal-day-label{font-size:10px;color:var(--muted);font-weight:600;padding-bottom:6px;}
+  .cal-day{aspect-ratio:1;border-radius:8px;background:#F9F6F1;border:1px solid var(--line);font-size:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--muted);cursor:default;}
+  .cal-day.has-post{background:var(--gold-soft);color:#7A5A32;font-weight:600;}
+  .cal-day.today{outline:2px solid var(--gold);}
+  .cal-day.empty{background:transparent;border:none;}
+
+  /* IDEIAS */
+  .ideas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .idea-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;}
+  .idea-card .tag{display:inline-block;font-size:9.5px;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:10px;}
+  .idea-card h4{font-size:14.5px;margin-bottom:6px;font-family:'Poppins',sans-serif;font-weight:600;}
+  .idea-card p{font-size:12px;color:var(--muted);line-height:1.5;}
+  .btn-gold{background:var(--gold);color:#fff;border:none;padding:10px 18px;border-radius:100px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;}
+
+  /* WHATSAPP */
+  .wa-status{display:flex;align-items:center;justify-content:space-between;background:var(--green-bg);border-radius:14px;padding:20px 24px;margin-bottom:24px;}
+  .wa-status .l b{font-size:15px;display:block;color:var(--green);}
+  .wa-status .l span{font-size:12px;color:#3d6b48;}
+  .switch{width:44px;height:26px;background:var(--green);border-radius:100px;position:relative;cursor:pointer;flex-shrink:0;}
+  .switch::after{content:"";position:absolute;width:20px;height:20px;background:#fff;border-radius:50%;top:3px;right:3px;transition:.2s;}
+  .switch.off{background:#ccc;}
+  .switch.off::after{right:auto;left:3px;}
+  .conv-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);}
+  .conv-row:last-child{border-bottom:none;}
+  .avatar{width:36px;height:36px;border-radius:50%;background:var(--gold-soft);color:#7A5A32;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;}
+  .conv-row .info{flex:1;}
+  .conv-row .info b{font-size:13px;display:block;}
+  .conv-row .info span{font-size:11.5px;color:var(--muted);}
+  .conv-time{font-size:10.5px;color:var(--muted);}
+  .field{margin-bottom:16px;}
+  .field label{font-size:11.5px;font-weight:600;color:var(--muted);display:block;margin-bottom:6px;}
+  .field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 14px;font-size:13px;font-family:'Poppins',sans-serif;background:#F9F6F1;color:var(--charcoal);}
+  .field textarea{resize:vertical;min-height:70px;}
+
+  /* TRAFEGO */
+  .camp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;}
+  .camp-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;}
+  .camp-card .cname{font-size:13px;font-weight:700;margin-bottom:4px;}
+  .camp-card .cstatus{font-size:10.5px;color:var(--green);font-weight:600;margin-bottom:16px;}
+  .camp-metric{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);padding:6px 0;border-top:1px solid var(--line);}
+  .camp-metric b{color:var(--charcoal);}
+  .bar-wrap{display:flex;align-items:flex-end;gap:10px;height:140px;padding-top:10px;}
+  .bar{flex:1;background:var(--gold-soft);border-radius:6px 6px 0 0;position:relative;}
+  .bar span{position:absolute;top:-18px;left:0;right:0;text-align:center;font-size:10px;color:var(--muted);}
+  .bar-label{display:flex;gap:10px;margin-top:8px;}
+  .bar-label span{flex:1;text-align:center;font-size:10px;color:var(--muted);}
+
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">Geovana <span>Stiehl</span></div>
+  <div class="brand-sub">Painel · Sety Vision</div>
+  <div class="plan-badge">⭐ Plano Crescimento</div>
+  <button class="nav-item active" data-view="geral">📊 Visão Geral</button>
+  <button class="nav-item" data-view="calendario">🗓️ Calendário de Conteúdo</button>
+  <button class="nav-item" data-view="ideias">💡 Ideias de Post</button>
+  <button class="nav-item" data-view="whatsapp">💬 Automação WhatsApp</button>
+  <button class="nav-item" data-view="trafego">📈 Tráfego Pago</button>
+  <button class="nav-item" data-view="config">⚙️ Configurações</button>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div>
+      <h1 id="tb-title">Olá, Geovana 👋</h1>
+      <p id="tb-sub">Aqui está o resumo da sua operação essa semana.</p>
+    </div>
+    <div class="demo-tag">Dados de demonstração</div>
+  </div>
+
+  <!-- VISÃO GERAL -->
+  <section class="view active" data-view="geral">
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-label">Leads no WhatsApp (mês)</div><div class="kpi-val">86</div><div class="kpi-delta">↑ 24% vs. mês anterior</div></div>
+      <div class="kpi-card"><div class="kpi-label">Agendamentos confirmados</div><div class="kpi-val">31</div><div class="kpi-delta">↑ 12% vs. mês anterior</div></div>
+      <div class="kpi-card"><div class="kpi-label">Alcance Instagram</div><div class="kpi-val">18.4K</div><div class="kpi-delta">↑ 9% vs. mês anterior</div></div>
+      <div class="kpi-card"><div class="kpi-label">Investido em tráfego</div><div class="kpi-val">R$ 900</div><div class="kpi-delta" style="color:var(--muted)">Meta Ads · mês corrente</div></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head"><h3>Pipeline de Conteúdo</h3><a data-goto="calendario">Ver tudo →</a></div>
+        <div class="kanban">
+          <div class="kanban-col"><h4>Ideia</h4>
+            <div class="post-card"><span class="tag reels">Reels</span><div class="t">Mitos sobre bioestimulador</div><div class="d">Sem data</div></div>
+            <div class="post-card"><span class="tag feed">Feed</span><div class="t">Antes/depois harmonização</div><div class="d">Sem data</div></div>
+          </div>
+          <div class="kanban-col"><h4>Produção</h4>
+            <div class="post-card"><span class="tag reels">Reels</span><div class="t">Rotina de skincare pós-procedimento</div><div class="d">Gravação: qui</div></div>
+          </div>
+          <div class="kanban-col"><h4>Agendado</h4>
+            <div class="post-card"><span class="tag story">Story</span><div class="t">Bastidores do consultório</div><div class="d">Sex · 09:00</div></div>
+            <div class="post-card"><span class="tag feed">Feed</span><div class="t">Depoimento de paciente</div><div class="d">Sáb · 18:00</div></div>
+          </div>
+          <div class="kanban-col"><h4>Publicado</h4>
+            <div class="post-card"><span class="tag reels">Reels</span><div class="t">O que é skinbooster?</div><div class="d">12.3K visualizações</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h3>Status da Operação</h3></div>
+        <div class="status-row"><div class="dot"></div><div class="info"><b>Automação WhatsApp</b><span>Respondendo e agendando 24h</span></div><div class="status-badge">Ativa</div></div>
+        <div class="status-row"><div class="dot"></div><div class="info"><b>Campanha Meta Ads</b><span>Harmonização Facial · alcance local</span></div><div class="status-badge">Rodando</div></div>
+        <div class="status-row"><div class="dot" style="background:var(--gold);"></div><div class="info"><b>Próxima postagem</b><span>Story · bastidores · sexta 09:00</span></div><div class="status-badge" style="background:var(--gold-soft);color:#7A5A32;">Agendado</div></div>
+        <div class="status-row"><div class="dot"></div><div class="info"><b>CRM de pacientes</b><span>86 contatos organizados</span></div><div class="status-badge">Em dia</div></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head"><h3>Calendário da Semana</h3><a data-goto="calendario">Ver mês →</a></div>
+      <div class="cal-grid">
+        <div class="cal-day-label">Seg</div><div class="cal-day-label">Ter</div><div class="cal-day-label">Qua</div><div class="cal-day-label">Qui</div><div class="cal-day-label">Sex</div><div class="cal-day-label">Sáb</div><div class="cal-day-label">Dom</div>
+        <div class="cal-day">14</div>
+        <div class="cal-day has-post">15<br>Reels</div>
+        <div class="cal-day today">16</div>
+        <div class="cal-day has-post">17<br>Story</div>
+        <div class="cal-day has-post">18<br>Story</div>
+        <div class="cal-day has-post">19<br>Feed</div>
+        <div class="cal-day">20</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDÁRIO DE CONTEÚDO -->
+  <section class="view" data-view="calendario">
+    <div class="panel">
+      <div class="panel-head"><h3>Julho 2026</h3><button class="btn-gold" onclick="alert('Mockup de demonstração — criação de post entra na versão final.')">+ Nova postagem</button></div>
+      <div class="cal-grid">
+        <div class="cal-day-label">Seg</div><div class="cal-day-label">Ter</div><div class="cal-day-label">Qua</div><div class="cal-day-label">Qui</div><div class="cal-day-label">Sex</div><div class="cal-day-label">Sáb</div><div class="cal-day-label">Dom</div>
+        <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day has-post">3<br>Feed</div><div class="cal-day">4</div><div class="cal-day">5</div>
+        <div class="cal-day">6</div><div class="cal-day has-post">7<br>Reels</div><div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day has-post">10<br>Story</div><div class="cal-day">11</div><div class="cal-day">12</div>
+        <div class="cal-day">13</div><div class="cal-day has-post">14<br>Reels</div><div class="cal-day">15</div><div class="cal-day today">16</div><div class="cal-day has-post">17<br>Story</div><div class="cal-day has-post">18<br>Story</div><div class="cal-day has-post">19<br>Feed</div>
+        <div class="cal-day">20</div><div class="cal-day has-post">21<br>Reels</div><div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day has-post">24<br>Feed</div><div class="cal-day">25</div><div class="cal-day">26</div>
+        <div class="cal-day">27</div><div class="cal-day has-post">28<br>Reels</div><div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day has-post">31<br>Story</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDEIAS DE POST -->
+  <section class="view" data-view="ideias">
+    <div class="panel">
+      <div class="panel-head"><h3>Banco de Ideias</h3><button class="btn-gold" onclick="alert('Mockup de demonstração — cadastro de ideia entra na versão final.')">+ Nova ideia</button></div>
+      <div class="ideas-grid">
+        <div class="idea-card"><span class="tag reels" style="background:#FDE8D8;color:#B5651D;">Reels</span><h4>Mitos sobre bioestimulador</h4><p>Desmentir 3 crenças comuns sobre o procedimento, tom leve e educativo.</p></div>
+        <div class="idea-card"><span class="tag feed" style="background:#E4CFAF;color:#7A5A32;">Feed</span><h4>Antes/depois harmonização</h4><p>Carrossel com resultado real (autorizado pela paciente), foco em naturalidade.</p></div>
+        <div class="idea-card"><span class="tag story" style="background:#DCE8FB;color:#2E5C9E;">Story</span><h4>Bastidores do consultório</h4><p>Rotina do dia a dia, mostrar ambiente e equipamentos.</p></div>
+        <div class="idea-card"><span class="tag reels" style="background:#FDE8D8;color:#B5651D;">Reels</span><h4>O que é skinbooster?</h4><p>Explicação rápida de 30s com linguagem simples, sem termo técnico.</p></div>
+        <div class="idea-card"><span class="tag feed" style="background:#E4CFAF;color:#7A5A32;">Feed</span><h4>Depoimento de paciente</h4><p>Print de mensagem real + foto, com autorização.</p></div>
+        <div class="idea-card"><span class="tag reels" style="background:#FDE8D8;color:#B5651D;">Reels</span><h4>Rotina de skincare pós-procedimento</h4><p>Passo a passo dos cuidados recomendados após harmonização.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTOMAÇÃO WHATSAPP -->
+  <section class="view" data-view="whatsapp">
+    <div class="wa-status">
+      <div class="l"><b>Automação ativa</b><span>Respondendo e agendando pacientes automaticamente</span></div>
+      <div class="switch" id="wa-switch" onclick="toggleSwitch(this)"></div>
+    </div>
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-head"><h3>Conversas recentes</h3></div>
+        <div class="conv-row"><div class="avatar">MF</div><div class="info"><b>Mariana F.</b><span>Confirmado agendamento pra quinta 14h</span></div><div class="conv-time">2 min</div></div>
+        <div class="conv-row"><div class="avatar">CL</div><div class="info"><b>Carla L.</b><span>Perguntou valor de skinbooster</span></div><div class="conv-time">18 min</div></div>
+        <div class="conv-row"><div class="avatar">JS</div><div class="info"><b>Juliana S.</b><span>Reagendou avaliação pra sábado</span></div><div class="conv-time">51 min</div></div>
+        <div class="conv-row"><div class="avatar">PA</div><div class="info"><b>Patrícia A.</b><span>Recebeu lembrete de retorno</span></div><div class="conv-time">1h</div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Configuração da automação</h3></div>
+        <div class="field"><label>Mensagem de boas-vindas</label><textarea>Oi! Que bom te ver por aqui 💛 Sou a assistente virtual da Geovana Stiehl. Me conta o que você procura que já te ajudo a agendar sua avaliação.</textarea></div>
+        <div class="field"><label>Horário de atendimento automático</label><input type="text" value="24h — sempre respondendo"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRÁFEGO PAGO -->
+  <section class="view" data-view="trafego">
+    <div class="camp-grid">
+      <div class="camp-card"><div class="cname">Harmonização Facial</div><div class="cstatus">● Rodando</div>
+        <div class="camp-metric"><span>Investido</span><b>R$ 450</b></div>
+        <div class="camp-metric"><span>Leads gerados</span><b>34</b></div>
+        <div class="camp-metric"><span>Custo por lead</span><b>R$ 13,20</b></div>
+      </div>
+      <div class="camp-card"><div class="cname">Skinbooster · Remarketing</div><div class="cstatus">● Rodando</div>
+        <div class="camp-metric"><span>Investido</span><b>R$ 300</b></div>
+        <div class="camp-metric"><span>Leads gerados</span><b>19</b></div>
+        <div class="camp-metric"><span>Custo por lead</span><b>R$ 15,80</b></div>
+      </div>
+      <div class="camp-card"><div class="cname">Institucional · Alcance local</div><div class="cstatus" style="color:var(--muted);">● Pausada</div>
+        <div class="camp-metric"><span>Investido</span><b>R$ 150</b></div>
+        <div class="camp-metric"><span>Leads gerados</span><b>8</b></div>
+        <div class="camp-metric"><span>Custo por lead</span><b>R$ 18,75</b></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-head"><h3>Leads por semana</h3></div>
+      <div class="bar-wrap">
+        <div class="bar" style="height:40%;"><span>9</span></div>
+        <div class="bar" style="height:65%;"><span>15</span></div>
+        <div class="bar" style="height:50%;"><span>11</span></div>
+        <div class="bar" style="height:80%;"><span>18</span></div>
+        <div class="bar" style="height:100%;"><span>23</span></div>
+      </div>
+      <div class="bar-label"><span>Sem 1</span><span>Sem 2</span><span>Sem 3</span><span>Sem 4</span><span>Sem 5</span></div>
+    </div>
+  </section>
+
+  <!-- CONFIGURAÇÕES -->
+  <section class="view" data-view="config">
+    <div class="panel">
+      <div class="panel-head"><h3>Dados do negócio</h3></div>
+      <div class="form-grid">
+        <div class="field"><label>Nome</label><input type="text" value="Geovana Stiehl"></div>
+        <div class="field"><label>Especialidade</label><input type="text" value="Biomédica Esteta"></div>
+        <div class="field"><label>WhatsApp</label><input type="text" placeholder="(00) 00000-0000"></div>
+        <div class="field"><label>Instagram</label><input type="text" value="@geovana_stiehl"></div>
+        <div class="field"><label>Horário de atendimento</label><input type="text" value="Seg a Sex · 09h às 19h"></div>
+        <div class="field"><label>Endereço do consultório</label><input type="text" placeholder="Preencher com o endereço real"></div>
+      </div>
+      <button class="btn-gold" onclick="alert('Mockup de demonstração — salvar entra na versão final.')">Salvar alterações</button>
+    </div>
+  </section>
+</main>
+
+<script>
+  const topbars = {
+    geral: ['Olá, Geovana 👋','Aqui está o resumo da sua operação essa semana.'],
+    calendario: ['Calendário de Conteúdo','Planeje e visualize todas as postagens do mês.'],
+    ideias: ['Ideias de Post','Banco de ideias pra nunca ficar sem o que postar.'],
+    whatsapp: ['Automação WhatsApp','Veja o que a IA está respondendo pelos seus pacientes.'],
+    trafego: ['Tráfego Pago','Acompanhe suas campanhas e o custo por lead.'],
+    config: ['Configurações','Dados do seu negócio usados em todo o sistema.'],
+  };
+
+  function setView(view){
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.toggle('active', el.dataset.view === view));
+    document.querySelectorAll('.view').forEach(el => el.classList.toggle('active', el.dataset.view === view));
+    document.getElementById('tb-title').textContent = topbars[view][0];
+    document.getElementById('tb-sub').textContent = topbars[view][1];
+  }
+
+  document.querySelectorAll('.nav-item').forEach(btn => {
+    btn.addEventListener('click', () => setView(btn.dataset.view));
+  });
+  document.querySelectorAll('[data-goto]').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', (e) => { e.preventDefault(); setView(el.dataset.goto); });
+  });
+
+  function toggleSwitch(el){
+    el.classList.toggle('off');
+    const active = !el.classList.contains('off');
+    const box = el.closest('.wa-status');
+    box.querySelector('b').textContent = active ? 'Automação ativa' : 'Automação pausada';
+    box.querySelector('span').textContent = active ? 'Respondendo e agendando pacientes automaticamente' : 'Pausada — nenhuma mensagem automática será enviada';
+    box.style.background = active ? 'var(--green-bg)' : '#F3E8E4';
+  }
+</script>
+
+</body>
+</html>

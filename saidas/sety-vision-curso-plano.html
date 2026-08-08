@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sety Vision — Plano do Curso</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: 'Montserrat', sans-serif; color: #151515; background: #fff;
+    font-size: 13px; line-height: 1.5;
+  }
+  .capa {
+    background: #000; color: #fff; padding: 70px 50px 50px; page-break-after: always;
+    min-height: 700px; position: relative;
+  }
+  .capa .tag { color: #FF2A2A; font-weight: 700; letter-spacing: 2px; font-size: 12px; text-transform: uppercase; }
+  .capa h1 { font-size: 48px; font-weight: 900; letter-spacing: -0.03em; margin: 16px 0 8px; line-height: 1.05; }
+  .capa h1 span { color: #FF2A2A; }
+  .capa .sub { font-size: 16px; color: rgba(255,255,255,.75); max-width: 480px; margin-bottom: 40px; }
+  .capa .box-preco {
+    display: inline-block; border: 1px solid rgba(255,255,255,.25); border-radius: 8px;
+    padding: 18px 24px; margin-top: 20px;
+  }
+  .capa .box-preco strong { font-size: 26px; color: #FF2A2A; }
+  .capa .rodape-capa {
+    position: absolute; bottom: 50px; left: 50px; right: 50px; display: flex; justify-content: space-between;
+    font-size: 11px; color: rgba(255,255,255,.5); border-top: 1px solid rgba(255,255,255,.15); padding-top: 16px;
+  }
+
+  .pagina { padding: 40px 50px; page-break-after: always; }
+  .pagina:last-child { page-break-after: auto; }
+
+  h2.titulo-secao {
+    font-size: 26px; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em;
+    margin: 0 0 4px; display: flex; align-items: center; gap: 10px;
+  }
+  .linha { width: 50px; height: 4px; background: #FF2A2A; margin: 0 0 22px; }
+  .kicker { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #FF2A2A; margin-bottom: 6px; }
+
+  h3.aula {
+    font-size: 15px; font-weight: 800; background: #0a0a0a; color: #fff; padding: 10px 14px;
+    border-radius: 6px; margin: 18px 0 8px; display: flex; align-items: center; gap: 8px;
+  }
+  h3.aula .num {
+    background: #FF2A2A; color: #fff; width: 20px; height: 20px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0;
+  }
+  ul.conteudo { margin: 0 0 14px; padding-left: 0; list-style: none; }
+  ul.conteudo li { padding: 3px 0 3px 20px; position: relative; }
+  ul.conteudo li::before { content: "→"; position: absolute; left: 0; color: #FF2A2A; font-weight: 700; }
+
+  .card {
+    border: 1px solid #e2e2e2; border-radius: 8px; padding: 16px 18px; margin-bottom: 14px; background: #fafafa;
+  }
+  .card strong.card-title { display: block; font-size: 13px; margin-bottom: 6px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  table.plano { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 12px; }
+  table.plano th { background: #0a0a0a; color: #fff; text-align: left; padding: 8px 10px; }
+  table.plano td { padding: 7px 10px; border-bottom: 1px solid #eee; }
+  table.plano tr:nth-child(even) td { background: #f7f7f7; }
+
+  .checklist { margin: 10px 0; }
+  .checklist li { list-style: none; padding: 6px 0 6px 26px; position: relative; border-bottom: 1px dashed #eee; }
+  .checklist li::before {
+    content: ""; position: absolute; left: 0; top: 8px; width: 14px; height: 14px;
+    border: 2px solid #FF2A2A; border-radius: 3px;
+  }
+
+  .destaque {
+    background: #0a0a0a; color: #fff; border-radius: 8px; padding: 16px 20px; margin: 16px 0; font-size: 13px;
+  }
+  .destaque strong { color: #FF2A2A; }
+
+  .footer-pagina {
+    display: flex; justify-content: space-between; font-size: 10px; color: #999; margin-top: 24px;
+    border-top: 1px solid #eee; padding-top: 8px;
+  }
+
+  .emoji { font-size: 15px; }
+</style>
+</head>
+<body>
+
+<!-- ============ CAPA ============ -->
+<div class="capa">
+  <div class="tag">Sety Studio · Produto Digital</div>
+  <h1>Sety <span>Vision</span></h1>
+  <p class="sub">Curso prático: crie sites, e-commerce e design de nível agência com IA — e aprenda a captar cliente pra vender isso. Do zero ao primeiro faturamento.</p>
+  <div class="box-preco">Preço de entrada: <strong>R$ 47</strong></div>
+  <div class="rodape-capa">
+    <span>Plano de execução — módulos, conteúdo e estratégia de faturamento</span>
+    <span>sety vision</span>
+  </div>
+</div>
+
+<!-- ============ VISÃO GERAL ============ -->
+<div class="pagina">
+  <div class="kicker">🎯 Visão geral</div>
+  <h2 class="titulo-secao">O produto</h2>
+  <div class="linha"></div>
+
+  <p>Curso de entrada (R$47) que ensina o método que você já usa todo dia: montar site/e-commerce com IA no nível de agência, produzir design pronto pra subir no site do cliente, e captar o primeiro cliente pagante. Objetivo do aluno ao terminar: sair com um site publicado, uma peça de design pronta, e um plano de captação rodando.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <strong class="card-title">📦 O que o aluno recebe</strong>
+      <ul class="conteudo">
+        <li>3 módulos em vídeo (curtos, mão na massa)</li>
+        <li>Kit "Sety Vision" no GitHub — clona e já usa</li>
+        <li>Skills prontas: site, design, organização</li>
+        <li>Componentes de e-commerce prontos pra copiar</li>
+      </ul>
+    </div>
+    <div class="card">
+      <strong class="card-title">🙋 Pra quem é</strong>
+      <ul class="conteudo">
+        <li>Quem quer aprender a criar site com IA</li>
+        <li>Freelancer/designer que quer entregar mais rápido</li>
+        <li>Quem quer começar a vender site/design como serviço</li>
+        <li>Zero pré-requisito técnico — só instalar e seguir</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="destaque">
+    <strong>Promessa central:</strong> "Você sai desse curso sabendo criar um site/e-commerce completo com IA, produzir o design pra ele, e sabendo exatamente como conseguir o primeiro cliente pagando por isso."
+  </div>
+
+  <h2 class="titulo-secao" style="margin-top:28px;">Estrutura</h2>
+  <div class="linha"></div>
+  <table class="plano">
+    <tr><th>Módulo</th><th>Tema</th><th>Aulas</th><th>Entregável do aluno</th></tr>
+    <tr><td>1</td><td>🖥️ Criação de Site</td><td>5</td><td>Site publicado no ar</td></tr>
+    <tr><td>2</td><td>🎨 Design</td><td>4</td><td>Peça de design pronta pro site do cliente</td></tr>
+    <tr><td>3</td><td>💰 Mentoria — Captação de Cliente</td><td>5</td><td>Plano de captação + 1ª abordagem feita</td></tr>
+  </table>
+
+  <div class="footer-pagina"><span>Sety Vision — Plano do Curso</span><span>1</span></div>
+</div>
+
+<!-- ============ MÓDULO 1 ============ -->
+<div class="pagina">
+  <div class="kicker">🖥️ Módulo 1</div>
+  <h2 class="titulo-secao">Criação de Site</h2>
+  <div class="linha"></div>
+  <p>Ensina a instalar e operar o Sety Vision, e a usar o <code>/theme-engine</code> pra montar um e-commerce completo (home + produto + checkout) sem desenhar layout do zero.</p>
+
+  <h3 class="aula"><span class="num">1</span> Preparando o terreno</h3>
+  <ul class="conteudo">
+    <li>O que é Claude Code, por que ele muda o jogo pra criar site</li>
+    <li>Instalar Claude Code + VS Code (setup de 5 min)</li>
+    <li>Criar conta GitHub (se não tiver)</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">2</span> Acesso ao Sety Vision + instalação</h3>
+  <ul class="conteudo">
+    <li>Clonar o repositório do kit</li>
+    <li>Rodar <code>/instalar</code> — entrevista guiada, sem enrolação</li>
+    <li>Entender a estrutura de pastas (memória, identidade, clientes)</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">3</span> Criando o primeiro site (landing page)</h3>
+  <ul class="conteudo">
+    <li><code>/web-design-commander</code> pra montar a estrutura certa</li>
+    <li>Do briefing ao HTML publicável em uma sessão</li>
+    <li>Aplicando a identidade visual do cliente</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">4</span> Criando e-commerce completo</h3>
+  <ul class="conteudo">
+    <li><code>/theme-engine</code> — home + página de produto + checkout prontos</li>
+    <li>Trocar marca, cores, produtos reais (o "clona e rebrand")</li>
+    <li>Regra de ouro: nunca emoji, sempre ícone real</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">5</span> Publicando e entregando</h3>
+  <ul class="conteudo">
+    <li>Deploy no Vercel em 2 minutos</li>
+    <li>Checklist de qualidade antes de mandar pro cliente</li>
+    <li><code>/salvar</code> — versionando o trabalho no GitHub</li>
+  </ul>
+
+  <div class="footer-pagina"><span>Sety Vision — Plano do Curso</span><span>2</span></div>
+</div>
+
+<!-- ============ MÓDULO 2 ============ -->
+<div class="pagina">
+  <div class="kicker">🎨 Módulo 2</div>
+  <h2 class="titulo-secao">Design</h2>
+  <div class="linha"></div>
+  <p>O ouro de verdade: como pensar hierarquia, cor e composição — e como usar IA pra produzir peça pronta pra subir no site do cliente, sem depender de designer.</p>
+
+  <h3 class="aula"><span class="num">1</span> Fundamentos que ninguém te ensina rápido</h3>
+  <ul class="conteudo">
+    <li>Hierarquia visual: o olho tem que saber onde olhar primeiro</li>
+    <li>Paleta que converte por nicho (premium, urgência, tech)</li>
+    <li>Tipografia: 2 famílias no máximo, sempre</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">2</span> Design de site com <code>/web-design-commander</code></h3>
+  <ul class="conteudo">
+    <li>Estrutura de landing page que converte, seção por seção</li>
+    <li>Auditoria de CRO — o que corrigir antes de publicar</li>
+    <li>Wireframe rápido antes de codar</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">3</span> Criativo de social/anúncio com <code>/design-commander</code></h3>
+  <ul class="conteudo">
+    <li>Briefing visual completo em minutos</li>
+    <li>O que aumenta CTR de verdade (não é "mais cor")</li>
+    <li>3 conceitos por peça: emocional, racional, provocativo</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">4</span> Do design pronto pro site do cliente</h3>
+  <ul class="conteudo">
+    <li>Aplicando identidade em <code>identidade/design-guide.md</code></li>
+    <li>Handoff: como subir a peça sem perder qualidade</li>
+    <li>Checklist final antes de entregar</li>
+  </ul>
+
+  <div class="footer-pagina"><span>Sety Vision — Plano do Curso</span><span>3</span></div>
+</div>
+
+<!-- ============ MÓDULO 3 ============ -->
+<div class="pagina">
+  <div class="kicker">💰 Módulo 3</div>
+  <h2 class="titulo-secao">Mentoria — Captação de Cliente</h2>
+  <div class="linha"></div>
+  <p>De graça não adianta saber criar site se ninguém paga por isso. Módulo completo — toda a estrutura comercial que você usa na Sety Studio, sem cortar.</p>
+
+  <h3 class="aula"><span class="num">1</span> Onde estão seus primeiros clientes</h3>
+  <ul class="conteudo">
+    <li>Prospecção ativa: como abordar sem parecer spam</li>
+    <li>Indicação — o canal mais barato que existe</li>
+    <li>Portfolio como isca (o site que você criou no Módulo 1 vira prova)</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">2</span> Tráfego pago pra gerar lead de site/design</h3>
+  <ul class="conteudo">
+    <li>Estrutura de campanha Meta Ads do zero</li>
+    <li>Público, criativo e orçamento pra quem tá começando</li>
+    <li>Como saber se a campanha tá funcionando (métricas que importam)</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">3</span> Proposta e fechamento</h3>
+  <ul class="conteudo">
+    <li>Como precificar (não é "olha o preço da concorrência")</li>
+    <li>Estrutura de proposta que fecha</li>
+    <li>Rebater objeção sem parecer desesperado</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">4</span> Estrutura comercial e follow-up</h3>
+  <ul class="conteudo">
+    <li>Funil simples: contato → proposta → fechamento → entrega</li>
+    <li>Follow-up que não é chato</li>
+    <li>Como pedir indicação depois da entrega</li>
+  </ul>
+
+  <h3 class="aula"><span class="num">5</span> Upsell e recorrência</h3>
+  <ul class="conteudo">
+    <li>Do site avulso pra manutenção mensal</li>
+    <li>Pacotes: site + design + tráfego como oferta única</li>
+    <li>Como formar uma carteira de clientes, não só projetos soltos</li>
+  </ul>
+
+  <div class="footer-pagina"><span>Sety Vision — Plano do Curso</span><span>4</span></div>
+</div>
+
+<!-- ============ ESTRATÉGIA DE FATURAMENTO ============ -->
+<div class="pagina">
+  <div class="kicker">🚀 Estratégia</div>
+  <h2 class="titulo-secao">Como faturar com isso</h2>
+  <div class="linha"></div>
+
+  <div class="card">
+    <strong class="card-title">1. Plataforma de venda</strong>
+    <ul class="conteudo">
+      <li>Hotmart ou Kiwify — checkout pronto, PIX/cartão, área de membros inclusa</li>
+      <li>Kiwify costuma ter taxa menor pra ticket baixo tipo R$47</li>
+      <li>Configura em 1 dia: sobe os vídeos, PDF de apoio, link do kit no GitHub</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <strong class="card-title">2. Por que R$47 funciona</strong>
+    <ul class="conteudo">
+      <li>Preço de impulso — não exige "pensar", decide na hora</li>
+      <li>Função real: gerar prova social, depoimento e audiência aquecida</li>
+      <li>Order bump ou upsell depois (mentoria 1:1, templates extras, revisão de site) é onde o ticket sobe de verdade</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <strong class="card-title">3. Funil simples</strong>
+    <ul class="conteudo">
+      <li>Conteúdo orgânico → aquece → oferta R$47 → aluno satisfeito → upsell/mentoria</li>
+      <li>Depoimento de aluno vira anúncio (prova social é o criativo que mais converte)</li>
+      <li>Não precisa de funil complexo pra validar — precisa de 10 vendas pra calibrar</li>
+    </ul>
+  </div>
+
+  <div class="destaque">
+    <strong>Meta realista pro lançamento:</strong> valide com uma turma pequena (20-50 alunos) antes de qualquer tráfego pago. Preço baixo compensa volume — o que decide se o produto escala é a taxa de conclusão e o depoimento, não o preço.
+  </div>
+
+  <div class="footer-pagina"><span>Sety Vision — Plano do Curso</span><span>5</span></div>
+</div>
+
+<!-- ============ CONTEÚDO ============ -->
+<div class="pagina">
+  <div class="kicker">📱 Divulgação</div>
+  <h2 class="titulo-secao">Criação de conteúdo</h2>
+  <div class="linha"></div>
+  <p>O conteúdo que vende esse curso é prova, não teoria. Mostrar o processo funciona melhor que explicar o processo.</p>
+
+  <table class="plano">
+    <tr><th>Formato</th><th>Ideia</th><th>Por que funciona</th></tr>
+    <tr><td>Reels / timelapse</td><td>"Site completo em X minutos com IA"</td><td>Choque de velocidade — para o scroll</td></tr>
+    <tr><td>Antes/depois</td><td>Site feio → site com Sety Vision</td><td>Transformação visual é o gancho mais forte</td></tr>
+    <tr><td>Bastidores</td><td>Você usando o <code>/theme-engine</code> ao vivo</td><td>Mostra que é real, não promessa vazia</td></tr>
+    <tr><td>Depoimento</td><td>Aluno mostrando o site que fez</td><td>Prova social vale mais que qualquer copy</td></tr>
+    <tr><td>Dica rápida</td><td>1 erro de design que todo site amador comete</td><td>Gera autoridade, engajamento, salva/compartilha</td></tr>
+  </table>
+
+  <div class="card">
+    <strong class="card-title">📅 Cadência sugerida</strong>
+    <ul class="conteudo">
+      <li>3-4 posts/Reels por semana — mais que isso não é o gargalo agora</li>
+      <li>1 depoimento de aluno por semana assim que os primeiros terminarem</li>
+      <li>CTA direto no final de cada peça: link do curso na bio</li>
+    </ul>
+  </div>
+
+  <div class="footer-pagina"><span>Sety Vision — Plano do Curso</span><span>6</span></div>
+</div>
+
+<!-- ============ CHECKLIST ============ -->
+<div class="pagina">
+  <div class="kicker">✅ Próximos passos</div>
+  <h2 class="titulo-secao">Pra começar a fazer agora</h2>
+  <div class="linha"></div>
+
+  <ul class="checklist">
+    <li>Kit "Sety Vision" publicado e testável no GitHub</li>
+    <li>Gravar Módulo 1 (5 aulas curtas, tela + voz)</li>
+    <li>Gravar Módulo 2 (4 aulas)</li>
+    <li>Gravar Módulo 3 (5 aulas)</li>
+    <li>Criar conta Kiwify/Hotmart e subir o produto (R$47)</li>
+    <li>Montar página de vendas simples (pode ser uma landing feita com o próprio Sety Vision)</li>
+    <li>Separar 5-10 pessoas pra turma beta (feedback antes do lançamento público)</li>
+    <li>Preparar primeiras 5 peças de conteúdo de divulgação</li>
+    <li>Definir upsell/order bump (mentoria, templates extras, revisão de site)</li>
+  </ul>
+
+  <div class="destaque">
+    <strong>Regra prática:</strong> não precisa gravar tudo perfeito antes de lançar. Grava o Módulo 1 inteiro, solta pra turma beta, e grava os módulos 2 e 3 enquanto a turma já está dentro. Feedback real vale mais que produção perfeita.
+  </div>
+
+  <div class="footer-pagina"><span>Sety Vision — Plano do Curso</span><span>7</span></div>
+</div>
+
+</body>
+</html>

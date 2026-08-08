@@ -1,0 +1,9 @@
+{% doc %}
+  Renders the "DONA BOMBA" wordmark with the bomb symbol integrated as the O in DONA.
+  @example
+  {% render 'wordmark' %}
+{% enddoc %}
+<span class="logo-word">
+  <span class="lw-line">D{% render 'icon-bomb', class: 'lw-o-bomb' %}NA</span>
+  <span class="lw-line">BOMBA</span>
+</span>

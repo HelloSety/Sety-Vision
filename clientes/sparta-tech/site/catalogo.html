@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Sparta Tech — Todos os Produtos</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="imagens/logo-sparta-tech.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="sety-anuncio">
+  <button aria-label="Anterior" onclick="setyAnuncio(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <span id="sety-anuncio-texto">Frete Grátis acima de R$ 149</span>
+  <button aria-label="Próximo" onclick="setyAnuncio(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+</div>
+
+<header class="sety-header">
+  <a href="index.html" class="sety-header__logo"><img src="imagens/logo-sparta-tech.svg" alt="Sparta Tech"></a>
+  <nav class="sety-nav">
+    <a href="index.html">Início</a>
+    <a href="catalogo.html">Todos os Produtos</a>
+    <a href="catalogo.html?categoria=Capas">Capas</a>
+    <a href="catalogo.html?categoria=Fones">Fones</a>
+    <a href="catalogo.html?categoria=Cabos">Cabos</a>
+  </nav>
+  <div class="sety-header__acoes">
+    <a href="produto.html" class="sety-header__carrinho">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8h12l1 12H5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="sety-header__carrinho-count">0</span>
+    </a>
+    <button class="sety-menu-mobile-btn" aria-label="Abrir menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
+
+<section class="sety-secao">
+  <h2 class="sety-secao__titulo">Todos os Produtos</h2>
+  <div class="sety-secao__linha"></div>
+
+  <div class="sety-catalogo-filtros" id="sety-catalogo-filtros">
+    <button data-categoria="todos" class="is-ativo">Todos</button>
+    <button data-categoria="Capas">Capas</button>
+    <button data-categoria="Películas">Películas</button>
+    <button data-categoria="Cabos">Cabos</button>
+    <button data-categoria="Fones">Fones</button>
+    <button data-categoria="Smartwatch">Smartwatch</button>
+    <button data-categoria="Carregadores">Carregadores</button>
+    <button data-categoria="Suportes">Suportes</button>
+    <button data-categoria="Acessórios">Acessórios</button>
+  </div>
+
+  <div class="sety-catalogo-grid" id="sety-catalogo-grid"></div>
+</section>
+
+<footer class="sety-footer">
+  <div class="sety-footer__grid">
+    <div>
+      <p class="sety-footer__logo"><img src="imagens/logo-sparta-tech.svg" alt="Sparta Tech" style="filter: brightness(0) invert(1);"></p>
+    </div>
+    <div>
+      <p class="sety-footer__titulo">Menu</p>
+      <div class="sety-footer__links"><a href="index.html">Início</a><a href="catalogo.html">Todos os Produtos</a></div>
+    </div>
+    <div>
+      <p class="sety-footer__titulo">Institucional</p>
+      <div class="sety-footer__links"><a href="index.html#sety-faq-home">Perguntas Frequentes</a><a href="#">Política de Trocas</a></div>
+    </div>
+    <div>
+      <p class="sety-footer__titulo">Contato</p>
+      <div class="sety-footer__links"><a href="tel:5591999999999">(91) 99999-9999</a><a href="mailto:contato@spartatech.com.br">contato@spartatech.com.br</a></div>
+    </div>
+  </div>
+  <p class="sety-footer__copy">
+    © 2026 Sparta Tech — Todos os direitos reservados.
+    <span class="sety-footer__selo-sety"><a href="https://setystudio.com.br" target="_blank">Feito por Sety Studio</a></span>
+  </p>
+</footer>
+
+<a href="https://wa.me/5591999999999" class="sety-whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 32 32"><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+</a>
+
+<script src="js/catalog.js"></script>
+<script src="js/main.js"></script>
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var categoria = params.get('categoria');
+    var gridEl = document.getElementById('sety-catalogo-grid');
+    var filtrosEl = document.getElementById('sety-catalogo-filtros');
+
+    function renderizar(cat) {
+      var lista = (!cat || cat === 'todos') ? SPARTA_PRODUTOS : SPARTA_PRODUTOS.filter(function (p) { return p.categoria === cat; });
+      gridEl.innerHTML = lista.map(spartaProdutoCardHTML).join('');
+    }
+
+    if (categoria) {
+      filtrosEl.querySelectorAll('button').forEach(function (b) {
+        b.classList.toggle('is-ativo', b.dataset.categoria === categoria);
+      });
+      renderizar(categoria);
+    } else {
+      renderizar('todos');
+    }
+  })();
+</script>
+</body>
+</html>

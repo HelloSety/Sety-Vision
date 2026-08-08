@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title id="sety-page-title">Sparta Tech — Produto</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="imagens/logo-sparta-tech.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background:#fff; margin:0;">
+
+<!-- ===== Barra de contato secundária ===== -->
+<div class="sety-topbar">
+  <div class="sety-topbar__contatos">
+    <a href="https://wa.me/5591999999999"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25D366"/><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2z"/></svg> WhatsApp</a>
+    <span>(91) 99999-9999</span>
+  </div>
+</div>
+
+<!-- ===== Header ===== -->
+<header class="sety-header">
+  <a href="index.html" class="sety-header__logo"><img src="imagens/logo-sparta-tech.svg" alt="Sparta Tech"></a>
+  <nav class="sety-nav">
+    <a href="index.html">Início</a>
+    <a href="catalogo.html">Todos os Produtos</a>
+    <a href="catalogo.html?categoria=Capas">Capas</a>
+    <a href="catalogo.html?categoria=Fones">Fones</a>
+  </nav>
+  <div class="sety-header__acoes">
+    <a href="produto.html" class="sety-header__carrinho">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 8h12l1 12H5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <span class="sety-header__carrinho-count">0</span>
+    </a>
+    <button class="sety-menu-mobile-btn" aria-label="Abrir menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
+
+<div style="padding:16px 16px 0;">
+<div class="sety-anuncio" style="max-width:1200px;margin:0 auto;">
+  <button aria-label="Anterior" onclick="setyAnuncio(-1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+  <span id="sety-anuncio-texto">10% OFF comprando no Pix</span>
+  <button aria-label="Próximo" onclick="setyAnuncio(1)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+</div>
+</div>
+
+<section class="sety-produto">
+
+  <nav class="sety-breadcrumb">
+    <a href="index.html">Página Inicial</a> / <a href="catalogo.html" id="sety-breadcrumb-categoria">Produtos</a> / <span id="sety-breadcrumb-produto">Produto</span>
+  </nav>
+
+  <div class="sety-produto__grid">
+
+    <!-- ===== Galeria ===== -->
+    <div class="sety-galeria__main">
+      <img id="sety-imagem-principal" src="" alt="">
+    </div>
+
+    <!-- ===== Informações do produto ===== -->
+    <div class="sety-produto__info">
+
+      <div class="sety-badges">
+        <span class="sety-badge sety-badge--oferta" id="sety-badge-oferta">OFERTA</span>
+        <span class="sety-badge sety-badge--qualidade">QUALIDADE PREMIUM</span>
+      </div>
+
+      <h1 class="sety-titulo" id="sety-nome-produto">Produto</h1>
+      <p class="sety-variacao" id="sety-variacao-produto"></p>
+
+      <div class="sety-preco-linha">
+        <span class="sety-preco-atual" id="sety-preco-atual">R$ 0,00</span>
+        <span class="sety-preco-riscado" id="sety-preco-riscado">R$ 0,00</span>
+        <span class="sety-preco-desconto" id="sety-preco-desconto">-0%</span>
+      </div>
+
+      <p class="sety-parcelamento">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 9h20"/></svg>
+        em até 3x de <b id="sety-valor-parcela">R$ 0,00</b> sem juros
+      </p>
+
+      <div class="sety-pix">
+        <svg viewBox="0 0 512 512"><path d="M242.4 292.5C247.9 298 257.1 298 262.6 292.5L339.3 215.8C334.8 210.5 328.1 207 320.6 207H239.5C232 207 225.3 210.5 220.8 215.8L242.4 292.5zM384.4 168.9L322.9 107.4C307.6 92.1 288 84 267.9 82.3V17.1C267.9 7.7 260.2 0 250.8 0S233.8 7.7 233.8 17.1V82.3C213.7 84 194.1 92.1 178.8 107.4L117.4 168.9C102.1 184.2 94 203.8 92.3 223.9H17.1C7.7 223.9 0 231.6 0 241S7.7 258.1 17.1 258.1H92.3C94 278.2 102.1 297.8 117.4 313.1L178.9 374.6C194.2 389.9 213.8 398 233.9 399.7V464.9C233.9 474.3 241.6 482 251 482S268.1 474.3 268.1 464.9V399.7C288.2 398 307.8 389.9 323.1 374.6L384.6 313.1C399.9 297.8 408 278.2 409.7 258.1H474.9C484.3 258.1 492 250.4 492 241S484.3 223.9 474.9 223.9H409.7C407.9 203.8 399.8 184.2 384.4 168.9z" fill="#32BCAD"/></svg>
+        <div><strong>10% OFF</strong> no pix <span class="envio">Envio Prioritário</span></div>
+      </div>
+
+      <!-- Seletor de opção -->
+      <div class="sety-opcao">
+        <span class="sety-opcao__label">Modelo: <span id="sety-opcao-selecionada"></span></span>
+        <div class="sety-swatch-list" id="sety-swatch-opcao"></div>
+      </div>
+
+      <!-- Quantidade -->
+      <div class="sety-opcao">
+        <span class="sety-opcao__label">Quantidade:</span>
+        <div class="sety-qtd">
+          <button type="button" onclick="setyAlterarQtd(-1)" aria-label="Diminuir quantidade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></button>
+          <input type="text" id="sety-qtd-input" value="1" inputmode="numeric" aria-label="Quantidade">
+          <button type="button" onclick="setyAlterarQtd(1)" aria-label="Aumentar quantidade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+        </div>
+      </div>
+
+      <!-- 3 CTAs -->
+      <div class="sety-ctas">
+        <button type="button" class="sety-btn sety-btn--primario">Adicionar à Sacola</button>
+        <a href="#" id="sety-whatsapp-comprar" class="sety-btn sety-btn--secundario">Comprar pelo WhatsApp</a>
+        <a href="#" id="sety-whatsapp-duvida" class="sety-btn sety-btn--outline" target="_blank">
+          <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="16" fill="#25D366"/><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+          Comprar pelo WhatsApp
+        </a>
+      </div>
+
+      <!-- Formas de pagamento -->
+      <div class="sety-pagamento">
+        <span class="sety-pagamento__titulo">FORMAS DE PAGAMENTO</span>
+        <div class="sety-pagamento__icones">
+          <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+          <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+          <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><circle cx="18" cy="16" r="7" fill="#FFCB05"/><circle cx="27" cy="16" r="7" fill="#00A4E0" fill-opacity="0.85"/><circle cx="22.5" cy="21" r="7" fill="#EF4123" fill-opacity="0.85"/></svg>
+          <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#B4151B"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#fff" text-anchor="middle">Hipercard</text></svg>
+          <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+        </div>
+      </div>
+
+      <!-- Selo de segurança -->
+      <div class="sety-info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <p>Pagamentos e informações estão seguros<br>Site oficial com <a href="#">todos os direitos reservados</a></p>
+      </div>
+
+      <!-- Frete grátis -->
+      <div class="sety-info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v4h-7z"/><circle cx="6" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg>
+        <div><strong>Frete Grátis</strong><p>Frete grátis em pedidos acima de R$149<br>Entrega realizada pelos Correios.</p></div>
+      </div>
+
+      <!-- Devoluções -->
+      <div class="sety-info-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        <div><strong>Devoluções Gratuitas</strong><p>Estorno de 100% do seu dinheiro<br>7 dias após o recebimento da mercadoria.</p></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== Abas Descrição / Especificações ===== -->
+  <div class="sety-tabs">
+    <div class="sety-tabs__nav">
+      <button type="button" class="sety-tabs__item is-active" data-sety-tab="descricao">Descrição</button>
+      <button type="button" class="sety-tabs__item" data-sety-tab="especificacoes">Especificações</button>
+    </div>
+
+    <div class="sety-tabs__content is-active" data-sety-tab-content="descricao">
+      <h2>Qualidade premium e preço justo</h2>
+      <p>Cansado de pagar caro em acessórios originais? Na Sparta Tech você encontra produtos com ótimo acabamento por um preço justo.</p>
+      <h2>Compre com confiança</h2>
+      <p>Trabalhamos com fornecedores de alta qualidade pra garantir que você receba exatamente o que viu na loja.</p>
+      <h2>A compra é segura?</h2>
+      <p><strong>A compra é 100% segura!</strong> Se você comprar e não se agradar, pode solicitar a devolução em até 7 dias após o recebimento.</p>
+      <h2>Entrega rápida e segura</h2>
+      <p>Assim que a compra for confirmada, nossa equipe entra em contato via e-mail em até 7 dias úteis com o código de rastreamento.</p>
+
+      <div class="sety-trust-links">
+        <button type="button">
+          <svg viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M17 17H8.68C8.68 17 8 16 7 16M17 17V8M17 17H19.32M17 8V3H1V17H5.32M17 8H23.5L25 12.5V17H22.68C22.68 17 22 16 21 16M21 16C22 16 23 17 23 18C23 19 22 20 21 20C20 20 19 19 19 18C19 17.65 19.12 17.3 19.32 17M21 16C20.35 16 19.69 16.43 19.32 17M7 16C8 16 9 17 9 18C9 19 8 20 7 20C6 20 5 19 5 18C5 17.65 5.12 17.3 5.32 17M7 16C6.35 16 5.69 16.43 5.32 17"/></svg>
+          Rastreio
+        </button>
+        <button type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M23 8V4H1V8M23 8V20H1V8M23 8H1M5 12H8M19 12V16H12V12H19Z"/></svg>
+          Parcele sua compra!
+        </button>
+        <button type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 10C4 10 3.5 2 12 2C20.5 2 20 10 20 10M4 10C3.3 10.3 2 11 2 12.5C2 14 3 15 4 15C4.8 15 5.7 15 6 15V10H4ZM20 10C20.7 10.2 22 10.9 22 12.5C22 14.1 20.7 14.8 20 15M20 10H18V15H20M20 15C20.2 16.5 19.6 19.5 16 19.5M16 19.5C16 19 15.8 18 15 18C14.2 18 13 18 12.5 18C12 18 10.8 18 10 18C9.2 18 9 19 9 19.5C9 20 9.2 21 10 21C10.8 21 12 21 12.5 21H15C15.8 21 16 20 16 19.5Z"/></svg>
+          Suporte Profissional
+        </button>
+      </div>
+    </div>
+
+    <div class="sety-tabs__content" data-sety-tab-content="especificacoes">
+      <h2>Especificações do produto</h2>
+      <p>Materiais de alta durabilidade, compatível com os principais modelos do mercado. Consulte a opção de modelo/cor disponível acima antes de finalizar a compra.</p>
+      <p>Garantia de 90 dias contra defeito de fabricação. Em caso de dúvida sobre compatibilidade com seu aparelho, fale com a gente pelo WhatsApp antes de comprar.</p>
+    </div>
+  </div>
+
+  <!-- ===== Banner cartão de crédito ===== -->
+  <div class="sety-banner-cartao">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="1" y="4" width="22" height="16" rx="2"/><path d="M1 9h22"/></svg>
+    <p>Compras feitas no <strong>cartão de crédito</strong> são processadas e enviadas <strong>mais rapidamente</strong>.</p>
+  </div>
+
+  <!-- ===== Selos de confiança ===== -->
+  <div class="sety-seguranca-completa">
+    <div class="sety-pagamento__icones">
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><text x="24" y="20" font-family="Arial,sans-serif" font-weight="bold" font-size="9" fill="#003087" text-anchor="middle">boleto</text></svg>
+      <svg viewBox="0 0 48 32" width="48" height="32"><rect width="48" height="32" rx="4" fill="#fff" stroke="#e2e2e2"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+    </div>
+    <div class="sety-selos-confianca">
+      <span class="sety-selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg> COMPRA 100% SEGURA</span>
+      <span class="sety-selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> AMBIENTE CRIPTOGRAFADO</span>
+    </div>
+  </div>
+
+  <!-- ===== Você também vai gostar ===== -->
+  <div class="sety-secao-produtos">
+    <h3>Você também vai gostar</h3>
+    <div class="sety-produtos-grid sety-catalogo-grid" id="sety-relacionados" data-sety-produtos="todos" data-sety-limite="4"></div>
+  </div>
+
+  <!-- ===== FAQ ===== -->
+  <div class="sety-faq" id="sety-faq">
+    <h2 style="text-align:center;text-transform:uppercase;font-family:var(--sety-font-heading);">Dúvidas Frequentes</h2>
+    <p style="text-align:center;color:var(--sety-text-soft);font-size:14px;">Conte conosco! Atendemos de segunda a sábado, das 9h às 18h.</p>
+
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">O site é seguro?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Sim! Trabalhamos com plataformas de e-commerce reconhecidas. Todos os dados são criptografados.</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">E se o produto não for compatível com meu aparelho?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Sem estresse! Você pode solicitar troca ou devolução em até 7 dias após o recebimento.</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">Como acompanho meu pedido?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Após a compra, você recebe pelo e-mail e WhatsApp o número de rastreio.</div>
+    </div>
+    <div class="sety-faq__item">
+      <button type="button" class="sety-faq__pergunta">Quais formas de pagamento vocês aceitam?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+      <div class="sety-faq__resposta">Aceitamos cartão de crédito (todas as bandeiras), Pix e boleto.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="sety-footer">
+  <div class="sety-footer__grid">
+    <div>
+      <p class="sety-footer__titulo">Menu do Rodapé</p>
+      <ul class="sety-footer__links">
+        <li><a href="#">Aviso Legal</a></li>
+        <li><a href="#sety-faq">FAQ - Perguntas Frequentes</a></li>
+        <li><a href="#">Política de Privacidade</a></li>
+        <li><a href="#">Políticas de Envio e Prazo de Entrega</a></li>
+        <li><a href="#">Políticas de Trocas e Devoluções</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="sety-footer__titulo">Central de Atendimento</p>
+      <div class="sety-footer__links">
+        <a href="#"><svg viewBox="0 0 24 24" width="15" height="15" style="vertical-align:-3px;margin-right:4px;" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg> Atendimento: seg. à sáb. 09 às 18h</a>
+        <a href="mailto:contato@spartatech.com.br">contato@spartatech.com.br</a>
+      </div>
+      <a href="https://wa.me/5591999999999" style="display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff;border-radius:5px;padding:10px 18px;text-decoration:none;font-size:13px;font-weight:600;margin-top:8px;">
+        <svg viewBox="0 0 32 32" width="20" height="20"><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2z"/></svg>
+        Atendimento via WhatsApp
+      </a>
+    </div>
+    <div style="grid-column: span 2;">
+      <p class="sety-footer__titulo">Pagamento e Segurança</p>
+      <div class="sety-footer__pagamento">
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#1A1F71"/><text x="24" y="21" font-family="Arial,sans-serif" font-weight="bold" font-style="italic" font-size="14" fill="#fff" text-anchor="middle">VISA</text></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#16171A"/><circle cx="20" cy="16" r="9" fill="#EB001B"/><circle cx="28" cy="16" r="9" fill="#F79E1B" fill-opacity="0.9"/></svg>
+        <svg viewBox="0 0 48 32" width="40" height="27"><rect width="48" height="32" rx="4" fill="#fff"/><g transform="translate(24,16)"><path d="M-7 -7 a2.2 2.2 0 0 1 3.1 0 l3.2 3.2a1.1 1.1 0 0 0 1.4 0 l3.2-3.2 a2.2 2.2 0 0 1 3.1 0 a2.2 2.2 0 0 1 0 3.1 l-3.2 3.2 a1.1 1.1 0 0 0 0 1.4 l3.2 3.2 a2.2 2.2 0 0 1 0 3.1 a2.2 2.2 0 0 1 -3.1 0 l-3.2 -3.2 a1.1 1.1 0 0 0 -1.4 0 l-3.2 3.2 a2.2 2.2 0 0 1 -3.1 0 a2.2 2.2 0 0 1 0 -3.1 l3.2 -3.2 a1.1 1.1 0 0 0 0 -1.4 l-3.2 -3.2 a2.2 2.2 0 0 1 0 -3.1 z" fill="#32BCAD"/></g></svg>
+      </div>
+      <div class="sety-selos-confianca" style="border-top:1px solid rgba(255,255,255,.15);">
+        <span class="sety-selo" style="color:rgba(255,255,255,.7);font-size:11px;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 3v6c0 5-3.4 8.6-8 11-4.6-2.4-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg> Site Seguro</span>
+        <span class="sety-selo" style="color:rgba(255,255,255,.7);font-size:11px;"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Certificado SSL</span>
+      </div>
+    </div>
+  </div>
+  <p class="sety-footer__copy">© 2026 Sparta Tech | Todos os direitos reservados. <span class="sety-footer__selo-sety"><a href="https://setystudio.com.br" target="_blank">Feito por Sety Studio</a></span></p>
+</footer>
+
+<a href="https://wa.me/5591999999999" class="sety-whatsapp-float" target="_blank" aria-label="Fale conosco no WhatsApp">
+  <svg viewBox="0 0 32 32"><path fill="#fff" d="M23.5 8.5a10 10 0 0 0-15.9 12L6 26l5.7-1.5a10 10 0 0 0 4.3 1 10 10 0 0 0 7.5-16.9zm-7.5 15.4a8.3 8.3 0 0 1-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3a8.3 8.3 0 1 1 15.4-4.4 8.3 8.3 0 0 1-8.4 8.2zm4.5-6.2c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1s-.7.8-.9 1c-.2.2-.3.2-.6.1a6.8 6.8 0 0 1-2-1.2 7.5 7.5 0 0 1-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.2.2-.4a.4.4 0 0 0 0-.4c-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c.6.3 1.1.4 1.5.6.6.2 1.2.1 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.3z"/></svg>
+</a>
+
+<script src="js/catalog.js"></script>
+<script src="js/main.js"></script>
+<script>
+  var setyProdutoAtual = null;
+
+  function setyAlterarQtd(delta) {
+    var input = document.getElementById('sety-qtd-input');
+    var novo = Math.max(1, parseInt(input.value || '1', 10) + delta);
+    input.value = novo;
+  }
+
+  function setyCarregarProduto() {
+    var params = new URLSearchParams(window.location.search);
+    var handle = params.get('p') || SPARTA_PRODUTOS[0].handle;
+    var p = spartaBuscarProduto(handle) || SPARTA_PRODUTOS[0];
+    setyProdutoAtual = p;
+
+    document.getElementById('sety-page-title').textContent = 'Sparta Tech — ' + p.nome;
+    document.getElementById('sety-imagem-principal').src = p.imagens[0];
+    document.getElementById('sety-imagem-principal').alt = p.nome;
+    document.getElementById('sety-nome-produto').textContent = p.nome;
+    document.getElementById('sety-variacao-produto').textContent = p.variacao;
+    document.getElementById('sety-breadcrumb-produto').textContent = p.nome;
+    document.getElementById('sety-breadcrumb-categoria').textContent = p.categoria;
+    document.getElementById('sety-breadcrumb-categoria').href = 'catalogo.html?categoria=' + encodeURIComponent(p.categoria);
+
+    document.getElementById('sety-preco-atual').textContent = 'R$ ' + spartaFormatarPreco(p.preco);
+    document.getElementById('sety-preco-riscado').textContent = 'R$ ' + spartaFormatarPreco(p.precoOriginal);
+    var desconto = Math.round((1 - p.preco / p.precoOriginal) * 100);
+    document.getElementById('sety-preco-desconto').textContent = '- ' + desconto + '%';
+    document.getElementById('sety-valor-parcela').textContent = 'R$ ' + spartaFormatarPreco(p.preco / 3);
+
+    var badgeOferta = document.getElementById('sety-badge-oferta');
+    badgeOferta.textContent = p.badge || 'OFERTA';
+
+    var swatchList = document.getElementById('sety-swatch-opcao');
+    swatchList.innerHTML = p.opcoes.map(function (o, i) {
+      return '<button type="button" class="sety-swatch' + (i === 0 ? ' is-selected' : '') + '">' + o + '</button>';
+    }).join('');
+    document.getElementById('sety-opcao-selecionada').textContent = p.opcoes[0];
+    swatchList.addEventListener('click', function (e) {
+      var btn = e.target.closest('.sety-swatch');
+      if (!btn) return;
+      swatchList.querySelectorAll('.sety-swatch').forEach(function (b) { b.classList.remove('is-selected'); });
+      btn.classList.add('is-selected');
+      document.getElementById('sety-opcao-selecionada').textContent = btn.textContent;
+    });
+
+    var msgComprar = encodeURIComponent('Olá, quero comprar: ' + p.nome + ' (R$ ' + spartaFormatarPreco(p.preco) + ')');
+    var msgDuvida = encodeURIComponent('Olá, gostaria de mais informações sobre o produto: ' + p.nome);
+    document.getElementById('sety-whatsapp-comprar').href = 'https://wa.me/5591999999999?text=' + msgComprar;
+    document.getElementById('sety-whatsapp-duvida').href = 'https://wa.me/5591999999999?text=' + msgDuvida;
+
+    document.getElementById('sety-relacionados').setAttribute('data-sety-excluir', p.handle);
+  }
+
+  setyCarregarProduto();
+
+  // Abas Descrição / Especificações
+  document.querySelector('.sety-tabs__nav')?.addEventListener('click', function (e) {
+    var btn = e.target.closest('.sety-tabs__item');
+    if (!btn) return;
+    var alvo = btn.dataset.setyTab;
+    this.querySelectorAll('.sety-tabs__item').forEach(function (b) { b.classList.remove('is-active'); });
+    btn.classList.add('is-active');
+    document.querySelectorAll('.sety-tabs__content').forEach(function (c) {
+      c.classList.toggle('is-active', c.dataset.setyTabContent === alvo);
+    });
+  });
+</script>
+</body>
+</html>

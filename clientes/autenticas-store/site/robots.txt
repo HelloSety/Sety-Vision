@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /checkout.html
+Disallow: /retorno.html
+Disallow: /api/
+
+Sitemap: https://autenticasstore.com.br/sitemap.xml

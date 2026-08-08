@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="trust-bar">
+    {% for block in section.blocks %}
+      <div class="trust-item" {{ block.shopify_attributes }}>
+        {% case block.settings.icon %}
+          {% when 'truck' %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="15" height="13" rx="1"/><path d="M16 10h3l4 4v6h-7z"/><circle cx="6" cy="20" r="1.6"/><circle cx="18.5" cy="20" r="1.6"/></svg>
+          {% when 'whatsapp' %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 4.5a11 11 0 0 0-17 13.9L2 22l3.8-1.4a11 11 0 0 0 14.7-16.1z"/></svg>
+          {% when 'card' %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          {% else %}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        {% endcase %}
+        <div><strong>{{ block.settings.title }}</strong><span>{{ block.settings.text }}</span></div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Barra de confiança",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícone",
+          "options": [
+            { "value": "check", "label": "Check" },
+            { "value": "truck", "label": "Caminhão" },
+            { "value": "whatsapp", "label": "WhatsApp" },
+            { "value": "card", "label": "Cartão" }
+          ],
+          "default": "check"
+        },
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "text", "id": "text", "label": "Texto" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Barra de confiança",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "check", "title": "Produto original", "text": "Sem falsificação, marcas confiáveis" } },
+        { "type": "item", "settings": { "icon": "truck", "title": "Envio pra todo o Brasil", "text": "Compra online com entrega rápida" } },
+        { "type": "item", "settings": { "icon": "whatsapp", "title": "Suporte via WhatsApp", "text": "Tira-dúvidas antes e depois da compra" } },
+        { "type": "item", "settings": { "icon": "card", "title": "Pagamento seguro", "text": "Combinado direto com a loja" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

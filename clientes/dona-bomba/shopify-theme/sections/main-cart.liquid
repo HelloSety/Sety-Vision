@@ -1,0 +1,58 @@
+<div class="container cart-page">
+  <h1>{{ 'cart.title' | t }}</h1>
+  {% if cart.item_count > 0 %}
+    {% form 'cart', cart, class: 'cart-layout' %}
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>{{ 'cart.product' | t }}</th>
+            <th>{{ 'cart.quantity' | t }}</th>
+            <th>{{ 'cart.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr class="cart-item">
+              <td>
+                <div class="cart-item-info">
+                  {% if item.image %}
+                    <img src="{{ item.image | image_url: width: 150 }}" alt="{{ item.title | escape }}" width="72" height="72">
+                  {% endif %}
+                  <div>
+                    <div class="cart-item-title"><a href="{{ item.url }}">{{ item.product.title }}</a></div>
+                    {% unless item.variant.title == 'Padrão' or item.variant.title == 'Default Title' %}
+                      <div class="cart-item-variant">{{ item.variant.title }}</div>
+                    {% endunless %}
+                    <button type="button" class="cart-item-remove" data-cart-remove="{{ forloop.index0 }}">{{ 'cart.remove' | t }}</button>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="qty-selector">
+                  <button type="button" class="qty-minus">−</button>
+                  <input type="number" name="updates[{{ forloop.index0 }}]" value="{{ item.quantity }}" min="0">
+                  <button type="button" class="qty-plus">+</button>
+                </div>
+              </td>
+              <td>{{ item.final_line_price | money }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div class="cart-summary">
+        <div class="cart-summary-row">
+          <span>{{ 'cart.subtotal' | t }}</span>
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+        <button type="submit" name="update" class="btn-block outline" style="margin-bottom:10px;">{{ 'cart.update' | t }}</button>
+        <button type="submit" name="checkout" class="btn-block">{{ 'cart.checkout' | t }}</button>
+      </div>
+    {% endform %}
+  {% else %}
+    <div class="cart-empty">
+      <p>{{ 'cart.empty' | t }}</p>
+      <a class="btn btn-solid" href="{{ routes.all_products_collection_url }}">{{ 'cart.continue_shopping' | t }}</a>
+    </div>
+  {% endif %}
+</div>

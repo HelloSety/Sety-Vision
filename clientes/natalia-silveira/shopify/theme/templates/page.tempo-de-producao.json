@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "tempo-producao",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 110" width="380" height="110">
+  <g fill="none" stroke="#0d0d0d" stroke-width="2.4">
+    <circle cx="34" cy="34" r="22"/>
+    <path d="M34 12 V56 M12 34 H56 M17 17 Q34 34 17 51 M51 17 Q34 34 51 51"/>
+  </g>
+  <text x="70" y="44" font-family="Inter, Arial, sans-serif" font-weight="900" font-style="italic" font-size="34" fill="#0d0d0d" letter-spacing="-0.5">DEROCHE</text>
+  <text x="70" y="68" font-family="Inter, Arial, sans-serif" font-weight="800" font-size="17" fill="#0d0d0d" letter-spacing="5">MANTOS</text>
+</svg>

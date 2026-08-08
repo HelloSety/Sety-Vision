@@ -1,0 +1,28 @@
+<h2 class="sec-title" id="{{ section.settings.anchor | default: 'lancamentos' }}">{{ section.settings.title | default: 'Lançamentos' }}</h2>
+
+{%- assign collection_to_show = collections[section.settings.collection] -%}
+
+<div class="product-grid">
+  {%- if collection_to_show != blank -%}
+    {%- for product in collection_to_show.products limit: section.settings.products_to_show -%}
+      {%- render 'product-card', product: product -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- for product in collections.all.products limit: section.settings.products_to_show -%}
+      {%- render 'product-card', product: product -%}
+    {%- endfor -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Grade de Produtos",
+  "settings": [
+    { "type": "text", "id": "anchor", "label": "Âncora (id da seção)", "default": "lancamentos" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Lançamentos" },
+    { "type": "collection", "id": "collection", "label": "Coleção (vazio = todos os produtos)" },
+    { "type": "range", "id": "products_to_show", "min": 4, "max": 24, "step": 4, "default": 12, "label": "Quantidade de produtos" }
+  ],
+  "presets": [{ "name": "Grade de Produtos" }]
+}
+{% endschema %}

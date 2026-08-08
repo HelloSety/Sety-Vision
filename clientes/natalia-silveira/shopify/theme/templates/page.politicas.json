@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "policies-accordion",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

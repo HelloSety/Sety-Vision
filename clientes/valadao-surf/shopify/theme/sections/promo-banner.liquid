@@ -1,0 +1,29 @@
+<section class="section container">
+  <a class="banner-colecao" href="{{ section.settings.banner_link | default: routes.all_products_collection_url }}">
+    <picture>
+      {%- if section.settings.banner_image_mobile -%}
+        <source media="(max-width: 860px)" srcset="{{ section.settings.banner_image_mobile | image_url: width: 750 }}">
+      {%- else -%}
+        <source media="(max-width: 860px)" srcset="{{ 'banner-catalogo-mobile.png' | asset_img_url: '750x' }}">
+      {%- endif -%}
+      {%- if section.settings.banner_image -%}
+        {{ section.settings.banner_image | image_tag: width: 1800, alt: section.settings.banner_alt, loading: 'lazy' }}
+      {%- else -%}
+        <img src="{{ 'banner-catalogo-desktop.png' | asset_img_url: '1800x' }}" alt="{{ section.settings.banner_alt | default: shop.name }}" width="1800" height="600" loading="lazy">
+      {%- endif -%}
+    </picture>
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "Banner de Coleção",
+  "settings": [
+    { "type": "image_picker", "id": "banner_image", "label": "Imagem do banner (desktop, recomendado: 1800x600px)" },
+    { "type": "image_picker", "id": "banner_image_mobile", "label": "Imagem do banner (mobile, recomendado: 750x1100px)" },
+    { "type": "url", "id": "banner_link", "label": "Link do banner" },
+    { "type": "text", "id": "banner_alt", "label": "Texto alternativo (SEO/acessibilidade)" }
+  ],
+  "presets": [{ "name": "Banner de Coleção" }]
+}
+{% endschema %}

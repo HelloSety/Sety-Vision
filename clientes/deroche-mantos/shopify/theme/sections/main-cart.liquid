@@ -1,0 +1,40 @@
+<section class="section container">
+  <div class="section-head-center"><h2>Seu Carrinho ({{ cart.item_count }})</h2></div>
+
+  {%- if cart.item_count == 0 -%}
+    <p style="text-align:center;color:var(--cinza);padding:40px 0">Seu carrinho está vazio. <a href="{{ routes.all_products_collection_url }}" style="color:var(--laranja-escuro);text-decoration:underline">Ver produtos</a></p>
+  {%- else -%}
+    <form action="{{ routes.cart_url }}" method="post" novalidate>
+      <div style="max-width:760px;margin:0 auto">
+        {%- for item in cart.items -%}
+          <div class="cart-item" style="border-bottom:1px solid var(--borda);padding:16px 0">
+            {{ item.image | image_tag: width: 128, height: 128, alt: item.title }}
+            <div class="cart-item-info">
+              <h4>{{ item.product.title }}</h4>
+              {%- if item.variant.title != 'Default Title' -%}
+                <span class="cart-item-details">Tam: {{ item.variant.title }}{%- for prop in item.properties -%}{%- if prop.last != blank -%} · {{ prop.first }}: {{ prop.last }}{%- endif -%}{%- endfor -%}</span>
+              {%- elsif item.properties.size > 0 -%}
+                <span class="cart-item-details">{%- for prop in item.properties -%}{%- if prop.last != blank -%}{{ prop.first }}: {{ prop.last }} {%- endif -%}{%- endfor -%}</span>
+              {%- endif -%}
+              <div class="cart-item-qty">
+                <input type="number" name="updates[{{ item.key }}]" value="{{ item.quantity }}" min="0" style="width:52px;padding:4px;border:1px solid var(--borda);border-radius:6px">
+              </div>
+            </div>
+            <div class="cart-item-right">
+              <span class="cart-item-price">{{ item.final_line_price | money }}</span>
+              <a class="cart-item-remove" href="{{ item.url_to_remove }}">Remover</a>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="cart-footer" style="max-width:760px;margin:20px auto 0;border-top:none">
+        <div class="cart-total-row"><span>Total</span><span class="cart-total">{{ cart.total_price | money }}</span></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button type="submit" name="update" class="btn-dark" style="flex:1">Atualizar Carrinho</button>
+          <button type="submit" name="checkout" class="btn-primary" style="flex:1">Finalizar Compra</button>
+        </div>
+      </div>
+    </form>
+  {%- endif -%}
+</section>

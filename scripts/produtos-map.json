@@ -1,0 +1,852 @@
+{
+  "coilover": [
+    {
+      "color": "Black Haste Preta",
+      "file": "black-haste-preta.jpg"
+    },
+    {
+      "color": "Plasma Haste Preta",
+      "file": "plasma-haste-preta.jpg"
+    }
+  ],
+  "dartboard": [
+    {
+      "color": "Degrade Preta",
+      "file": "degrade-preta.jpg"
+    },
+    {
+      "color": "Prata Lente Espelhada",
+      "file": "prata-lente-espelhada.jpg"
+    },
+    {
+      "color": "Preta Lente Preta",
+      "file": "preta-lente-preta.jpg"
+    },
+    {
+      "color": "Preta Lente VR28",
+      "file": "preta-lente-vr28.jpg"
+    },
+    {
+      "color": "Rosa Haste Branca",
+      "file": "rosa-haste-branca.jpg"
+    }
+  ],
+  "de-soto": [
+    {
+      "color": "Azul Lentes Espelhada",
+      "file": "azul-lentes-espelhada.jpg"
+    },
+    {
+      "color": "Carbon Lentes Black",
+      "file": "carbon-lentes-black.jpg"
+    },
+    {
+      "color": "Cristal Lentes Tanzanite",
+      "file": "cristal-lentes-tanzanite.jpg"
+    }
+  ],
+  "double-x-24k": [
+    {
+      "color": "24K",
+      "file": "24k.jpg"
+    },
+    {
+      "color": "Lentes Espelhada",
+      "file": "lentes-espelhada.jpg"
+    },
+    {
+      "color": "Lentes Tanzanite",
+      "file": "lentes-tanzanite.jpg"
+    },
+    {
+      "color": "Plasma Lente Ice Escura",
+      "file": "plasma-lente-ice-escura.jpg"
+    },
+    {
+      "color": "Plasma",
+      "file": "plasma.jpg"
+    }
+  ],
+  "eye-jacket": [
+    {
+      "color": "Cinza Lente Espelhada",
+      "file": "cinza-lente-espelhada.jpg"
+    },
+    {
+      "color": "Cinza Lente G26",
+      "file": "cinza-lente-g26.jpg"
+    },
+    {
+      "color": "Cinza Lente Gold",
+      "file": "cinza-lente-gold.jpg"
+    },
+    {
+      "color": "Cinza Lente Preta",
+      "file": "cinza-lente-preta.jpg"
+    },
+    {
+      "color": "Cinza Lente Tanzanite",
+      "file": "cinza-lente-tanzanite.jpg"
+    },
+    {
+      "color": "Cinza Lente VR28",
+      "file": "cinza-lente-vr28.jpg"
+    },
+    {
+      "color": "Preta Lente Espelhada",
+      "file": "preta-lente-espelhada.jpg"
+    },
+    {
+      "color": "Preta Lente G26",
+      "file": "preta-lente-g26.jpg"
+    },
+    {
+      "color": "Preta Lente Gold",
+      "file": "preta-lente-gold.jpg"
+    },
+    {
+      "color": "Preta Lente Ice",
+      "file": "preta-lente-ice.jpg"
+    },
+    {
+      "color": "Preta Lente Rosa Transparente",
+      "file": "preta-lente-rosa-transparente.jpg"
+    },
+    {
+      "color": "Preta Lente Tanzanite",
+      "file": "preta-lente-tanzanite.jpg"
+    },
+    {
+      "color": "Preta Lente VR28",
+      "file": "preta-lente-vr28.jpg"
+    }
+  ],
+  "flak-2": [
+    {
+      "color": "Branca Lente Tanzanite",
+      "file": "branca-lente-tanzanite.jpg"
+    },
+    {
+      "color": "Preta Lente Azul Escuro",
+      "file": "preta-lente-azul-escuro.jpg"
+    },
+    {
+      "color": "Preta Lente Azul",
+      "file": "preta-lente-azul.jpg"
+    },
+    {
+      "color": "Preta Lente Espelhada",
+      "file": "preta-lente-espelhada.jpg"
+    },
+    {
+      "color": "Preta Lente Preta",
+      "file": "preta-lente-preta.jpg"
+    },
+    {
+      "color": "Preta Lente Ruby",
+      "file": "preta-lente-ruby.jpg"
+    },
+    {
+      "color": "Preta Lente Tanzanite",
+      "file": "preta-lente-tanzanite.jpg"
+    }
+  ],
+  "half-jacket": [
+    {
+      "color": "Carbon Lentes Black",
+      "file": "carbon-lentes-black.jpg"
+    },
+    {
+      "color": "Carbon Lentes Espelhada",
+      "file": "carbon-lentes-espelhada.jpg"
+    },
+    {
+      "color": "Carbon Lentes Tanzanite",
+      "file": "carbon-lentes-tanzanite.jpg"
+    },
+    {
+      "color": "Cinza Preto Lente Espelhada",
+      "file": "cinza-preto-lente-espelhada.jpg"
+    },
+    {
+      "color": "Marrom Lentes VR28",
+      "file": "marrom-lentes-vr28.jpg"
+    }
+  ],
+  "highland": [
+    {
+      "color": "Carbon Lentes Black",
+      "file": "carbon-lentes-black.jpg"
+    },
+    {
+      "color": "Carbon Lentes Espelhada",
+      "file": "carbon-lentes-espelhada.jpg"
+    },
+    {
+      "color": "Cristal Lentes Black",
+      "file": "cristal-lentes-black.jpg"
+    },
+    {
+      "color": "Cristal Lentes Transparente Vermelha",
+      "file": "cristal-lentes-transparente-vermelha.jpg"
+    },
+    {
+      "color": "Marrom Lentes VR28",
+      "file": "marrom-lentes-vr28.jpg"
+    }
+  ],
+  "hstn": [
+    {
+      "color": "Cinza Escuro Claro Gold Café",
+      "file": "cinza-escuro-claro-gold-cafe.jpg"
+    },
+    {
+      "color": "Cinza Escuro Claro Lente Gold",
+      "file": "cinza-escuro-claro-lente-gold.jpg"
+    },
+    {
+      "color": "Cinza Escuro Claro Lente Roxa",
+      "file": "cinza-escuro-claro-lente-roxa.jpg"
+    },
+    {
+      "color": "Preta_ Cinza Lente Ruby",
+      "file": "preta-cinza-lente-ruby.jpg"
+    },
+    {
+      "color": "Preta Lente Dark Ruby",
+      "file": "preta-lente-dark-ruby.jpg"
+    },
+    {
+      "color": "Preta Lente Espelhada",
+      "file": "preta-lente-espelhada.jpg"
+    },
+    {
+      "color": "Preta Lente Gold",
+      "file": "preta-lente-gold.jpg"
+    },
+    {
+      "color": "Preta Lente Ice",
+      "file": "preta-lente-ice.jpg"
+    },
+    {
+      "color": "Preta Lente Preta",
+      "file": "preta-lente-preta.jpg"
+    },
+    {
+      "color": "Preta Lente Roxa",
+      "file": "preta-lente-roxa.jpg"
+    },
+    {
+      "color": "Preta Lente Ruby",
+      "file": "preta-lente-ruby.jpg"
+    },
+    {
+      "color": "Preta Lente Tanzanite",
+      "file": "preta-lente-tanzanite.jpg"
+    }
+  ],
+  "lach": [
+    {
+      "color": "Marrom Lentes VR28",
+      "file": "marrom-lentes-vr28.jpg"
+    },
+    {
+      "color": "Preto Lentes Black",
+      "file": "preto-lentes-black.jpg"
+    }
+  ],
+  "m-frame": [
+    {
+      "color": "Preta Lente Espelhada",
+      "file": "preta-lente-espelhada.jpg"
+    },
+    {
+      "color": "Preta Lente Gold Café",
+      "file": "preta-lente-gold-cafe.jpg"
+    },
+    {
+      "color": "Preta Lente Ruby",
+      "file": "preta-lente-ruby.jpg"
+    },
+    {
+      "color": "Preta Lente Torch",
+      "file": "preta-lente-torch.jpg"
+    },
+    {
+      "color": "X Metal Lente Espelhada",
+      "file": "x-metal-lente-espelhada.jpg"
+    },
+    {
+      "color": "X Metal Lente Gold Café",
+      "file": "x-metal-lente-gold-cafe.jpg"
+    },
+    {
+      "color": "X Metal Lente Preta",
+      "file": "x-metal-lente-preta.jpg"
+    }
+  ],
+  "mag-four": [
+    {
+      "color": "Plasma Lente Gold",
+      "file": "plasma-lente-gold.jpg"
+    },
+    {
+      "color": "Plasma Lente Preta",
+      "file": "plasma-lente-preta.jpg"
+    },
+    {
+      "color": "Plasma Lente Torch",
+      "file": "plasma-lente-torch.jpg"
+    },
+    {
+      "color": "Preta Lente Gold Café",
+      "file": "preta-lente-gold-cafe.jpg"
+    },
+    {
+      "color": "Preta Lente Preta",
+      "file": "preta-lente-preta.jpg"
+    },
+    {
+      "color": "Preta Lente Torch",
+      "file": "preta-lente-torch.jpg"
+    },
+    {
+      "color": "X Metal Lente Azul",
+      "file": "x-metal-lente-azul.jpg"
+    },
+    {
+      "color": "X Metal Lente Espelhada",
+      "file": "x-metal-lente-espelhada.jpg"
+    },
+    {
+      "color": "X Metal Lente Gold Café",
+      "file": "x-metal-lente-gold-cafe.jpg"
+    },
+    {
+      "color": "X Metal Lente Preta",
+      "file": "x-metal-lente-preta.jpg"
+    },
+    {
+      "color": "X Metal Lente Torch",
+      "file": "x-metal-lente-torch.jpg"
+    }
+  ],
+  "penny": [
+    {
+      "color": "Carbon Lente Espelhada",
+      "file": "carbon-lente-espelhada.jpg"
+    },
+    {
+      "color": "Carbon Lente Preta",
+      "file": "carbon-lente-preta.jpg"
+    },
+    {
+      "color": "Carbon Lente Roxa",
+      "file": "carbon-lente-roxa.jpg"
+    },
+    {
+      "color": "Carbon Lente Ruby",
+      "file": "carbon-lente-ruby.jpg"
+    },
+    {
+      "color": "Plasma Lente Dark Ruby",
+      "file": "plasma-lente-dark-ruby.jpg"
+    },
+    {
+      "color": "Plasma Lente Espelhada",
+      "file": "plasma-lente-espelhada.jpg"
+    },
+    {
+      "color": "X Metal Lente Roxa",
+      "file": "x-metal-lente-roxa.jpg"
+    },
+    {
+      "color": "Xmetal Lente Espelhada",
+      "file": "xmetal-lente-espelhada.jpg"
+    },
+    {
+      "color": "Xmetal Lente Preta",
+      "file": "xmetal-lente-preta.jpg"
+    },
+    {
+      "color": "Xmetal Lente Ruby",
+      "file": "xmetal-lente-ruby.jpg"
+    },
+    {
+      "color": "Xmetal Lente Tanzanite",
+      "file": "xmetal-lente-tanzanite.jpg"
+    }
+  ],
+  "permian": [
+    {
+      "color": "All Black",
+      "file": "all-black.jpg"
+    },
+    {
+      "color": "Bege Lentes Degradê",
+      "file": "bege-lentes-degrade.jpg"
+    },
+    {
+      "color": "Bege Lentes VR28",
+      "file": "bege-lentes-vr28.jpg"
+    },
+    {
+      "color": "Black Lentes Black",
+      "file": "black-lentes-black.jpg"
+    },
+    {
+      "color": "Black Lentes Liquid Metal",
+      "file": "black-lentes-liquid-metal.jpg"
+    },
+    {
+      "color": "Black Lentes Rosé",
+      "file": "black-lentes-rose.jpg"
+    },
+    {
+      "color": "Branco Lentes Black",
+      "file": "branco-lentes-black.jpg"
+    },
+    {
+      "color": "Clear Lentes Black",
+      "file": "clear-lentes-black.jpg"
+    },
+    {
+      "color": "Clear Lentes Marrom",
+      "file": "clear-lentes-marrom.jpg"
+    },
+    {
+      "color": "Clear Lentes Rosé",
+      "file": "clear-lentes-rose.jpg"
+    },
+    {
+      "color": "Cristal Lentes Black",
+      "file": "cristal-lentes-black.jpg"
+    },
+    {
+      "color": "Cristal Lentes Ruby",
+      "file": "cristal-lentes-ruby.jpg"
+    },
+    {
+      "color": "Cristal Lentes Transparente Rosa",
+      "file": "cristal-lentes-transparente-rosa.jpg"
+    },
+    {
+      "color": "Marrom Coffee Lentes Black",
+      "file": "marrom-coffee-lentes-black.jpg"
+    },
+    {
+      "color": "Marrom Coffee Lentes VR28",
+      "file": "marrom-coffee-lentes-vr28.jpg"
+    },
+    {
+      "color": "Marrom Lentes Black",
+      "file": "marrom-lentes-black.jpg"
+    },
+    {
+      "color": "Marrom Lentes Rosé",
+      "file": "marrom-lentes-rose.jpg"
+    },
+    {
+      "color": "Marrom Lentes VR28",
+      "file": "marrom-lentes-vr28.jpg"
+    },
+    {
+      "color": "Matte Emerald G26",
+      "file": "matte-emerald-g26.jpg"
+    }
+  ],
+  "pitboss": [
+    {
+      "color": "Corvette Lente Preta",
+      "file": "corvette-lente-preta.jpg"
+    },
+    {
+      "color": "Preta Lente Espelhada",
+      "file": "preta-lente-espelhada.jpg"
+    },
+    {
+      "color": "Preta Lente Preta",
+      "file": "preta-lente-preta.jpg"
+    },
+    {
+      "color": "Preta Lente Tanzanite",
+      "file": "preta-lente-tanzanite.jpg"
+    }
+  ],
+  "radar": [
+    {
+      "color": "Branca Lente Sapphire",
+      "file": "branca-lente-sapphire.jpg"
+    },
+    {
+      "color": "Branca Lente Tanzanite",
+      "file": "branca-lente-tanzanite.jpg"
+    },
+    {
+      "color": "Branza Lente Gold",
+      "file": "branza-lente-gold.jpg"
+    },
+    {
+      "color": "Bronze Lente Dark Ruby",
+      "file": "bronze-lente-dark-ruby.jpg"
+    },
+    {
+      "color": "Cinza Lente Preta",
+      "file": "cinza-lente-preta.jpg"
+    },
+    {
+      "color": "Cooper Lente Gold",
+      "file": "cooper-lente-gold.jpg"
+    },
+    {
+      "color": "Cooper Lente VR28 kit",
+      "file": "cooper-lente-vr28-kit.jpg"
+    },
+    {
+      "color": "Cooper Lente VR28",
+      "file": "cooper-lente-vr28.jpg"
+    },
+    {
+      "color": "Piet Lente Azul Claro",
+      "file": "piet-lente-azul-claro.jpg"
+    },
+    {
+      "color": "Piet Lente Espelhada",
+      "file": "piet-lente-espelhada.jpg"
+    },
+    {
+      "color": "Piet Lente Gold Café",
+      "file": "piet-lente-gold-cafe.jpg"
+    },
+    {
+      "color": "Piet Lente Preta",
+      "file": "piet-lente-preta.jpg"
+    },
+    {
+      "color": "Piet Lente Ruby",
+      "file": "piet-lente-ruby.jpg"
+    },
+    {
+      "color": "Piet Lente Torch",
+      "file": "piet-lente-torch.jpg"
+    },
+    {
+      "color": "Piet verde Lente Preta",
+      "file": "piet-verde-lente-preta.jpg"
+    },
+    {
+      "color": "Preta Lente Dark Ruby",
+      "file": "preta-lente-dark-ruby.jpg"
+    },
+    {
+      "color": "Preta Lente Espelhada",
+      "file": "preta-lente-espelhada.jpg"
+    },
+    {
+      "color": "Preta Lente Preta",
+      "file": "preta-lente-preta.jpg"
+    },
+    {
+      "color": "Preta Lente Roxa",
+      "file": "preta-lente-roxa.jpg"
+    },
+    {
+      "color": "Preta Lente Ruby",
+      "file": "preta-lente-ruby.jpg"
+    },
+    {
+      "color": "Preta Lente Sapphire",
+      "file": "preta-lente-sapphire.jpg"
+    },
+    {
+      "color": "Preta Lente Tanzanite",
+      "file": "preta-lente-tanzanite.jpg"
+    },
+    {
+      "color": "Preta Lente Vermelho",
+      "file": "preta-lente-vermelho.jpg"
+    }
+  ],
+  "radar-kit": [
+    {
+      "color": "Dark Ruby",
+      "file": "dark-ruby.jpg"
+    },
+    {
+      "color": "Espelhada",
+      "file": "espelhada.jpg"
+    },
+    {
+      "color": "Preta",
+      "file": "preta.jpg"
+    },
+    {
+      "color": "Roxa",
+      "file": "roxa.jpg"
+    },
+    {
+      "color": "Ruby",
+      "file": "ruby.jpg"
+    },
+    {
+      "color": "Sapphire",
+      "file": "sapphire.jpg"
+    },
+    {
+      "color": "Tanzanite",
+      "file": "tanzanite.jpg"
+    }
+  ],
+  "radarlock": [
+    {
+      "color": "Preta Lente Preta",
+      "file": "preta-lente-preta.jpg"
+    },
+    {
+      "color": "Silver Lente Espelhada",
+      "file": "silver-lente-espelhada.jpg"
+    }
+  ],
+  "romeo-1": [
+    {
+      "color": "Xmetal Lente Espelhada",
+      "file": "xmetal-lente-espelhada.jpg"
+    },
+    {
+      "color": "Xmetal Lente Gold",
+      "file": "xmetal-lente-gold.jpg"
+    },
+    {
+      "color": "Xmetal Lente Preta",
+      "file": "xmetal-lente-preta.jpg"
+    },
+    {
+      "color": "Xmetal Lente Ruby",
+      "file": "xmetal-lente-ruby.jpg"
+    },
+    {
+      "color": "Xmetal Lente Tanzanite",
+      "file": "xmetal-lente-tanzanite.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Dark Ruby",
+      "file": "xmetal-lentes-dark-ruby.jpg"
+    }
+  ],
+  "romeo-2-carbon": [
+    {
+      "color": "Black Lentes Black",
+      "file": "black-lentes-black.jpg"
+    },
+    {
+      "color": "Black Lentes Espelhada",
+      "file": "black-lentes-espelhada.jpg"
+    },
+    {
+      "color": "Carbon Lentes Dark Ruby",
+      "file": "carbon-lentes-dark-ruby.jpg"
+    },
+    {
+      "color": "Ice Thug",
+      "file": "ice-thug.jpg"
+    },
+    {
+      "color": "Neon Blue",
+      "file": "neon-blue.jpg"
+    },
+    {
+      "color": "Plasma Lentes Espelhada",
+      "file": "plasma-lentes-espelhada.jpg"
+    },
+    {
+      "color": "Preto",
+      "file": "preto.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Black",
+      "file": "xmetal-lentes-black.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Espelhada",
+      "file": "xmetal-lentes-espelhada.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Ice",
+      "file": "xmetal-lentes-ice.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Ruby",
+      "file": "xmetal-lentes-ruby.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Tanzanite",
+      "file": "xmetal-lentes-tanzanite.jpg"
+    }
+  ],
+  "sphaera": [
+    {
+      "color": "preta-1",
+      "file": "preta-1.jpg"
+    },
+    {
+      "color": "preta-2",
+      "file": "preta-2.jpg"
+    }
+  ],
+  "splice": [
+    {
+      "color": "Cinza com Preto Lente Dark Ruby",
+      "file": "cinza-com-preto-lente-dark-ruby.jpg"
+    },
+    {
+      "color": "Cinza Com Preto Lente Gold Café",
+      "file": "cinza-com-preto-lente-gold-cafe.jpg"
+    },
+    {
+      "color": "Cinza com Preto Lente Preta",
+      "file": "cinza-com-preto-lente-preta.jpg"
+    },
+    {
+      "color": "Cinza Com Preto Lente VR28",
+      "file": "cinza-com-preto-lente-vr28.jpg"
+    },
+    {
+      "color": "Cinza Lente Dark Ruby",
+      "file": "cinza-lente-dark-ruby.jpg"
+    },
+    {
+      "color": "Cinza Lente Espelhada",
+      "file": "cinza-lente-espelhada.jpg"
+    },
+    {
+      "color": "Cinza Lente Gold Café",
+      "file": "cinza-lente-gold-cafe.jpg"
+    },
+    {
+      "color": "Cinza Lente Preta",
+      "file": "cinza-lente-preta.jpg"
+    },
+    {
+      "color": "Cinza Lente Tanzanite",
+      "file": "cinza-lente-tanzanite.jpg"
+    },
+    {
+      "color": "Cinza Lente VR28",
+      "file": "cinza-lente-vr28.jpg"
+    },
+    {
+      "color": "Cooper Lente Dark Ruby",
+      "file": "cooper-lente-dark-ruby.jpg"
+    },
+    {
+      "color": "Cooper VR28",
+      "file": "cooper-vr28.jpg"
+    },
+    {
+      "color": "Preta Lente Espelhada",
+      "file": "preta-lente-espelhada.jpg"
+    },
+    {
+      "color": "Preta Lente Preta",
+      "file": "preta-lente-preta.jpg"
+    },
+    {
+      "color": "Preta Lente Torch",
+      "file": "preta-lente-torch.jpg"
+    }
+  ],
+  "spyke": [
+    {
+      "color": "Low Light",
+      "file": "low-light.jpg"
+    },
+    {
+      "color": "Prizm",
+      "file": "prizm.jpg"
+    },
+    {
+      "color": "VR28",
+      "file": "vr28.jpg"
+    }
+  ],
+  "straight-jacket": [
+    {
+      "color": "Cooper Lente Preta",
+      "file": "cooper-lente-preta.jpg"
+    },
+    {
+      "color": "Cooper Lente Tanzanite",
+      "file": "cooper-lente-tanzanite.jpg"
+    },
+    {
+      "color": "Cooper Lente VR28",
+      "file": "cooper-lente-vr28.jpg"
+    }
+  ],
+  "thump": [
+    {
+      "color": "Carbon Lentes G26",
+      "file": "carbon-lentes-g26.jpg"
+    },
+    {
+      "color": "Carbon Lentes Ice",
+      "file": "carbon-lentes-ice.jpg"
+    },
+    {
+      "color": "Carbon Lentes Ruby",
+      "file": "carbon-lentes-ruby.jpg"
+    },
+    {
+      "color": "Carbon Lentes Tanzanite",
+      "file": "carbon-lentes-tanzanite.jpg"
+    }
+  ],
+  "vilao-com-mola": [
+    {
+      "color": "Dourada Transparente",
+      "file": "dourada-transparente.jpg"
+    },
+    {
+      "color": "Prata Transparente",
+      "file": "prata-transparente.jpg"
+    },
+    {
+      "color": "Preta Transparente",
+      "file": "preta-transparente.jpg"
+    }
+  ],
+  "x-squared": [
+    {
+      "color": "24K Lentes Gold",
+      "file": "24k-lentes-gold.jpg"
+    },
+    {
+      "color": "Carbon Lentes Black",
+      "file": "carbon-lentes-black.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Azul Escuro",
+      "file": "xmetal-lentes-azul-escuro.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Black",
+      "file": "xmetal-lentes-black.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Espelhada Kit Vermelho",
+      "file": "xmetal-lentes-espelhada-kit-vermelho.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Ice",
+      "file": "xmetal-lentes-ice.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Ruby",
+      "file": "xmetal-lentes-ruby.jpg"
+    },
+    {
+      "color": "Xmetal Lentes Tanzanite",
+      "file": "xmetal-lentes-tanzanite.jpg"
+    }
+  ]
+}

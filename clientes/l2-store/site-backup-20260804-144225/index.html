@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L2 Store — Artigos do corre: camisetas, tênis, calças e bonés originais</title>
+  <meta name="description" content="L2 Store: artigos do corre originais e de primeira linha — camisetas, tênis, calças, bonés e jaquetas. Compre direto pelo WhatsApp.">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+
+  <meta property="og:site_name" content="L2 Store">
+  <meta property="og:title" content="L2 Store — Artigos do corre">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Camisetas, tênis, calças, bonés e jaquetas originais e de primeira linha. Compre com quem tem referência.">
+  <meta property="og:image" content="assets/img/favicon-512.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Anton&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="topbar">🦁 <strong>COMPRE COM QUEM TEM REFERÊNCIA</strong> — Artigos originais e de primeira linha</div>
+
+  <header class="site-header">
+    <div class="header-top">
+      <form class="search-box" onsubmit="return false">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" placeholder="O que você está buscando?">
+      </form>
+
+      <a href="#top" class="logo"><img src="assets/img/logo.png" alt="L2 Store"></a>
+
+      <div class="header-icons">
+        <a class="icon-link" href="https://www.instagram.com/l2_store___/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a class="icon-link" href="#" data-whats-link target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.5-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5C10.1 9 9.5 7.6 9.3 7c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 2-1.4.2-.7.2-1.2.1-1.4-.1-.1-.3-.2-.6-.3z"/><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <a href="#top" class="active">Início</a>
+      <a href="#catalogo" data-nav-filter="camisetas">Camisetas</a>
+      <a href="#catalogo" data-nav-filter="tenis">Tênis</a>
+      <a href="#catalogo" data-nav-filter="calcas">Calças</a>
+      <a href="#catalogo" data-nav-filter="bones">Bonés</a>
+      <a href="#catalogo" data-nav-filter="jaquetas">Jaquetas</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <a class="hero-img" href="#catalogo">
+        <picture>
+          <source media="(max-width: 860px)" srcset="assets/banners/banner-welcome-mobile.svg">
+          <img src="assets/banners/banner-welcome-desktop.svg" alt="L2 Store" loading="eager">
+        </picture>
+      </a>
+    </section>
+
+    <section class="section container" style="padding-top:32px">
+      <div class="promo-slider" id="promo-slider">
+        <div class="promo-slider-track" id="promo-slider-track">
+          <a class="promo-slide" href="#catalogo">
+            <picture>
+              <source media="(max-width: 860px)" srcset="assets/banners/banner-catalogo-mobile.svg">
+              <img src="assets/banners/banner-catalogo-desktop.svg" alt="Novidades L2 Store" loading="lazy">
+            </picture>
+          </a>
+          <a class="promo-slide" href="#catalogo">
+            <picture>
+              <source media="(max-width: 860px)" srcset="assets/banners/banner-lifestyle-mobile.svg">
+              <img src="assets/banners/banner-lifestyle-desktop.svg" alt="Produtos originais L2 Store" loading="lazy">
+            </picture>
+          </a>
+        </div>
+        <button type="button" class="promo-slider-arrow prev" id="promo-prev" aria-label="Slide anterior">‹</button>
+        <button type="button" class="promo-slider-arrow next" id="promo-next" aria-label="Próximo slide">›</button>
+        <div class="promo-slider-dots" id="promo-slider-dots">
+          <button type="button" class="promo-dot active" data-index="0" aria-label="Ir para slide 1"></button>
+          <button type="button" class="promo-dot" data-index="1" aria-label="Ir para slide 2"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      <div class="section-head-center"><h2>Encontre sua Categoria</h2></div>
+      <p class="section-sub">Coleções</p>
+      <div class="cat-cards" id="cat-cards"></div>
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      <div class="section-head"><h2>Mais <span>Vendidos</span></h2><a href="#catalogo" class="ver-tudo" style="font-weight:700;font-size:12.5px;text-transform:uppercase;color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:2px">Ver Catálogo</a></div>
+      <div class="grid" id="grid-destaques"></div>
+    </section>
+
+    <section class="section container" id="catalogo" style="padding-top:0">
+      <div class="section-head"><h2>Catálogo <span>Completo</span></h2></div>
+      <div class="filters" id="filters"></div>
+      <p id="catalogo-count" style="color:var(--cinza);font-size:13px;margin-bottom:18px"></p>
+      <div class="grid" id="grid-catalogo"></div>
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></svg>
+          <h4>Produtos Originais</h4>
+          <p>Primeira linha, sem enrolação</p>
+        </div>
+        <div class="benefit-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11a9 9 0 0 1 18 0v6a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/><path d="M3 11v3a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3"/></svg>
+          <h4>Atendimento via WhatsApp</h4>
+          <p>Direto com a gente, sem intermediário</p>
+        </div>
+        <div class="benefit-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-9C.5 8 2 4 6 4c2 0 3.5 1.2 4 2 .5-.8 2-2 4-2 4 0 5.5 4 5.5 8-2.5 4.65-9.5 9-9.5 9Z"/></svg>
+          <h4>Compre com Referência</h4>
+          <p>Loja com endereço fixo, mais de 3 anos de corre</p>
+        </div>
+        <div class="benefit-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="7" width="15" height="11" rx="1"/><path d="M16 11h3.5L22 15.5V18h-6"/><circle cx="6" cy="20" r="1.6"/><circle cx="17.5" cy="20" r="1.6"/></svg>
+          <h4>Retirada ou Entrega</h4>
+          <p>Combinamos o melhor jeito com você</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      <div class="about-grid">
+        <img class="about-logo-img" src="assets/img/hero-personagem.jpg" alt="L2 Store" loading="lazy">
+        <div>
+          <h2>O que é a L2 Store</h2>
+          <p>A L2 Store nasceu do corre de quem entende de moda de rua. Trabalhamos com camisetas, tênis, calças, bonés e jaquetas originais e de primeira linha, direto pra quem quer se vestir bem sem abrir mão da procedência.</p>
+          <p>Atendimento próximo, direto no WhatsApp, com endereço fixo pra quem quer comprar com quem tem referência de verdade.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" style="padding-top:0">
+      <div class="section-head-center"><h2>Dúvidas Frequentes</h2></div>
+      <p class="section-sub">Atendemos direto pelo WhatsApp</p>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" type="button">Como faço para comprar?<span class="plus">+</span></button>
+          <div class="faq-a"><p>É só clicar em qualquer produto do catálogo e depois em "Comprar pelo WhatsApp" — a gente confirma tamanho, forma de pagamento e prazo direto com você.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Os produtos são originais mesmo?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Sim, trabalhamos só com peças originais e de primeira linha. Nada de réplica.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Vocês entregam ou só retirada?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Combinamos o melhor jeito direto com você pelo WhatsApp — retirada na loja (Rua Serra dos Parecis, 239) ou entrega.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Quais formas de pagamento vocês aceitam?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Pix (com desconto), cartão de crédito parcelado e dinheiro na retirada.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" type="button">Como acompanho meu pedido?<span class="plus">+</span></button>
+          <div class="faq-a"><p>Direto pelo WhatsApp — é o mesmo canal que você usa pra fechar a compra.</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-logo" src="assets/img/logo.png" alt="L2 Store">
+          <p>Artigos do corre: camisetas, tênis, calças, bonés e jaquetas originais e de primeira linha.</p>
+          <a href="https://www.instagram.com/l2_store___/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;margin-top:14px;color:var(--cinza-claro);font-weight:700;font-size:12.5px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+            Siga @l2_store___
+          </a>
+        </div>
+        <div>
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#catalogo" data-nav-filter="camisetas">Camisetas</a></li>
+            <li><a href="#catalogo" data-nav-filter="tenis">Tênis</a></li>
+            <li><a href="#catalogo" data-nav-filter="calcas">Calças</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Central de Atendimento</h4>
+          <ul>
+            <li>📍 Rua Serra dos Parecis, 239</li>
+            <li>📞 (11) 98538-5239</li>
+          </ul>
+          <a class="footer-whats" href="#" data-whats-link target="_blank" rel="noopener">💬 Atendimento via WhatsApp</a>
+        </div>
+        <div>
+          <h4>Formas de Pagamento</h4>
+          <div class="payment-icons">
+            <span>PIX</span><span>VISA</span><span>MASTER</span><span>DINHEIRO</span>
+          </div>
+          <h4 style="margin-top:26px">Loja Verificada</h4>
+          <div class="trust-badges">
+            <span>✓ Produtos Originais</span>
+            <span>✓ Compra Segura</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 L2 Store. Todos os direitos reservados.</div>
+    </div>
+  </footer>
+
+  <a class="whats-float" href="#" data-whats-link target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+  <div id="product-modal">
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-panel">
+      <button class="modal-close" id="modal-close" type="button">✕</button>
+      <div class="modal-layout">
+        <div class="modal-media">
+          <div class="modal-img"><img id="modal-main-img" src="" alt=""></div>
+          <div class="modal-thumbs" id="modal-thumbs"></div>
+        </div>
+        <div class="modal-info">
+          <span class="vendor" id="modal-vendor"></span>
+          <h2 id="modal-title"></h2>
+          <div class="modal-price" id="modal-price"></div>
+          <span class="modal-pix" id="modal-pix"></span>
+          <p class="modal-desc" id="modal-desc"></p>
+          <span class="size-label">Tamanho</span>
+          <div class="size-grid" id="modal-sizes"></div>
+          <a class="btn-whats" id="modal-buy-btn" href="#" target="_blank" rel="noopener">💬 Comprar pelo WhatsApp</a>
+          <ul class="trust-list">
+            <li>Produto original L2 Store</li>
+            <li>Retirada ou entrega combinada</li>
+            <li>Atendimento direto no WhatsApp</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/site.js"></script>
+  <script>
+    document.querySelectorAll('[data-nav-filter]').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const filterId = el.dataset.navFilter;
+        document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => document.querySelector(`#filters [data-filter="${filterId}"]`)?.click(), 300);
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<div class="page-wrap" style="max-width:800px;margin:80px auto;padding:0 24px;">
+  <h1 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;letter-spacing:4px;margin-bottom:32px;text-align:center;">
+    {{ section.settings.page_title | default: 'TROCAS E DEVOLUÇÕES' }}
+  </h1>
+  <hr style="border:none;border-top:1px solid #E5E5E5;margin-bottom:32px;">
+  <div class="rte">{{ section.settings.body_text | newline_to_br }}</div>
+</div>
+
+<style>
+  .page-wrap .rte { font-family: Jost, sans-serif; font-size: 14px; line-height: 1.8; color: #444; }
+</style>
+
+{% schema %}
+{
+  "name": "Trocas e Devoluções",
+  "settings": [
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Título da página",
+      "default": "TROCAS E DEVOLUÇÕES"
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Texto",
+      "default": "Cada peça da Natalia Silveira é confeccionada artesanalmente e produzida exclusivamente de acordo com as medidas, a cor e o modelo escolhidos pela cliente.\n\nPor esse motivo, não aceitamos trocas ou devoluções por arrependimento, preferência de cor, escolha do modelo ou informações de medidas fornecidas incorretamente pela cliente.\n\nCaso seja necessário algum ajuste para melhorar o caimento da peça, realizamos o ajuste sem custo de mão de obra, ficando apenas o frete de envio e retorno sob responsabilidade da cliente.\n\nSe a peça apresentar defeito de fabricação ou estiver diferente das especificações aprovadas no pedido, entre em contato conosco em até 7 dias após o recebimento, para que possamos analisar o caso e oferecer a solução adequada."
+    }
+  ],
+  "presets": [
+    { "name": "Trocas e Devoluções" }
+  ]
+}
+{% endschema %}

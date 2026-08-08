@@ -1,0 +1,31 @@
+{% doc %}
+  Renders a product card matching the Dona Bomba catalog style: image, title, price and a call to action.
+  Shows a color-count badge when the product has a "Cor" option with more than one value.
+  @param {product} product - The product to render
+  @example
+  {% render 'product-card', product: product %}
+{% enddoc %}
+{% liquid
+  assign color_option = product.options_with_values | where: 'name', 'Cor' | first
+%}
+<div class="product-card">
+  <a href="{{ product.url }}">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="400" height="400">
+    {% else %}
+      <img src="{{ 'placeholder-generico.svg' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy" width="400" height="400">
+    {% endif %}
+  </a>
+  <h4><a href="{{ product.url }}">{{ product.title }}</a></h4>
+  {% if product.price_varies %}
+    <div class="price-single">{{ 'products.from' | t }} {{ product.price_min | money }}</div>
+  {% else %}
+    <div class="price-single">{{ product.price | money }}</div>
+  {% endif %}
+  {% if color_option and color_option.values.size > 1 %}
+    <span class="color-count">{{ color_option.values.size }} {{ 'products.colors' | t }}</span>
+  {% endif %}
+  <a class="card-btn" href="{{ product.url }}">
+    {% if color_option and color_option.values.size > 1 %}{{ 'products.see_colors' | t }}{% else %}{{ 'products.see_product' | t }}{% endif %}
+  </a>
+</div>

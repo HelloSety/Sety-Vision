@@ -1,0 +1,49 @@
+<section class="tiles container">
+  <div class="tiles-title">
+    <h2>{{ section.settings.title }}</h2>
+  </div>
+  <div class="tiles-grid">
+    {% for block in section.blocks %}
+      {% assign col = block.settings.collection %}
+      <a class="tile" href="{{ col.url | default: '#' }}" {{ block.shopify_attributes }}>
+        {% if block.settings.image %}
+          <img src="{{ block.settings.image | image_url: width: 500 }}" alt="{{ col.title | default: block.settings.title }}" loading="lazy" width="500" height="500">
+        {% elsif col.featured_image %}
+          <img src="{{ col.featured_image | image_url: width: 500 }}" alt="{{ col.title }}" loading="lazy" width="500" height="500">
+        {% endif %}
+        <div class="tile-content"><h3>{{ block.settings.title | default: col.title }}</h3></div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lista de categorias",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título da seção", "default": "Categorias" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Categoria",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Coleção" },
+        { "type": "text", "id": "title", "label": "Título (opcional, sobrepõe o nome da coleção)" },
+        { "type": "image_picker", "id": "image", "label": "Imagem (opcional, sobrepõe a imagem da coleção)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lista de categorias",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}

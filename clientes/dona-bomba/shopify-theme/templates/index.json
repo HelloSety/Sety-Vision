@@ -1,0 +1,86 @@
+{
+  "sections": {
+    "banner_slideshow": {
+      "type": "banner-slideshow",
+      "blocks": {
+        "banner-1": {
+          "type": "banner",
+          "settings": {
+            "title": "Sejam muito bem-vindos à Dona Bomba — enviamos para todo o Brasil",
+            "link": "shopify://collections/sprays"
+          }
+        },
+        "banner-2": {
+          "type": "banner",
+          "settings": {
+            "title": "Encontre as melhores cores em tinta spray Colorgin Arte Urbana",
+            "link": "shopify://collections/sprays"
+          }
+        }
+      },
+      "block_order": ["banner-1", "banner-2"]
+    },
+    "trust_bar": {
+      "type": "trust-bar",
+      "blocks": {
+        "item-1": { "type": "item", "settings": { "icon": "check", "title": "Produto original", "text": "Sem falsificação, marcas confiáveis" } },
+        "item-2": { "type": "item", "settings": { "icon": "truck", "title": "Envio pra todo o Brasil", "text": "Compra online com entrega rápida" } },
+        "item-3": { "type": "item", "settings": { "icon": "whatsapp", "title": "Suporte via WhatsApp", "text": "Tira-dúvidas antes e depois da compra" } },
+        "item-4": { "type": "item", "settings": { "icon": "card", "title": "Pagamento seguro", "text": "Compra 100% segura no site" } }
+      },
+      "block_order": ["item-1", "item-2", "item-3", "item-4"]
+    },
+    "category_list": {
+      "type": "category-list",
+      "settings": { "title": "Categorias" },
+      "blocks": {
+        "cat-1": { "type": "category", "settings": { "title": "Sprays" } },
+        "cat-2": { "type": "category", "settings": { "title": "Marcadores" } },
+        "cat-3": { "type": "category", "settings": { "title": "Caps" } },
+        "cat-4": { "type": "category", "settings": { "title": "Fine Art" } }
+      },
+      "block_order": ["cat-1", "cat-2", "cat-3", "cat-4"]
+    },
+    "featured_tabs": {
+      "type": "featured-collections-tabs",
+      "settings": { "title": "Destaques" },
+      "blocks": {
+        "tab-1": { "type": "tab", "settings": { "label": "Sprays" } },
+        "tab-2": { "type": "tab", "settings": { "label": "Canetas" } },
+        "tab-3": { "type": "tab", "settings": { "label": "Caps" } }
+      },
+      "block_order": ["tab-1", "tab-2", "tab-3"]
+    },
+    "about": {
+      "type": "about",
+      "settings": {
+        "eyebrow": "SOBRE A LOJA",
+        "heading": "Loja física, feita pra quem vive a rua",
+        "body": "<p>A Dona Bomba nasceu do dia a dia do grafite: gente que pinta, testa e conhece cada lata, caneta e cap que vende. Gestão feminina, do bairro pra rua toda. Além da loja online, temos ponto físico — passa lá pra ver de perto, testar cor e trocar ideia.</p><p>Sprays, canetas, caps e material de arte urbana com procedência garantida, sem falsificação, e time que entende do assunto.</p>",
+        "button_label": "FALAR COM A LOJA"
+      }
+    },
+    "culture": {
+      "type": "culture",
+      "blocks": {
+        "c-1": { "type": "item", "settings": { "label": "Bomba Sessions" } },
+        "c-2": { "type": "item", "settings": { "label": "Ocupações" } },
+        "c-3": { "type": "item", "settings": { "label": "Eventos" } },
+        "c-4": { "type": "item", "settings": { "label": "Oficinas" } },
+        "c-5": { "type": "item", "settings": { "label": "Artistas" } }
+      },
+      "block_order": ["c-1", "c-2", "c-3", "c-4", "c-5"]
+    },
+    "faq": {
+      "type": "faq"
+    },
+    "seo_text": {
+      "type": "seo-text",
+      "settings": {
+        "heading": "Dona Bomba — material de arte urbana e grafite",
+        "text": "<p>Dona Bomba é a loja online e física especializada em material de arte urbana e grafite. Trabalhamos com tinta spray profissional das principais marcas do mercado — Colorgin Arte Urbana, NOU Colors, MTN 94 e MTN Hardcore — com cartela de cores extensa, mais de 140 tons disponíveis, acabamento fosco, secagem rápida e alta cobertura, ideais pra grafite, mural, customização, tag e street art. Além dos sprays, nosso catálogo tem canetas acrílicas Posca e Uni Paint Marker pra traço fino e ilustração, marcadores permanentes, squeezers e drippers pra efeito de tinta escorrida (drip), caps e válvulas intercambiáveis — do fat cap ao skinny — pra controlar espessura e alcance do jato, além de máscaras de proteção respiratória, luvas e acessórios de segurança pra quem pinta na rua ou no estúdio. Enviamos pra todo o Brasil, com produto original, sem falsificação.</p>"
+      }
+    }
+  },
+  "order": ["banner_slideshow", "trust_bar", "category_list", "featured_tabs", "about", "culture", "faq", "seo_text"]
+}

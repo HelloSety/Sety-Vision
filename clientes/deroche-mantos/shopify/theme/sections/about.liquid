@@ -1,0 +1,25 @@
+<section class="section container" style="padding-top:0">
+  <div class="about-grid">
+    {%- if section.settings.image -%}
+      {{ section.settings.image | image_tag: width: 900, alt: section.settings.heading, loading: 'lazy' }}
+    {%- else -%}
+      <img src="{{ 'default-about.jpg' | asset_url }}" alt="{{ section.settings.heading }}" width="1200" height="1918" loading="lazy">
+    {%- endif -%}
+    <div>
+      <h2>{{ section.settings.heading | default: 'O que é a loja Deroche Mantos' }}</h2>
+      <p>{{ section.settings.text }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sobre a Loja",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Imagem" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "O que é a loja Deroche Mantos" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Nós da Deroche entendemos a paixão e o orgulho que você tem pelo seu time do coração — e também o seu estilo fora de campo." }
+  ],
+  "presets": [{ "name": "Sobre a Loja" }]
+}
+{% endschema %}

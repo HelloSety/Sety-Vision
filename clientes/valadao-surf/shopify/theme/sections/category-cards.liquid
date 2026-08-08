@@ -1,0 +1,60 @@
+<section class="section container">
+  <!-- DEBUG2: {% for block in section.blocks %}[h={{ block.settings.collection_handle }}|col={{ collections[block.settings.collection_handle] }}|colhandle={{ collections[block.settings.collection_handle].handle }}]{% endfor %} -->
+  <div class="section-head-center"><h2>{{ section.settings.heading | default: 'Compre por Modelo' }}</h2></div>
+  <p class="section-sub">{{ section.settings.subheading | default: 'Coleções' }}</p>
+  <div class="model-carrossel">
+    <div class="model-track">
+      {%- for block in section.blocks -%}
+        {%- assign col = block.settings.collection -%}
+        {%- if col == blank and block.settings.collection_handle != blank -%}
+          {%- assign col = collections[block.settings.collection_handle] -%}
+        {%- endif -%}
+        <a class="model-item" href="{{ col.url | default: '#' }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.image -%}
+            {{ block.settings.image | image_tag: width: 620, alt: block.settings.label, loading: 'lazy' }}
+          {%- else -%}
+            {%- case col.handle -%}
+              {%- when 'moletons' -%}
+                <img src="{{ 'cat-moletons.png' | asset_img_url: '620x' }}" alt="{{ block.settings.label }} Valadão Street Wear" width="620" height="715" loading="lazy">
+              {%- when 'jaquetas' -%}
+                <img src="{{ 'cat-jaquetas.png' | asset_img_url: '620x' }}" alt="{{ block.settings.label }} Valadão Street Wear" width="620" height="715" loading="lazy">
+              {%- when 'bermudas-calcas' -%}
+                <img src="{{ 'cat-bermudas-calcas.png' | asset_img_url: '620x' }}" alt="{{ block.settings.label }} Valadão Street Wear" width="620" height="715" loading="lazy">
+              {%- when 'bones' -%}
+                <img src="{{ 'cat-bones.png' | asset_img_url: '620x' }}" alt="{{ block.settings.label }} Valadão Street Wear" width="620" height="715" loading="lazy">
+              {%- when 'chinelos' -%}
+                <img src="{{ 'cat-chinelos.png' | asset_img_url: '620x' }}" alt="{{ block.settings.label }} Valadão Street Wear" width="620" height="715" loading="lazy">
+              {%- else -%}
+                <img src="{{ 'cat-infantil.png' | asset_img_url: '620x' }}" alt="{{ block.settings.label }} Valadão Street Wear" width="620" height="715" loading="lazy">
+            {%- endcase -%}
+          {%- endif -%}
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Compre por Modelo",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Título", "default": "Compre por Modelo" },
+    { "type": "text", "id": "subheading", "label": "Subtítulo", "default": "Coleções" }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Coleção" },
+        { "type": "text", "id": "collection_handle", "label": "Handle da coleção (usado só se 'Coleção' acima estiver vazio)" },
+        { "type": "text", "id": "label", "label": "Nome exibido (usado como alt/SEO)" },
+        { "type": "image_picker", "id": "image", "label": "Imagem (opcional, usa a arte padrão da categoria se vazio)" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Compre por Modelo", "blocks": [{ "type": "card" }, { "type": "card" }, { "type": "card" }] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,39 @@
+<section class="section container" style="padding-top:0">
+  <div class="cat-cards">
+    {%- for block in section.blocks -%}
+      {%- assign col = collections[block.settings.collection] -%}
+      <a class="cat-card" href="{{ col.url | default: '#' }}">
+        {%- if block.settings.image -%}
+          {{ block.settings.image | image_tag: width: 900, alt: block.settings.label, loading: 'lazy' }}
+        {%- elsif col.image -%}
+          {{ col.image | image_tag: width: 900, alt: block.settings.label | default: col.title, loading: 'lazy' }}
+        {%- elsif col.products.first.featured_image -%}
+          {{ col.products.first.featured_image | image_tag: width: 900, alt: block.settings.label | default: col.title, loading: 'lazy' }}
+        {%- else -%}
+          <img src="{{ 'default-hero.jpg' | asset_url }}" alt="{{ block.settings.label }}" width="1600" height="1067" loading="lazy">
+        {%- endif -%}
+        <div class="cat-card-label"><small>Categoria de</small>{{ block.settings.label | default: col.title }}</div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cards de Categoria",
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Coleção" },
+        { "type": "text", "id": "label", "label": "Nome exibido" },
+        { "type": "image_picker", "id": "image", "label": "Imagem (opcional, usa capa da coleção se vazio)" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Cards de Categoria", "blocks": [{ "type": "card" }, { "type": "card" }, { "type": "card" }] }
+  ]
+}
+{% endschema %}

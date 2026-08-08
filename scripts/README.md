@@ -1,0 +1,51 @@
+﻿# scripts/ â€” utilitÃ¡rios do Sety Vision
+
+Scripts Node.js e Python que as skills chamam quando precisam fazer coisas fora do alcance da IA pura (gerar imagem, postar em rede social, renderizar HTML em PNG).
+
+A pasta vem **vazia** â€” cada skill que precisa de script tem instruÃ§Ã£o de como criar (e geralmente Ã© um Ãºnico setup por integraÃ§Ã£o que vocÃª vai ativar).
+
+## Scripts comuns
+
+Conforme vocÃª for ativando skills, isso aqui vai sendo populado. Lista do que cada skill espera encontrar:
+
+| Skill | Script esperado | O que faz |
+|---|---|---|
+| `/carrossel` (com foto IA) | `gerar-imagem.js` | Gera foto realista via OpenAI API (DALL-E 3) |
+| `/carrossel` (render PNG) | `render.js` (gerado por carrossel, fica na pasta do conteÃºdo) | Playwright tira screenshot 1080x1350 de cada slide |
+| `/aprovar-post` | `postar-instagram.js` | Publica carrossel no Instagram via Meta Graph API |
+| `/aprovar-post` | `postar-facebook.js` | Publica carrossel no Facebook via Meta Graph API |
+| `/anuncio-google` | (nenhum â€” gera CSV direto) | â€” |
+| `/relatorio-ads` | (lÃª CSV exportado das plataformas) | â€” |
+
+## PrÃ©-requisitos comuns
+
+A maioria dos scripts depende de:
+
+**Node.js 20+** instalado na mÃ¡quina
+
+**.env** na raiz do projeto com as chaves de API:
+```bash
+OPENAI_API_KEY=sk-...               # pra gerar-imagem.js
+META_PAGE_ACCESS_TOKEN=...          # pra postar-instagram.js + postar-facebook.js
+META_PAGE_ID=...
+META_IG_USER_ID=...
+SITE_URL=https://seudominio.com.br
+```
+
+**Playwright** (pra renderizar HTML em PNG):
+```bash
+npm install playwright
+npx playwright install chromium
+```
+
+## Como o Sety Vision lida com isso
+
+Quando vocÃª roda uma skill que precisa de script ausente, o Claude vai:
+
+1. Detectar que falta o script
+2. Te perguntar se quer configurar agora
+3. Te guiar no setup das chaves de API (Meta, OpenAI, etc.)
+4. Criar o script jÃ¡ configurado
+5. Rodar a skill
+
+VocÃª nÃ£o precisa decorar nada. Roda a skill, segue o fluxo.
