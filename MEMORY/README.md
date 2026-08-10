@@ -65,6 +65,7 @@ Segunda memória operacional da agência. Tudo que funciona fica aqui.
 
 - [Catálogo Oficial de Serviços — Sety Studio](MEMORY/TEMPLATES/catalogo-servicos-sety-studio.md)
 - [Template: Sequência de Follow-up WhatsApp](MEMORY/TEMPLATES/follow-up-whatsapp.md)
+- [proposta-site-1500](MEMORY/TEMPLATES/proposta-site-1500.md)
 - [Template: Site Conceito Esportivo "Hype"](MEMORY/TEMPLATES/site-conceito-esportivo-hype.md)
 - [Tema: Esportivo (Futebol)](MEMORY/TEMPLATES/tema-esportivo.md)
 - [Tema: Fist Street](MEMORY/TEMPLATES/tema-fist-street.md)

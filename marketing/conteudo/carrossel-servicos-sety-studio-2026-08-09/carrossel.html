@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Carrossel — Serviços Sety Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Montserrat', sans-serif; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bg-black { background: #000000; }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 56px 70px 0;
+    position: relative;
+    z-index: 2;
+  }
+  .logo-text {
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
+  }
+  .logo-text .dot { color: #FF2A2A; }
+
+  .counter {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 70px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .eyebrow {
+    font-size: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: #FF2A2A;
+    margin-bottom: 28px;
+  }
+
+  .rule {
+    width: 70px;
+    height: 4px;
+    background: #FF2A2A;
+    margin: 28px 0;
+  }
+
+  h1 {
+    font-size: 84px;
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+  }
+  h2 {
+    font-size: 60px;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: #FFFFFF;
+  }
+
+  p.body {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.78);
+    max-width: 780px;
+  }
+
+  .subtitle {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.72);
+    margin-top: 24px;
+    max-width: 760px;
+  }
+
+  .handle {
+    font-size: 17px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    margin-top: 40px;
+  }
+
+  .footer {
+    padding: 0 70px 60px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 28px;
+    margin: 0 70px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .footer-label {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* overlay padrão sobre foto de fundo */
+  .bg-photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .bg-photo {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .bg-photo-capa {
+    background-image: linear-gradient(rgba(0,0,0,0.30), rgba(0,0,0,0.90)), url('foto-capa-sistema.png');
+  }
+  .bg-photo-cta {
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.94)), url('foto-cta.png');
+  }
+
+  /* layout SOLO — foto 45% + texto 55% */
+  .split {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    z-index: 2;
+  }
+  .split-photo {
+    width: 46%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+  .split-photo.site      { background-image: url('foto-site.png'); }
+  .split-photo.whatsapp  { background-image: url('foto-whatsapp.png'); }
+  .split-photo.crm       { background-image: url('foto-crm.png'); }
+  .split-text {
+    width: 54%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 56px;
+  }
+  .split-text h2 { font-size: 48px; }
+  .split-text p.body { font-size: 21px; }
+
+  /* número da fatia */
+  .part-number {
+    font-size: 130px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    color: rgba(255,42,42,0.9);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  /* CTA final */
+  .cta-box {
+    display: inline-block;
+    margin-top: 44px;
+    padding: 22px 44px;
+    background: #FF2A2A;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    width: fit-content;
+  }
+  .logo-final {
+    font-weight: 900;
+    font-size: 40px;
+    letter-spacing: -0.03em;
+    color: #FFFFFF;
+    margin-bottom: 40px;
+  }
+  .logo-final .dot { color: #FF2A2A; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1 — CAPA -->
+<div class="slide bg-black bg-photo bg-photo-capa" id="s1">
+  <div class="top-bar">
+    <div class="logo-text">SETY<span class="dot">.</span>VISION</div>
+    <div class="counter">01 / 05</div>
+  </div>
+  <div class="content">
+    <div class="eyebrow">O que instalamos na sua empresa</div>
+    <h1>5 partes de um sistema que vende por você</h1>
+    <div class="subtitle">Site, WhatsApp automático e CRM trabalhando juntos — pra você não perder cliente por demora</div>
+  </div>
+  <div class="footer">
+    <div class="footer-label">Sety Studio</div>
+    <div class="footer-label">Arraste →</div>
+  </div>
+</div>
+
+<!-- SLIDE 2 — PARTE 1: SITE -->
+<div class="slide bg-black" id="s2">
+  <div class="top-bar">
+    <div class="logo-text">SETY<span class="dot">.</span>VISION</div>
+    <div class="counter">02 / 05</div>
+  </div>
+  <div class="split">
+    <div class="split-photo site"></div>
+    <div class="split-text">
+      <div class="part-number">01</div>
+      <div class="eyebrow">Site</div>
+      <h2>Feito pra vender, não só pra existir</h2>
+      <div class="rule"></div>
+      <p class="body">Página rápida e direta, pensada pra transformar visita em contato. Sem enrolação, sem clique perdido — só o caminho mais curto até o WhatsApp.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-label">Sety Studio</div>
+    <div class="footer-label">02 / 05</div>
+  </div>
+</div>
+
+<!-- SLIDE 3 — PARTE 2: WHATSAPP + IA -->
+<div class="slide bg-black" id="s3">
+  <div class="top-bar">
+    <div class="logo-text">SETY<span class="dot">.</span>VISION</div>
+    <div class="counter">03 / 05</div>
+  </div>
+  <div class="split">
+    <div class="split-photo whatsapp"></div>
+    <div class="split-text">
+      <div class="part-number">02</div>
+      <div class="eyebrow">IA no WhatsApp</div>
+      <h2>Responde o lead na hora, até de madrugada</h2>
+      <div class="rule"></div>
+      <p class="body">Enquanto o concorrente demora horas pra responder, a IA já qualificou o cliente e marcou o próximo passo. Ninguém espera, ninguém escapa.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-label">Sety Studio</div>
+    <div class="footer-label">03 / 05</div>
+  </div>
+</div>
+
+<!-- SLIDE 4 — PARTE 3: CRM -->
+<div class="slide bg-black" id="s4">
+  <div class="top-bar">
+    <div class="logo-text">SETY<span class="dot">.</span>VISION</div>
+    <div class="counter">04 / 05</div>
+  </div>
+  <div class="split">
+    <div class="split-photo crm"></div>
+    <div class="split-text">
+      <div class="part-number">03</div>
+      <div class="eyebrow">CRM organizado</div>
+      <h2>Cada lead no lugar certo, sem post-it e sem planilha</h2>
+      <div class="rule"></div>
+      <p class="body">O sistema organiza, prioriza e avisa o vendedor só quando o cliente já tá pronto pra fechar. Você entra na conversa na hora certa.</p>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-label">Sety Studio</div>
+    <div class="footer-label">04 / 05</div>
+  </div>
+</div>
+
+<!-- SLIDE 5 — CTA FINAL -->
+<div class="slide bg-black bg-photo bg-photo-cta" id="s5">
+  <div class="top-bar">
+    <div class="logo-text">SETY<span class="dot">.</span>VISION</div>
+    <div class="counter">05 / 05</div>
+  </div>
+  <div class="content">
+    <div class="logo-final">SETY<span class="dot">.</span>VISION</div>
+    <h2>Isso tudo funcionando junto, no ar em 15 dias</h2>
+    <div class="cta-box">Fala com a gente →</div>
+    <div class="handle">@sety.studio</div>
+  </div>
+</div>
+
+</body>
+</html>
