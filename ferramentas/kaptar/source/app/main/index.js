@@ -628,6 +628,16 @@ const AutomacaoSchema = z.object({
   /** Mesma história da busca manual: `optional`, default true no parser. */
   analisarSites: z.boolean().optional(),
   /*
+        O que a automação faz, e de onde vêm os leads dela.
+  
+        `optional` nos três: uma automação salva antes destes campos fazia as
+        duas coisas com a própria fila, e o parser mantém isso — mudar o padrão
+        aqui mudaria em silêncio o que a agenda de alguém faz.
+      */
+  tipo: z.enum(["busca", "disparo", "ambas"]).optional(),
+  fonteDeLeads: z.enum(["propria", "base", "outra"]).optional(),
+  automacaoDaFila: z.string().max(80).optional(),
+  /*
         Os horários, em DUAS listas: quem capta e quem dispara.
   
         Antes era uma lista só (`horas`) mais um `maxEnvios` global — cada
@@ -657,6 +667,7 @@ const AutomacaoSchema = z.object({
   dias: z.array(z.number().int().min(0).max(6)).max(7)
 }).strict().superRefine(semContradicao);
 const AutomacaoIdSchema = z.object({ id: z.string().min(1).max(80) }).strict();
+const AutomacaoFilaSchema = z.object({ id: z.string().min(1).max(80) }).strict();
 const AutomacaoRodarSchema = z.object({
   id: z.string().min(1).max(80),
   tipo: z.enum(["captacao", "disparo", "ambos"]).optional()
@@ -704,6 +715,8 @@ const INVOKE = {
   AUT_LISTAR: "automacao:listar",
   AUT_SALVAR: "automacao:salvar",
   AUT_APAGAR: "automacao:apagar",
+  /** Os leads da fila de uma automação — para poder VER para quem ela manda. */
+  AUT_FILA: "automacao:fila",
   AUT_RODAR_AGORA: "automacao:rodarAgora",
   AUT_PROGRESSO: "automacao:progresso",
   /*
@@ -1153,11 +1166,21 @@ function ehCelular(telefone) {
   if (d.length === 10) return /[6789]/.test(d[2] ?? "");
   return false;
 }
+function comNonoDigito(dddENumero) {
+  const d = String(dddENumero ?? "").replace(/\D/g, "");
+  if (d.length !== 10) return d;
+  const primeiro = d[2] ?? "";
+  if (!/[6-9]/.test(primeiro)) return d;
+  return `${d.slice(0, 2)}9${d.slice(2)}`;
+}
 function telefoneInternacional(telefone, ddi = "55") {
-  const d = String(telefone ?? "").replace(/\D/g, "").replace(/^0+/, "");
-  if (d === "") return "";
-  if (d.length >= 12) return d;
-  return `${ddi}${d}`;
+  const cru = String(telefone ?? "").replace(/\D/g, "").replace(/^0+/, "");
+  if (cru === "") return "";
+  if (cru.length === 12 && cru.startsWith("55")) {
+    return `55${comNonoDigito(cru.slice(2))}`;
+  }
+  if (cru.length >= 12) return cru;
+  return `${ddi}${comNonoDigito(cru)}`;
 }
 function cidadeEUf(endereco) {
   const partes = (endereco ?? "").split(",").map((s) => s.trim()).filter((s) => s !== "");
@@ -1305,7 +1328,7 @@ function recusouCampoDeSite(status, dado) {
 function lugarParaLead(p, nicho, comSite) {
   const id = texto$4(p.id);
   if (id === "") return null;
-  const tel = texto$4(p.nationalPhoneNumber).replace(/\D/g, "");
+  const tel = comNonoDigito(texto$4(p.nationalPhoneNumber).replace(/\D/g, ""));
   const site = texto$4(p.websiteUri);
   const { cidade, estado: estado2 } = cidadeEUf(texto$4(p.formattedAddress));
   const telefone = tel === "" ? "" : formatarTelefone(tel);
@@ -3974,7 +3997,19 @@ function createZap(win) {
       jaCarregou = true;
     },
     async sondar(script) {
-      return await wc.executeJavaScriptInIsolatedWorld(1, [{ code: script }]);
+      const execucao = wc.executeJavaScriptInIsolatedWorld(1, [{ code: script }]);
+      let relogio;
+      const prazo = new Promise((_, rejeitar) => {
+        relogio = setTimeout(() => {
+          anotar2("a sonda não respondeu em 15s — a página pode estar travada");
+          rejeitar(new Error("a página do WhatsApp não respondeu"));
+        }, 15e3);
+      });
+      try {
+        return await Promise.race([execucao, prazo]);
+      } finally {
+        clearTimeout(relogio);
+      }
     },
     async desconectar() {
       await ses.clearStorageData().catch(() => void 0);
@@ -4262,12 +4297,22 @@ function criarMotor(deps) {
   async function passo() {
     if (rodando) return;
     rodando = true;
+    const socorro = setTimeout(() => {
+      if (!rodando) return;
+      console.error("[zap] o passo passou de 5 min — destravando a fila");
+      rodando = false;
+      agendar(5e3);
+    }, 3e5);
     const minha = geracao;
     const atropelado = () => geracao !== minha;
     try {
       const raiz2 = deps.raiz();
       let c = await lerCampanha(raiz2);
-      if (c === null) return;
+      if (c === null) {
+        console.log("[zap] passo sem campanha em disco — nada a continuar");
+        cancelar();
+        return;
+      }
       c = virarODia(c, /* @__PURE__ */ new Date());
       const proximo = proximoAlvo(c, /* @__PURE__ */ new Date());
       if (proximo.tipo === "fim") {
@@ -4383,6 +4428,7 @@ function criarMotor(deps) {
       await gravarEAvisar(c, "", espera);
       agendar(espera);
     } finally {
+      clearTimeout(socorro);
       rodando = false;
     }
   }
@@ -5482,12 +5528,8 @@ function slotsDevendo(a, agora) {
   if (!a.dias.includes(agora.getDay())) return [];
   const feitos = slotsFeitos(a, agora);
   const agoraHHMM = horaLocal(agora);
-  const captacoes = a.horasCaptacao.map((hora) => ({
-    hora,
-    tipo: "captacao",
-    quantidade: 0
-  }));
-  const disparos = a.disparos.map((d) => ({
+  const captacoes = a.tipo === "disparo" ? [] : a.horasCaptacao.map((hora) => ({ hora, tipo: "captacao", quantidade: 0 }));
+  const disparos = a.tipo === "busca" ? [] : a.disparos.map((d) => ({
     hora: d.hora,
     tipo: "disparo",
     quantidade: d.quantidade
@@ -5501,8 +5543,12 @@ function proximoSlot(a, agora) {
   if (!a.ativa) return null;
   if (a.dias.length === 0) return null;
   const todos = [
-    ...a.horasCaptacao.map((hora) => ({ hora, tipo: "captacao", quantidade: 0 })),
-    ...a.disparos.map((d) => ({ hora: d.hora, tipo: "disparo", quantidade: d.quantidade }))
+    ...a.tipo === "disparo" ? [] : a.horasCaptacao.map((hora) => ({ hora, tipo: "captacao", quantidade: 0 })),
+    ...a.tipo === "busca" ? [] : a.disparos.map((d) => ({
+      hora: d.hora,
+      tipo: "disparo",
+      quantidade: d.quantidade
+    }))
   ].sort((x, y) => x.hora.localeCompare(y.hora) || (x.tipo === "captacao" ? -1 : 1));
   if (todos.length === 0) return null;
   const feitos = slotsFeitos(a, agora);
@@ -5693,6 +5739,19 @@ function completar(bruto, agora) {
     // Default TRUE: automação salva antes do campo existir ganha a análise —
     // é a paridade com o Kaptar web, onde o score real sempre rodou.
     analisarSites: o["analisarSites"] !== false,
+    /*
+      Automação de antes deste campo fazia as DUAS coisas, e continua fazendo.
+      Mudar o padrão aqui mudaria em silêncio o que a agenda de alguém faz.
+    */
+    tipo: (() => {
+      const t = o["tipo"];
+      return t === "busca" || t === "disparo" || t === "ambas" ? t : "ambas";
+    })(),
+    fonteDeLeads: (() => {
+      const f = o["fonteDeLeads"];
+      return f === "base" || f === "outra" ? f : "propria";
+    })(),
+    automacaoDaFila: typeof o["automacaoDaFila"] === "string" ? o["automacaoDaFila"] : "",
     variacoes: variacoesDe(o),
     dias,
     horasCaptacao,
@@ -5708,13 +5767,21 @@ function completar(bruto, agora) {
 }
 function motivoParaRecusar(a) {
   if (a.nome.trim() === "") return "dê um nome para a automação";
-  if (a.nichos.length === 0) return "escolha ao menos um nicho";
-  if (a.pins.length === 0) return "marque ao menos um ponto no mapa";
   if (a.dias.length === 0) return "escolha os dias da semana";
-  if (a.horasCaptacao.length === 0) return "defina ao menos um horário de captação";
-  if (a.disparos.length === 0) return "defina ao menos um horário de disparo";
-  if (!a.variacoes.some((x) => x.ativa && x.texto.trim() !== ""))
-    return "escreva ao menos uma variação da mensagem";
+  const busca = a.tipo === "busca" || a.tipo === "ambas";
+  const dispara = a.tipo === "disparo" || a.tipo === "ambas";
+  if (busca) {
+    if (a.nichos.length === 0) return "escolha ao menos um nicho";
+    if (a.pins.length === 0) return "marque ao menos um ponto no mapa";
+    if (a.horasCaptacao.length === 0) return "defina ao menos um horário de captação";
+  }
+  if (dispara) {
+    if (a.disparos.length === 0) return "defina ao menos um horário de disparo";
+    if (!a.variacoes.some((x) => x.ativa && x.texto.trim() !== ""))
+      return "escreva ao menos uma variação da mensagem";
+    if (a.fonteDeLeads === "outra" && a.automacaoDaFila === "")
+      return "escolha de qual automação vem a fila";
+  }
   return null;
 }
 const NOME_DO_DIA$1 = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
@@ -5724,6 +5791,8 @@ function resumoDaAgenda(a) {
   const dias = a.dias.length === 7 ? "todo dia" : [...a.dias].sort((x, y) => x - y).map((d) => NOME_DO_DIA$1[d]).join(", ");
   const cap = a.horasCaptacao.join(", ");
   const disp = a.disparos.map((d) => `${d.hora} (${String(d.quantidade)})`).join(", ");
+  if (a.tipo === "busca") return `${dias} · só busca · ${cap}`;
+  if (a.tipo === "disparo") return `${dias} · só envia · ${disp}`;
   return `${dias} · capta ${cap} · dispara ${disp}`;
 }
 function arquivoDeAutomacoes(raiz2) {
@@ -5760,6 +5829,16 @@ const PARADA = {
   etapa: "",
   detalhe: ""
 };
+async function idsDaFonte(a, todas, leads) {
+  if (a.fonteDeLeads === "base") {
+    return [...leads].sort((x, y) => y.score - x.score).map((l) => l.id);
+  }
+  if (a.fonteDeLeads === "outra") {
+    const dona = todas.find((x) => x.id === a.automacaoDaFila);
+    return dona?.fila ?? [];
+  }
+  return a.fila;
+}
 function criarMotorDaAutomacao(deps) {
   let timer = null;
   let vez = PARADA;
@@ -5824,7 +5903,9 @@ function criarMotorDaAutomacao(deps) {
           } else {
             const r = await deps.dispararCampanha(alvo, moldeDa(atual));
             if (!r.ok) erro = r.motivo ?? "a campanha não começou";
-            else atual = { ...atual, fila: atual.fila.filter((id) => !alvo.includes(id)) };
+            else if (atual.fonteDeLeads === "propria") {
+              atual = { ...atual, fila: atual.fila.filter((id) => !alvo.includes(id)) };
+            }
           }
         }
       }
@@ -5857,11 +5938,13 @@ function criarMotorDaAutomacao(deps) {
   }
   async function filaViva(a) {
     const leads = await deps.leads();
+    const todas = await lerAutomacoes(deps.raiz(), /* @__PURE__ */ new Date());
+    const candidatos = await idsDaFonte(a, todas, leads);
     const porId = new Map(leads.map((l) => [l.id, l]));
     const livro = await lerLivro(deps.raiz());
     const agora = /* @__PURE__ */ new Date();
     const viva = [];
-    for (const id of a.fila) {
+    for (const id of candidatos) {
       const lead = porId.get(id);
       if (lead === void 0) continue;
       const tel = telefoneInternacional(lead.telefone);
@@ -5936,6 +6019,18 @@ function criarMotorDaAutomacao(deps) {
       );
       return { ok: true };
     },
+    async filaDe(id) {
+      const agora = /* @__PURE__ */ new Date();
+      const a = (await lerAutomacoes(deps.raiz(), agora)).find((x) => x.id === id);
+      if (a === void 0) return [];
+      const ids = await filaViva(a);
+      const leads = await deps.leads();
+      const porId = new Map(leads.map((l) => [l.id, l]));
+      return ids.flatMap((x) => {
+        const l = porId.get(x);
+        return l === void 0 ? [] : [l];
+      });
+    },
     async rodarAgora(id, tipo = "ambos") {
       if (ocupado) return { ok: false, motivo: "já tem uma automação rodando" };
       ocupado = true;
@@ -6001,6 +6096,9 @@ function paraTela(a) {
     proibe: a.proibe,
     campos: a.campos,
     analisarSites: a.analisarSites,
+    tipo: a.tipo,
+    fonteDeLeads: a.fonteDeLeads,
+    automacaoDaFila: a.automacaoDaFila,
     horasCaptacao: a.horasCaptacao,
     disparos: a.disparos,
     variacoes: a.variacoes,
@@ -6047,6 +6145,9 @@ function registrarAutomacao(deps) {
     SO_APP,
     async ({ id }) => await deps.motor.apagar(id)
   );
+  defineHandler(INVOKE.AUT_FILA, AutomacaoFilaSchema, SO_APP, async ({ id }) => {
+    return await deps.motor.filaDe(id);
+  });
   defineHandler(
     INVOKE.AUT_RODAR_AGORA,
     AutomacaoRodarSchema,

@@ -3205,6 +3205,32 @@ textarea.campo {
   font-variant-numeric: tabular-nums;
 }
 
+/* Os dois campos do intervalo na mão. Ver o ritmo `livre`. */
+.zap-livre {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.zap-livre label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--t-meta);
+  color: var(--text-2);
+}
+
+.zap-livre .campo {
+  width: 76px;
+  font-variant-numeric: tabular-nums;
+}
+
+.zap-livre-unid {
+  font-size: var(--t-meta);
+  color: var(--text-muted);
+}
+
 /*
   "O que vai acontecer" — o passo a passo antes de disparar.
 
@@ -3231,6 +3257,133 @@ textarea.campo {
 }
 
 .zap-oquevai strong { color: var(--text); }
+
+/* ─────────────── o popup "o que esta automação vai fazer" ──────────────── */
+
+.aut-tipo,
+.aut-banco {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.aut-tipo-topo {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.aut-tipo-topo > div { flex: 1; min-width: 0; }
+
+/*
+  Três cartões lado a lado, e não uma lista de rádios.
+
+  A escolha muda o formulário inteiro — merece o espaço de um cartão com o que
+  cada caminho pede escrito nele. Um rádio com três rótulos curtos obrigaria a
+  descobrir a diferença clicando.
+*/
+.aut-tipo-opcoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.aut-tipo-cartao {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface-2);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.aut-tipo-cartao:hover {
+  border-color: var(--brand);
+  background: var(--surface);
+  transform: translateY(-1px);
+}
+
+.aut-tipo-cartao strong { font-size: var(--t-corpo); }
+
+.aut-tipo-icone {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--r-md);
+  background: var(--bg);
+  color: var(--brand);
+  margin-bottom: 2px;
+}
+
+/* O caminho completo — o que a automação sempre foi — ganha a borda da marca. */
+.aut-tipo-cartao.is-completo { border-color: var(--brand); }
+
+.aut-tipo-nota {
+  font-size: var(--t-meta);
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+.aut-tipo-pede {
+  margin-top: auto;
+  padding-top: 6px;
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+}
+
+/* --- de onde vêm os leads --- */
+
+.aut-fontes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 8px;
+}
+
+.aut-fonte {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  font-size: var(--t-meta);
+}
+
+.aut-fonte span { color: var(--text-muted); font-size: var(--t-rotulo); }
+
+.aut-fonte:hover { border-color: var(--border-strong); }
+
+.aut-fonte.is-on {
+  border-color: var(--brand);
+  background: var(--surface);
+}
+
+/* --- o banco de leads da automação --- */
+
+.aut-banco-lista {
+  display: grid;
+  gap: 5px;
+  max-height: 58vh;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+/* Fora das colunas do quadro, o cartão nasce sobre a superfície do modal. */
+.aut-banco-lista .scr-cartao { background: var(--surface-2); }
+.aut-banco-lista .scr-cartao:hover { background: var(--bg); }
 
 /* O liga/desliga da análise de sites no formulário da automação. */
 .aut-check {

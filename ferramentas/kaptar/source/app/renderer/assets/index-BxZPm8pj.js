@@ -22879,913 +22879,6 @@ function Cota({
     ] })
   ] });
 }
-const VARIAVEIS = ["nome", "cidade", "nicho", "telefone"];
-function aplicarVariaveis(texto, lead) {
-  const linhas = String(texto ?? "").split("\n");
-  const boas = [];
-  for (const linha of linhas) {
-    let furada = false;
-    const trocada = linha.replace(/\{\{\s*([a-z]+)\s*\}\}/gi, (inteiro, cru) => {
-      const chave = cru.toLowerCase();
-      if (!VARIAVEIS.includes(chave)) return inteiro;
-      const valor = String(lead[chave] ?? "").trim();
-      if (valor === "") furada = true;
-      return valor;
-    });
-    if (!furada) boas.push(trocada);
-  }
-  return boas.join("\n").replace(/\n{3,}/g, "\n\n").trim();
-}
-const PISO_SEGUNDOS = 45;
-function nivelDeRisco(p) {
-  const motivos = [];
-  let pontos = 0;
-  if (p.quantidade > 120) {
-    pontos += 2;
-    motivos.push("mais de 120 mensagens num dia só");
-  } else if (p.quantidade > 60) {
-    pontos += 1;
-    motivos.push("volume alto para um dia");
-  }
-  if (p.intervaloMin <= PISO_SEGUNDOS) {
-    pontos += 1;
-    motivos.push("intervalo no mínimo permitido");
-  }
-  if (p.doMolde > 0) {
-    const iguais = p.variacoes <= 0 ? p.doMolde : Math.ceil(p.doMolde / p.variacoes);
-    if (iguais > 40) {
-      pontos += 3;
-      motivos.push(`${String(iguais)} pessoas recebendo o mesmo texto`);
-    } else if (iguais > 15) {
-      pontos += 1;
-      motivos.push(`${String(iguais)} pessoas recebendo o mesmo texto`);
-    }
-  }
-  const nivel = pontos >= 3 ? "alto" : pontos >= 1 ? "moderado" : "baixo";
-  return { nivel, motivos };
-}
-const DIAS = [
-  [0, "dom"],
-  [1, "seg"],
-  [2, "ter"],
-  [3, "qua"],
-  [4, "qui"],
-  [5, "sex"],
-  [6, "sáb"]
-];
-const MENSAGEM_PADRAO = "Olá {{nome}}! vi que vocês atendem em {{cidade}} e queria te mostrar uma coisa rápida sobre o site de vocês. posso mandar?";
-function rascunhoNovo() {
-  return {
-    id: `auto_${String(Date.now())}`,
-    nome: "",
-    ativa: true,
-    fonte: "api",
-    nichos: [],
-    pins: [],
-    // 60 casa com um dos chips de atalho; qualquer valor de 1 a 1000 vale — a
-    // caixinha livre do seletor representa todos.
-    maxResultados: 60,
-    /* Os mesmos padrões da busca manual: telefone desejável E obrigatório. */
-    exige: ["telefone"],
-    obriga: ["telefone"],
-    proibe: [],
-    campos: [],
-    analisarSites: true,
-    // O padrão conta a história: capta cedo, manda no meio da manhã.
-    horasCaptacao: ["09:00"],
-    disparos: [{ hora: "10:00", quantidade: 30 }],
-    variacoes: [{ id: "v1", texto: MENSAGEM_PADRAO, ativa: true }],
-    dias: [1, 2, 3, 4, 5]
-  };
-}
-function paraSalvar(a, mudanca = {}) {
-  return {
-    id: a.id,
-    nome: a.nome,
-    ativa: a.ativa,
-    fonte: a.fonte,
-    nichos: [...a.nichos],
-    pins: [...a.pins],
-    maxResultados: a.maxResultados,
-    exige: [...a.exige],
-    obriga: [...a.obriga],
-    proibe: [...a.proibe],
-    campos: [...a.campos],
-    analisarSites: a.analisarSites,
-    horasCaptacao: [...a.horasCaptacao],
-    disparos: a.disparos.map((d) => ({ ...d })),
-    variacoes: [...a.variacoes],
-    dias: [...a.dias],
-    ...mudanca
-  };
-}
-function paraRascunho(a) {
-  return paraSalvar(a);
-}
-function ScrapperAutomacao({
-  temIa,
-  grupos,
-  mapa,
-  estado,
-  onConectou
-}) {
-  const [lista, setLista] = reactExports.useState([]);
-  const [livro, setLivro] = reactExports.useState(null);
-  const [andando, setAndando] = reactExports.useState(null);
-  const [editando, setEditando] = reactExports.useState(null);
-  const recarregar = reactExports.useCallback(() => {
-    void window.kaptar.automacao.listar().then(setLista);
-    void window.kaptar.livro.ler().then(setLivro);
-  }, []);
-  reactExports.useEffect(recarregar, [recarregar]);
-  reactExports.useEffect(() => {
-    void window.kaptar.automacao.progresso().then(setAndando);
-    return window.kaptar.automacao.onAndando((p) => {
-      setAndando(p);
-      if (!p.rodando) recarregar();
-    });
-  }, [recarregar]);
-  const salvar = (r) => {
-    void window.kaptar.automacao.salvar({
-      id: r.id,
-      nome: r.nome,
-      ativa: r.ativa,
-      fonte: r.fonte,
-      nichos: r.nichos,
-      pins: r.pins,
-      maxResultados: r.maxResultados,
-      exige: r.exige,
-      obriga: r.obriga,
-      proibe: r.proibe,
-      campos: r.campos,
-      analisarSites: r.analisarSites,
-      horasCaptacao: r.horasCaptacao,
-      disparos: r.disparos,
-      variacoes: r.variacoes,
-      dias: r.dias
-    }).then((res) => {
-      if (!res.ok) {
-        avisar(res.motivo ?? "não consegui salvar", "erro");
-        return;
-      }
-      setEditando(null);
-      avisar("automação salva");
-      recarregar();
-    }).catch((e) => {
-      console.error("[automacao] salvar recusado:", String(e).slice(0, 200));
-      avisar("não consegui salvar — confira o nome, a mensagem e os horários", "erro");
-    });
-  };
-  if (editando !== null) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Formulario,
-      {
-        rascunho: editando,
-        grupos,
-        temIa,
-        mapa,
-        estado,
-        onConectou,
-        onMudar: (f) => {
-          setEditando((a) => a === null ? a : f(a));
-        },
-        onSalvar: () => {
-          salvar(editando);
-        },
-        onCancelar: () => {
-          setEditando(null);
-        }
-      }
-    );
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-topo", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "painel-titulo", children: "automação" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "painel-sub", children: "prospecta os leads e dispara a campanha sozinho, no dia e horário que você marcar." })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-cartao-espaco" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: "btn primary",
-          onClick: () => {
-            setEditando(rascunhoNovo());
-          },
-          children: "nova automação"
-        }
-      )
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-aviso", children: [
-      "a automação roda ",
-      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "enquanto o Kaptar estiver aberto" }),
-      ", com o WhatsApp conectado na aba ao lado. não há servidor: computador desligado não prospecta. para rodar todo dia, deixe o app aberto numa máquina que fica ligada."
-    ] }),
-    livro !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(CartaoDeSeguranca, { livro, onMudou: recarregar }),
-    andando !== null && andando.rodando && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-rodando", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-giro", "aria-hidden": "true" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: andando.nome === "" ? "automação" : andando.nome }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: andando.etapa }),
-      andando.detalhe !== "" && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: andando.detalhe })
-    ] }),
-    lista.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mer-vazio", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "mer-vazio-titulo", children: "nenhuma automação ainda" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "crie uma para prospectar e disparar no piloto automático." })
-    ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-lista", children: lista.map((a) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Cartao,
-      {
-        a,
-        rodando: andando?.rodando === true && andando.automacaoId === a.id,
-        onEditar: () => {
-          setEditando(paraRascunho(a));
-        },
-        onRecarregar: recarregar
-      },
-      a.id
-    )) })
-  ] });
-}
-function CartaoDeSeguranca({
-  livro,
-  onMudou
-}) {
-  const [abrindo, setAbrindo] = reactExports.useState(false);
-  const [novo, setNovo] = reactExports.useState("");
-  const cheio = livro.enviadosHoje >= livro.tetoDeHoje;
-  const pct = livro.tetoDeHoje === 0 ? 0 : livro.enviadosHoje / livro.tetoDeHoje * 100;
-  const naoPerturbar = () => {
-    if (novo.length < 8) return;
-    void window.kaptar.livro.naoPerturbar(novo).then(() => {
-      setNovo("");
-      avisar("entrou no não-perturbe");
-      onMudou();
-    });
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-seguranca", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-seg-linha", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "SEGURANÇA DA CONTA" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-seg-num" + (cheio ? " is-cheio" : ""), children: [
-        livro.enviadosHoje,
-        " de ",
-        livro.tetoDeHoje,
-        " hoje"
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-seg-barra", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "span",
-        {
-          className: "aut-seg-cheia" + (cheio ? " is-cheio" : ""),
-          style: { width: `${String(Math.min(100, pct))}%` }
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "button",
-        {
-          type: "button",
-          className: "link-mini",
-          onClick: () => {
-            setAbrindo((v) => !v);
-          },
-          children: [
-            livro.naoPerturbe,
-            " no não-perturbe"
-          ]
-        }
-      )
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "hint", children: [
-      "o teto é do seu número de WhatsApp e soma tudo — campanha manual e automação. ele sobe 20 a cada dia com envio, até 200: um número novo disparando 200 numa tarde é o caso clássico de restrição.",
-      " ",
-      livro.diasDeUso === 0 ? "este é o primeiro dia." : `${livro.diasDeUso} dia(s) de uso.`
-    ] }),
-    abrindo && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-npt", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-npt-add", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "input",
-          {
-            className: "campo",
-            inputMode: "numeric",
-            placeholder: "5511999998888",
-            value: novo,
-            onChange: (e) => {
-              setNovo(e.target.value.replace(/[^0-9]/g, ""));
-            },
-            onKeyDown: (e) => {
-              if (e.key === "Enter") naoPerturbar();
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            className: "btn",
-            disabled: novo.length < 8,
-            title: "este número nunca mais recebe, de campanha nenhuma",
-            onClick: naoPerturbar,
-            children: "não perturbar"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: "só dígitos, com DDI. ex.: 5511999998888" })
-      ] }),
-      livro.telefonesNaoPerturbe.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: 'ninguém pediu para parar ainda. quem responder "pare", "não quero" ou parecido entra aqui sozinho, na hora em que a campanha for mandar — e nunca mais recebe, de campanha nenhuma.' }) : livro.telefonesNaoPerturbe.map((t) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-npt-item", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "selecionavel", children: t }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            className: "link-mini",
-            title: "tirar do não-perturbe. só faça isso se a pessoa pediu.",
-            onClick: () => {
-              void window.kaptar.livro.voltarAPerturbar(t).then(onMudou);
-            },
-            children: "liberar"
-          }
-        )
-      ] }, t))
-    ] })
-  ] });
-}
-function Cartao({
-  a,
-  rodando,
-  onEditar,
-  onRecarregar
-}) {
-  const r = a.ultimoResultado;
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-cartao", "data-ativa": a.ativa, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-cartao-topo", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: a.nome === "" ? "sem nome" : a.nome }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-selo" + (a.ativa ? " is-on" : ""), children: a.ativa ? "ativa" : "pausada" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-cartao-espaco" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "aut-liga", title: "ligar ou pausar", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "input",
-        {
-          type: "checkbox",
-          checked: a.ativa,
-          onChange: () => {
-            void window.kaptar.automacao.salvar(paraSalvar(a, { ativa: !a.ativa })).then((res) => {
-              if (!res.ok) avisar(res.motivo ?? "não consegui mudar", "erro");
-              onRecarregar();
-            }).catch((e) => {
-              avisar(`não consegui mudar: ${String(e).slice(0, 90)}`, "erro");
-            });
-          }
-        }
-      ) })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-capa", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-capa-bloco", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "PRÓXIMO" }),
-        a.proximo === null ? /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "aut-capa-num is-off", children: a.ativa ? "sem dias" : "pausada" }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "aut-capa-num", children: a.proximo.quando }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-capa-nota", children: a.proximo.tipo === "captacao" ? "busca leads novos" : `envia ${String(a.proximo.quantidade)} mensagens` })
-        ] })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-capa-bloco", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "NA FILA" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "aut-capa-num" + (a.naFila === 0 ? " is-off" : ""), children: a.naFila }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-capa-nota", children: a.naFila === 0 ? "nada guardado ainda" : "esperando o envio" })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-capa-bloco", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "POR DIA" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "aut-capa-num", children: a.disparos.reduce((n, d) => n + d.quantidade, 0) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-capa-nota", children: [
-          "em ",
-          a.disparos.length,
-          " ",
-          a.disparos.length === 1 ? "leva" : "levas",
-          " ·",
-          " ",
-          a.horasCaptacao.length,
-          " ",
-          a.horasCaptacao.length === 1 ? "busca" : "buscas"
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-cartao-meta", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: a.agenda }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-        a.nichos.length,
-        " nicho(s) · ",
-        a.pins.length,
-        " ponto(s)"
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: a.fonte === "api" ? "API do Google" : "local (Claude)" })
-    ] }),
-    r !== null && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-cartao-resultado", children: r.erro === "" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-      "última: ",
-      r.captados,
-      " captados, ",
-      r.enviados,
-      " na fila",
-      r.usouFila && " (da fila, sem buscar de novo)"
-    ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-erro", children: r.erro }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-cartao-acoes", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: "btn",
-          disabled: rodando,
-          title: "procura leads novos e guarda na fila — não envia nada",
-          onClick: () => {
-            void window.kaptar.automacao.rodarAgora(a.id, "captacao").then((res) => {
-              if (!res.ok) avisar(res.motivo ?? "não deu para buscar", "erro");
-              onRecarregar();
-            });
-          },
-          children: "buscar leads agora"
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: "btn primary",
-          disabled: rodando || a.naFila === 0,
-          title: a.naFila === 0 ? "a fila está vazia — busque leads antes" : `envia da fila agora (${String(a.disparos[0]?.quantidade ?? 0)} de uma vez)`,
-          onClick: () => {
-            void window.kaptar.automacao.rodarAgora(a.id, "disparo").then((res) => {
-              if (!res.ok) avisar(res.motivo ?? "não deu para enviar", "erro");
-              onRecarregar();
-            });
-          },
-          children: "enviar agora"
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: "btn",
-          disabled: rodando,
-          title: "o ciclo inteiro: busca e depois envia",
-          onClick: () => {
-            void window.kaptar.automacao.rodarAgora(a.id, "ambos").then((res) => {
-              if (!res.ok) avisar(res.motivo ?? "não deu para rodar", "erro");
-              onRecarregar();
-            });
-          },
-          children: rodando ? "rodando…" : "buscar e enviar"
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "btn", onClick: onEditar, children: "editar" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: "btn danger",
-          onClick: () => {
-            void window.kaptar.automacao.apagar(a.id).then(() => {
-              avisar("automação apagada");
-              onRecarregar();
-            });
-          },
-          children: "apagar"
-        }
-      )
-    ] })
-  ] });
-}
-function Formulario({
-  rascunho,
-  grupos,
-  temIa,
-  mapa,
-  estado,
-  onMudar,
-  onSalvar,
-  onCancelar,
-  onConectou
-}) {
-  const r = rascunho;
-  const [varSel, setVarSel] = reactExports.useState(0);
-  const set = (k, v) => {
-    onMudar((a) => ({ ...a, [k]: v }));
-  };
-  const alternarDia = (d) => {
-    set("dias", r.dias.includes(d) ? r.dias.filter((x) => x !== d) : [...r.dias, d]);
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut aut-form", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-topo", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "painel-titulo", children: r.nome === "" ? "nova automação" : `editando: ${r.nome}` }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-cartao-espaco" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "btn", onClick: onCancelar, children: "cancelar" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "btn primary", onClick: onSalvar, children: "salvar" })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "NOME" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "input",
-        {
-          className: "campo",
-          placeholder: "ex.: dentistas em SP — manhã",
-          value: r.nome,
-          maxLength: MAX_NOME,
-          onChange: (e) => {
-            set("nome", e.target.value);
-          }
-        }
-      )
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "ONDE — clique no mapa para marcar" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-mapa", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ScrapperMapa,
-        {
-          pins: r.pins,
-          estados: r.pins.map(() => "parado"),
-          mapa,
-          onAdicionar: (lat, lng) => {
-            if (r.pins.length >= MAX_PINS) {
-              avisar(
-                `${String(MAX_PINS)} áreas é o máximo — cada uma multiplica o custo da busca`,
-                "erro"
-              );
-              return;
-            }
-            set("pins", [...r.pins, { lat, lng, raioKm: 10, rotulo: "" }]);
-            void window.kaptar.scrapper.lugar(lat, lng).then(({ rotulo }) => {
-              if (rotulo === "") return;
-              onMudar((a) => ({
-                ...a,
-                pins: a.pins.map(
-                  (p) => p.lat === lat && p.lng === lng && p.rotulo === "" ? { ...p, rotulo } : p
-                )
-              }));
-            });
-          },
-          onMover: (i, lat, lng) => {
-            set(
-              "pins",
-              r.pins.map((p, k) => k === i ? { ...p, lat, lng } : p)
-            );
-          }
-        }
-      ) }),
-      r.pins.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-pins", children: r.pins.map((p, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-pin", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: p.rotulo === "" ? `ponto ${String(i + 1)}` : p.rotulo }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "input",
-          {
-            type: "range",
-            min: 1,
-            max: 50,
-            value: p.raioKm,
-            onChange: (e) => {
-              const raioKm = Number(e.target.value);
-              set(
-                "pins",
-                r.pins.map((x, k) => k === i ? { ...x, raioKm } : x)
-              );
-            }
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-pin-km", children: [
-          p.raioKm,
-          " km"
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            className: "link-mini",
-            onClick: () => {
-              set(
-                "pins",
-                r.pins.filter((_, k) => k !== i)
-              );
-            },
-            children: "tirar"
-          }
-        )
-      ] }, `${String(p.lat)}-${String(p.lng)}-${String(i)}`)) })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-captacao", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-      CamposDeCaptacao,
-      {
-        valor: {
-          fonte: r.fonte,
-          nichos: r.nichos,
-          alvo: r.maxResultados,
-          exige: r.exige,
-          obriga: r.obriga,
-          proibe: r.proibe,
-          campos: r.campos
-        },
-        grupos,
-        temIa,
-        travado: false,
-        onConectou,
-        onMudar: (c) => {
-          onMudar((a) => ({
-            ...a,
-            fonte: c.fonte,
-            nichos: [...c.nichos],
-            maxResultados: c.alvo,
-            exige: [...c.exige],
-            obriga: [...c.obriga],
-            proibe: [...c.proibe],
-            campos: [...c.campos]
-          }));
-        }
-      }
-    ) }),
-    r.fonte === "api" && estado !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(Cota, { estado, onConfigurar: onConectou }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-so-dela", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "SÓ NA AUTOMAÇÃO" }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "aut-check", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "input",
-        {
-          type: "checkbox",
-          checked: r.analisarSites,
-          onChange: (e) => {
-            set("analisarSites", e.target.checked);
-          }
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-        "analisar os sites ao terminar (score real)",
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "hint", children: [
-          " ",
-          "— a prospecção espera a análise; a mensagem pode citar o laudo do site."
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "MENSAGEM · VARIAÇÕES" }),
-      r.variacoes.map((v, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
-        {
-          className: "zap-variacao" + (i === varSel ? " is-sel" : ""),
-          onClick: () => {
-            setVarSel(i);
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "zap-variacao-topo", children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "zap-variacao-n", children: [
-                "#",
-                i + 1,
-                " ",
-                i === 0 ? "principal" : ""
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "zap-liga", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "input",
-                  {
-                    type: "checkbox",
-                    checked: v.ativa,
-                    onChange: (e) => {
-                      const ativa = e.target.checked;
-                      set(
-                        "variacoes",
-                        r.variacoes.map((x) => x.id === v.id ? { ...x, ativa } : x)
-                      );
-                    }
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: v.ativa ? "ativa" : "desligada" })
-              ] }),
-              r.variacoes.length > 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "button",
-                {
-                  type: "button",
-                  className: "zap-variacao-x",
-                  title: "apagar esta variação",
-                  onClick: () => {
-                    set(
-                      "variacoes",
-                      r.variacoes.filter((x) => x.id !== v.id)
-                    );
-                    setVarSel(0);
-                  },
-                  children: "×"
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "textarea",
-              {
-                className: "campo zap-variacao-texto",
-                rows: 4,
-                maxLength: MAX_TEXTO,
-                value: v.texto,
-                placeholder: i === 0 ? "Olá {{nome}}! vi que vocês atendem em {{cidade}}…" : "a mesma ideia, com outras palavras",
-                onFocus: () => {
-                  setVarSel(i);
-                },
-                onChange: (e) => {
-                  const texto = e.target.value;
-                  set(
-                    "variacoes",
-                    r.variacoes.map((x) => x.id === v.id ? { ...x, texto } : x)
-                  );
-                }
-              }
-            )
-          ]
-        },
-        v.id
-      )),
-      r.variacoes.length < MAX_VARIACOES && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: "btn",
-          onClick: () => {
-            set("variacoes", [
-              ...r.variacoes,
-              { id: `v${String(Date.now())}`, texto: "", ativa: true }
-            ]);
-            setVarSel(r.variacoes.length);
-          },
-          children: "+ adicionar variação"
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "chips", children: VARIAVEIS.map((v) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: "chip",
-          onClick: () => {
-            set(
-              "variacoes",
-              r.variacoes.map(
-                (x, i) => i === varSel ? { ...x, texto: `${x.texto}{{${v}}}` } : x
-              )
-            );
-          },
-          children: `{{${v}}}`
-        },
-        v
-      )) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: "esta é a mensagem de reserva, revezada entre as variações ativas. quando o lead já tem abordagem escrita a partir do laudo do site, ela ganha do rodízio — citar o site daquela empresa vale mais que trocar o nome num texto genérico." })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "DIAS" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "chips", children: DIAS.map(([d, nome]) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: "chip" + (r.dias.includes(d) ? " is-on" : ""),
-          onClick: () => {
-            alternarDia(d);
-          },
-          children: nome
-        },
-        d
-      )) })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "HORÁRIOS QUE BUSCAM LEADS NOVOS" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-horas", children: [
-        r.horasCaptacao.map((h, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-hora", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "input",
-            {
-              className: "campo",
-              type: "time",
-              value: h,
-              onChange: (e) => {
-                const novas = [...r.horasCaptacao];
-                novas[i] = e.target.value === "" ? r.horasCaptacao[i] ?? "09:00" : e.target.value;
-                set("horasCaptacao", novas);
-              }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              className: "link-mini",
-              onClick: () => {
-                set(
-                  "horasCaptacao",
-                  r.horasCaptacao.filter((_, j) => j !== i)
-                );
-              },
-              children: "tirar"
-            }
-          )
-        ] }, i)),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            className: "btn",
-            disabled: r.horasCaptacao.length >= MAX_HORAS,
-            title: r.horasCaptacao.length >= MAX_HORAS ? `no máximo ${String(MAX_HORAS)} horários` : "",
-            onClick: () => {
-              set("horasCaptacao", [...r.horasCaptacao, "09:00"]);
-            },
-            children: "+ horário de captação"
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "hint", children: [
-        "nestes horários a automação sai procurando ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "gente nova" }),
-        " e guarda na fila — são até ",
-        r.maxResultados,
-        " por nicho em cada área, como está lá em cima. é o que gasta cota do Google (ou tokens do Claude): quanto menos vezes, mais barato."
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "HORÁRIOS QUE ENVIAM AS MENSAGENS" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-disparos", children: [
-        r.disparos.map((d, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-disparo", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "input",
-            {
-              className: "campo",
-              type: "time",
-              value: d.hora,
-              onChange: (e) => {
-                const novos = [...r.disparos];
-                novos[i] = {
-                  ...d,
-                  hora: e.target.value === "" ? d.hora : e.target.value
-                };
-                set("disparos", novos);
-              }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-disparo-qtd", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "input",
-              {
-                className: "campo",
-                type: "number",
-                min: 1,
-                max: MAX_ENVIOS,
-                value: d.quantidade,
-                onChange: (e) => {
-                  const n = Math.round(Number(e.target.value));
-                  const novos = [...r.disparos];
-                  novos[i] = {
-                    ...d,
-                    quantidade: Number.isFinite(n) ? Math.max(1, Math.min(MAX_ENVIOS, n)) : 1
-                  };
-                  set("disparos", novos);
-                }
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "mensagens" })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              className: "link-mini",
-              onClick: () => {
-                set(
-                  "disparos",
-                  r.disparos.filter((_, j) => j !== i)
-                );
-              },
-              children: "tirar"
-            }
-          )
-        ] }, i)),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            className: "btn",
-            disabled: r.disparos.length >= MAX_HORAS,
-            title: r.disparos.length >= MAX_HORAS ? `no máximo ${String(MAX_HORAS)} horários` : "",
-            onClick: () => {
-              set("disparos", [...r.disparos, { hora: "14:00", quantidade: 30 }]);
-            },
-            children: "+ horário de envio"
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "hint", children: [
-        "cada um destes envia a quantidade que você marcou ao lado, tirando da fila que a captação encheu — ",
-        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "sem procurar ninguém de novo" }),
-        ". o teto do DIA continua sendo o do seu número e soma tudo (campanha manual junto): ver o cartão de segurança."
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "aut-resumo-plano", children: [
-      "hoje: busca em ",
-      r.horasCaptacao.length,
-      " ",
-      r.horasCaptacao.length === 1 ? "horário" : "horários",
-      " e envia até",
-      " ",
-      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: r.disparos.reduce((n, d) => n + d.quantidade, 0) }),
-      " mensagens em",
-      " ",
-      r.disparos.length,
-      " ",
-      r.disparos.length === 1 ? "leva" : "levas",
-      r.disparos.length > 0 && ` (${r.disparos.map((d) => `${d.hora}: ${String(d.quantidade)}`).join(" · ")})`,
-      "."
-    ] })
-  ] });
-}
 const FAIXAS = [
   {
     id: "verde",
@@ -23926,6 +23019,1238 @@ function IconeLink() {
     }
   );
 }
+function EscolherTipo({
+  onEscolher,
+  onFechar
+}) {
+  reactExports.useEffect(() => {
+    const aoTeclar = (e) => {
+      if (e.key === "Escape") onFechar();
+    };
+    window.addEventListener("keydown", aoTeclar);
+    return () => {
+      window.removeEventListener("keydown", aoTeclar);
+    };
+  }, [onFechar]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      className: "overlay",
+      role: "dialog",
+      "aria-modal": "true",
+      "aria-label": "o que esta automação vai fazer",
+      onClick: (e) => {
+        if (e.target === e.currentTarget) onFechar();
+      },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "modal-largo aut-tipo", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "aut-tipo-topo", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "painel-titulo", children: "o que esta automação vai fazer?" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "painel-sub", children: "dá para mudar depois. isto só decide quais campos a tela vai pedir." })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "btn", onClick: onFechar, children: "cancelar" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-tipo-opcoes", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("button", { type: "button", className: "aut-tipo-cartao", onClick: () => onEscolher("busca"), children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-tipo-icone", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(IconeBusca, {}) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "só buscar leads" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-tipo-nota", children: "prospecta nos horários que você marcar e guarda na fila. não manda mensagem nenhuma." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-tipo-pede", children: "pede: nichos, área no mapa, horários de busca" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("button", { type: "button", className: "aut-tipo-cartao", onClick: () => onEscolher("disparo"), children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-tipo-icone", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(IconeEnvio, {}) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "só enviar mensagens" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-tipo-nota", children: "manda para leads que você já tem — os da aba Leads, ou a fila de outra automação. não procura ninguém." }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-tipo-pede", children: "pede: de onde vêm os leads, horários e mensagem" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              type: "button",
+              className: "aut-tipo-cartao is-completo",
+              onClick: () => onEscolher("ambas"),
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-tipo-icone", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(IconeAmbas, {}) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "buscar e enviar" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-tipo-nota", children: "o ciclo inteiro: busca de manhã, envia em levas ao longo do dia. é o que a automação sempre fez." }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-tipo-pede", children: "pede: tudo" })
+              ]
+            }
+          )
+        ] })
+      ] })
+    }
+  );
+}
+function BancoDaAutomacao({
+  a,
+  onFechar
+}) {
+  const [leads, setLeads] = reactExports.useState(null);
+  reactExports.useEffect(() => {
+    const aoTeclar = (e) => {
+      if (e.key === "Escape") onFechar();
+    };
+    window.addEventListener("keydown", aoTeclar);
+    return () => {
+      window.removeEventListener("keydown", aoTeclar);
+    };
+  }, [onFechar]);
+  reactExports.useEffect(() => {
+    let vivo = true;
+    void window.kaptar.automacao.fila(a.id).then((r) => {
+      if (vivo) setLeads(r);
+    });
+    return () => {
+      vivo = false;
+    };
+  }, [a.id]);
+  const deOnde = a.fonteDeLeads === "base" ? "da sua aba Leads" : a.fonteDeLeads === "outra" ? "da fila de outra automação" : "da própria captação desta automação";
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      className: "overlay",
+      role: "dialog",
+      "aria-modal": "true",
+      "aria-label": `banco de leads de ${a.nome}`,
+      onClick: (e) => {
+        if (e.target === e.currentTarget) onFechar();
+      },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "modal-largo aut-banco", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "aut-tipo-topo", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "painel-titulo", children: [
+              "banco de ",
+              a.nome === "" ? "sem nome" : a.nome
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "painel-sub", children: [
+              "quem esta automação vai abordar, na ordem — ",
+              deOnde,
+              "."
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "btn", onClick: onFechar, children: "fechar" })
+        ] }),
+        leads === null ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "hint", children: "lendo o banco…" }) : leads.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "hint", children: a.fonteDeLeads === "propria" ? "a fila está vazia — a captação desta automação ainda não trouxe ninguém, ou todos já foram abordados." : "nenhum lead disponível nesta fonte agora. quem já recebeu mensagem nos últimos 90 dias não aparece aqui." }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "painel-sub", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: leads.length }),
+            " ",
+            leads.length === 1 ? "lead" : "leads",
+            " prontos para receber. o próximo envio pega os primeiros da lista."
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-banco-lista", children: leads.map((l) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            CartaoDeLead,
+            {
+              lead: l,
+              onAbrir: (alvo) => {
+                void window.kaptar.scrapper.abrir(l.id, alvo).then((r) => {
+                  if (!r.ok && r.motivo !== void 0) avisar(r.motivo, "erro");
+                });
+              }
+            },
+            l.id
+          )) })
+        ] })
+      ] })
+    }
+  );
+}
+function IconeBusca() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      viewBox: "0 0 24 24",
+      width: "22",
+      height: "22",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": "true",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "11", cy: "11", r: "7" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "m21 21-4.3-4.3" })
+      ]
+    }
+  );
+}
+function IconeEnvio() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      viewBox: "0 0 24 24",
+      width: "22",
+      height: "22",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": "true",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M22 2 11 13" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M22 2 15 22l-4-9-9-4Z" })
+      ]
+    }
+  );
+}
+function IconeAmbas() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      viewBox: "0 0 24 24",
+      width: "22",
+      height: "22",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": "true",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M4 7h11" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "m12 4 3 3-3 3" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M20 17H9" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "m12 14-3 3 3 3" })
+      ]
+    }
+  );
+}
+const VARIAVEIS = ["nome", "cidade", "nicho", "telefone"];
+function aplicarVariaveis(texto, lead) {
+  const linhas = String(texto ?? "").split("\n");
+  const boas = [];
+  for (const linha of linhas) {
+    let furada = false;
+    const trocada = linha.replace(/\{\{\s*([a-z]+)\s*\}\}/gi, (inteiro, cru) => {
+      const chave = cru.toLowerCase();
+      if (!VARIAVEIS.includes(chave)) return inteiro;
+      const valor = String(lead[chave] ?? "").trim();
+      if (valor === "") furada = true;
+      return valor;
+    });
+    if (!furada) boas.push(trocada);
+  }
+  return boas.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+}
+const PISO_SEGUNDOS = 45;
+function nivelDeRisco(p) {
+  const motivos = [];
+  let pontos = 0;
+  if (p.quantidade > 120) {
+    pontos += 2;
+    motivos.push("mais de 120 mensagens num dia só");
+  } else if (p.quantidade > 60) {
+    pontos += 1;
+    motivos.push("volume alto para um dia");
+  }
+  if (p.intervaloMin <= PISO_SEGUNDOS) {
+    pontos += 1;
+    motivos.push("intervalo no mínimo permitido");
+  }
+  if (p.doMolde > 0) {
+    const iguais = p.variacoes <= 0 ? p.doMolde : Math.ceil(p.doMolde / p.variacoes);
+    if (iguais > 40) {
+      pontos += 3;
+      motivos.push(`${String(iguais)} pessoas recebendo o mesmo texto`);
+    } else if (iguais > 15) {
+      pontos += 1;
+      motivos.push(`${String(iguais)} pessoas recebendo o mesmo texto`);
+    }
+  }
+  const nivel = pontos >= 3 ? "alto" : pontos >= 1 ? "moderado" : "baixo";
+  return { nivel, motivos };
+}
+const DIAS = [
+  [0, "dom"],
+  [1, "seg"],
+  [2, "ter"],
+  [3, "qua"],
+  [4, "qui"],
+  [5, "sex"],
+  [6, "sáb"]
+];
+const MENSAGEM_PADRAO = "Olá {{nome}}! vi que vocês atendem em {{cidade}} e queria te mostrar uma coisa rápida sobre o site de vocês. posso mandar?";
+function rascunhoNovo(tipo = "ambas") {
+  return {
+    tipo,
+    /*
+          Uma automação só de disparo nasce apontando para a base da aba Leads.
+    
+          É o caso que ela existe para resolver: "já tenho leads salvos, quero
+          mandar para eles". Nascer apontando para a fila `propria` — que ela nunca
+          vai encher, porque não busca — daria uma automação que não manda nada e
+          não diz por quê.
+        */
+    fonteDeLeads: tipo === "disparo" ? "base" : "propria",
+    automacaoDaFila: "",
+    id: `auto_${String(Date.now())}`,
+    nome: "",
+    ativa: true,
+    fonte: "api",
+    nichos: [],
+    pins: [],
+    // 60 casa com um dos chips de atalho; qualquer valor de 1 a 1000 vale — a
+    // caixinha livre do seletor representa todos.
+    maxResultados: 60,
+    /* Os mesmos padrões da busca manual: telefone desejável E obrigatório. */
+    exige: ["telefone"],
+    obriga: ["telefone"],
+    proibe: [],
+    campos: [],
+    analisarSites: true,
+    // O padrão conta a história: capta cedo, manda no meio da manhã.
+    horasCaptacao: ["09:00"],
+    disparos: [{ hora: "10:00", quantidade: 30 }],
+    variacoes: [{ id: "v1", texto: MENSAGEM_PADRAO, ativa: true }],
+    dias: [1, 2, 3, 4, 5]
+  };
+}
+function paraSalvar(a, mudanca = {}) {
+  return {
+    id: a.id,
+    nome: a.nome,
+    ativa: a.ativa,
+    fonte: a.fonte,
+    nichos: [...a.nichos],
+    pins: [...a.pins],
+    maxResultados: a.maxResultados,
+    exige: [...a.exige],
+    obriga: [...a.obriga],
+    proibe: [...a.proibe],
+    campos: [...a.campos],
+    analisarSites: a.analisarSites,
+    tipo: a.tipo,
+    fonteDeLeads: a.fonteDeLeads,
+    automacaoDaFila: a.automacaoDaFila,
+    horasCaptacao: [...a.horasCaptacao],
+    disparos: a.disparos.map((d) => ({ ...d })),
+    variacoes: [...a.variacoes],
+    dias: [...a.dias],
+    ...mudanca
+  };
+}
+function paraRascunho(a) {
+  return paraSalvar(a);
+}
+function ScrapperAutomacao({
+  temIa,
+  grupos,
+  mapa,
+  estado,
+  onConectou
+}) {
+  const [lista, setLista] = reactExports.useState([]);
+  const [livro, setLivro] = reactExports.useState(null);
+  const [andando, setAndando] = reactExports.useState(null);
+  const [editando, setEditando] = reactExports.useState(null);
+  const [escolhendoTipo, setEscolhendoTipo] = reactExports.useState(false);
+  const [vendoFila, setVendoFila] = reactExports.useState(null);
+  const recarregar = reactExports.useCallback(() => {
+    void window.kaptar.automacao.listar().then(setLista);
+    void window.kaptar.livro.ler().then(setLivro);
+  }, []);
+  reactExports.useEffect(recarregar, [recarregar]);
+  reactExports.useEffect(() => {
+    void window.kaptar.automacao.progresso().then(setAndando);
+    return window.kaptar.automacao.onAndando((p) => {
+      setAndando(p);
+      if (!p.rodando) recarregar();
+    });
+  }, [recarregar]);
+  const salvar = (r) => {
+    void window.kaptar.automacao.salvar({
+      id: r.id,
+      nome: r.nome,
+      ativa: r.ativa,
+      fonte: r.fonte,
+      nichos: r.nichos,
+      pins: r.pins,
+      maxResultados: r.maxResultados,
+      exige: r.exige,
+      obriga: r.obriga,
+      proibe: r.proibe,
+      campos: r.campos,
+      analisarSites: r.analisarSites,
+      tipo: r.tipo,
+      fonteDeLeads: r.fonteDeLeads,
+      automacaoDaFila: r.automacaoDaFila,
+      horasCaptacao: r.horasCaptacao,
+      disparos: r.disparos,
+      variacoes: r.variacoes,
+      dias: r.dias
+    }).then((res) => {
+      if (!res.ok) {
+        avisar(res.motivo ?? "não consegui salvar", "erro");
+        return;
+      }
+      setEditando(null);
+      avisar("automação salva");
+      recarregar();
+    }).catch((e) => {
+      console.error("[automacao] salvar recusado:", String(e).slice(0, 200));
+      avisar("não consegui salvar — confira o nome, a mensagem e os horários", "erro");
+    });
+  };
+  if (editando !== null) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Formulario,
+      {
+        rascunho: editando,
+        outras: lista.filter((x) => x.id !== editando.id),
+        grupos,
+        temIa,
+        mapa,
+        estado,
+        onConectou,
+        onMudar: (f) => {
+          setEditando((a) => a === null ? a : f(a));
+        },
+        onSalvar: () => {
+          salvar(editando);
+        },
+        onCancelar: () => {
+          setEditando(null);
+        }
+      }
+    );
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-topo", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "painel-titulo", children: "automação" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "painel-sub", children: "prospecta os leads e dispara a campanha sozinho, no dia e horário que você marcar." })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-cartao-espaco" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "btn primary",
+          onClick: () => {
+            setEscolhendoTipo(true);
+          },
+          children: "nova automação"
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-aviso", children: [
+      "a automação roda ",
+      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "enquanto o Kaptar estiver aberto" }),
+      ", com o WhatsApp conectado na aba ao lado. não há servidor: computador desligado não prospecta. para rodar todo dia, deixe o app aberto numa máquina que fica ligada."
+    ] }),
+    livro !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(CartaoDeSeguranca, { livro, onMudou: recarregar }),
+    andando !== null && andando.rodando && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-rodando", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-giro", "aria-hidden": "true" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: andando.nome === "" ? "automação" : andando.nome }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: andando.etapa }),
+      andando.detalhe !== "" && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: andando.detalhe })
+    ] }),
+    lista.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mer-vazio", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "mer-vazio-titulo", children: "nenhuma automação ainda" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "crie uma para prospectar e disparar no piloto automático." })
+    ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-lista", children: lista.map((a) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Cartao,
+      {
+        a,
+        rodando: andando?.rodando === true && andando.automacaoId === a.id,
+        onVerBanco: () => {
+          setVendoFila(a);
+        },
+        onEditar: () => {
+          setEditando(paraRascunho(a));
+        },
+        onRecarregar: recarregar
+      },
+      a.id
+    )) }),
+    escolhendoTipo && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      EscolherTipo,
+      {
+        onEscolher: (t) => {
+          setEscolhendoTipo(false);
+          setEditando(rascunhoNovo(t));
+        },
+        onFechar: () => {
+          setEscolhendoTipo(false);
+        }
+      }
+    ),
+    vendoFila !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      BancoDaAutomacao,
+      {
+        a: vendoFila,
+        onFechar: () => {
+          setVendoFila(null);
+        }
+      }
+    )
+  ] });
+}
+function CartaoDeSeguranca({
+  livro,
+  onMudou
+}) {
+  const [abrindo, setAbrindo] = reactExports.useState(false);
+  const [novo, setNovo] = reactExports.useState("");
+  const cheio = livro.enviadosHoje >= livro.tetoDeHoje;
+  const pct = livro.tetoDeHoje === 0 ? 0 : livro.enviadosHoje / livro.tetoDeHoje * 100;
+  const naoPerturbar = () => {
+    if (novo.length < 8) return;
+    void window.kaptar.livro.naoPerturbar(novo).then(() => {
+      setNovo("");
+      avisar("entrou no não-perturbe");
+      onMudou();
+    });
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-seguranca", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-seg-linha", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "SEGURANÇA DA CONTA" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-seg-num" + (cheio ? " is-cheio" : ""), children: [
+        livro.enviadosHoje,
+        " de ",
+        livro.tetoDeHoje,
+        " hoje"
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-seg-barra", "aria-hidden": "true", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "span",
+        {
+          className: "aut-seg-cheia" + (cheio ? " is-cheio" : ""),
+          style: { width: `${String(Math.min(100, pct))}%` }
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: "link-mini",
+          onClick: () => {
+            setAbrindo((v) => !v);
+          },
+          children: [
+            livro.naoPerturbe,
+            " no não-perturbe"
+          ]
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "hint", children: [
+      "o teto é do seu número de WhatsApp e soma tudo — campanha manual e automação. ele sobe 20 a cada dia com envio, até 200: um número novo disparando 200 numa tarde é o caso clássico de restrição.",
+      " ",
+      livro.diasDeUso === 0 ? "este é o primeiro dia." : `${livro.diasDeUso} dia(s) de uso.`
+    ] }),
+    abrindo && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-npt", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-npt-add", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "input",
+          {
+            className: "campo",
+            inputMode: "numeric",
+            placeholder: "5511999998888",
+            value: novo,
+            onChange: (e) => {
+              setNovo(e.target.value.replace(/[^0-9]/g, ""));
+            },
+            onKeyDown: (e) => {
+              if (e.key === "Enter") naoPerturbar();
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "btn",
+            disabled: novo.length < 8,
+            title: "este número nunca mais recebe, de campanha nenhuma",
+            onClick: naoPerturbar,
+            children: "não perturbar"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: "só dígitos, com DDI. ex.: 5511999998888" })
+      ] }),
+      livro.telefonesNaoPerturbe.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: 'ninguém pediu para parar ainda. quem responder "pare", "não quero" ou parecido entra aqui sozinho, na hora em que a campanha for mandar — e nunca mais recebe, de campanha nenhuma.' }) : livro.telefonesNaoPerturbe.map((t) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-npt-item", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "selecionavel", children: t }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "link-mini",
+            title: "tirar do não-perturbe. só faça isso se a pessoa pediu.",
+            onClick: () => {
+              void window.kaptar.livro.voltarAPerturbar(t).then(onMudou);
+            },
+            children: "liberar"
+          }
+        )
+      ] }, t))
+    ] })
+  ] });
+}
+function Cartao({
+  onVerBanco,
+  a,
+  rodando,
+  onEditar,
+  onRecarregar
+}) {
+  const r = a.ultimoResultado;
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-cartao", "data-ativa": a.ativa, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-cartao-topo", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: a.nome === "" ? "sem nome" : a.nome }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-selo" + (a.ativa ? " is-on" : ""), children: a.ativa ? "ativa" : "pausada" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-cartao-espaco" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "aut-liga", title: "ligar ou pausar", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "input",
+        {
+          type: "checkbox",
+          checked: a.ativa,
+          onChange: () => {
+            void window.kaptar.automacao.salvar(paraSalvar(a, { ativa: !a.ativa })).then((res) => {
+              if (!res.ok) avisar(res.motivo ?? "não consegui mudar", "erro");
+              onRecarregar();
+            }).catch((e) => {
+              avisar(`não consegui mudar: ${String(e).slice(0, 90)}`, "erro");
+            });
+          }
+        }
+      ) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-capa", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-capa-bloco", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "PRÓXIMO" }),
+        a.proximo === null ? /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "aut-capa-num is-off", children: a.ativa ? "sem dias" : "pausada" }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "aut-capa-num", children: a.proximo.quando }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-capa-nota", children: a.proximo.tipo === "captacao" ? "busca leads novos" : `envia ${String(a.proximo.quantidade)} mensagens` })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-capa-bloco", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "NA FILA" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "aut-capa-num" + (a.naFila === 0 ? " is-off" : ""), children: a.naFila }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-capa-nota", children: a.naFila === 0 ? "nada guardado ainda" : "esperando o envio" })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-capa-bloco", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "POR DIA" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "aut-capa-num", children: a.disparos.reduce((n, d) => n + d.quantidade, 0) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-capa-nota", children: [
+          "em ",
+          a.disparos.length,
+          " ",
+          a.disparos.length === 1 ? "leva" : "levas",
+          " ·",
+          " ",
+          a.horasCaptacao.length,
+          " ",
+          a.horasCaptacao.length === 1 ? "busca" : "buscas"
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-cartao-meta", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: a.agenda }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+        a.nichos.length,
+        " nicho(s) · ",
+        a.pins.length,
+        " ponto(s)"
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: a.fonte === "api" ? "API do Google" : "local (Claude)" })
+    ] }),
+    r !== null && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-cartao-resultado", children: r.erro === "" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+      "última: ",
+      r.captados,
+      " captados, ",
+      r.enviados,
+      " na fila",
+      r.usouFila && " (da fila, sem buscar de novo)"
+    ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-erro", children: r.erro }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-cartao-acoes", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "btn",
+          disabled: rodando,
+          title: "procura leads novos e guarda na fila — não envia nada",
+          onClick: () => {
+            void window.kaptar.automacao.rodarAgora(a.id, "captacao").then((res) => {
+              if (!res.ok) avisar(res.motivo ?? "não deu para buscar", "erro");
+              onRecarregar();
+            });
+          },
+          children: "buscar leads agora"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "btn primary",
+          disabled: rodando || a.naFila === 0,
+          title: a.naFila === 0 ? "a fila está vazia — busque leads antes" : `envia da fila agora (${String(a.disparos[0]?.quantidade ?? 0)} de uma vez)`,
+          onClick: () => {
+            void window.kaptar.automacao.rodarAgora(a.id, "disparo").then((res) => {
+              if (!res.ok) avisar(res.motivo ?? "não deu para enviar", "erro");
+              onRecarregar();
+            });
+          },
+          children: "enviar agora"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "btn",
+          disabled: rodando,
+          title: "o ciclo inteiro: busca e depois envia",
+          onClick: () => {
+            void window.kaptar.automacao.rodarAgora(a.id, "ambos").then((res) => {
+              if (!res.ok) avisar(res.motivo ?? "não deu para rodar", "erro");
+              onRecarregar();
+            });
+          },
+          children: rodando ? "rodando…" : "buscar e enviar"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: "btn",
+          title: "ver os leads que esta automação vai abordar",
+          onClick: onVerBanco,
+          children: [
+            "ver banco (",
+            a.naFila,
+            ")"
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "btn", onClick: onEditar, children: "editar" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "btn danger",
+          onClick: () => {
+            void window.kaptar.automacao.apagar(a.id).then(() => {
+              avisar("automação apagada");
+              onRecarregar();
+            });
+          },
+          children: "apagar"
+        }
+      )
+    ] })
+  ] });
+}
+function Formulario({
+  rascunho,
+  outras,
+  grupos,
+  temIa,
+  mapa,
+  estado,
+  onMudar,
+  onSalvar,
+  onCancelar,
+  onConectou
+}) {
+  const r = rascunho;
+  const [varSel, setVarSel] = reactExports.useState(0);
+  const busca = r.tipo === "busca" || r.tipo === "ambas";
+  const dispara = r.tipo === "disparo" || r.tipo === "ambas";
+  const set = (k, v) => {
+    onMudar((a) => ({ ...a, [k]: v }));
+  };
+  const alternarDia = (d) => {
+    set("dias", r.dias.includes(d) ? r.dias.filter((x) => x !== d) : [...r.dias, d]);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut aut-form", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-topo", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "painel-titulo", children: r.nome === "" ? `nova automação · ${r.tipo === "busca" ? "só buscar" : r.tipo === "disparo" ? "só enviar" : "buscar e enviar"}` : `editando: ${r.nome}` }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "aut-cartao-espaco" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "btn", onClick: onCancelar, children: "cancelar" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "btn primary", onClick: onSalvar, children: "salvar" })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "NOME" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "input",
+        {
+          className: "campo",
+          placeholder: "ex.: dentistas em SP — manhã",
+          value: r.nome,
+          maxLength: MAX_NOME,
+          onChange: (e) => {
+            set("nome", e.target.value);
+          }
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "ONDE — clique no mapa para marcar" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-mapa", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ScrapperMapa,
+        {
+          pins: r.pins,
+          estados: r.pins.map(() => "parado"),
+          mapa,
+          onAdicionar: (lat, lng) => {
+            if (r.pins.length >= MAX_PINS) {
+              avisar(
+                `${String(MAX_PINS)} áreas é o máximo — cada uma multiplica o custo da busca`,
+                "erro"
+              );
+              return;
+            }
+            set("pins", [...r.pins, { lat, lng, raioKm: 10, rotulo: "" }]);
+            void window.kaptar.scrapper.lugar(lat, lng).then(({ rotulo }) => {
+              if (rotulo === "") return;
+              onMudar((a) => ({
+                ...a,
+                pins: a.pins.map(
+                  (p) => p.lat === lat && p.lng === lng && p.rotulo === "" ? { ...p, rotulo } : p
+                )
+              }));
+            });
+          },
+          onMover: (i, lat, lng) => {
+            set(
+              "pins",
+              r.pins.map((p, k) => k === i ? { ...p, lat, lng } : p)
+            );
+          }
+        }
+      ) }),
+      r.pins.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-pins", children: r.pins.map((p, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-pin", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: p.rotulo === "" ? `ponto ${String(i + 1)}` : p.rotulo }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "input",
+          {
+            type: "range",
+            min: 1,
+            max: 50,
+            value: p.raioKm,
+            onChange: (e) => {
+              const raioKm = Number(e.target.value);
+              set(
+                "pins",
+                r.pins.map((x, k) => k === i ? { ...x, raioKm } : x)
+              );
+            }
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-pin-km", children: [
+          p.raioKm,
+          " km"
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "link-mini",
+            onClick: () => {
+              set(
+                "pins",
+                r.pins.filter((_, k) => k !== i)
+              );
+            },
+            children: "tirar"
+          }
+        )
+      ] }, `${String(p.lat)}-${String(p.lng)}-${String(i)}`)) })
+    ] }),
+    busca && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-captacao", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        CamposDeCaptacao,
+        {
+          valor: {
+            fonte: r.fonte,
+            nichos: r.nichos,
+            alvo: r.maxResultados,
+            exige: r.exige,
+            obriga: r.obriga,
+            proibe: r.proibe,
+            campos: r.campos
+          },
+          grupos,
+          temIa,
+          travado: false,
+          onConectou,
+          onMudar: (c) => {
+            onMudar((a) => ({
+              ...a,
+              fonte: c.fonte,
+              nichos: [...c.nichos],
+              maxResultados: c.alvo,
+              exige: [...c.exige],
+              obriga: [...c.obriga],
+              proibe: [...c.proibe],
+              campos: [...c.campos]
+            }));
+          }
+        }
+      ) }),
+      r.fonte === "api" && estado !== null && /* @__PURE__ */ jsxRuntimeExports.jsx(Cota, { estado, onConfigurar: onConectou })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-so-dela", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "SÓ NA AUTOMAÇÃO" }) }),
+    busca && /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "aut-check", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "input",
+        {
+          type: "checkbox",
+          checked: r.analisarSites,
+          onChange: (e) => {
+            set("analisarSites", e.target.checked);
+          }
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+        "analisar os sites ao terminar (score real)",
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "hint", children: [
+          " ",
+          "— a prospecção espera a análise; a mensagem pode citar o laudo do site."
+        ] })
+      ] })
+    ] }),
+    dispara && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "DE ONDE VÊM OS LEADS" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "aut-fontes", children: [
+        {
+          id: "propria",
+          nome: "da captação desta automação",
+          nota: "ela mesma busca e guarda na fila",
+          vale: r.tipo === "ambas"
+        },
+        {
+          id: "base",
+          nome: "da minha aba Leads",
+          nota: "usa os leads que você já tem, do melhor score para o pior",
+          vale: true
+        },
+        {
+          id: "outra",
+          nome: "da fila de outra automação",
+          nota: "uma automação busca, esta despacha",
+          vale: outras.length > 0
+        }
+      ].filter((o) => o.vale).map((o) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: "aut-fonte" + (r.fonteDeLeads === o.id ? " is-on" : ""),
+          onClick: () => {
+            set("fonteDeLeads", o.id);
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: o.nome }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: o.nota })
+          ]
+        },
+        o.id
+      )) }),
+      r.fonteDeLeads === "outra" && /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "scr-campo", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "QUAL AUTOMAÇÃO" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "select",
+          {
+            className: "campo",
+            value: r.automacaoDaFila,
+            onChange: (e) => {
+              set("automacaoDaFila", e.target.value);
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "", children: "escolha…" }),
+              outras.map((o) => /* @__PURE__ */ jsxRuntimeExports.jsxs("option", { value: o.id, children: [
+                o.nome === "" ? "sem nome" : o.nome,
+                " (",
+                o.naFila,
+                " na fila)"
+              ] }, o.id))
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: "esta automação LÊ a fila da outra — não tira ninguém de lá. quem tira é a dona, quando ela mesma dispara." })
+      ] })
+    ] }),
+    dispara && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "MENSAGEM · VARIAÇÕES" }),
+      r.variacoes.map((v, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          className: "zap-variacao" + (i === varSel ? " is-sel" : ""),
+          onClick: () => {
+            setVarSel(i);
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "zap-variacao-topo", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "zap-variacao-n", children: [
+                "#",
+                i + 1,
+                " ",
+                i === 0 ? "principal" : ""
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "zap-liga", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "input",
+                  {
+                    type: "checkbox",
+                    checked: v.ativa,
+                    onChange: (e) => {
+                      const ativa = e.target.checked;
+                      set(
+                        "variacoes",
+                        r.variacoes.map((x) => x.id === v.id ? { ...x, ativa } : x)
+                      );
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: v.ativa ? "ativa" : "desligada" })
+              ] }),
+              r.variacoes.length > 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  className: "zap-variacao-x",
+                  title: "apagar esta variação",
+                  onClick: () => {
+                    set(
+                      "variacoes",
+                      r.variacoes.filter((x) => x.id !== v.id)
+                    );
+                    setVarSel(0);
+                  },
+                  children: "×"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "textarea",
+              {
+                className: "campo zap-variacao-texto",
+                rows: 4,
+                maxLength: MAX_TEXTO,
+                value: v.texto,
+                placeholder: i === 0 ? "Olá {{nome}}! vi que vocês atendem em {{cidade}}…" : "a mesma ideia, com outras palavras",
+                onFocus: () => {
+                  setVarSel(i);
+                },
+                onChange: (e) => {
+                  const texto = e.target.value;
+                  set(
+                    "variacoes",
+                    r.variacoes.map((x) => x.id === v.id ? { ...x, texto } : x)
+                  );
+                }
+              }
+            )
+          ]
+        },
+        v.id
+      )),
+      r.variacoes.length < MAX_VARIACOES && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "btn",
+          onClick: () => {
+            set("variacoes", [
+              ...r.variacoes,
+              { id: `v${String(Date.now())}`, texto: "", ativa: true }
+            ]);
+            setVarSel(r.variacoes.length);
+          },
+          children: "+ adicionar variação"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "chips", children: VARIAVEIS.map((v) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "chip",
+          onClick: () => {
+            set(
+              "variacoes",
+              r.variacoes.map(
+                (x, i) => i === varSel ? { ...x, texto: `${x.texto}{{${v}}}` } : x
+              )
+            );
+          },
+          children: `{{${v}}}`
+        },
+        v
+      )) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hint", children: "esta é a mensagem de reserva, revezada entre as variações ativas. quando o lead já tem abordagem escrita a partir do laudo do site, ela ganha do rodízio — citar o site daquela empresa vale mais que trocar o nome num texto genérico." })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "DIAS" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "chips", children: DIAS.map(([d, nome]) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "chip" + (r.dias.includes(d) ? " is-on" : ""),
+          onClick: () => {
+            alternarDia(d);
+          },
+          children: nome
+        },
+        d
+      )) })
+    ] }),
+    busca && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "HORÁRIOS QUE BUSCAM LEADS NOVOS" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-horas", children: [
+        r.horasCaptacao.map((h, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-hora", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "input",
+            {
+              className: "campo",
+              type: "time",
+              value: h,
+              onChange: (e) => {
+                const novas = [...r.horasCaptacao];
+                novas[i] = e.target.value === "" ? r.horasCaptacao[i] ?? "09:00" : e.target.value;
+                set("horasCaptacao", novas);
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              className: "link-mini",
+              onClick: () => {
+                set(
+                  "horasCaptacao",
+                  r.horasCaptacao.filter((_, j) => j !== i)
+                );
+              },
+              children: "tirar"
+            }
+          )
+        ] }, i)),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "btn",
+            disabled: r.horasCaptacao.length >= MAX_HORAS,
+            title: r.horasCaptacao.length >= MAX_HORAS ? `no máximo ${String(MAX_HORAS)} horários` : "",
+            onClick: () => {
+              set("horasCaptacao", [...r.horasCaptacao, "09:00"]);
+            },
+            children: "+ horário de captação"
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "hint", children: [
+        "nestes horários a automação sai procurando ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "gente nova" }),
+        " e guarda na fila — são até ",
+        r.maxResultados,
+        " por nicho em cada área, como está lá em cima. é o que gasta cota do Google (ou tokens do Claude): quanto menos vezes, mais barato."
+      ] })
+    ] }),
+    dispara && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "scr-campo", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "rotulo", children: "HORÁRIOS QUE ENVIAM AS MENSAGENS" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "aut-disparos", children: [
+        r.disparos.map((d, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-disparo", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "input",
+            {
+              className: "campo",
+              type: "time",
+              value: d.hora,
+              onChange: (e) => {
+                const novos = [...r.disparos];
+                novos[i] = {
+                  ...d,
+                  hora: e.target.value === "" ? d.hora : e.target.value
+                };
+                set("disparos", novos);
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "aut-disparo-qtd", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                className: "campo",
+                type: "number",
+                min: 1,
+                max: MAX_ENVIOS,
+                value: d.quantidade,
+                onChange: (e) => {
+                  const n = Math.round(Number(e.target.value));
+                  const novos = [...r.disparos];
+                  novos[i] = {
+                    ...d,
+                    quantidade: Number.isFinite(n) ? Math.max(1, Math.min(MAX_ENVIOS, n)) : 1
+                  };
+                  set("disparos", novos);
+                }
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "mensagens" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              className: "link-mini",
+              onClick: () => {
+                set(
+                  "disparos",
+                  r.disparos.filter((_, j) => j !== i)
+                );
+              },
+              children: "tirar"
+            }
+          )
+        ] }, i)),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "btn",
+            disabled: r.disparos.length >= MAX_HORAS,
+            title: r.disparos.length >= MAX_HORAS ? `no máximo ${String(MAX_HORAS)} horários` : "",
+            onClick: () => {
+              set("disparos", [...r.disparos, { hora: "14:00", quantidade: 30 }]);
+            },
+            children: "+ horário de envio"
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "hint", children: [
+        "cada um destes envia a quantidade que você marcou ao lado, tirando da fila que a captação encheu — ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "sem procurar ninguém de novo" }),
+        ". o teto do DIA continua sendo o do seu número e soma tudo (campanha manual junto): ver o cartão de segurança."
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "aut-resumo-plano", children: [
+      busca && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        "hoje: busca em ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: r.horasCaptacao.length }),
+        " ",
+        r.horasCaptacao.length === 1 ? "horário" : "horários"
+      ] }),
+      busca && dispara && " e ",
+      dispara && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        "envia até ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: r.disparos.reduce((n, d) => n + d.quantidade, 0) }),
+        " mensagens em ",
+        r.disparos.length,
+        " ",
+        r.disparos.length === 1 ? "leva" : "levas",
+        r.disparos.length > 0 && ` (${r.disparos.map((d) => `${d.hora}: ${String(d.quantidade)}`).join(" · ")})`
+      ] }),
+      "."
+    ] })
+  ] });
+}
 const NADA = { x: 0, y: 0, width: 0, height: 0 };
 function recortar(alvo, limite) {
   const x1 = Math.max(alvo.x, limite.x);
@@ -23939,6 +24264,41 @@ function recortar(alvo, limite) {
 }
 function mesmoRetangulo(a, b) {
   return a.x === b.x && a.y === b.y && a.width === b.width && a.height === b.height;
+}
+function padraoDoNavegador() {
+  try {
+    return typeof localStorage === "undefined" ? null : localStorage;
+  } catch {
+    return null;
+  }
+}
+const PREFIXO = "kaptar.";
+function lerPref(chave, padrao, armazem = padraoDoNavegador()) {
+  if (armazem === null) return padrao;
+  try {
+    const cru = armazem.getItem(PREFIXO + chave);
+    if (cru === null) return padrao;
+    const v = JSON.parse(cru);
+    if (Array.isArray(padrao)) return Array.isArray(v) ? v : padrao;
+    if (typeof v !== typeof padrao) return padrao;
+    return v;
+  } catch {
+    return padrao;
+  }
+}
+function gravarPref(chave, valor, armazem = padraoDoNavegador()) {
+  if (armazem === null) return;
+  try {
+    armazem.setItem(PREFIXO + chave, JSON.stringify(valor));
+  } catch {
+  }
+}
+function lerPrefSet(chave, armazem = padraoDoNavegador()) {
+  const lista = lerPref(chave, [], armazem);
+  return new Set(lista.filter((x) => typeof x === "string"));
+}
+function gravarPrefSet(chave, valor, armazem = padraoDoNavegador()) {
+  gravarPref(chave, [...valor], armazem);
 }
 function dobrar(s) {
   return (s ?? "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
@@ -23962,8 +24322,24 @@ function casaEscolha(escolhidas, valor) {
 const RITMOS = [
   { id: "seguro", nome: "seguro", min: 90, max: 180, nota: "o mais parecido com gente digitando" },
   { id: "normal", nome: "normal", min: 45, max: 120, nota: "o padrão" },
-  { id: "lento", nome: "bem devagar", min: 240, max: 420, nota: "para número novo, ou lista grande" }
+  { id: "lento", nome: "bem devagar", min: 240, max: 420, nota: "para número novo, ou lista grande" },
+  /*
+      O intervalo NA MÃO — que existia antes e voltou.
+  
+      Os três degraus acima cobrem a decisão comum, e trocá-los por um controle
+      contínuo foi o que a versão web fazia de errado: um deslizante de 15 s a
+      180 s com um aviso amarelo quando o número ficava perigoso é oferecer a
+      corda e escrever "cuidado" nela. Mas tirar a escolha fina junto foi longe
+      demais — quem já conhece o próprio número quer dizer "espera de 70 a 95
+      segundos", e isso não é imprudência.
+      O piso de 45 s continua valendo e NÃO é conselho: `faixaSegura`, em
+      `zap/campanha.ts`, prende qualquer número abaixo dele antes de a campanha
+      começar, e há teste. Os campos aqui já mostram o piso aplicado.
+    */
+  { id: "livre", nome: "na mão", min: 45, max: 120, nota: "você escolhe a faixa" }
 ];
+const PISO_S = 45;
+const TETO_S = 600;
 const TIPOS = [
   { id: "todos", nome: "todos", casa: () => true },
   { id: "ruim", nome: "site ruim", casa: (c) => c === "site_ruim" },
@@ -24016,20 +24392,36 @@ function ScrapperZap({
 }) {
   const [estado, setEstado] = reactExports.useState(null);
   const [progresso, setProgresso] = reactExports.useState(null);
-  const [ritmo, setRitmo] = reactExports.useState("normal");
-  const [nichos, setNichos] = reactExports.useState(/* @__PURE__ */ new Set());
-  const [cidades, setCidades] = reactExports.useState(/* @__PURE__ */ new Set());
+  const [ritmo, setRitmo] = reactExports.useState(() => lerPref("zap.ritmo", "normal"));
+  const [livreMin, setLivreMin] = reactExports.useState(() => lerPref("zap.livreMin", 45));
+  const [livreMax, setLivreMax] = reactExports.useState(() => lerPref("zap.livreMax", 120));
+  const [nichos, setNichos] = reactExports.useState(() => lerPrefSet("zap.nichos"));
+  const [cidades, setCidades] = reactExports.useState(() => lerPrefSet("zap.cidades"));
   const [painel, setPainel] = reactExports.useState(null);
-  const [scoreMin, setScoreMin] = reactExports.useState(0);
-  const [limite, setLimite] = reactExports.useState(0);
-  const [tirados, setTirados] = reactExports.useState(/* @__PURE__ */ new Set());
-  const [tipo, setTipo] = reactExports.useState("todos");
-  const [exige, setExige] = reactExports.useState(/* @__PURE__ */ new Set());
+  const [scoreMin, setScoreMin] = reactExports.useState(() => lerPref("zap.scoreMin", 0));
+  const [limite, setLimite] = reactExports.useState(() => lerPref("zap.limite", 0));
+  const [tirados, setTirados] = reactExports.useState(() => lerPrefSet("zap.tirados"));
+  const [tipo, setTipo] = reactExports.useState(() => lerPref("zap.tipo", "todos"));
+  const [exige, setExige] = reactExports.useState(
+    () => lerPrefSet("zap.exige")
+  );
   const [vendo, setVendo] = reactExports.useState("fila");
   const [escrevendo, setEscrevendo] = reactExports.useState(null);
   const [molde, setMolde] = reactExports.useState({ nome: "", variacoes: [] });
   const [selecionada, setSelecionada] = reactExports.useState(0);
   const foco = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    gravarPref("zap.tipo", tipo);
+    gravarPref("zap.scoreMin", scoreMin);
+    gravarPref("zap.limite", limite);
+    gravarPref("zap.ritmo", ritmo);
+    gravarPref("zap.livreMin", livreMin);
+    gravarPref("zap.livreMax", livreMax);
+    gravarPrefSet("zap.nichos", nichos);
+    gravarPrefSet("zap.cidades", cidades);
+    gravarPrefSet("zap.exige", exige);
+    gravarPrefSet("zap.tirados", tirados);
+  }, [tipo, scoreMin, limite, ritmo, livreMin, livreMax, nichos, cidades, exige, tirados]);
   const ler = reactExports.useCallback(() => {
     void window.kaptar.scrapper.zapEstado().then((e) => {
       setEstado(e);
@@ -24092,7 +24484,12 @@ function ScrapperZap({
   const naFilaIds = new Set(naFila.map((l) => l.id));
   const jaFeitos = noFiltro.filter((l) => feitos.has(l.id));
   const doMolde = naFila.filter((l) => l.abordagem.trim() === "").length;
-  const faixa = RITMOS.find((r) => r.id === ritmo) ?? RITMOS[1];
+  const preset = RITMOS.find((r) => r.id === ritmo) ?? RITMOS[1];
+  const faixa = ritmo === "livre" ? (() => {
+    const min = Math.min(Math.max(Math.round(livreMin), PISO_S), TETO_S);
+    const max = Math.min(Math.max(Math.round(livreMax), min), TETO_S);
+    return { ...preset, min, max };
+  })() : preset;
   const rodando = progresso !== null && progresso.situacao === "rodando";
   const conectado = estado?.conectado === true;
   const cabeHoje = progresso === null ? naFila.length : Math.max(0, Math.min(naFila.length, progresso.tetoDeHoje - progresso.enviadosHoje));
@@ -24555,9 +24952,63 @@ function ScrapperZap({
             },
             r.id
           )) }),
+          ritmo === "livre" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "zap-livre", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "de" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
+                {
+                  className: "campo",
+                  type: "number",
+                  min: PISO_S,
+                  max: TETO_S,
+                  disabled: rodando,
+                  value: livreMin,
+                  onChange: (e) => {
+                    const n = Math.round(Number(e.target.value));
+                    setLivreMin(Number.isFinite(n) ? n : PISO_S);
+                  }
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "até" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
+                {
+                  className: "campo",
+                  type: "number",
+                  min: PISO_S,
+                  max: TETO_S,
+                  disabled: rodando,
+                  value: livreMax,
+                  onChange: (e) => {
+                    const n = Math.round(Number(e.target.value));
+                    setLivreMax(Number.isFinite(n) ? n : PISO_S);
+                  }
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "zap-livre-unid", children: "segundos" })
+          ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "zap-nota", children: [
-            faixa.nota,
-            " · sorteado a cada mensagem"
+            ritmo === "livre" ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+              "vai esperar de ",
+              /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: faixa.min }),
+              " a ",
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("strong", { children: [
+                faixa.max,
+                "s"
+              ] }),
+              " entre uma mensagem e a próxima",
+              (livreMin < PISO_S || livreMax < PISO_S) && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                " · o mínimo é ",
+                PISO_S,
+                "s, e ele foi aplicado"
+              ] })
+            ] }) : faixa.nota,
+            " ",
+            "· sorteado a cada mensagem"
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: `zap-risco is-${risco.nivel}`, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs("strong", { children: [
@@ -26056,7 +26507,7 @@ function SecaoDaAtualizacao() {
     /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "painel-titulo", children: "versão" }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "painel-sub", children: [
       "você está na ",
-      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "1.9.2" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "2.0.0" }),
       ". o Kaptar procura versão nova sozinho de tempos em tempos, e avisa na barra de cima quando encontra."
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "chips", children: /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "btn", disabled: procurando, onClick: procurar, children: procurando ? "procurando…" : "procurar atualização" }) }),
@@ -26571,7 +27022,7 @@ function BotaoNovidades() {
       {
         type: "button",
         className: "novidades-chip",
-        title: `o que a versão ${"1.9.2"} trouxe`,
+        title: `o que a versão ${"2.0.0"} trouxe`,
         onClick: () => {
           setAberto(true);
         },
@@ -26581,8 +27032,8 @@ function BotaoNovidades() {
     aberto && /* @__PURE__ */ jsxRuntimeExports.jsx(
       NotasDaVersao,
       {
-        versao: "1.9.2",
-        notas: "**A campanha explica o que vai acontecer ANTES de você clicar em disparar.** Quatro linhas com os números da sua fila: que a aba do WhatsApp vai abrir as conversas e clicar em enviar sozinha, de quanto em quanto tempo sai cada mensagem, quanto tempo leva no total, que o app precisa ficar aberto, e que parar no meio não perde o resto da fila.\n**A campanha não para mais por engano dizendo que o WhatsApp caiu.** Como cada mensagem recarrega a página do WhatsApp, havia instantes em que ela parecia deslogada sem estar — e isso encerrava o disparo mandando você reconectar um WhatsApp conectado. Agora a queda precisa se confirmar numa segunda leitura, alguns segundos depois.\n**Quando a sessão cai de verdade, o app registra o porquê** (a página travou, não carregou, o processo morreu) em vez de só dizer que caiu.",
+        versao: "2.0.0",
+        notas: '**Corrigido: o "9" que faltava nos telefones.** O Google devolve muito cadastro no formato antigo de oito dígitos, e o Kaptar mandava a mensagem para um número que não existe mais — ou que hoje é de outra pessoa. Agora o nono dígito entra sozinho, tanto nos leads novos quanto nos que já estavam salvos. Fixo continua sem o 9, como tem que ser.\n**Voltou o intervalo na mão.** Além dos três ritmos prontos, dá para escrever a faixa: "de 70 a 95 segundos". O mínimo de 45s continua valendo e a tela mostra o número que vai valer de verdade.\n**Corrigido: os filtros da Campanha sumiam ao trocar de aba.** Tipo de lead, segmentos, cidades, score, limite, ritmo e quem você tirou da fila à mão agora continuam lá — inclusive depois de fechar o app.\n**Corrigido: a campanha travando do nada.** Se a página do WhatsApp engasgava, o Kaptar ficava esperando uma resposta que nunca vinha e a fila congelava mostrando "rodando". Agora toda leitura tem prazo, e um passo travado se solta sozinho e continua a fila.\n**Automações agora têm TIPO.** Ao criar uma, um popup pergunta o que ela vai fazer: **só buscar leads**, **só enviar mensagens**, ou **as duas coisas**. A tela seguinte pede só o que aquele tipo precisa — uma automação de disparo não pede mais nicho nem área no mapa.\n**Automação de disparo escolhe de onde vêm os leads:** da captação dela mesma, da sua **aba Leads** inteira, ou da **fila de outra automação** (uma busca, a outra despacha).\n**Dá para VER o banco de leads de cada automação.** O botão "ver banco" no cartão mostra exatamente quem ela vai abordar, na ordem — já sem quem foi apagado, sem quem está sem telefone e sem quem está protegido pelo livro do número.',
         titulo: "o que a versão que você está usando trouxe.",
         onFechar: () => {
           setAberto(false);

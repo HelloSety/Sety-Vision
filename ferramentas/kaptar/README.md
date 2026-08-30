@@ -1,116 +1,119 @@
-# Kaptar — cópia de continuidade (backup do app)
+# Kaptar — cópia de continuidade (backup do app) + patch anti-pausa
 
 **O que é:** o Kaptar é um app desktop (Electron) da **Mazzeo IA** (`kaptar.mazzeoia.com.br`)
 que a Sety Studio usa pra prospecção B2B: acha negócios no Google Maps / por área,
 analisa o site com o Claude Agent SDK da própria máquina e dispara WhatsApp em cadência.
 
-**Por que esta pasta existe:** se o site/servidor da Mazzeo sair do ar (updater, download,
-licença), o Seven continua com uma cópia **completa e funcional** da versão que roda hoje.
-Cópia de uso pessoal / continuidade — não redistribuir.
+**Por que esta pasta existe:** se o site/servidor da Mazzeo sair do ar, o Seven continua
+com uma cópia completa e funcional. Cópia de uso pessoal / continuidade — não redistribuir.
 
-- **Versão arquivada:** `1.9.2`
-- **Plataforma:** Windows x64
-- **Data do snapshot:** 2026-08-30
-- **Instalado (na máquina do Seven):** `C:\Users\seven\AppData\Local\Programs\Kaptar\`
-- **Dados do app (NÃO ficam aqui — ver seção "Dados"):** `C:\Users\seven\AppData\Roaming\Kaptar\`
+- **Versão arquivada:** `2.0.0` (Windows x64) — atualizou de 1.9.2 → 2.0.0 em 2026-08-30
+- **Instalado:** `C:\Users\seven\AppData\Local\Programs\Kaptar\`
+- **Dados do app (privados, NÃO ficam aqui):** `C:\Users\seven\AppData\Roaming\Kaptar\`
+
+---
+
+## ⚠️ PATCH ANTI-PAUSA aplicado (2026-08-30)
+
+O `app.asar` **em uso** (`C:\...\Programs\Kaptar\resources\app.asar`) foi patchado pra
+**campanha nunca pausar** por:
+- N números seguidos sem WhatsApp (`MAX_INVALIDOS_SEGUIDOS`: `3` → `3e9`)
+- N envios seguidos falhados (`MAX_FALHAS_SEGUIDAS`: `2` → `2e9`)
+
+Agora, número sem contato → marca `sem-whatsapp` e **pula pro próximo**. A campanha só
+para sozinha se **a sessão do WhatsApp cair de verdade** (`s.deslogado`) — essa trava fica,
+porque sem sessão não dá pra mandar nada mesmo.
+
+**O que NÃO foi mexido (de propósito):** o teto diário do número (`20 + dias×20`, máx 200/dia,
+anti-ban). Ao bater o teto a campanha para pro dia e volta no dia seguinte — isso é limite
+programado, não bug.
+
+### O auto-update APAGA o patch
+`app-update.yml` → `provider: generic`, `url: https://kaptar.mazzeoia.com.br/app/`.
+Toda versão nova troca o `app.asar` e volta a pausar. Depois de cada update, **refazer**:
+
+```bash
+node scripts/kaptar-patch-nao-pausar.mjs      # do repo, com o Kaptar FECHADO
+```
+O script extrai o asar instalado, faz backup `app.asar.orig-v<versão>-<ts>`, troca os 2
+números **in-place** (mesmo tamanho de bytes, header do asar intacto), reinstala e verifica.
+Se os padrões `const MAX_INVALIDOS_SEGUIDOS = N;` / `const MAX_FALHAS_SEGUIDAS = N;` mudarem
+numa versão futura, ele avisa "PADRÃO NÃO ENCONTRADO" — aí é ajustar o regex no script.
+
+**Pra travar a versão e nunca mais perder o patch:** bloquear `kaptar.mazzeoia.com.br` no
+`C:\Windows\System32\drivers\etc\hosts` (`127.0.0.1 kaptar.mazzeoia.com.br`) ou no firewall.
 
 ---
 
 ## O que tem nesta pasta
 
-| Arquivo | Vai pro GitHub? | O que é |
+| Arquivo | GitHub? | O que é |
 |---|---|---|
-| `app.asar` | ✅ sim (11 MB) | **Todo o código do app empacotado** (formato asar do Electron). Fonte da verdade — dá pra reempacotar/rodar a partir dele. |
-| `source/` | ✅ sim (~12 MB) | Mesmo código, **extraído e legível**. `source/app/main/index.js` = todo o backend (captação, cadência, teto, janela, automações). `source/app/renderer/` = a interface. `source/app/preload/app.cjs` = ponte IPC. `source/node_modules/` = dependências de runtime (electron-updater, zod, js-yaml, claude-agent-sdk em JS…). Obs.: a pasta interna original `out/` foi renomeada pra `app/` só pra escapar do `.gitignore` global. |
-| `config-snapshot/` | ✅ sim | `molde.json` + `automacoes.json` do Seven no dia do snapshot (campanha PROSPECÇÃO STREETWEAR + automação AUTOPILOT STREETWEAR). **Sem** leads, **sem** segredos. |
-| `app-update.yml` / `icon.png` | ✅ sim | Config do auto-updater e ícone, como vêm no `resources/` do app. |
-| `Kaptar-1.9.2-instalador.exe` | ❌ **só local** (154 MB) | **Instalador oficial completo.** É o caminho mais fácil de restaurar. GitHub não aceita arquivo > 100 MB → **faça backup dele em HD externo / Google Drive.** |
-| `kaptar-full-program-v1.9.2.zip` | ❌ **só local** (612 MB) | A pasta `Programs\Kaptar\` inteira, zipada. Roda **sem instalar nada**. Também precisa de backup externo. |
+| `app.asar` | ✅ (11 MB) | código empacotado **com o patch anti-pausa** — é o que roda hoje |
+| `app.asar.orig-v2.0.0` | ✅ (11 MB) | mesmo asar **sem o patch** (pristino) — pra re-patchar limpo ou reverter |
+| `source/` | ✅ (~13 MB) | código v2.0.0 **pristino, extraído e legível**. `source/app/main/index.js` = todo o backend; `source/app/renderer/` = a interface; `source/app/preload/app.cjs` = ponte IPC; `source/node_modules/` = deps de runtime. (`out/` interno renomeado pra `app/` pra escapar do `.gitignore` global. `claude.exe` de 254 MB removido — é o CLI do Claude Code, recupere com `npm i @anthropic-ai/claude-agent-sdk`.) |
+| `config-snapshot/` | ✅ | `molde.json` + `automacoes.json` do Seven no snapshot. Sem leads, sem segredos. |
+| `app-update.yml` / `icon.png` | ✅ | config do updater e ícone |
+| `Kaptar-2.0.0-instalador.exe` | ❌ local (154 MB) | instalador oficial completo. **Backup manual em HD/nuvem.** |
+| `kaptar-full-program-v2.0.0.zip` | ❌ local (~612 MB) | a pasta `Programs\Kaptar\` inteira (com o patch), roda **sem instalar**. Backup manual. |
 
-> ⚠️ **Os 2 arquivos grandes (.exe e .zip) estão no `.gitignore`** — eles NÃO sobem no `/salvar`.
-> Copie os dois pra um HD externo e/ou nuvem. Sem eles, ainda dá pra restaurar pelo `source/` + `app.asar` (ver opção C).
+> Os 2 grandes (.exe e .zip) estão no `.gitignore` — não sobem no `/salvar`. Copie pra HD externo / Drive.
 
 ---
 
 ## Como restaurar / usar o Kaptar
 
-### Opção A — Reinstalar (mais simples)
-1. Rode `Kaptar-1.9.2-instalador.exe`.
-2. Abra o Kaptar. Os dados antigos (leads, campanha, automações, login) são lidos de
-   `%APPDATA%\Kaptar\` automaticamente — se essa pasta ainda existir, volta tudo.
+### A — Reinstalar (mais simples)
+1. Rode `Kaptar-2.0.0-instalador.exe`. 2. Abra o Kaptar (dados de `%APPDATA%\Kaptar\` voltam sozinhos).
+3. **Refaça o patch anti-pausa** (`node scripts/kaptar-patch-nao-pausar.mjs`, Kaptar fechado).
 
-### Opção B — Rodar sem instalar
-1. Extraia `kaptar-full-program-v1.9.2.zip` pra qualquer lugar (ex.: `C:\Kaptar\`).
-2. Execute `Kaptar\Kaptar.exe`. Pronto — é portátil.
-3. (Opcional) criar atalho na área de trabalho apontando pro `Kaptar.exe`.
+### B — Rodar sem instalar
+1. Extraia `kaptar-full-program-v2.0.0.zip` (ex.: `C:\Kaptar\`). 2. Rode `Kaptar\Kaptar.exe`.
+Esse zip **já tem o patch** — não precisa refazer (até o próximo update).
 
-### Opção C — Reconstruir a partir do código (se não tiver .exe nem .zip)
-Precisa de Node.js + um Electron da mesma major (o app é Electron; a 1.9.2 usa Electron ~31 — confira em `source/node_modules/electron*/package.json` se houver, ou use a versão estável da época).
-```bash
-npm i -g @electron/asar electron
-# reempacotar o código legível de volta num asar (renomeie 'app' -> 'out' antes):
-cd ferramentas/kaptar/source && mv app out
-asar pack . ../app-rebuilt.asar
-# rodar: coloque o asar em <electron>/resources/app.asar e execute o electron.exe
-```
-Ou simplesmente use o `app.asar` que já está aqui: `<electron>/resources/app.asar` + `electron.exe`.
-O binário `claude.exe` do Claude Agent SDK (~254 MB) **foi removido do `source/`** de propósito
-(é o CLI do Claude Code, não é código do Kaptar). Recupere com
-`npm i @anthropic-ai/claude-agent-sdk` ou aponte o app pro Claude Code que você já tem.
+### C — Reconstruir do código (sem .exe nem .zip)
+Use o `app.asar` daqui (já patchado) ou o `app.asar.orig-v2.0.0`: coloque em
+`<electron>/resources/app.asar` + um `electron.exe` da major certa e rode. Detalhe no
+histórico do `git log` desta pasta.
 
 ---
 
-## Dados (ficam FORA daqui — são privados)
+## Dados (ficam FORA daqui — privados)
 
-Tudo que é **seu** mora em `C:\Users\seven\AppData\Roaming\Kaptar\` e **não entra no repo**:
+Tudo seu mora em `C:\Users\seven\AppData\Roaming\Kaptar\` e **não entra no repo**:
 
 | Arquivo | O que é | Sensível? |
 |---|---|---|
-| `leads\leads.json` | todos os leads capturados (nome, telefone, site…) | sim — dados de terceiros |
-| `leads\molde.json` | campanha manual (variações de mensagem) | não muito (tem cópia em `config-snapshot/`) |
-| `leads\automacoes.json` | automações (AUTOPILOT STREETWEAR) | não muito (idem) |
-| `leads\numero.json` | "livro do número": teto do dia, não-perturbe | — |
-| `secrets.v1.bin` | chave da Google API + login do Claude, **cifrado** | **sim — nunca commitar** |
-| `Partitions\kaptar-zap\` | sessão do WhatsApp Web (o QR já escaneado) | **sim** |
+| `leads\leads.json` | leads capturados (nome, telefone, site…) | dados de terceiros |
+| `leads\molde.json` / `leads\automacoes.json` | campanha manual / automações | cópia em `config-snapshot/` |
+| `leads\campanha.json` | a leva em envio no momento | — |
+| `leads\numero.json` | "livro do número": teto do dia + **não-perturbe / últimos envios** (é o que impede reenviar pro mesmo contato por 90 dias) | — |
+| `secrets.v1.bin` | chave Google + login Claude, **cifrado** | **sim — nunca commitar** |
+| `Partitions\kaptar-zap\` | sessão do WhatsApp Web (QR já lido) | **sim** |
 
-**Backup dos dados:** copie a pasta `Roaming\Kaptar\` inteira pra um HD externo de vez em quando.
-Pra migrar de máquina: instale o Kaptar na nova e cole `Roaming\Kaptar\` por cima antes de abrir.
-
----
-
-## Auto-updater
-
-`app-update.yml` → `provider: generic`, `url: https://kaptar.mazzeoia.com.br/app/`, `channel: latest`.
-O app checa esse endereço e troca o `app.asar` sozinho quando sai versão nova
-(os dados em `%APPDATA%\Kaptar` **sobrevivem** ao update; qualquer patch no código do app, não).
-Se a Mazzeo sumir, o update só vai falhar silenciosamente — o app continua rodando na 1.9.2.
-Pra travar de vez numa versão, é só bloquear esse domínio no firewall/hosts.
+**Backup:** copie `Roaming\Kaptar\` inteiro pra HD externo de vez em quando. Migrar de máquina:
+instala o Kaptar na nova, cola `Roaming\Kaptar\` por cima antes de abrir, refaz o patch.
 
 ---
 
-## Como o app funciona (resumo — detalhe no playbook)
+## Não reenviar pro mesmo contato (nativo)
 
-Ver `MEMORY/PLAYBOOKS/kaptar-importar-csv.md` no repo. Pontos que estão **cravados no código**
-(`source/app/main/index.js`) e não dá pra mudar pela interface:
-
-- **Envio WhatsApp:** janela fixa **09:00–18:59**; teto diário `min(200, 20 + dias×20)`
-  (dia 1 = 20, dia 10+ = 200); cadência aleatória 45–120 s; para sozinho após 2 falhas seguidas.
-- **`quantidade` do disparo** = tamanho do lote que entra na fila da campanha, não "envios garantidos".
-- **Automação só roda com o Kaptar aberto** (não é serviço).
-- Enquanto existe campanha `rodando`/`pausada`, a automação **não capta nem dispara**.
-- Google Places: cota 1000/mês no app. Automação `fonte:"local"` não usa cota (gasta token do Claude).
+O Kaptar já garante: antes de cada envio roda `podeEnviarPara(livro, telefone)` que checa
+`numero.json` — se o número está em `naoPerturbe` ou recebeu mensagem nos últimos **90 dias**
+(`CARENCIA_DIAS`), **pula** (não para a campanha). Vale tanto pra campanha manual quanto pra
+fila do autopilot (`filaViva`). O `numero.json` é criado no primeiro envio bem-sucedido.
+Reforço aplicado nos leads: duplicados exatos (mesmo nome + mesma cidade) tiveram o telefone
+zerado — ver `scripts/kaptar-so-celular.mjs`.
 
 ---
 
-## Reproduzir este snapshot no futuro
+## Scripts de manutenção (no repo, em `scripts/`)
 
-```bash
-# do repo, com o Kaptar instalado:
-KDIR="C:/Users/seven/AppData/Local/Programs/Kaptar"
-cp "$KDIR/resources/app.asar" ferramentas/kaptar/app.asar
-npx @electron/asar extract "$KDIR/resources/app.asar" ferramentas/kaptar/_x
-mv ferramentas/kaptar/_x/out ferramentas/kaptar/_x/app
-rm -rf ferramentas/kaptar/source && mv ferramentas/kaptar/_x ferramentas/kaptar/source
-rm -rf ferramentas/kaptar/source/node_modules/@anthropic-ai/claude-agent-sdk-win32-x64  # tira o claude.exe (254 MB)
-tar -a -c -f ferramentas/kaptar/kaptar-full-program-vX.Y.Z.zip -C "C:/Users/seven/AppData/Local/Programs" Kaptar
-```
+| Script | O que faz |
+|---|---|
+| `kaptar-patch-nao-pausar.mjs` | reaplica o patch anti-pausa no `app.asar` (rodar após cada update) |
+| `kaptar-so-celular.mjs` | zera telefone de fixos + duplicados nos `leads.json`, filtra `campanha.json` e a `fila` do autopilot pra só celular |
+| `kaptar-importar-csv.mjs` | importa CSV de leads pro `leads.json` do Kaptar |
+| `prospeccao-kaptar.mjs` | roda o pipeline Places API e joga o resultado no Kaptar |
+
+Ver também `MEMORY/PLAYBOOKS/kaptar-importar-csv.md`.

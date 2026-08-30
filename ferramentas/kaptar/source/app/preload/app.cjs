@@ -42,6 +42,8 @@ const INVOKE = {
   AUT_LISTAR: "automacao:listar",
   AUT_SALVAR: "automacao:salvar",
   AUT_APAGAR: "automacao:apagar",
+  /** Os leads da fila de uma automação — para poder VER para quem ela manda. */
+  AUT_FILA: "automacao:fila",
   AUT_RODAR_AGORA: "automacao:rodarAgora",
   AUT_PROGRESSO: "automacao:progresso",
   /*
@@ -208,6 +210,7 @@ const api = {
   automacao: {
     listar: async () => await electron.ipcRenderer.invoke(INVOKE.AUT_LISTAR, {}),
     salvar: async (a) => await electron.ipcRenderer.invoke(INVOKE.AUT_SALVAR, a),
+    fila: async (id) => await electron.ipcRenderer.invoke(INVOKE.AUT_FILA, { id }),
     apagar: async (id) => await electron.ipcRenderer.invoke(INVOKE.AUT_APAGAR, { id }),
     rodarAgora: async (id, tipo) => await electron.ipcRenderer.invoke(INVOKE.AUT_RODAR_AGORA, {
       id,
