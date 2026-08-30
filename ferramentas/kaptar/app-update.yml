@@ -1,0 +1,4 @@
+provider: generic
+url: https://kaptar.mazzeoia.com.br/app/
+channel: latest
+updaterCacheDirName: kaptar-updater

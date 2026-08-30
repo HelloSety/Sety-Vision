@@ -1,0 +1,13 @@
+# ferramentas/kaptar/ é um ARQUIVO DE CÓDIGO (cópia de continuidade de um app de
+# terceiro). Reverte as regras globais node_modules/ e out/ pra versionar o código.
+!source/
+!source/**
+!node_modules/
+!**/node_modules/
+
+# Binários grandes NÃO vão pro GitHub (limite de 100 MB/arquivo). Ficam só locais —
+# faça backup manual deles em HD externo / nuvem. Ver README.md.
+Kaptar-*-instalador.exe
+kaptar-full-program-*.zip
+_zip.log
+_x/

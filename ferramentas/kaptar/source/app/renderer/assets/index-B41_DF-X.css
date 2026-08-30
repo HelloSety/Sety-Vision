@@ -1,0 +1,4499 @@
+/* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+	background: transparent;
+}
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg {
+	max-width: none !important;
+	max-height: none !important;
+	}
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto;
+	padding: 0;
+	}
+
+.leaflet-container img.leaflet-tile {
+	/* See: https://bugs.chromium.org/p/chromium/issues/detail?id=600120 */
+	mix-blend-mode: plus-lighter;
+}
+
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	/* Fallback for FF which doesn't support pinch-zoom */
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+
+.leaflet-pane         { z-index: 400; }
+
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	behavior: url(#default#VML);
+	display: inline-block;
+	position: absolute;
+	}
+
+
+/* control positioning */
+
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+svg.leaflet-zoom-animated {
+	will-change: transform;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+
+
+/* cursors */
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+
+/* visual tweaks */
+
+.leaflet-container {
+	background: #ddd;
+	outline-offset: 1px;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+
+
+/* general typography */
+.leaflet-container {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	}
+
+
+/* general toolbar styles */
+
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAQAAAADQ4RFAAACf0lEQVR4AY1UM3gkARTePdvdoTxXKc+qTl3aU5U6b2Kbkz3Gtq3Zw6ziLGNPzrYx7946Tr6/ee/XeCQ4D3ykPtL5tHno4n0d/h3+xfuWHGLX81cn7r0iTNzjr7LrlxCqPtkbTQEHeqOrTy4Yyt3VCi/IOB0v7rVC7q45Q3Gr5K6jt+3Gl5nCoDD4MtO+j96Wu8atmhGqcNGHObuf8OM/x3AMx38+4Z2sPqzCxRFK2aF2e5Jol56XTLyggAMTL56XOMoS1W4pOyjUcGGQdZxU6qRh7B9Zp+PfpOFlqt0zyDZckPi1ttmIp03jX8gyJ8a/PG2yutpS/Vol7peZIbZcKBAEEheEIAgFbDkz5H6Zrkm2hVWGiXKiF4Ycw0RWKdtC16Q7qe3X4iOMxruonzegJzWaXFrU9utOSsLUmrc0YjeWYjCW4PDMADElpJSSQ0vQvA1Tm6/JlKnqFs1EGyZiFCqnRZTEJJJiKRYzVYzJck2Rm6P4iH+cmSY0YzimYa8l0EtTODFWhcMIMVqdsI2uiTvKmTisIDHJ3od5GILVhBCarCfVRmo4uTjkhrhzkiBV7SsaqS+TzrzM1qpGGUFt28pIySQHR6h7F6KSwGWm97ay+Z+ZqMcEjEWebE7wxCSQwpkhJqoZA5ivCdZDjJepuJ9IQjGGUmuXJdBFUygxVqVsxFsLMbDe8ZbDYVCGKxs+W080max1hFCarCfV+C1KATwcnvE9gRRuMP2prdbWGowm1KB1y+zwMMENkM755cJ2yPDtqhTI6ED1M/82yIDtC/4j4BijjeObflpO9I9MwXTCsSX8jWAFeHr05WoLTJ5G8IQVS/7vwR6ohirYM7f6HzYpogfS3R2OAAAAAElFTkSuQmCC);
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAQAAABvcdNgAAAEsklEQVR4AWL4TydIhpZK1kpWOlg0w3ZXP6D2soBtG42jeI6ZmQTHzAxiTbSJsYLjO9HhP+WOmcuhciVnmHVQcJnp7DFvScowZorad/+V/fVzMdMT2g9Cv9guXGv/7pYOrXh2U+RRR3dSd9JRx6bIFc/ekqHI29JC6pJ5ZEh1yWkhkbcFeSjxgx3L2m1cb1C7bceyxA+CNjT/Ifff+/kDk2u/w/33/IeCMOSaWZ4glosqT3DNnNZQ7Cs58/3Ce5HL78iZH/vKVIaYlqzfdLu8Vi7dnvUbEza5Idt36tquZFldl6N5Z/POLof0XLK61mZCmJSWjVF9tEjUluu74IUXvgttuVIHE7YxSkaYhJZam7yiM9Pv82JYfl9nptxZaxMJE4YSPty+vF0+Y2up9d3wwijfjZbabqm/3bZ9ecKHsiGmRflnn1MW4pjHf9oLufyn2z3y1D6n8g8TZhxyzipLNPnAUpsOiuWimg52psrTZYnOWYNDTMuWBWa0tJb4rgq1UvmutpaYEbZlwU3CLJm/ayYjHW5/h7xWLn9Hh1vepDkyf7dE7MtT5LR4e7yYpHrkhOUpEfssBLq2pPhAqoSWKUkk7EDqkmK6RrCEzqDjhNDWNE+XSMvkJRDWlZTmCW0l0PHQGRZY5t1L83kT0Y3l2SItk5JAWHl2dCOBm+fPu3fo5/3v61RMCO9Jx2EEYYhb0rmNQMX/vm7gqOEJLcXTGw3CAuRNeyaPWwjR8PRqKQ1PDA/dpv+on9Shox52WFnx0KY8onHayrJzm87i5h9xGw/tfkev0jGsQizqezUKjk12hBMKJ4kbCqGPVNXudyyrShovGw5CgxsRICxF6aRmSjlBnHRzg7Gx8fKqEubI2rahQYdR1YgDIRQO7JvQyD52hoIQx0mxa0ODtW2Iozn1le2iIRdzwWewedyZzewidueOGqlsn1MvcnQpuVwLGG3/IR1hIKxCjelIDZ8ldqWz25jWAsnldEnK0Zxro19TGVb2ffIZEsIO89EIEDvKMPrzmBOQcKQ+rroye6NgRRxqR4U8EAkz0CL6uSGOm6KQCdWjvjRiSP1BPalCRS5iQYiEIvxuBMJEWgzSoHADcVMuN7IuqqTeyUPq22qFimFtxDyBBJEwNyt6TM88blFHao/6tWWhuuOM4SAK4EI4QmFHA+SEyWlp4EQoJ13cYGzMu7yszEIBOm2rVmHUNqwAIQabISNMRstmdhNWcFLsSm+0tjJH1MdRxO5Nx0WDMhCtgD6OKgZeljJqJKc9po8juskR9XN0Y1lZ3mWjLR9JCO1jRDMd0fpYC2VnvjBSEFg7wBENc0R9HFlb0xvF1+TBEpF68d+DHR6IOWVv2BECtxo46hOFUBd/APU57WIoEwJhIi2CdpyZX0m93BZicktMj1AS9dClteUFAUNUIEygRZCtik5zSxI9MubTBH1GOiHsiLJ3OCoSZkILa9PxiN0EbvhsAo8tdAf9Seepd36lGWHmtNANTv5Jd0z4QYyeo/UEJqxKRpg5LZx6btLPsOaEmdMyxYdlc8LMaJnikDlhclqmPiQnTEpLUIZEwkRagjYkEibQErwhkTAKCLQEbUgkzJQWc/0PstHHcfEdQ+UAAAAASUVORK5CYII=);
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	font-size: 13px;
+	font-size: 1.08333em;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+
+/* Default icon URLs */
+.leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAApCAYAAADAk4LOAAAFgUlEQVR4Aa1XA5BjWRTN2oW17d3YaZtr2962HUzbDNpjszW24mRt28p47v7zq/bXZtrp/lWnXr337j3nPCe85NcypgSFdugCpW5YoDAMRaIMqRi6aKq5E3YqDQO3qAwjVWrD8Ncq/RBpykd8oZUb/kaJutow8r1aP9II0WmLKLIsJyv1w/kqw9Ch2MYdB++12Onxee/QMwvf4/Dk/Lfp/i4nxTXtOoQ4pW5Aj7wpici1A9erdAN2OH64x8OSP9j3Ft3b7aWkTg/Fm91siTra0f9on5sQr9INejH6CUUUpavjFNq1B+Oadhxmnfa8RfEmN8VNAsQhPqF55xHkMzz3jSmChWU6f7/XZKNH+9+hBLOHYozuKQPxyMPUKkrX/K0uWnfFaJGS1QPRtZsOPtr3NsW0uyh6NNCOkU3Yz+bXbT3I8G3xE5EXLXtCXbbqwCO9zPQYPRTZ5vIDXD7U+w7rFDEoUUf7ibHIR4y6bLVPXrz8JVZEql13trxwue/uDivd3fkWRbS6/IA2bID4uk0UpF1N8qLlbBlXs4Ee7HLTfV1j54APvODnSfOWBqtKVvjgLKzF5YdEk5ewRkGlK0i33Eofffc7HT56jD7/6U+qH3Cx7SBLNntH5YIPvODnyfIXZYRVDPqgHtLs5ABHD3YzLuespb7t79FY34DjMwrVrcTuwlT55YMPvOBnRrJ4VXTdNnYug5ucHLBjEpt30701A3Ts+HEa73u6dT3FNWwflY86eMHPk+Yu+i6pzUpRrW7SNDg5JHR4KapmM5Wv2E8Tfcb1HoqqHMHU+uWDD7zg54mz5/2BSnizi9T1Dg4QQXLToGNCkb6tb1NU+QAlGr1++eADrzhn/u8Q2YZhQVlZ5+CAOtqfbhmaUCS1ezNFVm2imDbPmPng5wmz+gwh+oHDce0eUtQ6OGDIyR0uUhUsoO3vfDmmgOezH0mZN59x7MBi++WDL1g/eEiU3avlidO671bkLfwbw5XV2P8Pzo0ydy4t2/0eu33xYSOMOD8hTf4CrBtGMSoXfPLchX+J0ruSePw3LZeK0juPJbYzrhkH0io7B3k164hiGvawhOKMLkrQLyVpZg8rHFW7E2uHOL888IBPlNZ1FPzstSJM694fWr6RwpvcJK60+0HCILTBzZLFNdtAzJaohze60T8qBzyh5ZuOg5e7uwQppofEmf2++DYvmySqGBuKaicF1blQjhuHdvCIMvp8whTTfZzI7RldpwtSzL+F1+wkdZ2TBOW2gIF88PBTzD/gpeREAMEbxnJcaJHNHrpzji0gQCS6hdkEeYt9DF/2qPcEC8RM28Hwmr3sdNyht00byAut2k3gufWNtgtOEOFGUwcXWNDbdNbpgBGxEvKkOQsxivJx33iow0Vw5S6SVTrpVq11ysA2Rp7gTfPfktc6zhtXBBC+adRLshf6sG2RfHPZ5EAc4sVZ83yCN00Fk/4kggu40ZTvIEm5g24qtU4KjBrx/BTTH8ifVASAG7gKrnWxJDcU7x8X6Ecczhm3o6YicvsLXWfh3Ch1W0k8x0nXF+0fFxgt4phz8QvypiwCCFKMqXCnqXExjq10beH+UUA7+nG6mdG/Pu0f3LgFcGrl2s0kNNjpmoJ9o4B29CMO8dMT4Q5ox8uitF6fqsrJOr8qnwNbRzv6hSnG5wP+64C7h9lp30hKNtKdWjtdkbuPA19nJ7Tz3zR/ibgARbhb4AlhavcBebmTHcFl2fvYEnW0ox9xMxKBS8btJ+KiEbq9zA4RthQXDhPa0T9TEe69gWupwc6uBUphquXgf+/FrIjweHQS4/pduMe5ERUMHUd9xv8ZR98CxkS4F2n3EUrUZ10EYNw7BWm9x1GiPssi3GgiGRDKWRYZfXlON+dfNbM+GgIwYdwAAAAASUVORK5CYII=);
+	}
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	line-height: 1.4;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+	text-decoration: underline;
+	}
+.leaflet-attribution-flag {
+	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	white-space: nowrap;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px #fff;
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+
+
+/* popup */
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 24px 13px 20px;
+	line-height: 1.3;
+	font-size: 13px;
+	font-size: 1.08333em;
+	min-height: 1px;
+	}
+.leaflet-popup-content p {
+	margin: 17px 0;
+	margin: 1.3em 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	margin: -10px auto 0;
+	pointer-events: auto;
+
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	text-align: center;
+	width: 24px;
+	height: 24px;
+	font: 16px/24px Tahoma, Verdana, sans-serif;
+	color: #757575;
+	text-decoration: none;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+	color: #585858;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	-ms-zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-interactive {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+
+/* Printing */
+
+@media print {
+	/* Prevent printers from removing background-images of controls. */
+	.leaflet-control {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+		}
+	}
+/*
+  ═══════════════════════════ os tokens do Kaptar ═══════════════════════════
+
+  Toda cor do app sai daqui. Hex literal dentro de um componente é erro de
+  revisão — não por gosto, mas porque são DOIS temas: um valor escrito à mão
+  fica certo num e errado no outro, e o defeito só aparece para quem usa o
+  outro.
+
+  ── De onde vem esta paleta ──
+
+  Do Kaptar web, o app que já rodava em produção. Ela é ACROMÁTICA de propósito:
+  a marca é um cinza (`#3a3a3a` no claro, `#d8d8d8` no escuro), e a única cor
+  saturada permanente é o verde do WhatsApp. O motivo é a tela: um mapa cheio de
+  pinos coloridos, cartões com faixa de score em quatro cores e um chip verde de
+  "tem WhatsApp" — se a marca também fosse colorida, ela competiria com a única
+  coisa que a cor precisa comunicar aqui, que é a QUALIDADE DO LEAD.
+
+  ── A escada de fundos ──
+
+  Cinco degraus, do recuado ao elevado:
+
+    --bg-deep    recuo: o buraco onde a imagem do site do lead aparece
+    --bg         a janela
+    --bg-2       painel apoiado na janela
+    --surface    cartão, popover, campo
+    --surface-2  o que flutua sobre o cartão
+
+  ── O tema não usa `prefers-color-scheme` ──
+
+  Quem decide é o processo principal, via `nativeTheme`, e o renderer só escreve
+  `data-theme` no `<html>`. Uma media query aqui duplicaria a tabela e sairia de
+  sincronia no instante em que a pessoa escolhesse um tema à mão.
+*/
+
+/* --------------------------------- fonte ---------------------------------- */
+
+/*
+  Plus Jakarta Sans, variável, servida do disco.
+
+  Não vem do Google Fonts: um app de desktop que busca a própria tipografia na
+  internet abre conexão a cada abertura, entrega o IP de quem usa a um terceiro,
+  e aparece sem fonte quando a máquina está offline. São 49 kB no instalador.
+
+  Dois arquivos e não um: `latin` cobre o português inteiro, e `latin-ext` entra
+  só quando um nome de empresa traz um caractere fora dele — o navegador baixa
+  o segundo apenas se algum glifo do `unicode-range` for pedido.
+*/
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('./PlusJakartaSans-latin-eXO_dkmS.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('./PlusJakartaSans-latin-ext-DmpS2jIq.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ------------------------------- tema claro ------------------------------- */
+
+:root {
+  /* fundos, do recuado ao elevado */
+  --bg-deep: #e6e6e6;
+  --bg: #f5f5f5;
+  --bg-2: #ebebeb;
+  --surface: #ffffff;
+  --surface-2: #f2f2f2;
+
+  --border: #e0e0e0;
+  --border-strong: #c0c0c0;
+
+  --text: #1a1a1a;
+  --text-2: #4a4a4a;
+  --text-muted: #888888;
+
+  /*
+    A marca. Cinza, e é o ponto — ver o cabeçalho.
+
+    `--brand-ink` é o que se escreve EM CIMA de `--brand` quando ele é
+    preenchimento. No claro a marca é escura, então a tinta é clara; no escuro é
+    o contrário. Um valor só para os dois temas daria 1.3:1 num deles.
+  */
+  --brand: #3a3a3a;
+  --brand-600: #2a2a2a;
+  --brand-soft: rgba(58, 58, 58, 0.1);
+  --brand-ink: #ffffff;
+  /* A borda de um bloco ATIVO. Mais presente que `--border`, menos que a marca. */
+  --brand-tile: #b8b8b8;
+
+  /*
+    Vidro: a superfície semitransparente das barras que flutuam sobre o mapa.
+    Só faz sentido com `backdrop-filter` — sem ele vira um cinza sujo.
+  */
+  --glass: rgba(255, 255, 255, 0.7);
+
+  /*
+    ── As duas moedas ──
+
+    O app tem dois modos de busca, e eles custam coisas DIFERENTES: o modo API
+    gasta requisição do Google (dinheiro, na fatura do mês) e o modo local gasta
+    token do Claude (a janela do plano de quem usa). Mostrar os dois com a mesma
+    cor faria a pessoa achar que estão trocando seis por meia dúzia.
+
+    Azul é o que NÃO cobra nada em dinheiro; laranja é o que gasta token. As
+    duas ficam longe da marca acromática de propósito — aqui a cor precisa
+    significar custo, e nada mais.
+  */
+  --livre-tinta: #1c5e94;
+  --livre-borda: #6aa6d4;
+  --livre-fundo: #e9f2f9;
+  --ia-tinta: #a8560c;
+  --ia-borda: #e0904a;
+  --ia-fundo: #fdf0e4;
+
+  /*
+    A faixa de score do cartão do lead.
+
+    Verde é o lead ruim para vender (site bom, ele não precisa de nós) e
+    vermelho é o melhor (sem presença nenhuma). A inversão é da regra de
+    negócio, não da paleta — ver `LeadView.score` em `shared/api.ts`.
+  */
+  --faixa-verde: #16a34a;
+  --faixa-amarelo: #9a7b12;
+  --faixa-laranja: #b4600d;
+  --faixa-vermelho: #b3122e;
+
+  /* WhatsApp. A única cor de marca de terceiro, e a única saturada permanente. */
+  --wpp: #16a34a;
+  /* O tom de pressionado do botao verde. */
+  --wpp-forte: #12833c;
+  --wpp-borda: rgba(22, 163, 74, 0.4);
+  --wpp-fundo: rgba(22, 163, 74, 0.1);
+  --wpp-sobre: #ffffff;
+
+  /* Destrutivo. Longe do verde do WhatsApp em MATIZ, não só em luminância. */
+  --del: #b3122e;
+
+  /* O anel branco do pin no mapa: ele precisa se destacar da imagem do mapa. */
+  --mapa-anel: #ffffff;
+
+  --sombra-baixa: 0 1px 3px rgba(0, 0, 0, 0.07);
+  --sombra-alta: 0 4px 16px rgba(0, 0, 0, 0.09);
+}
+
+/* ------------------------------ tema escuro ------------------------------- */
+
+:root[data-theme='dark'] {
+  --bg-deep: #080808;
+  --bg: #0d0d0d;
+  --bg-2: #121212;
+  --surface: #1c1c1c;
+  --surface-2: #282828;
+
+  --border: #383838;
+  --border-strong: #4a4a4a;
+
+  --text: #ffffff;
+  --text-2: #d0d0d0;
+  --text-muted: #909090;
+
+  --brand: #d8d8d8;
+  --brand-600: #bcbcbc;
+  --brand-soft: rgba(216, 216, 216, 0.13);
+  --brand-ink: #121212;
+  --brand-tile: #565656;
+
+  --glass: rgba(255, 255, 255, 0.05);
+
+  --livre-tinta: #79bdf0;
+  --livre-borda: #3d7ba8;
+  --livre-fundo: rgba(121, 189, 240, 0.1);
+  --ia-tinta: #f0a45e;
+  --ia-borda: #b8712f;
+  --ia-fundo: rgba(240, 164, 94, 0.11);
+
+  --faixa-verde: #5fd08a;
+  --faixa-amarelo: #e8c657;
+  --faixa-laranja: #f0a45e;
+  --faixa-vermelho: #f08095;
+
+  --wpp: #25d166;
+  --wpp-forte: #1aad54;
+  --wpp-borda: rgba(37, 209, 102, 0.4);
+  --wpp-fundo: rgba(37, 209, 102, 0.1);
+  --wpp-sobre: #0d0d0d;
+
+  --del: #ff7a90;
+
+  --mapa-anel: #ffffff;
+
+  --sombra-baixa: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --sombra-alta: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* --------------------- o que não muda com o tema -------------------------- */
+
+:root {
+  --sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace;
+
+  /*
+    A escala tipográfica. Quatro tamanhos, e nenhum a mais.
+
+    A tela é densa — duzentos leads em cartões — e cada tamanho novo é uma
+    hierarquia nova para o olho resolver. `rotulo` é o que rotula um número;
+    `meta` é o dado secundário; `corpo` é o texto; `titulo` é o nome da empresa.
+  */
+  --t-rotulo: 10.5px;
+  --t-meta: 11.5px;
+  --t-corpo: 13px;
+  --t-titulo: 15px;
+
+  --r-sm: 6px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-card: 14px;
+  --r-pill: 9999px;
+
+  --dur-fast: 0.1s;
+  --dur: 0.18s;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* O respiro lateral da tela. Um número só, para as colunas alinharem. */
+  --recuo-tela: 28px;
+}
+
+/*
+  Quem pediu menos movimento recebe menos movimento.
+
+  Não é acessibilidade decorativa: a tela tem um radar que pulsa no mapa durante
+  a varredura e uma barra que anda por horas na campanha. Para quem tem
+  sensibilidade vestibular isso é o oposto de útil.
+*/
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0s;
+    --dur: 0s;
+  }
+}
+/*
+  ══════════════════════════════ a base ═════════════════════════════════════
+
+  O casco do app e os controles que toda tela usa. Abaixo desta seção vem o
+  Scrapper, que é o app inteiro — este arquivo é só o que ele se apoia.
+
+  Toda cor sai de `tokens.css`. Hex literal aqui é erro de revisão.
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: var(--t-corpo);
+  line-height: 1.45;
+  /*
+    A janela do app não rola. Quem rola é a lista de leads, dentro dela — e é
+    por isso que o mapa e a barra de busca podem ficar fixos no lugar enquanto
+    duzentos cartões passam.
+  */
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  Texto não é selecionável por padrão, e isto é decisão de app, não de página.
+
+  Arrastar para marcar uma área no mapa selecionava o rótulo do pin junto, e a
+  seleção azul ficava presa em cima do desenho. Onde ler e copiar importa —
+  telefone, mensagem escrita, laudo do site — a regra é reaberta pontualmente.
+*/
+#root {
+  user-select: none;
+}
+
+input,
+textarea,
+.selecionavel {
+  user-select: text;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/*
+  Os controles NATIVOS herdam a marca.
+
+  Caixa de seleção e barra deslizante são desenhadas pelo sistema, e o padrão do
+  Chromium é um azul que não existe em lugar nenhum desta paleta. Numa tela
+  acromática ele aparece como se fosse significado — e o azul aqui JÁ tem
+  significado: é o modo que não gasta token (`--livre-tinta`). Duas coisas
+  diferentes na mesma cor é pior que nenhuma cor.
+*/
+input[type='checkbox'],
+input[type='radio'],
+input[type='range'] {
+  accent-color: var(--brand);
+}
+
+/*
+  A barra de rolagem, no tema do app.
+
+  O padrão do Chromium é uma faixa clara e larga, e ela aparece agora em toda
+  tela que rola — desenhada em cima de um app escuro, é a coisa mais clara da
+  interface, competindo com o conteúdo.
+
+  `scrollbar-color` é o caminho padronizado e resolve Firefox e Chromium novos;
+  o `::-webkit-scrollbar` abaixo é o que o Electron de fato usa, e permite
+  afinar a largura. Os dois lêem os mesmos tokens, então o tema claro vem de
+  graça.
+*/
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: var(--r-pill);
+  background: var(--border-strong);
+  /* A borda transparente afina o polegar sem estreitar a área de clique. */
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+  background-clip: content-box;
+}
+
+/* O canto onde as duas barras se encontram, que fica branco por padrão. */
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* --------------------------------- casco ---------------------------------- */
+
+.casco {
+  display: grid;
+  /*
+    `minmax(0, 1fr)`, e nunca `1fr`.
+
+    Uma faixa `1fr` de grid tem `min-height: auto`: ela NÃO encolhe abaixo do
+    conteúdo. Com `1fr`, a `.tela` crescia além da janela, o `overflow: hidden`
+    do `body` cortava o excedente, e nada rolava em lugar nenhum do app — nem
+    numa aba, nem num popover. O `minmax(0, …)` é o que dá um teto para os
+    `overflow: auto` lá dentro terem contra o que medir.
+  */
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100%;
+}
+
+.topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 46px;
+  padding: 0 var(--recuo-tela);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-2);
+}
+
+/*
+  A marca: o logotipo, e não o nome escrito.
+
+  Duas imagens e não uma com filtro: o logotipo do Kaptar tem duas versões
+  desenhadas, e inverter a clara por CSS deixaria o miolo dela errado.
+*/
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/*
+  A PALAVRA, e não o logotipo empilhado.
+
+  O arquivo original é um quadrado com o cervo em cima e a palavra embaixo. A
+  20 px de altura numa barra, a forma empilhada vira um borrão: o cervo some e
+  a palavra fica ilegível. `scripts/recortar-marca.mjs` separa as duas partes —
+  a barra usa a palavra deitada, a tela de entrada usa o selo inteiro.
+*/
+.marca img {
+  height: 17px;
+  width: auto;
+  /*
+    A arte é preta ou branca chapada, sem meio-tom. Numa barra de 46 px isso
+    grita mais que o resto da interface, que é toda cinza médio; um pouco de
+    transparência a põe no mesmo peso das outras coisas sem apagá-la.
+  */
+  opacity: 0.9;
+}
+
+.topo-espaco {
+  flex: 1;
+}
+
+/*
+  A conta do Claude, no topo.
+
+  Fica visível o tempo todo de propósito: cada busca no modo local e cada
+  mensagem redigida gasta a janela do plano DESTA conta, e quem tem mais de uma
+  precisa saber qual está pagando antes de rodar duzentos leads.
+*/
+/* O chip "novidades" — sempre no topo, a mesma pílula do chip da conta. */
+.novidades-chip {
+  display: flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: var(--t-meta);
+  cursor: pointer;
+}
+
+.novidades-chip:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.conta-chip {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: var(--t-meta);
+  cursor: pointer;
+}
+
+.conta-chip:hover {
+  border-color: var(--border-strong);
+}
+
+.conta-ponto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--wpp);
+}
+
+.conta-chip[data-conectado='false'] .conta-ponto {
+  background: var(--faixa-laranja);
+}
+
+/* ----------------------- conectar o Claude -------------------------------- */
+
+/*
+  O chip que vira convite.
+
+  Ele ocupa exatamente o lugar do chip "local (o Claude le o mapa)", que antes
+  ficava cinza e desabilitado ali. Laranja porque no vocabulario do app laranja
+  e "isto envolve o Claude, e o Claude custa token" — a mesma cor do chip do
+  modo local quando ele esta ligado. A continuidade e o ponto: quem conecta ve o
+  botao virar o chip, no mesmo lugar, na mesma cor.
+*/
+.conectar {
+  position: relative;
+  display: inline-block;
+}
+
+.conectar-chip {
+  border-color: var(--ia-borda);
+  background: var(--ia-fundo);
+  color: var(--ia-tinta);
+  font-weight: 600;
+}
+
+.conectar-chip:hover:not(:disabled),
+.conectar-chip.is-aberto {
+  border-color: var(--ia-tinta);
+}
+
+/*
+  O painel.
+
+  `position: absolute` sobre a barra de busca, e nao um modal: o que ele pede e
+  pequeno, e escurecer a tela inteira para pedir um login faria parecer que o
+  app parou de funcionar sem ele — quando o modo API continua inteiro.
+
+  `z-index: 25` fica abaixo da previa do lead (30) e do overlay (40), e acima da
+  barra. Uma `WebContentsView` ignoraria isto, mas nenhuma se sobrepoe a esta
+  area: o mapa do modo local so aparece DEPOIS de haver conta.
+*/
+.conectar-painel {
+  position: absolute;
+  /*
+    Abre para CIMA.
+
+    O chip vive na barra de busca, que é o painel do RODAPÉ da tela. Abrindo
+    para baixo, o painel saía pela borda da janela e o campo da chave de API —
+    a metade de baixo do conteúdo — ficava inalcançável. Medido num print: o
+    rótulo "CHAVE DE API" era a última coisa visível.
+
+    Para cima há a altura do mapa inteiro de folga.
+  */
+  bottom: calc(100% + 8px);
+  left: 0;
+  z-index: 25;
+  width: 340px;
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  /*
+    Numa janela baixa o painel não cabe nem para cima. Com teto ele rola por
+    dentro; sem teto, a metade de baixo — o campo da chave — some da tela.
+  */
+  max-height: min(420px, calc(100vh - 120px));
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+  box-shadow: var(--sombra-alta);
+  animation: conectar-entra var(--dur) var(--ease-out);
+}
+
+@keyframes conectar-entra {
+  from {
+    opacity: 0;
+    /* Sobe ao aparecer, na direção em que ele abre. */
+    transform: translateY(4px);
+  }
+}
+
+.conectar-intro {
+  margin: 0;
+  font-size: var(--t-meta);
+  color: var(--text-2);
+  line-height: 1.5;
+}
+
+.conectar-principal {
+  width: 100%;
+}
+
+.conectar-nota {
+  margin: 0;
+  font-size: var(--t-rotulo);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.conectar-nota code {
+  font-family: var(--mono);
+  font-size: 0.95em;
+  color: var(--text-2);
+}
+
+/* O "ou" entre os dois caminhos, com a linha atravessando. */
+.conectar-ou {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2px 0;
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+}
+
+.conectar-ou::before,
+.conectar-ou::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.conectar-linha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* ------------------------- a versao nova ---------------------------------- */
+
+/*
+  Um chip na barra, ao lado da conta.
+
+  Nada aqui e urgente: uma campanha roda por horas, e uma caixa no meio da tela
+  dizendo "atualize agora" em cima de uma fila de duzentos leads e interrupcao
+  pura. Discreto de proposito — e some sozinho quando nao ha o que dizer.
+*/
+.atz {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--ia-borda);
+  border-radius: var(--r-pill);
+  background: var(--ia-fundo);
+  color: var(--ia-tinta);
+  font-size: var(--t-meta);
+  white-space: nowrap;
+}
+
+/*
+  Laranja, e nao verde: baixar 150 MB GASTA — a conexao de quem usa. E a mesma
+  cor que o app ja usa para "isto tem custo", em `tokens.css`.
+*/
+.atz-botao {
+  cursor: pointer;
+  font-family: var(--sans);
+}
+
+.atz-botao:hover {
+  border-color: var(--ia-tinta);
+}
+
+.atz[data-fase='pronta'] {
+  border-color: var(--wpp-borda);
+  background: var(--wpp-fundo);
+  color: var(--wpp);
+}
+
+.atz-barra {
+  display: block;
+  width: 72px;
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: var(--border);
+  overflow: hidden;
+}
+
+.atz-barra-cheia {
+  display: block;
+  height: 100%;
+  background: var(--ia-tinta);
+  transition: width var(--dur) var(--ease-out);
+}
+
+.tela {
+  position: relative;
+  /* Pelo mesmo motivo do `minmax` acima: sem isto o filho ignora o teto. */
+  min-height: 0;
+  overflow: hidden;
+}
+
+/*
+  O invólucro do Scrapper, que o App esconde ao abrir os ajustes.
+
+  Era um `style={{ height: '100%' }}` inline. Virou classe porque precisava de
+  `min-height: 0` junto — e regra de layout que decide se o app rola não deve
+  morar espalhada no JSX.
+*/
+.tela-conteudo {
+  height: 100%;
+  min-height: 0;
+}
+
+/* ------------------------------- controles -------------------------------- */
+
+.btn {
+  height: 30px;
+  padding: 0 14px;
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: var(--t-corpo);
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  /*
+    Um botão nunca encolhe abaixo do próprio rótulo. `white-space: nowrap`
+    sozinho não segura: num flex, o item só recusa encolher por causa do
+    `min-width: auto`, que `overflow: hidden` desliga.
+  */
+  flex-shrink: 0;
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover:not(:disabled) {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: var(--brand-ink);
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: var(--brand-600);
+  border-color: var(--brand-600);
+}
+
+.btn.danger {
+  border-color: var(--del);
+  color: var(--del);
+  background: transparent;
+}
+
+.btn.is-on {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+/*
+  O botão pequeno que parece link.
+
+  Existe para a ação que NÃO deve competir com o botão principal ao lado —
+  "refazer a análise" ao lado de "escrever a mensagem". Um segundo botão cheio
+  ali fazia as duas parecerem igualmente importantes, e elas não são.
+*/
+.link-mini {
+  border: 0;
+  background: none;
+  padding: 0;
+  color: var(--text-muted);
+  font-size: var(--t-meta);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.link-mini:hover {
+  color: var(--text);
+}
+
+.campo {
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: var(--t-corpo);
+}
+
+textarea.campo {
+  height: auto;
+  padding: 8px 10px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.campo:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+
+.campo::placeholder {
+  color: var(--text-muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  height: 26px;
+  padding: 0 11px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-2);
+  font-family: var(--sans);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--border-strong);
+}
+
+.chip.is-on {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+  color: var(--text);
+}
+
+/*
+  As duas moedas, nos chips.
+
+  `is-livre` é o que não cobra em dinheiro; `is-ia` é o que gasta token. A cor
+  declara o custo ANTES do clique — ver a seção "as duas moedas" em
+  `tokens.css`.
+*/
+.chip.is-on.is-livre {
+  border-color: var(--livre-borda);
+  background: var(--livre-fundo);
+  color: var(--livre-tinta);
+}
+
+.chip.is-on.is-ia {
+  border-color: var(--ia-borda);
+  background: var(--ia-fundo);
+  color: var(--ia-tinta);
+}
+
+.rotulo {
+  font-size: var(--t-rotulo);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.hint {
+  font-size: var(--t-meta);
+  color: var(--text-muted);
+}
+
+.nota {
+  font-size: var(--t-meta);
+  color: var(--text-2);
+  margin: 0;
+}
+
+.painel-titulo {
+  margin: 0;
+  font-size: var(--t-titulo);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.painel-sub {
+  margin: 3px 0 0;
+  font-size: 12px;
+  color: var(--text-2);
+  max-width: 70ch;
+}
+
+/* --------------------------------- modal ---------------------------------- */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 24px;
+}
+
+.modal-largo {
+  position: relative;
+  width: min(940px, 100%);
+  max-height: 88vh;
+  overflow: auto;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  box-shadow: var(--sombra-alta);
+}
+
+/* O vazio de uma lista. Frase, nunca só um traço — ver `avisos.ts`. */
+.mer-vazio {
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: var(--t-meta);
+}
+
+.mer-vazio-titulo {
+  color: var(--text-2);
+  font-size: var(--t-corpo);
+  font-weight: 600;
+}
+
+/* -------------------------------- avisos ---------------------------------- */
+
+/*
+  A resposta visível a uma ação.
+
+  Empilham no canto e somem sozinhos. O teto de quatro está em `avisos.ts`: uma
+  pilha sem limite vira uma parede que tapa a tela que ela deveria comentar.
+*/
+.avisos {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 60;
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+  pointer-events: none;
+}
+
+.aviso {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 380px;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--text-muted);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  box-shadow: var(--sombra-alta);
+  color: var(--text);
+  font-size: var(--t-meta);
+  pointer-events: auto;
+  animation: aviso-entra var(--dur) var(--ease-out);
+}
+
+.aviso[data-tom='ok'] {
+  border-left-color: var(--wpp);
+}
+
+.aviso[data-tom='erro'] {
+  border-left-color: var(--del);
+}
+
+.aviso[data-tom='trabalho'] {
+  border-left-color: var(--ia-tinta);
+}
+
+@keyframes aviso-entra {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+/* ------------------------------ a entrada --------------------------------- */
+
+/*
+  A tela de conectar o Claude.
+
+  Ela distingue TRÊS estados, e a distinção é a razão de ela existir: "o Claude
+  Code não está instalado", "está instalado mas ninguém entrou" e "pronto". A
+  versão que dizia só "não encontramos o Claude nesta máquina" era verdadeira e
+  um beco sem saída — quem tinha instalado alguma coisa da Anthropic ficava
+  olhando para a mesma frase sem saber o que mais fazer.
+*/
+.entrada {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  padding: 32px;
+  background: var(--bg);
+}
+
+.entrada-caixa {
+  width: min(520px, 100%);
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+
+/* O selo inteiro — aqui há espaço para o cervo aparecer. */
+.entrada-marca {
+  height: 84px;
+  width: auto;
+  justify-self: start;
+}
+
+.entrada h1 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.entrada p {
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--t-corpo);
+}
+
+.entrada-passos {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--bg-2);
+  font-size: var(--t-meta);
+  color: var(--text-2);
+}
+
+.entrada-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+/* O caminho alternativo: chave de API. Recolhido, porque é a exceção. */
+.entrada-alternativa {
+  display: grid;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.entrada-alternativa .campo {
+  width: 100%;
+}
+
+/* ------------------------------- ajustes ---------------------------------- */
+
+/*
+  Os ajustes são filhos diretos da `.tela`, e não passam pelo `.scr-painel`.
+  Então a rolagem é deles.
+*/
+.ajustes {
+  display: grid;
+  gap: 22px;
+  align-content: start;
+  padding: 24px;
+  width: min(620px, 100%);
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.ajustes-secao {
+  display: grid;
+  gap: 10px;
+}
+
+.ajustes-linha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ajustes-linha .campo {
+  flex: 1;
+  min-width: 220px;
+}
+
+/* ══════════════════════════ Scrapper ══════════════════════════════════════ */
+
+
+/*
+  A captação, trazida do Kaptar.
+
+  O Kaptar mostrava tudo de uma vez: mapa, vinte grupos de nicho abertos, três
+  cartões de filtro e o medidor de cota, tudo na mesma dobra. Aqui a tela tem
+  uma coisa por vez — mapa em cima, uma barra de decisões embaixo, e os nichos
+  num painel que só abre quando alguém vai escolher.
+*/
+/*
+  A CALHA de 26px.
+
+  Sem ela o Scrapper era a única aba do app colada nas duas bordas do palco: o
+  mapa encostava no menu lateral à esquerda e a lista de leads passava por baixo
+  da barra de rolagem à direita. Medido: `.scr` nascia em x=214 (a borda exata
+  da área de rolagem) e terminava em 1470 numa área que vai até 1480.
+
+  Não é um valor escolhido aqui — é o mesmo de `.palco-barra`, de `.meus-sites`
+  e do cabeçalho de aba. Uma aba com calha própria seria uma aba desalinhada de
+  todas as outras.
+*/
+.scr {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  /*
+    A altura vem toda daqui para baixo. O padding lateral saiu para o painel:
+    com ele aqui, a barra de rolagem do conteúdo nasceria dentro da margem, a
+    dois centímetros da borda da janela.
+  */
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  /*
+    O mesmo respiro dos dois lados da faixa de abas.
+
+    Abaixo dela o vão é o `gap` de 16px; acima era ZERO, e a faixa nascia colada
+    na borda do cabeçalho — dava a impressão de que ela pertencia à barra, e não
+    ao conteúdo. Os dois números são o mesmo de propósito: se um mudar, o outro
+    muda junto.
+  */
+  padding: 16px 0 0;
+}
+
+/*
+  O painel de conteúdo — o único que rola.
+
+  `min-height: 0` é o par obrigatório de `flex: 1`: sem ele o item de flex
+  também se recusa a encolher abaixo do conteúdo, e o `overflow-y` nunca dispara.
+*/
+.scr-painel {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 var(--recuo-tela) 16px;
+}
+
+/*
+  A aba do WhatsApp NÃO rola.
+
+  A `WebContentsView` é posicionada por medida do palco e flutua sobre a página
+  — ela não acompanha rolagem. Rolar aqui deixaria a view parada enquanto o HTML
+  sobe, desenhada por cima do que ficou no lugar dela. O conteúdo daquela aba
+  preenche a altura em vez de transbordar.
+*/
+.scr-painel[data-aba='whatsapp'] {
+  overflow: hidden;
+}
+
+/* A faixa de abas fica no recuo da tela; o painel tem o dele. */
+.scr-abas {
+  margin: 0 var(--recuo-tela);
+}
+
+.scr-abas {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  width: fit-content;
+  max-width: 100%;
+  /* A faixa nunca empurra a largura da tela: em janela estreita ela rola. */
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.scr-aba {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  padding: 7px 18px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: var(--t-meta);
+  cursor: pointer;
+  transition: color 0.16s ease, background 0.16s ease;
+}
+
+.scr-aba:hover { color: var(--text); }
+.scr-aba.is-on { background: var(--glass); color: var(--text); }
+
+.scr-aba-n {
+  font-size: var(--t-rotulo);
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------- AS DUAS MOEDAS: laranja e azul ---------------------- */
+
+/*
+  A cor é a moeda, e é a única forma de saber olhando.
+
+  O Scrapper gasta em duas coisas que não se convertem uma na outra:
+  requisição da API do Google, que tem cota mensal e vira fatura em dólar, e
+  token do Claude, que sai da janela da assinatura.
+
+  LARANJA = gasta token. AZUL = não gasta nada.
+
+  Só valem LIGADAS (`.is-on`): um chip desligado é uma opção, não um custo, e
+  pintar a barra inteira de laranja e azul apagada faria a cor deixar de
+  significar. E o preenchimento é `color-mix` sobre a superfície em vez de cor
+  chapada — o mesmo par de tokens serve aos dois temas sem virar bloco no
+  escuro.
+*/
+.chip.is-on.is-livre {
+  border-color: var(--livre-borda);
+  background: var(--livre-fundo);
+  color: var(--livre-tinta);
+}
+
+.chip.is-on.is-ia {
+  border-color: var(--ia-borda);
+  background: var(--ia-fundo);
+  color: var(--ia-tinta);
+}
+
+/*
+  Na barra do Scrapper, TODO chip ligado declara a moeda dele.
+
+  Sem esta regra o "60 por área" ficava terracota — o acento da MARCA — bem ao
+  lado de chips laranja que significam "isto gasta token". Duas laranjas
+  parecidas na mesma linha, uma querendo dizer "selecionado" e a outra "custa",
+  e a cor deixa de significar qualquer coisa.
+
+  O que não tem classe de moeda é decisão que não custa nada. Logo, azul.
+*/
+.scr-barra-busca .chip.is-on:not(.is-ia) {
+  border-color: var(--livre-borda);
+  background: var(--livre-fundo);
+  color: var(--livre-tinta);
+}
+
+/* --------------------------- o custo, antes de ir ------------------------- */
+
+.scr-custo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+  padding: 11px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+
+/* Uma busca que gasta token se declara pela borda, sem precisar de aviso. */
+.scr-custo.is-ia { border-color: var(--ia-borda); }
+
+.scr-custo-item {
+  display: grid;
+  gap: 1px;
+  min-width: 0;
+}
+
+.scr-custo-n {
+  font-size: var(--t-titulo);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.scr-custo-rot {
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+}
+
+.scr-custo-item.is-ia .scr-custo-n { color: var(--ia-tinta); }
+.scr-custo-item.is-livre .scr-custo-n { color: var(--livre-tinta); }
+.scr-custo-item.is-alerta .scr-custo-n { color: var(--del); }
+.scr-custo-item.is-alerta .scr-custo-rot { color: var(--del); }
+
+/*
+  Dois papéis, duas classes — mesmo visual.
+
+  A legenda dos três estados usava `.scr-sem-ia`, que quer dizer "você não tem
+  Claude". Emprestar a classe pelo estilo fazia a legenda responder a uma busca
+  por "quem avisa que falta o Claude", e o nome mentia sobre o que aquele texto é.
+*/
+.scr-sem-ia,
+.scr-legenda { color: var(--text-2); text-transform: none; letter-spacing: 0; }
+
+/* ------------------------------- o mapa ---------------------------------- */
+
+/*
+  A moldura existe para os DOIS mapas ocuparem o mesmo lugar.
+
+  No modo local o Google Maps de verdade aparece aqui dentro, numa view do
+  Chromium que flutua sobre a página e não sabe nada de layout: ela precisa de
+  um retângulo, e este é o retângulo. Sem uma moldura própria o retângulo teria
+  que ser medido no `.scr-mapa`, que muda de altura — e a view ficaria meio
+  quadro deslocada.
+*/
+.scr-moldura {
+  position: relative;
+  min-width: 0;
+}
+
+/*
+  O aviso fica ACIMA da view, nunca sobre ela.
+
+  `WebContentsView` ignora `z-index` e come clique: um rótulo bonito por cima do
+  mapa do Google seria invisível de qualquer jeito.
+*/
+.scr-aviso-view {
+  margin: 0 0 8px;
+  font-size: var(--t-meta);
+  color: var(--ia-tinta);
+}
+
+/*
+  `isolation: isolate` não é enfeite — sem ele o MAPA COBRE OS MODAIS.
+
+  O Leaflet dá `z-index: 400` aos panes dele e até 1000 aos controles. Num
+  elemento que não abre contexto de empilhamento próprio, esses números
+  competem com os do app no contexto RAIZ — e o `.overlay` dos modais vale 40.
+  Resultado relatado: abrir "o que procurar" desenhava o mapa atravessado por
+  cima do painel de nichos, no meio da tela.
+
+  Com o isolamento, todo z-index do Leaflet passa a ser interno a este
+  elemento, que vale 0 — abaixo de qualquer modal, como tem que ser.
+*/
+.scr-mapa {
+  position: relative;
+  isolation: isolate;
+  z-index: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  overflow: hidden;
+  background: var(--bg-deep);
+}
+
+/*
+  A ALTURA é o que decide o enquadramento, não o zoom.
+
+  380px fixos faziam do mapa uma faixa de 3,5:1 num monitor grande — e num
+  quadro assim o Brasil só cabe pela altura, sobrando 232° de longitude para os
+  lados. Era por isso que a ferramenta abria mostrando a África: não era o zoom
+  errado, era o quadro achatado.
+
+  A conta, para quem for mexer: o Brasil ocupa ~11,5% da altura do mundo em
+  Mercator, então o zoom que o enquadra é `log2(altura / 29,4)`. Com 380px dá
+  zoom 3 (232° de largura visível); com 620px dá zoom 4 (116°). Daí o `clamp`:
+  acompanha a janela, com piso para caber em notebook e teto para não engolir a
+  barra de decisões que fica logo abaixo.
+*/
+.scr-mapa-tela {
+  height: clamp(380px, 52vh, 620px);
+  width: 100%;
+  /* O Leaflet mede o contêiner: sem fundo declarado, a área sem tile fica
+     transparente e o que aparece é o que estiver atrás da tela. */
+  background: var(--bg);
+}
+
+.scr-mapa-dica,
+.scr-mapa-credito {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg-deep) 82%, transparent);
+  color: var(--text-muted);
+  font-size: var(--t-meta);
+  pointer-events: none;
+  /* Acima dos controles do Leaflet, que ficam em 1000. */
+  z-index: 1001;
+}
+
+.scr-mapa-dica { top: 14px; }
+
+.scr-mapa-credito {
+  bottom: 8px;
+  font-size: var(--t-rotulo);
+  color: var(--text-2);
+}
+
+/*
+  O pin: um ponto com uma onda saindo dele.
+
+  A onda é constante — o pin sempre pulsa —, e é o que faz uma marca de dezoito
+  pixels ser encontrada num mapa cheio de ruas. Quem diz o estado da BUSCA é o
+  círculo do raio, não o pin.
+*/
+.scr-pin {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.scr-pin-ponto {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--brand-soft);
+  /* Anel claro, e não sombra: o design system não tem sombra projetada fora
+     dos tokens de vidro, e o que o pin precisa é de SEPARAÇÃO do mapa. Branco
+     por fora funciona sobre qualquer cor de rua; escuro sumia no asfalto. */
+  border: 2px solid var(--brand-ink);
+  outline: 2px solid var(--mapa-anel);
+}
+
+.scr-pin-onda {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border-radius: 50%;
+  border: 2px solid var(--brand-soft);
+  animation: scrPin 1.8s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes scrPin {
+  0% { opacity: 0.7; transform: scale(0.7); }
+  100% { opacity: 0; transform: scale(2.9); }
+}
+
+/*
+  O radar: o círculo do raio pulsando enquanto aquele pin é varrido.
+
+  `fill-opacity` e `stroke-opacity`, e não `opacity`, porque o alvo é um
+  elemento SVG do Leaflet — animar a opacidade inteira apagaria a borda junto e
+  o efeito viraria um piscar, não uma varredura.
+*/
+.scr-radar { animation: scrRadar 1.3s ease-in-out infinite; }
+
+@keyframes scrRadar {
+  0%, 100% { fill-opacity: 0.08; stroke-opacity: 0.55; }
+  50% { fill-opacity: 0.3; stroke-opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scr-pin-onda, .scr-radar { animation: none; }
+}
+
+/* ------------------------------- as áreas -------------------------------- */
+
+.scr-areas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.scr-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: var(--t-meta);
+}
+
+.scr-area-nome { color: var(--text); }
+
+.scr-raio {
+  width: 110px;
+  accent-color: var(--brand-soft);
+}
+
+.scr-area-km {
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  min-width: 44px;
+}
+
+/* --------------------------- a barra de decisões -------------------------- */
+
+.scr-barra-busca {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+
+.scr-campo {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+
+/*
+  Os campos de IA são CINCO chips e não cabem no fim de uma linha com outros
+  quatro campos. `flex-basis: 100%` os põe numa faixa própria, sem virar um
+  segundo cartão: continuam dentro da mesma barra de decisões.
+*/
+.scr-campo-largo { flex: 1 1 100%; }
+
+.scr-nichos-btn { justify-self: start; }
+
+/* Empurrado para a direita: é a última decisão, e a única que age. */
+/* ------------------------- o botão dividido do procurar -------------------- */
+
+/*
+  O padrão do publicar do Edev: UMA casca com a cor, duas metades por cima — a
+  ação e a engrenagem das opções. O fio divisório é encolhido das bordas de
+  propósito: altura cheia partiria a pílula em dois botões separados, que é
+  justamente o que este controle não é. O hover é um véu de `currentColor`
+  sobre a metade que responderia, não troca de token.
+*/
+.scr-split {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  flex-shrink: 0;
+  margin-left: auto;
+  align-self: center;
+  height: 30px;
+  border: 1px solid var(--brand);
+  border-radius: var(--r-md);
+  background: var(--brand);
+  color: var(--brand-ink);
+}
+
+.scr-split-acao,
+.scr-split-config {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: inherit;
+  color: inherit;
+  font-family: var(--sans);
+  font-size: var(--t-corpo);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.scr-split-acao {
+  /* Trava de largura: "procurando…" é mais longo que "procurar", e sem piso a
+     barra inteira escorrega a cada clique. */
+  min-width: 106px;
+  padding: 0 12px;
+  border-radius: var(--r-md) 0 0 var(--r-md);
+}
+
+.scr-split-config {
+  width: 26px;
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+
+.scr-split-config::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: currentColor;
+  opacity: 0.5;
+}
+
+.scr-split-acao::after,
+.scr-split-config::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.scr-split-acao:hover:not(:disabled)::after,
+.scr-split-config:hover::after,
+.scr-split[data-aberto='true'] .scr-split-config::after {
+  opacity: 0.14;
+}
+
+.scr-split-acao:active:not(:disabled)::after,
+.scr-split-config:active::after {
+  opacity: 0.24;
+}
+
+/* Sem nicho ou sem pin: apaga a AÇÃO, não a casca — a engrenagem continua
+   viva, e mexer nas opções é exatamente o que se faz antes de poder buscar. */
+.scr-split-acao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/*
+  O pop-over abre para BAIXO: a barra fica abaixo do mapa, e para cima ele
+  entraria na área da WebContentsView do Google — que ignora `z-index` e
+  desenharia por cima dele.
+*/
+.scr-split-pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 300px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-2, 0 8px 24px rgba(0, 0, 0, 0.14));
+  text-align: left;
+  cursor: default;
+}
+
+.scr-split-opcao {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: var(--t-meta);
+  cursor: pointer;
+}
+
+.scr-split-opcao input { accent-color: var(--brand); }
+
+.scr-split-nota {
+  display: block;
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+}
+
+/* ------------------------------ chave e cota ------------------------------ */
+
+.scr-chave {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+
+.scr-chave-texto {
+  display: grid;
+  gap: 3px;
+  flex: 1 1 340px;
+  min-width: 0;
+}
+
+.scr-chave-texto strong {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.scr-chave-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.scr-chave-form .campo { width: 260px; }
+
+.scr-cota {
+  display: grid;
+  gap: 7px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+
+.scr-cota-linha {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.scr-cota-rotulo {
+  flex: 1;
+  font-size: var(--t-meta);
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.scr-cota-chave {
+  font-family: var(--mono);
+  font-size: var(--t-rotulo);
+  color: var(--text-2);
+}
+
+.scr-cota-nota {
+  margin: 0;
+  font-size: var(--t-rotulo);
+  color: var(--text-2);
+}
+
+/* Vermelho quando a busca vai passar da cota: é aviso de fatura, não estilo. */
+.scr-cota-nota.is-alerta { color: var(--del); }
+
+/* ------------------------------- progresso -------------------------------- */
+
+.scr-progresso {
+  display: grid;
+  gap: 7px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+
+/* Enquanto o Claude lê o mapa, o contador está correndo — e a barra diz isso
+   pela mesma cor que ligou a opção lá em cima. */
+.scr-progresso.is-ia { border-color: var(--ia-borda); }
+.scr-progresso.is-ia .scr-barra-cheio { background: var(--ia-borda); }
+.scr-progresso.is-ia .scr-progresso-texto { color: var(--ia-tinta); }
+
+/* O lote de análise não gasta moeda nenhuma — gasta tempo. Azul, como tudo o
+   que é de graça neste app, e com saída: meia hora precisa de um "parar". */
+.scr-progresso.is-livre { border-color: var(--livre-borda); }
+.scr-progresso.is-livre .scr-barra-cheio { background: var(--livre-tinta); }
+
+.scr-scan-barra { margin-bottom: 12px; }
+
+.scr-scan-linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.scr-progresso-texto {
+  margin: 0;
+  font-size: var(--t-meta);
+  color: var(--text-muted);
+}
+
+.scr-barra {
+  height: 4px;
+  border-radius: 3px;
+  background: var(--glass);
+  overflow: hidden;
+}
+
+.scr-barra-cheio {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--brand);
+  transition: width var(--dur) var(--ease-out);
+}
+
+.scr-barra-cheio.is-alerta { background: var(--del); }
+
+/* -------------------------------- os nichos ------------------------------- */
+
+.scr-nichos {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 12px;
+  padding: 22px 24px;
+  max-height: 82vh;
+}
+
+.scr-nichos-topo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.scr-nichos-busca { flex: 1; min-width: 0; }
+
+.scr-nichos-corpo {
+  overflow-y: auto;
+  display: grid;
+  gap: 18px;
+  padding-right: 6px;
+}
+
+.scr-grupo { display: grid; gap: 8px; }
+
+.scr-grupo-nome {
+  margin: 0;
+  font-size: var(--t-meta);
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* -------------------------------- os leads -------------------------------- */
+
+.scr-leads-topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.scr-leads-busca { flex: 1 1 280px; min-width: 0; }
+
+.scr-leads-conta {
+  font-size: var(--t-meta);
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------- o filtro de dois níveis ----------------------- */
+
+/*
+  O chip e a caixinha, colados.
+
+  São a mesma decisão em duas intensidades — "seria bom ter" e "não pode
+  faltar" — e por isso ocupam um controle só, lido da esquerda para a direita.
+  Separá-los em duas listas faria a pessoa marcar "site" numa e procurar "site"
+  na outra.
+*/
+.scr-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.scr-filtro {
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: 999px;
+}
+
+.scr-filtro-chip { border-radius: 999px 0 0 999px; padding-right: 12px; }
+
+.scr-caixinha {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  border: 1px solid var(--border);
+  border-left: 0;
+  border-radius: 0 999px 999px 0;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease, border-color 0.16s ease;
+}
+
+/* `:not(.is-on)` pelo mesmo motivo do `.pbl-dom`: sem ele o hover pesa (0,3,0)
+   contra os (0,2,0) do `.is-on` e ganha — o chip marcado voltava ao fundo claro
+   debaixo do cursor, ou seja, PARECIA DESMARCAR bem na hora em que a pessoa
+   mira nele. O hover do já-marcado não precisa de desenho: ele já é o cheio. */
+.scr-caixinha:hover:not(:disabled):not(.is-on) { background: var(--surface-2); color: var(--text); }
+.scr-caixinha:disabled { opacity: 0.45; cursor: default; }
+
+/*
+  Obrigatório é ESCURO e cheio, não colorido.
+
+  A cor da tela já está toda ocupada dizendo a moeda — laranja gasta token,
+  azul não gasta. Uma terceira cor aqui competiria com essa leitura. O que
+  "obrigatório" precisa comunicar é peso, e peso se faz com contraste: fundo
+  cheio, tinta invertida, um visto.
+*/
+.scr-caixinha.is-on {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--surface);
+}
+
+/*
+  O chip de um filtro obrigatório fica ATIVO, mesmo sem ser "desejável".
+
+  Sem isto a combinação mais útil — site obrigatório, telefone não — desenhava
+  um chip apagado com um ✓ ao lado, e a leitura ficava ambígua: parece um filtro
+  desligado com uma marca solta. Obrigatório é a intensidade MAIOR das duas; ele
+  não pode parecer menos ligado que o desejável.
+*/
+.scr-filtro.is-obrigatorio .scr-filtro-chip {
+  border-color: var(--text);
+  color: var(--text);
+  font-weight: 600;
+}
+
+/*
+  ── O terceiro estado: PROIBIDO ──
+
+  A caixinha cicla em três: vazia (seria bom ter), ✓ (tem que ter), ✕ (não pode
+  ter). O ✕ é o que responde a pergunta central deste app — *me dá só quem NÃO
+  tem site* —, e até existir ela só era respondida DEPOIS, com a cota do Google
+  já gasta em quem já tinha.
+
+  Vermelho aqui, e não o escuro do obrigatório, porque os dois precisam ser
+  distinguíveis num relance: são opostos exatos, e um ✓ confundido com um ✕
+  inverte a busca inteira. `--del` é a cor que o app já usa para "isto remove", e
+  é a leitura certa — o ✕ é o que EXCLUI leads da lista.
+
+  A forma também muda, não só a cor: o símbolo é outro (✕ contra ✓) e o chip
+  fica riscado. Ninguém precisa distinguir vermelho de preto para ler o controle.
+*/
+/* O ✕ da legenda na cor do ✕ do controle — senão a legenda não aponta nada. */
+.scr-legenda-x {
+  color: var(--del);
+}
+
+.scr-caixinha.is-proibido {
+  background: var(--del);
+  border-color: var(--del);
+  color: var(--wpp-sobre);
+}
+
+.scr-filtro.is-proibido .scr-filtro-chip {
+  border-color: var(--del);
+  color: var(--del);
+  /*
+    Riscado: o chip diz "seria bom ter", e o ✕ diz o contrário. Riscar é o que
+    faz a linha inteira se ler como uma negação em vez de uma contradição.
+  */
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  opacity: 0.85;
+}
+
+/*
+  O chip fica DESABILITADO enquanto proibido.
+
+  Clicar nele acenderia o "seria bom ter" de um campo que a caixinha acabou de
+  proibir — a contradição que a tela existe para não deixar expressar. Quem quer
+  o chip de volta tira o ✕ primeiro.
+*/
+.scr-filtro.is-proibido .scr-filtro-chip:disabled {
+  opacity: 0.85;
+  cursor: default;
+}
+
+/* -------------------------------- os leads -------------------------------- */
+
+.scr-leads-topo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.scr-leads-busca { flex: 1 1 280px; min-width: 0; }
+
+.scr-leads-conta {
+  font-size: var(--t-meta);
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------- o quadro ---------------------------------- */
+
+/*
+  QUATRO COLUNAS, e não uma lista ordenada.
+
+  O score sempre foi o produto do Scrapper, mas uma lista ordenada por score
+  continua sendo uma lista: para saber onde termina "vale a pena" e começa
+  "esquece" era preciso ler número por número, cartão por cartão.
+
+  Em colunas isso vira geografia. A coluna da esquerda é o trabalho de hoje; a
+  da direita é gente que já tem tudo. A decisão passa a ser onde OLHAR, não o
+  que calcular.
+*/
+.scr-quadro {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.scr-coluna {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 12px 10px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+  /* A faixa de cor vive no topo: uma borda inteira colorida faria quatro
+     retângulos berrantes lado a lado e nenhum deles seria lido. */
+  border-top: 2px solid var(--border);
+}
+
+.scr-coluna.is-verde { border-top-color: var(--faixa-verde); }
+.scr-coluna.is-amarelo { border-top-color: var(--faixa-amarelo); }
+.scr-coluna.is-laranja { border-top-color: var(--faixa-laranja); }
+.scr-coluna.is-vermelho { border-top-color: var(--faixa-vermelho); }
+
+.scr-coluna-topo {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 0 4px;
+}
+
+.scr-coluna-titulo {
+  font-size: var(--t-corpo);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.scr-coluna.is-verde .scr-coluna-titulo { color: var(--faixa-verde); }
+.scr-coluna.is-amarelo .scr-coluna-titulo { color: var(--faixa-amarelo); }
+.scr-coluna.is-laranja .scr-coluna-titulo { color: var(--faixa-laranja); }
+.scr-coluna.is-vermelho .scr-coluna-titulo { color: var(--faixa-vermelho); }
+
+.scr-coluna-n {
+  margin-left: auto;
+  font-size: var(--t-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+
+.scr-coluna-nota {
+  margin: 4px 4px 0;
+  font-size: var(--t-rotulo);
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.scr-coluna-faixa {
+  margin: 3px 4px 8px;
+  font-size: var(--t-rotulo);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+
+/*
+  A rolagem é da COLUNA, não da página — e o corpo é uma GRADE.
+
+  Rolagem própria porque, sem ela, a coluna mais cheia esticaria o quadro
+  inteiro e as outras virariam cabeçalhos flutuando sobre um vazio de dois mil
+  pixels; a comparação entre faixas, que é o ponto de existirem, se perderia.
+
+  Grade porque o número de colunas de CARTÃO muda com quantas faixas têm lead:
+  `grid-template-columns` vem do React (4 faixas → 1 cartão por linha; 1 faixa
+  → 4 em fila). O cartão nunca cresce — o que cresce é quantos cabem na
+  primeira dobra.
+*/
+.scr-coluna-corpo {
+  display: grid;
+  gap: 5px;
+  align-content: start;
+  max-height: 62vh;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+/* ------------------------------- o cartão ---------------------------------- */
+
+/*
+  Compacto de propósito: 34px em vez de 76px.
+
+  Uma coluna precisa mostrar vinte leads sem rolagem para a divisão por faixa
+  significar alguma coisa. O cartão anterior trazia selos, faixa do score e três
+  links em texto — e ocupava mais que o dobro. Aqui ficam o número, o nome e as
+  duas ações; o resto abre na prévia, ao passar o mouse.
+*/
+.scr-cartao {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 5px 6px 5px 5px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: var(--bg);
+  transition: background 0.14s ease, border-color 0.14s ease;
+}
+
+.scr-cartao:hover {
+  background: var(--surface-2);
+  border-color: var(--brand);
+}
+
+.scr-cartao-score {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--surface);
+}
+
+/*
+  A cor do badge mora no CARTÃO, não na coluna. Era `.scr-coluna.is-*` — e o
+  badge ficava SEM FUNDO fora do quadro por faixas (número branco sobre
+  branco). A Campanha usa o mesmo cartão fora de coluna; o próprio cartão
+  carrega a faixa via `faixaDoScore`.
+*/
+.scr-cartao.is-verde .scr-cartao-score { background: var(--faixa-verde); }
+.scr-cartao.is-amarelo .scr-cartao-score { background: var(--faixa-amarelo); }
+.scr-cartao.is-laranja .scr-cartao-score { background: var(--faixa-laranja); }
+.scr-cartao.is-vermelho .scr-cartao-score { background: var(--faixa-vermelho); }
+
+.scr-cartao-corpo {
+  display: grid;
+  gap: 0;
+  min-width: 0;
+  flex: 1;
+}
+
+.scr-cartao-nome {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  /* Nome de empresa é imprevisível, e a coluna tem 280px: sem isto um nome
+     longo empurra os botões para fora do cartão. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scr-cartao-meta {
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scr-cartao-acoes {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/*
+  O WHATSAPP É O BOTÃO DA TELA.
+
+  É a ação que a pessoa veio fazer, e o único controle daqui que fica colorido
+  em repouso — verde do próprio WhatsApp, que ninguém precisa aprender. Ver o
+  site é o que se faz ANTES de decidir chamar, e por isso é o botão discreto ao
+  lado; e a prévia já mostra o site sem exigir clique nenhum.
+*/
+/*
+  `padding: 0` e `line-height: 0` não são zelo — sem eles o ícone sai TORTO.
+
+  `<button>` tem `padding: 1px 6px` do agente de usuário. Numa caixa de 23px com
+  `box-sizing: border-box`, sobram 9px de área de conteúdo para um ícone de
+  15px: ele transborda para a direita e o centro dele fica 3px fora do centro do
+  botão — medido. O olho lê isso como "os botões estão desalinhados", porque
+  estão: o WhatsApp e o link desviavam para o mesmo lado, ao lado de um score
+  que está centrado de verdade.
+*/
+.scr-zap,
+.scr-ver,
+.scr-apagar {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  line-height: 0;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  background: none;
+  cursor: pointer;
+  transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease;
+}
+
+/* O SVG é o único filho e ocupa a célula inteira: nada de baseline de texto
+   deslocando o desenho meio pixel para baixo. */
+.scr-zap svg,
+.scr-ver svg,
+.scr-apagar svg {
+  display: block;
+}
+
+/* O × é texto, e texto precisa da altura de linha de volta para centrar. */
+.scr-apagar { line-height: 1; }
+
+.scr-zap {
+  color: var(--wpp);
+  border-color: var(--wpp-borda);
+  background: var(--wpp-fundo);
+}
+
+.scr-zap:hover {
+  background: var(--wpp);
+  border-color: var(--wpp);
+  color: var(--wpp-sobre);
+}
+
+/*
+  O "ver site" ganha a MESMA moldura do WhatsApp, só em neutro.
+
+  Sem borda, ele tinha 24px de caixa e nenhum contorno — ao lado de um botão
+  emoldurado, isso lê como dois controles de tamanhos diferentes, mesmo eles
+  medindo igual. A moldura iguala o peso visual; a cor é que diz qual é a ação
+  principal.
+*/
+.scr-ver {
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: var(--surface);
+}
+
+.scr-ver:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+
+/*
+  O apagar só EXISTE no hover — não está escondido, está fora do DOM.
+
+  Ele não é o que se vem fazer aqui, e um × sempre visível em cada linha é um
+  convite ao clique errado. Escondê-lo com `opacity` mantinha os 23px
+  reservados, e numa coluna de 295px esses 23px saem do nome da empresa, que é
+  o que a pessoa precisa ler; posicioná-lo absoluto o jogava por cima dos outros
+  dois botões. Renderizado só no hover, o nome fica com o espaço o tempo todo e
+  nada se sobrepõe.
+*/
+.scr-apagar {
+  color: var(--text-2);
+  font-size: 15px;
+  line-height: 1;
+}
+.scr-apagar:hover { color: var(--del); background: var(--glass); }
+
+/* -------------------------------- a prévia --------------------------------- */
+
+/*
+  A primeira dobra do site, ao passar o mouse.
+
+  "Tem site" é um booleano, e booleano não vende: a diferença entre um site de
+  2011 e uma landing feita mês passado é a diferença entre uma ligação que abre
+  conversa e uma que queima o contato.
+
+  Fica FORA da coluna, em `position: fixed`: a coluna tem menos de 300px, e uma
+  hero desenhada em 300px não mostra nada.
+
+  E ela RECEBE o mouse. A primeira versão era `pointer-events: none`, para não
+  roubar o ponteiro do cartão — o que fazia sentido até se perceber que os dois
+  botões dela ficavam inalcançáveis: o cursor saía do cartão, a prévia fechava
+  no mesmo instante, e o trajeto até "chamar no WhatsApp" nunca terminava. O
+  roubo de ponteiro quem resolve hoje é o atraso de 260ms no fechamento,
+  cancelado quando o mouse chega aqui.
+*/
+.scr-previa {
+  position: fixed;
+  z-index: 30;
+  width: 380px;
+  padding: 8px;
+  border: 1px solid var(--brand);
+  border-radius: var(--r-card);
+  background: var(--surface);
+  box-shadow: var(--sombra-alta);
+  animation: aparece var(--dur-fast) var(--ease-out);
+}
+
+.scr-previa-tela {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 196px;
+  overflow: hidden;
+  border-radius: 9px;
+  background: var(--bg-deep);
+}
+
+.scr-previa-tela img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.scr-previa-nota {
+  padding: 0 20px;
+  font-size: var(--t-meta);
+  color: var(--text-2);
+  text-align: center;
+}
+
+.scr-previa-nome {
+  margin: 8px 2px 0;
+  font-size: var(--t-corpo);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.scr-previa-meta {
+  margin: 2px 2px 0;
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+/* O celular é ALTO. Com `cover` sobraria a barra de status e sumiria o site;
+   `contain` mostra o aparelho inteiro, que é o que se quer comparar. */
+.scr-previa-tela.is-celular img {
+  width: auto;
+  object-fit: contain;
+}
+
+.scr-previa-telas {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.scr-previa-telas .chip {
+  flex: 1;
+  justify-content: center;
+}
+
+/* O laudo. Marcador em vez de número: não é ranking, é o que está errado. */
+.scr-previa-achados {
+  margin: 9px 2px 0;
+  padding: 0 0 0 15px;
+  display: grid;
+  gap: 3px;
+  font-size: var(--t-rotulo);
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.scr-previa-achados li::marker { color: var(--del); }
+.scr-previa-achados .is-bom { color: var(--text-2); }
+.scr-previa-achados .is-bom::marker { color: var(--livre-tinta); }
+
+/* Os dois botões grandes: são o destino de tudo isto. */
+.scr-previa-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Analisar ocupa a linha toda: é a ação que vem ANTES das outras duas, e
+   enquanto ela existe as outras ainda não têm o que dizer. */
+.scr-previa-acoes .is-livre { flex-basis: 100%; }
+
+.scr-btn-site { flex: 1; }
+
+/* --------------------------- a abordagem ---------------------------------- */
+
+/* Ancorado e PERSISTENTE, ao contrário da prévia. A pessoa lê a mensagem, troca
+   uma palavra e só então manda — um painel que sumisse com o mouse perderia o
+   turno já pago no meio da edição. */
+.scr-abordagem {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 40;
+  width: 400px;
+  display: grid;
+  gap: 9px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+  box-shadow: var(--sombra-alta);
+  animation: aparece var(--dur-fast) var(--ease-out);
+}
+
+.scr-abordagem-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.scr-abordagem-nome {
+  font-size: var(--t-corpo);
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.scr-abordagem-x {
+  border: 0;
+  background: none;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.scr-abordagem-x:hover { color: var(--text); }
+
+.scr-abordagem-canais { display: flex; gap: 6px; }
+.scr-abordagem-canais .chip { flex: 1; justify-content: center; }
+
+/* A evidência fica à vista enquanto se lê a mensagem: é a fonte do que está
+   escrito ali, e conferir é o que se faz antes de mandar. */
+.scr-abordagem-fatos {
+  margin: 0;
+  padding: 0 0 0 15px;
+  display: grid;
+  gap: 2px;
+  font-size: var(--t-rotulo);
+  color: var(--text-2);
+}
+
+.scr-abordagem-fatos li::marker { color: var(--del); }
+
+.scr-abordagem-texto {
+  width: 100%;
+  resize: vertical;
+  font-size: var(--t-meta);
+  line-height: 1.45;
+}
+
+.scr-abordagem-acoes { display: flex; flex-wrap: wrap; gap: 8px; }
+.scr-abordagem-acoes .btn { flex: 1; }
+.scr-abordagem-nota { margin: 0; text-align: center; }
+
+/* ---------------------- a campanha de WhatsApp ---------------------------- */
+
+/*
+  A aba: duas colunas e uma gaveta.
+
+  À esquerda quem recebe (tipo, filtros, lista); à direita o que sai (molde,
+  ritmo, risco, disparar); embaixo, fechada, a gaveta do WhatsApp.
+
+  Nenhuma linha aqui reserva altura para o WhatsApp — a gaveta tem altura FIXA
+  em pixels quando abre. Foi o contrário disso que quebrou duas vezes: um quadro
+  cuja altura vinha de uma cadeia de `height: 100%` inexistente ou empurrava o
+  botão de PARAR para fora da janela, ou colapsava para zero.
+*/
+.zap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+/*
+  As duas colunas, como na referência.
+
+  À ESQUERDA quem recebe: tipo, filtros e a lista. É a parte que cresce com a
+  prospecção e a que se lê correndo o olho, então fica com a largura.
+
+  À DIREITA, empilhado, o que sai e em que ritmo. Estreito de propósito: é um
+  formulário de TEXTO, e o molde escrito numa linha de 700px não se lê como a
+  mensagem de WhatsApp que ele vai virar.
+
+  `align-items: start` para a sidebar não esticar até a altura da lista — uma
+  caixa de 300px de conteúdo alongada para 900px é um retângulo com um buraco.
+*/
+.zap-corpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  gap: 14px;
+  align-items: start;
+}
+
+/*
+  Abaixo de 1100px a sidebar de 330px espreme a lista até o telefone encavalar
+  no nome. Uma coluna só: quem recebe em cima, a mensagem embaixo.
+*/
+@media (max-width: 1100px) {
+  .zap-corpo { grid-template-columns: minmax(0, 1fr); }
+}
+
+.zap-esquerda,
+.zap-direita {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+
+.zap-bloco {
+  display: flex;
+  flex-direction: column;
+  /* O miolo no TOPO mesmo quando a caixa é esticada pela vizinha mais alta.
+     Sem isto o flex distribui a sobra e o conteúdo flutua no meio do vazio. */
+  justify-content: flex-start;
+  gap: 9px;
+  padding: 13px 15px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+  min-width: 0;
+}
+
+.zap-titulo {
+  margin: 0;
+  font-size: var(--t-rotulo);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.zap-rotulo {
+  margin: 2px 0 0;
+  font-size: var(--t-rotulo);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+.zap-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+  min-width: 0;
+}
+
+/* A caixinha do alvo livre, ao lado dos chips de atalho. 1 a 1000. */
+.scr-alvo-livre {
+  width: 74px;
+  height: 26px;
+  padding: 0 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+  "O que vai acontecer" — o passo a passo antes de disparar.
+
+  Numerado de propósito: são quatro fatos em ordem de tempo, e o que a pessoa
+  precisa é a sequência, não uma lista de avisos soltos.
+*/
+.zap-oquevai {
+  margin: 4px 0 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  text-align: left;
+}
+
+.zap-oquevai ol {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 5px;
+  font-size: var(--t-meta);
+  color: var(--text-2);
+  line-height: 1.45;
+}
+
+.zap-oquevai strong { color: var(--text); }
+
+/* O liga/desliga da análise de sites no formulário da automação. */
+.aut-check {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: var(--t-meta);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.aut-check input { accent-color: var(--brand); }
+
+/*
+  O botão que abre o popup de segmento/cidade. Herda a cara de `.campo` para a
+  coluna de filtros continuar alinhada — mas é botão, e diz isso no cursor e
+  no `is-on` (há escolha ativa).
+*/
+.zap-filtro-botao {
+  text-align: left;
+  cursor: pointer;
+}
+
+.zap-filtro-botao:hover { border-color: var(--brand); }
+
+.zap-filtro-botao.is-on {
+  border-color: var(--brand);
+  color: var(--brand);
+  font-weight: 600;
+}
+
+/* O popup dos valores: a casca é a do painel de nichos, o miolo é uma nuvem. */
+.zap-valores {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.zap-valores-chips {
+  overflow-y: auto;
+  max-height: 60vh;
+  align-content: start;
+}
+
+.zap-valores-n {
+  opacity: 0.65;
+  font-variant-numeric: tabular-nums;
+}
+
+.zap-nota {
+  margin: 0;
+  font-size: var(--t-meta);
+  color: var(--text-2);
+}
+
+.zap-nota strong { color: var(--text); }
+
+/* O que impede a campanha de sair inteira — dito na cor de quem impede. */
+.zap-alerta { color: var(--del); }
+
+.zap-espaco { flex: 1; }
+
+/* --- o tipo de lead e os filtros ------------------------------------------ */
+
+/*
+  Pílulas, e não um seletor. São quatro escolhas curtas e mutuamente exclusivas,
+  e o que se quer ver de relance é QUAL está ativa — num `<select>` isso custa
+  um clique para descobrir.
+*/
+.zap-tipos {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.zap-tipo {
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.zap-tipo:hover { border-color: var(--brand); }
+
+.zap-tipo.is-on {
+  border-color: var(--brand-tile);
+  background: var(--brand-soft);
+  color: var(--brand);
+}
+
+/* --- o controle de arrasto ------------------------------------------------ */
+
+/*
+  Score e limite são grandezas que se AJUSTAM olhando o resultado — sobe-se o
+  score até a fila ficar do tamanho que se quer mandar hoje. Numa caixa de
+  número isso é apagar, digitar e ler; arrastando é um gesto só.
+
+  `appearance: none` nos três lugares (padrão, WebKit, Firefox) porque o
+  controle nativo do Windows é cinza-sistema e destoa de tudo em volta.
+*/
+.zap-arrasto {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* A linha. Fina, porque quem tem que saltar aos olhos é o círculo. */
+.zap-arrasto::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--border);
+}
+
+.zap-arrasto::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--border);
+}
+
+/*
+  O círculo. `margin-top` negativo o centra na linha: no WebKit o polegar
+  alinha pelo TOPO da trilha, e sem isto ele fica pendurado abaixo dela.
+*/
+.zap-arrasto::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--brand);
+}
+
+.zap-arrasto::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--brand);
+}
+
+.zap-arrasto:hover::-webkit-slider-thumb { background: var(--brand-soft); }
+.zap-arrasto:hover::-moz-range-thumb { background: var(--brand-soft); }
+
+/*
+  O número ao lado do rótulo.
+
+  Um controle de arrasto sem número é um controle que não se sabe onde está —
+  e aqui o número é a diferença entre "mandar para uns quantos" e saber que são
+  quarenta. `tabular-nums` para ele não dançar enquanto se arrasta.
+*/
+.zap-valor {
+  font-variant-numeric: tabular-nums;
+  color: var(--brand);
+  font-weight: 500;
+}
+
+/* Dois a dois: os quatro filtros cabem em duas linhas sem virar formulário. */
+.zap-filtros {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px 12px;
+}
+
+@media (max-width: 720px) {
+  .zap-filtros { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --- as abas e a lista ---------------------------------------------------- */
+
+.zap-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 13px 15px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+  min-width: 0;
+}
+
+/*
+  "A enviar" e "já enviados" são duas listas, e não uma com itens apagados.
+
+  Quem já recebeu é histórico, e responde a pergunta que se faz antes de
+  disparar de novo: para quem eu já mandei?
+*/
+.zap-abas {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.zap-aba {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  font: inherit;
+  font-size: var(--t-meta);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.zap-aba:hover { color: var(--text); }
+
+.zap-aba.is-on {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.zap-aba-n {
+  font-size: var(--t-rotulo);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+
+/* O aviso de quantos vão pelo molde, com o caminho para trocar isso ao lado. */
+.zap-sem-laudo { padding: 2px 2px 4px; }
+
+.link-mini.is-ia { color: var(--ia-tinta); }
+
+.zap-leads {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+/*
+  A linha do lead é o CARTÃO da aba Leads (`CartaoDeLead`) — o `li` só carrega
+  o estado da fila (`is-feito`/`is-fora`). A grade de cinco colunas que morava
+  aqui morreu junto com a linha própria da Campanha.
+*/
+.zap-lead { min-width: 0; }
+
+.zap-lead.is-feito { opacity: 0.55; }
+
+/*
+  Dentro da campanha o cartão nasce sobre `--surface` (o bloco branco), não
+  sobre `--bg` como nas colunas — sem esta troca ele some no fundo igual.
+*/
+.zap-leads .scr-cartao { background: var(--surface-2); }
+.zap-leads .scr-cartao:hover { background: var(--bg); }
+
+.zap-lead-tirar {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.zap-lead-tirar:hover:not(:disabled) {
+  border-color: var(--del);
+  color: var(--del);
+}
+
+.zap-lead-tirar:disabled {
+  cursor: default;
+  color: var(--faixa-verde);
+}
+
+/*
+  De onde vem a mensagem deste lead.
+
+  É a informação que decide se vale gastar token: "molde" quer dizer texto
+  parecido com o de outros; "do site" quer dizer que cita o laudo daquela
+  empresa. Sem isso a lista esconde a única diferença que importa.
+*/
+.zap-lead-selo {
+  padding: 1px 7px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: var(--t-rotulo);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.zap-lead-selo.is-propria {
+  border-color: var(--faixa-verde);
+  color: var(--faixa-verde);
+}
+
+/*
+  Quem não tem mensagem nenhuma.
+
+  Vermelho porque não é um detalhe: este lead NÃO vai sair. Ele continua na
+  lista de propósito — esconder foi o que fez dezoito leads aparecerem como
+  "1", sem nenhuma pista de onde os outros tinham ido.
+*/
+.zap-lead-selo.is-sem {
+  border-color: var(--del);
+  color: var(--del);
+}
+
+/* Aparece na lista, mas não sai nesta leva: sem mensagem, ou além do limite. */
+.zap-lead.is-fora { opacity: 0.62; }
+
+/* --- o molde -------------------------------------------------------------- */
+
+.zap-vars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.zap-var {
+  padding: 3px 9px;
+  border: 1px dashed var(--border);
+  border-radius: var(--r-md);
+  background: transparent;
+  font-family: var(--mono);
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.zap-var:hover {
+  border-style: solid;
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+/*
+  A explicação das variações.
+
+  Não é decoração: sem ela "adicionar variação" parece capricho, e a pessoa
+  manda duzentas mensagens idênticas achando que está tudo certo — o padrão
+  exato que restringe conta.
+*/
+.zap-explica {
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--brand);
+  border-radius: var(--r-md);
+  background: var(--bg);
+  font-size: var(--t-rotulo);
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.zap-var-topo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.zap-rodizio {
+  font-size: var(--t-rotulo);
+  color: var(--brand);
+}
+
+.zap-variacao {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 9px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg);
+  cursor: pointer;
+}
+
+/*
+  A variação que o preview está mostrando.
+
+  Precisa ser visível: com três variações na tela, um preview sem dono é um
+  texto que parece não corresponder a nada do que está sendo editado.
+*/
+.zap-variacao.is-sel { border-color: var(--brand); }
+.zap-variacao.is-sel .zap-variacao-n { color: var(--brand); }
+
+.zap-variacao-topo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.zap-variacao-n {
+  flex: 1;
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+}
+
+.zap-liga {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--t-rotulo);
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.zap-variacao-x {
+  border: 0;
+  background: none;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.zap-variacao-x:hover { color: var(--del); }
+
+.zap-variacao-texto {
+  width: 100%;
+  /* Explícito porque `.campo` define uma altura de INPUT, e ela ganha do
+     `rows` — sem isto a caixa de escrever a mensagem nasce com duas linhas. */
+  min-height: 108px;
+  resize: vertical;
+  font-size: var(--t-meta);
+  line-height: 1.45;
+}
+
+/*
+  O preview.
+
+  `pre-wrap` porque a quebra de linha que a pessoa escreveu é parte da mensagem
+  — no WhatsApp uma linha em branco muda como o texto é lido.
+*/
+.zap-preview {
+  margin: 0;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg-deep);
+  font-size: var(--t-meta);
+  line-height: 1.5;
+  white-space: pre-wrap;
+  color: var(--text-muted);
+}
+
+/* --- o ritmo: degraus, e não um deslizante -------------------------------- */
+
+.zap-ritmos {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.zap-ritmo {
+  flex: 1 1 90px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 7px 9px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Idem: o hover trocava a borda do ritmo ESCOLHIDO por outra da mesma família,
+   e a diferença entre "este é o meu" e "este está sob o mouse" se apagava logo
+   onde ela é lida. Quem está escolhido guarda a borda dele. */
+.zap-ritmo:hover:not(:disabled):not(.is-on) { border-color: var(--brand); }
+
+.zap-ritmo.is-on {
+  border-color: var(--ia-borda);
+  background: var(--brand-soft);
+}
+
+.zap-ritmo:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.zap-ritmo-nome {
+  font-size: var(--t-meta);
+  color: var(--text);
+}
+
+.zap-ritmo-seg {
+  font-size: var(--t-rotulo);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+
+/*
+  O risco, com o motivo junto.
+
+  A referência mostrava só "Risco moderado" — que é um enfeite amarelo se não
+  disser o que mudar para sair dele.
+*/
+.zap-risco {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  font-size: var(--t-rotulo);
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.zap-risco strong { color: var(--text); }
+
+.zap-risco.is-baixo {
+  border-color: var(--faixa-verde);
+  color: var(--text-muted);
+}
+
+.zap-risco.is-baixo strong { color: var(--faixa-verde); }
+
+.zap-risco.is-moderado { border-color: var(--ia-borda); }
+.zap-risco.is-moderado strong { color: var(--ia-tinta); }
+
+.zap-risco.is-alto { border-color: var(--del); }
+.zap-risco.is-alto strong { color: var(--del); }
+
+/* --- os números da campanha ----------------------------------------------- */
+
+.zap-grande {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.zap-grande span {
+  font-size: var(--t-meta);
+  color: var(--text-2);
+}
+
+.zap-agora { color: var(--brand); }
+
+.zap-parou {
+  margin: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--del);
+  border-radius: var(--r-md);
+  font-size: var(--t-meta);
+  color: var(--del);
+}
+
+/* --- a ABA do WhatsApp ---------------------------------------------------- */
+
+/*
+  ── Quinta forma desta view, e a que para de brigar ──
+
+  O WhatsApp Web mora numa `WebContentsView`, que não pertence ao fluxo da
+  página: flutua sobre o renderer, ignora `z-index`, come todo clique no
+  retângulo dela e não rola junto. Já foi, em ordem: modal de tela cheia
+  (cobria o app), janela centrada (ainda um modal grande), painel flutuante no
+  canto (tapava a configuração) e gaveta (precisava perseguir a rolagem para
+  não desenhar por cima do resto).
+
+  Como ABA, nenhuma dessas brigas existe: o palco é a tela inteira, os limites
+  vêm da viewport, não há nada por baixo para ser coberto, e trocar de aba
+  desmonta o componente — o gatilho natural para esconder a view.
+
+  ── A altura ──
+
+  `1fr` numa grade de altura definida pela viewport, e não `height: 100%`.
+  `100%` resolve para `auto` quando o pai não tem altura definida, e foi assim
+  que a moldura colapsou para zero na primeira tentativa inline. Aqui a altura
+  sai de `calc(100vh - ...)`: um número, por construção.
+*/
+.zapaba {
+  display: grid;
+  /*
+    `minmax(0, 1fr)` na linha do palco, pela mesma razão do `.casco`.
+  */
+  grid-template-rows: auto minmax(0, 1fr);
+  /*
+    Ocupa o painel INTEIRO — e nada de `calc(100vh - 210px)`.
+
+    Aquele número veio do Edev, que tem outra barra no topo. Aqui ele sobrava:
+    a aba parava antes do rodapé e deixava uma faixa preta embaixo, do tamanho
+    da diferença entre as duas interfaces. Um número medido numa tela é um
+    número errado na próxima.
+  */
+  height: 100%;
+  min-height: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+/*
+  A barra fica FORA do retângulo da view.
+
+  Não é estética: dentro dele o clique é da `WebContentsView`, e um botão ali
+  seria um botão que não responde.
+*/
+.zapaba-barra {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 13px;
+  border-bottom: 1px solid var(--border);
+  min-width: 0;
+}
+
+.zapaba-barra .nota {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.zap-selo {
+  padding: 2px 9px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: var(--t-rotulo);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.zap-selo[data-on='true'] {
+  border-color: var(--faixa-verde);
+  color: var(--faixa-verde);
+}
+
+/*
+  O palco: o retângulo que a view ocupa, e nada de HTML dentro dele.
+
+  Fundo escuro porque o primeiro segundo — antes de o WhatsApp pintar — seria
+  um retângulo da cor da superfície, indistinguível de uma tela quebrada.
+*/
+.zapaba-palco {
+  min-height: 0;
+  min-width: 0;
+  background: var(--bg-deep);
+}
+
+/* Laranja: é o ÚNICO caminho do Scrapper que gasta token. */
+.scr-btn-abordagem {
+  flex-basis: 100%;
+  border-color: var(--ia-borda);
+  color: var(--ia-tinta);
+}
+
+.scr-btn-zap {
+  flex: 1.4;
+  border-color: var(--wpp);
+  background: var(--wpp);
+  color: var(--wpp-sobre);
+  font-weight: 600;
+}
+
+.scr-btn-zap:hover { background: var(--wpp-forte); border-color: var(--wpp-forte); }
+
+/* ══════════════════════════ Automação ═════════════════════════════════════ */
+
+/*
+  A aba que prospecta e dispara sozinha.
+
+  Ela rola: sao muitos controles, e o formulario e mais alto que a janela. O
+  Scrapper inteiro nao rola — quem rola e este painel, e so ele.
+*/
+/*
+  A rolagem é do `.scr-painel`, não daqui.
+
+  Com `overflow-y: auto` nos dois, a aba ganhava duas barras aninhadas: a de
+  fora nunca andava e a de dentro parecia a única — até a janela ficar baixa, e
+  aí as duas apareciam lado a lado.
+*/
+.aut {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding-bottom: 8px;
+}
+
+.aut-topo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.aut-topo .painel-titulo {
+  text-transform: lowercase;
+}
+
+.aut-cartao-espaco {
+  flex: 1;
+}
+
+/*
+  O aviso de que nao ha servidor.
+
+  Laranja e no topo, sem poder ser fechado. Na versao web isto era um tooltip, e
+  a expectativa errada custava uma semana: monta-se a agenda, fecha-se o
+  notebook, e nada roda.
+*/
+.aut-aviso {
+  padding: 10px 12px;
+  border: 1px solid var(--ia-borda);
+  border-radius: var(--r-lg);
+  background: var(--ia-fundo);
+  color: var(--ia-tinta);
+  font-size: var(--t-meta);
+  line-height: 1.5;
+}
+
+/* -------------------------- seguranca da conta ---------------------------- */
+
+/*
+  O numero que decide se as automacoes mandam alguma coisa.
+
+  No topo, antes da lista, porque uma automacao perfeita com o teto do dia
+  estourado nao manda nada — e sem este cartao isso pareceria defeito.
+*/
+.aut-seguranca {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+}
+
+.aut-seg-linha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.aut-seg-num {
+  font-size: var(--t-corpo);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.aut-seg-num.is-cheio {
+  color: var(--ia-tinta);
+}
+
+.aut-seg-barra {
+  flex: 1;
+  min-width: 120px;
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: var(--bg-2);
+  overflow: hidden;
+}
+
+.aut-seg-cheia {
+  display: block;
+  height: 100%;
+  background: var(--wpp);
+  transition: width var(--dur) var(--ease-out);
+}
+
+.aut-seg-cheia.is-cheio {
+  background: var(--ia-tinta);
+}
+
+.aut-npt {
+  display: grid;
+  gap: 6px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+}
+
+.aut-npt-add {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-bottom: 8px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.aut-npt-add .campo {
+  width: 180px;
+  font-family: var(--mono);
+}
+
+.aut-npt-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--t-meta);
+  font-family: var(--mono);
+}
+
+/* ------------------------------ rodando ----------------------------------- */
+
+.aut-rodando {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--wpp-borda);
+  border-radius: var(--r-lg);
+  background: var(--wpp-fundo);
+  font-size: var(--t-meta);
+}
+
+.aut-giro {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--wpp-borda);
+  border-top-color: var(--wpp);
+  border-radius: 50%;
+  animation: aut-girar 0.8s linear infinite;
+}
+
+@keyframes aut-girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ------------------------------- os cartoes -------------------------------- */
+
+.aut-lista {
+  display: grid;
+  gap: 10px;
+}
+
+.aut-cartao {
+  display: grid;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-card);
+  background: var(--surface);
+}
+
+/* Pausada fica apagada — o cartao diz o estado antes de qualquer texto. */
+.aut-cartao[data-ativa='false'] {
+  opacity: 0.62;
+}
+
+.aut-cartao-topo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.aut-selo {
+  padding: 1px 8px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: var(--t-rotulo);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.aut-selo.is-on {
+  border-color: var(--wpp-borda);
+  background: var(--wpp-fundo);
+  color: var(--wpp);
+}
+
+.aut-cartao-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: var(--t-meta);
+  color: var(--text-2);
+}
+
+.aut-cartao-resultado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  font-size: var(--t-meta);
+  color: var(--text-2);
+}
+
+.aut-erro {
+  color: var(--ia-tinta);
+}
+
+.aut-cartao-acoes {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.aut-liga {
+  display: flex;
+  align-items: center;
+}
+
+/* ------------------------------ o formulario ------------------------------- */
+
+.aut-form .scr-campo {
+  display: grid;
+  gap: 6px;
+}
+
+.aut-form .campo {
+  width: 100%;
+}
+
+/*
+  A lista de nichos rola.
+
+  Sao 221 em vinte grupos. Sem altura maxima, o formulario vira uma coluna de
+  tres metros e o botao de salvar some do alcance.
+*/
+.aut-nichos {
+  max-height: 168px;
+  overflow-y: auto;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg-2);
+}
+
+.aut-mapa {
+  height: 260px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.aut-pins {
+  display: grid;
+  gap: 6px;
+  padding-top: 8px;
+}
+
+.aut-pin {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--t-meta);
+}
+
+.aut-pin input[type='range'] {
+  flex: 1;
+  max-width: 220px;
+}
+
+.aut-pin-km {
+  min-width: 46px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+
+.aut-numeros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.aut-horas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.aut-hora {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.aut-hora .campo {
+  width: auto;
+}
+
+/*
+  A capa do cartão: três números que respondem o que se pergunta olhando.
+
+  "O que acontece a seguir", "tenho lead guardado para isso" e "quanto sai por
+  dia". Antes o cartão trazia só a agenda inteira em texto corrido, e as duas
+  primeiras perguntas ficavam por conta de quem lia.
+*/
+.aut-capa {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.aut-capa-bloco {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  min-width: 0;
+}
+
+.aut-capa-num {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+/* Zero na fila, ou pausada: o número está lá, mas não é uma boa notícia. */
+.aut-capa-num.is-off { color: var(--text-muted); }
+
+.aut-capa-nota {
+  font-size: var(--t-rotulo);
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*
+  A lista dos disparos: cada linha é UM envio — hora + quantas mensagens.
+
+  Em coluna, e não em fila como os horários de captação: cada linha carrega
+  dois controles e um "tirar", e lado a lado elas viravam uma parede em que não
+  dava para ler qual quantidade pertence a qual horário.
+*/
+.aut-disparos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.aut-disparo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.aut-disparo .campo { width: auto; }
+
+.aut-disparo-qtd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-meta);
+  color: var(--text-2);
+}
+
+.aut-disparo-qtd .campo {
+  width: 78px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* O plano do dia em uma frase — poupa a conta de cabeça antes de salvar. */
+.aut-resumo-plano {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+  font-size: var(--t-meta);
+  color: var(--text-2);
+}
+
+.aut-resumo-plano strong { color: var(--text); }
+
+/* ─────────────────── o tutorial da chave do Google ───────────────────────── */
+
+/*
+  Sete passos no Google Cloud, numa tela.
+
+  O aviso da chave oferecia um campo para colar e nada para quem nao sabe de
+  onde ela vem — que e a maioria de quem le aquilo pela primeira vez. Sete
+  passos nao cabem num `title`.
+*/
+.scr-chave-tutorial {
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+.tut {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  /* Sete passos passam da altura da janela numa tela baixa. */
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.tut-topo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.tut-topo .painel-titulo {
+  text-transform: lowercase;
+}
+
+/* O cartao do cartao de credito: e a informacao que muda a decisao. */
+.tut-aviso {
+  padding: 10px 12px;
+  border: 1px solid var(--ia-borda);
+  border-radius: var(--r-lg);
+  background: var(--ia-fundo);
+  color: var(--ia-tinta);
+  font-size: var(--t-meta);
+  line-height: 1.55;
+}
+
+.tut-passos {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: passo;
+}
+
+.tut-passo {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.tut-num {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--brand-ink);
+  font-size: var(--t-meta);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.tut-corpo {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.tut-corpo strong {
+  font-size: var(--t-corpo);
+}
+
+.tut-corpo .nota {
+  line-height: 1.6;
+}
+
+/* O que copiar ou procurar, em monoespacada — da para selecionar. */
+.tut-onde {
+  justify-self: start;
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--bg-2);
+  font-family: var(--mono);
+  font-size: var(--t-meta);
+  color: var(--text-2);
+}
+
+.tut-fim {
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  line-height: 1.6;
+}
+
+/* ───────────────── os campos de captacao na automacao ────────────────────── */
+
+/*
+  Os MESMOS campos da aba Buscar, empilhados.
+
+  Na busca manual eles vivem em `.scr-barra-busca`, que e uma grade de colunas
+  numa barra larga. Aqui e um formulario em coluna unica, entao eles empilham —
+  o componente e o mesmo, o arranjo e outro.
+*/
+.aut-captacao {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--bg-2);
+}
+
+/*
+  A divisa entre "o que as duas telas tem" e "o que so a automacao tem".
+
+  Sem ela o formulario e uma coluna de doze controles sem hierarquia, e nada
+  diz que os cinco primeiros sao a mesma coisa da aba ao lado.
+*/
+.aut-so-dela {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.aut-so-dela::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+
+/* ── As notas da versão ──────────────────────────────────────────────────────
+
+  A caixa que responde "o que eu ganho atualizando" antes de a pessoa baixar
+  150 MB. Reusa o `.tut` do tutorial da chave: mesma moldura, mesma largura,
+  mesmo topo — duas caixas explicativas que se parecessem diferentes fariam a
+  segunda parecer de outro app.
+*/
+.atz-lista {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.atz-lista li {
+  position: relative;
+  padding-left: 18px;
+  font-size: var(--t-meta);
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.atz-lista li::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--brand);
+}
+
+.atz-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

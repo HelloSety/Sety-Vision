@@ -1,0 +1,25 @@
+{
+  "nome": "PROSPECÇÃO STREETWEAR",
+  "variacoes": [
+    {
+      "id": "v1",
+      "texto": "Oi {{nome}}, tudo bem? 👋\n\nAchei a marca de vocês e curti demais o trabalho. Dá pra vender muito mais pelo site com uma loja mais forte, rápida no celular e que passa confiança na hora da compra.\n\nEsse é o nosso Instagram — dá uma olhada nas lojas que a gente já entregou pra marcas de streetwear:\nhttps://www.instagram.com/sety.studio/\n\nSe curtir, te mando uma ideia do que dá pra fazer com a de vocês.",
+      "ativa": true
+    },
+    {
+      "id": "v2",
+      "texto": "Oi {{nome}}, tudo certo? \n\nMonto a estrutura digital de marcas de streetwear que querem vender todo dia sem depender só do Instagram: loja Nuvemshop rápida, tráfego e conteúdo.\n\nNo nosso perfil tem os projetos reais que já entregamos pro segmento:\nhttps://www.instagram.com/sety.studio/\n\nDá uma olhada e me diz o que achou.",
+      "ativa": true
+    },
+    {
+      "id": "v3",
+      "texto": "Oi {{nome}}! Tudo bem? \n\nJá ajudei várias marcas do mesmo segmento que o de vocês a montar uma loja online que vende de verdade: design forte, carrega rápido e fecha pelo WhatsApp.\n\nDá pra ver o resultado direto no nosso Instagram:\nhttps://www.instagram.com/sety.studio/\n\nQuer que eu te mande os cases junto?",
+      "ativa": true
+    },
+    {
+      "id": "v4",
+      "texto": "Oi {{nome}}, tudo bem? 🙌\n\nVi a marca de vocês e tem muito espaço pra vender mais pelo site.\n\nEsse é o nosso Instagram pra você conhecer o trabalho e bater o olho nas lojas que já fizemos:\nhttps://www.instagram.com/sety.studio/\n\nPosso te mandar mais detalhes?",
+      "ativa": true
+    }
+  ]
+}
