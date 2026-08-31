@@ -50,10 +50,15 @@ function tick() {
 
   if (c.id !== ultimoId) { ultimoId = c.id; jaParou = false; log(`nova campanha ${String(c.id).slice(0, 8)} · ${c.alvos.length} alvos`); }
 
-  const proc = c.alvos.filter((a) => a.estado !== 'espera').length;
+  const processados = c.alvos.filter((a) => a.estado !== 'espera');
+  const proc = processados.length;
+
+  // grava TODO alvo já tocado a cada tick (idempotente) — assim, mesmo se a
+  // campanha for substituída no meio, quem já recebeu não volta pra próxima leva
+  if (proc > 0) { const n = registrarNumeros(processados); if (n > 0) log(`+${n} números no não-repetir (${proc} processados)`); }
 
   if (c.situacao === 'terminada' || c.situacao === 'parada') {
-    if (!jaParou) { const n = registrarNumeros(c.alvos.filter((a) => a.estado !== 'espera')); jaParou = true; log(`campanha ${c.situacao} · ${proc} processados · +${n} números no não-repetir`); }
+    if (!jaParou) { jaParou = true; log(`campanha ${c.situacao} · ${proc} processados`); }
     return;
   }
 
@@ -61,9 +66,8 @@ function tick() {
     c.situacao = 'terminada';
     c.motivo = `limite de ${LIMITE} mensagens desta onda atingido (watchdog)`;
     fs.writeFileSync(campP, JSON.stringify(c), 'utf8');
-    const n = registrarNumeros(c.alvos.filter((a) => a.estado !== 'espera'));
     jaParou = true;
-    log(`>>> PAROU: ${proc}/${LIMITE} processados · +${n} números no não-repetir · próxima onda no horário do autopilot`);
+    log(`>>> PAROU: ${proc}/${LIMITE} processados · próxima onda no horário do autopilot`);
   } else if (!jaParou) {
     log(`onda em andamento: ${proc}/${LIMITE}`);
   }
