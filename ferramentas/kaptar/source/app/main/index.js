@@ -793,6 +793,8 @@ const INVOKE = {
       do WhatsApp e o telefone são do main. O renderer nunca escolhe o que esta
       view carrega nem para quem ela manda.
     */
+  /** O que a sonda está vendo na página do WhatsApp AGORA. Diagnóstico. */
+  SCR_ZAP_DIAGNOSTICO: "scrapper:zapDiagnostico",
   SCR_ZAP_ESTADO: "scrapper:zapEstado",
   SCR_ZAP_ABRIR: "scrapper:zapAbrir",
   SCR_ZAP_FECHAR: "scrapper:zapFechar",
@@ -3776,25 +3778,82 @@ const SCRIPT_ESTADO = `(() => {
     texto.includes('link a device') ||
     texto.includes('escaneie o c\\u00f3digo')
 
-  const painel = !!document.querySelector('#pane-side')
+  /*
+    O painel de conversas — v\\u00e1rios candidatos.
 
-  const compositor =
-    document.querySelector('footer div[contenteditable="true"]') ||
-    document.querySelector('div[contenteditable="true"][data-tab]') ||
-    document.querySelector('[data-testid="conversation-compose-box-input"]')
+    O DOM do WhatsApp muda, e quando muda o app inteiro para de funcionar em
+    silêncio: sem reconhecer o painel, ele conclui "n\\u00e3o est\\u00e1 logado" numa conta
+    logada. Procurar por quatro coisas diferentes custa nada e sobrevive à
+    troca de uma delas.
+  */
+  const alvosPainel = [
+    ['#pane-side', '#pane-side'],
+    ['chat-list', '[data-testid="chat-list"]'],
+    ['aria lista', '[aria-label*="ista de conversas"]'],
+    ['grid', 'div[role="grid"][aria-label]']
+  ]
+  let painel = false
+  let comoPainel = ''
+  for (var i = 0; i < alvosPainel.length; i++) {
+    if (document.querySelector(alvosPainel[i][1])) { painel = true; comoPainel = alvosPainel[i][0]; break }
+  }
 
-  if (invalido) return { estado: 'numero-invalido', painel, detalhe: 'a p\\u00e1gina diz que o n\\u00famero n\\u00e3o vale' }
-  if (qr && !painel) return { estado: 'sem-sessao', painel, detalhe: 'o QR est\\u00e1 na tela' }
-  if (compositor) return { estado: 'pronto', painel, detalhe: 'compositor encontrado' }
-  if (painel) return { estado: 'carregando', painel, detalhe: 'logado, sem a conversa aberta ainda' }
-  return { estado: 'carregando', painel, detalhe: 'sem painel e sem QR' }
+  /*
+    O compositor — onde a mensagem \\u00e9 escrita.
+
+    Mesmo racioc\\u00ednio: o \\u00faltimo candidato \\u00e9 propositalmente largo (qualquer
+    campo edit\\u00e1vel dentro da conversa aberta), porque \\u00e9 ele que segura quando
+    os espec\\u00edficos morrem. Sem isso, uma troca de atributo no WhatsApp faz TODA
+    conversa parecer "ainda carregando" e a campanha n\\u00e3o manda nada — gastando
+    noventa segundos por lead para descobrir isso.
+  */
+  const alvosCompositor = [
+    ['footer', 'footer div[contenteditable="true"]'],
+    ['data-tab', 'div[contenteditable="true"][data-tab]'],
+    ['testid', '[data-testid="conversation-compose-box-input"]'],
+    ['main footer', '#main footer [contenteditable="true"]'],
+    ['textbox', '[role="textbox"][contenteditable="true"]'],
+    ['qualquer no main', '#main [contenteditable="true"]']
+  ]
+  let compositor = null
+  let comoCompositor = ''
+  for (var j = 0; j < alvosCompositor.length; j++) {
+    const el = document.querySelector(alvosCompositor[j][1])
+    if (el) { compositor = el; comoCompositor = alvosCompositor[j][0]; break }
+  }
+
+  /*
+    O detalhe \\u00e9 uma FRASE DE DIAGNÓSTICO, e n\\u00e3o um r\\u00f3tulo.
+
+    Quando a campanha n\\u00e3o manda nada, esta \\u00e9 a \\u00fanica pista de por quê: ela diz
+    o que a sonda achou e o que n\\u00e3o achou, com o nome do seletor que casou.
+    Sem ela, "a conversa n\\u00e3o abriu" \\u00e9 indistingu\\u00edvel de "o DOM mudou".
+  */
+  const oQueViu =
+    'painel=' + (painel ? comoPainel : 'N\\u00c3O') +
+    ' compositor=' + (compositor ? comoCompositor : 'N\\u00c3O') +
+    ' url=' + location.pathname + location.search.slice(0, 40)
+
+  if (invalido) return { estado: 'numero-invalido', painel: painel, detalhe: 'a p\\u00e1gina diz que o n\\u00famero n\\u00e3o vale' }
+  if (qr && !painel) return { estado: 'sem-sessao', painel: painel, detalhe: 'o QR est\\u00e1 na tela' }
+  if (compositor) return { estado: 'pronto', painel: painel, detalhe: oQueViu }
+  return { estado: 'carregando', painel: painel, detalhe: oQueViu }
 })()`;
 const SCRIPT_ENVIAR = `(() => {
+  /*
+    Vários candidatos, e o mais largo por último.
+
+    O botão de enviar é o único ponto onde o app AGE na página de terceiro, e
+    perdê-lo custa a campanha inteira. Procurar por seis formas diferentes
+    custa nada; depender de uma só custa uma versão inteira quebrada.
+  */
   const alvos = [
     ['aria-label pt', 'button[aria-label="Enviar"]'],
     ['aria-label en', 'button[aria-label="Send"]'],
     ['data-icon', 'span[data-icon="send"]'],
-    ['data-testid', '[data-testid="send"]']
+    ['data-icon novo', 'span[data-icon="wds-ic-send-filled"]'],
+    ['data-testid', '[data-testid="send"]'],
+    ['aria parcial', 'footer button[aria-label*="nviar"], footer button[aria-label*="end"]']
   ]
   for (const [como, sel] of alvos) {
     const el = document.querySelector(sel)
@@ -3806,6 +3865,20 @@ const SCRIPT_ENVIAR = `(() => {
   }
   return { clicou: false, como: '' }
 })()`;
+const SCRIPT_ACHAR_BOTAO = `(() => {
+  const alvos = [
+    ['aria-label pt', 'button[aria-label="Enviar"]'],
+    ['aria-label en', 'button[aria-label="Send"]'],
+    ['data-icon', 'span[data-icon="send"]'],
+    ['data-icon novo', 'span[data-icon="wds-ic-send-filled"]'],
+    ['data-testid', '[data-testid="send"]'],
+    ['aria parcial', 'footer button[aria-label*="nviar"], footer button[aria-label*="end"]']
+  ]
+  for (const [como, sel] of alvos) {
+    if (document.querySelector(sel)) return 'achei por ' + como
+  }
+  return 'nenhum dos 6 seletores achou o bot\\u00e3o'
+})()`;
 const SCRIPT_SAIDAS = `(() => {
   const n = document.querySelectorAll('.message-out, [data-testid="msg-container"] .message-out').length
   return n || document.querySelectorAll('div[class*="message-out"]').length
@@ -3816,10 +3889,12 @@ const SCRIPT_RECEBIDAS = `(() => {
   const ultimas = Array.prototype.slice.call(alvo, -6)
   return ultimas.map(function (n) { return (n.innerText || '').slice(0, 400) })
 })()`;
-const ABRIR_TETO_MS = 3e4;
+const ABRIR_TETO_MS = 9e4;
 const ABRIR_PASSO_MS = 700;
-const BOLHA_TETO_MS = 15e3;
+const BOLHA_TETO_MS = 3e4;
 const BOLHA_PASSO_MS = 400;
+const BOTAO_TETO_MS = 12e3;
+const BOTAO_PASSO_MS = 500;
 const PADRAO = {
   dormir: async (ms) => {
     await new Promise((r) => setTimeout(r, ms));
@@ -3833,7 +3908,7 @@ async function enviarPara(zap, numeroInternacional, texto2, deps = PADRAO) {
   try {
     await zap.irParaConversa(numeroInternacional, texto2);
   } catch {
-    return { tipo: "falhou", motivo: "não deu para abrir a conversa" };
+    return { tipo: "nao-abriu", motivo: "não deu para abrir a conversa" };
   }
   const ate = deps.agora() + ABRIR_TETO_MS;
   let ultima = { estado: "carregando", painel: false, detalhe: "ainda não sondou" };
@@ -3850,7 +3925,7 @@ async function enviarPara(zap, numeroInternacional, texto2, deps = PADRAO) {
   }
   if (ultima.estado !== "pronto") {
     return {
-      tipo: "falhou",
+      tipo: "nao-abriu",
       motivo: `a conversa não abriu em ${String(ABRIR_TETO_MS / 1e3)}s — ${ultima.detalhe}`
     };
   }
@@ -3861,12 +3936,22 @@ async function enviarPara(zap, numeroInternacional, texto2, deps = PADRAO) {
     }
   }
   const antes = await zap.sondar(SCRIPT_SAIDAS).catch(() => -1);
-  const clique = await zap.sondar(SCRIPT_ENVIAR).catch(() => ({ clicou: false, como: "" }));
+  const ateBotao = deps.agora() + BOTAO_TETO_MS;
+  let clique = { clicou: false };
+  for (; ; ) {
+    clique = await zap.sondar(SCRIPT_ENVIAR).catch(() => ({ clicou: false, como: "" }));
+    if (clique.clicou) break;
+    if (deps.agora() >= ateBotao) break;
+    await deps.dormir(BOTAO_PASSO_MS);
+  }
   if (!clique.clicou) {
-    return { tipo: "falhou", motivo: "o botão de enviar não foi encontrado — a tela do WhatsApp mudou" };
+    return {
+      tipo: "falhou",
+      motivo: `o botão de enviar não apareceu em ${String(BOTAO_TETO_MS / 1e3)}s — a tela do WhatsApp mudou`
+    };
   }
   if (antes < 0) {
-    return { tipo: "falhou", motivo: "não deu para conferir se a mensagem saiu" };
+    return { tipo: "incerto", motivo: "não deu para ler a conversa antes de enviar" };
   }
   const ateBolha = deps.agora() + BOLHA_TETO_MS;
   while (deps.agora() < ateBolha) {
@@ -3874,7 +3959,10 @@ async function enviarPara(zap, numeroInternacional, texto2, deps = PADRAO) {
     const depois = await zap.sondar(SCRIPT_SAIDAS).catch(() => antes);
     if (depois > antes) return { tipo: "enviado" };
   }
-  return { tipo: "falhou", motivo: "cliquei em enviar e a mensagem não apareceu na conversa" };
+  return {
+    tipo: "incerto",
+    motivo: `cliquei em enviar e a mensagem não apareceu em ${String(BOLHA_TETO_MS / 1e3)}s`
+  };
 }
 const PARTICAO = "persist:kaptar-zap";
 const ORIGEM = "https://web.whatsapp.com";
@@ -4125,6 +4213,7 @@ function anotar(c, leadId, estado2, agora) {
 }
 const MAX_INVALIDOS_SEGUIDOS = 3;
 const MAX_FALHAS_SEGUIDAS = 2;
+const MAX_CARGAS_SEGUIDAS = 6;
 function motivoParaParar(s) {
   if (s.deslogado) return "a sessão do WhatsApp caiu — reconecte e comece de novo";
   if (s.invalidosSeguidos >= MAX_INVALIDOS_SEGUIDOS) {
@@ -4132,6 +4221,9 @@ function motivoParaParar(s) {
   }
   if (s.falhasSeguidas >= MAX_FALHAS_SEGUIDAS) {
     return `${String(MAX_FALHAS_SEGUIDAS)} envios seguidos falharam — a tela do WhatsApp provavelmente mudou`;
+  }
+  if (s.cargasSeguidas >= MAX_CARGAS_SEGUIDAS) {
+    return `a página do WhatsApp não terminou de carregar ${String(MAX_CARGAS_SEGUIDAS)} vezes seguidas — confira a internet e recomece; o que já foi enviado está registrado`;
   }
   return null;
 }
@@ -4253,6 +4345,7 @@ function resumir(c, agora, emMs) {
     intervalo: { min: Math.round(c.intervalo.min / 1e3), max: Math.round(c.intervalo.max / 1e3) }
   };
 }
+const MAX_TENTATIVAS_DE_CARGA = 3;
 const REPERGUNTAR_MS = 5 * 6e4;
 async function confirmarQueda(zap, esperaMs = 4e3) {
   await new Promise((r) => setTimeout(r, esperaMs));
@@ -4269,6 +4362,11 @@ function criarMotor(deps) {
   let rodando = false;
   let geracao = 0;
   const sinais = { invalidos: 0, falhas: 0 };
+  const carga = {
+    lead: "",
+    tentativas: 0,
+    seguidas: 0
+  };
   let enviadosNestaSessao = 0;
   const dormir = (ms) => new Promise((r) => {
     setTimeout(r, ms);
@@ -4391,6 +4489,33 @@ function criarMotor(deps) {
         agendar(1e3);
         return;
       }
+      if (r.tipo === "nao-abriu") {
+        if (carga.lead !== proximo.alvo.leadId) {
+          carga.lead = proximo.alvo.leadId;
+          carga.tentativas = 0;
+        }
+        carga.tentativas++;
+        carga.seguidas++;
+        if (carga.tentativas < MAX_TENTATIVAS_DE_CARGA && !atropelado()) {
+          console.log(
+            `[zap] a conversa não abriu (${r.motivo}) — tentativa ${String(carga.tentativas)} de ${String(MAX_TENTATIVAS_DE_CARGA)}`
+          );
+          await gravarEAvisar(c, "a página do WhatsApp está demorando — tentando de novo", 8e3);
+          agendar(8e3);
+          return;
+        }
+        console.error(`[zap] desisti deste lead depois de ${String(carga.tentativas)} tentativas`);
+        carga.tentativas = 0;
+      } else if (r.tipo === "incerto") {
+        carga.seguidas++;
+        carga.tentativas = 0;
+        carga.lead = "";
+        console.log(`[zap] envio incerto (${r.motivo}) — seguindo para o próximo`);
+      } else if (r.tipo === "enviado" || r.tipo === "sem-whatsapp") {
+        carga.seguidas = 0;
+        carga.tentativas = 0;
+        carga.lead = "";
+      }
       if (r.tipo === "sem-whatsapp") sinais.invalidos++;
       else sinais.invalidos = 0;
       if (r.tipo === "falhou") sinais.falhas++;
@@ -4406,7 +4531,8 @@ function criarMotor(deps) {
         deslogado: r.tipo === "sem-sessao" ? await confirmarQueda(zap) : false,
         avisoDoWhatsapp: false,
         invalidosSeguidos: sinais.invalidos,
-        falhasSeguidas: sinais.falhas
+        falhasSeguidas: sinais.falhas,
+        cargasSeguidas: carga.seguidas
       };
       const motivo = motivoParaParar(s);
       if (motivo !== null) {
@@ -4820,6 +4946,27 @@ function registrarScrapper(deps) {
     await motor.parar();
     await zap?.desconectar();
     return { ok: true };
+  });
+  defineHandler(INVOKE.SCR_ZAP_DIAGNOSTICO, EmptySchema, SO_APP$1, async () => {
+    const z2 = zap;
+    if (z2 === null || !z2.carregado()) {
+      return {
+        estado: "sem-view",
+        detalhe: "a aba do WhatsApp ainda não foi aberta nesta sessão",
+        botao: "—",
+        sessao: "desconhecido",
+        diario: []
+      };
+    }
+    const leitura = await z2.sondar(SCRIPT_ESTADO).catch((e) => ({ estado: "erro", detalhe: String(e).slice(0, 160) }));
+    const botao = await z2.sondar(SCRIPT_ACHAR_BOTAO).catch(() => "a sonda do botão não rodou");
+    return {
+      estado: leitura.estado,
+      detalhe: leitura.detalhe,
+      botao,
+      sessao: await z2.sessao(),
+      diario: z2.diario()
+    };
   });
   comFeature(INVOKE.SCR_ZAP_ESTADO, EmptySchema, SO_APP$1, async () => ({
     conectado: await zap?.sessao() === "logado",

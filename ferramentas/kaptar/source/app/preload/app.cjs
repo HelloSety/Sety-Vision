@@ -120,6 +120,8 @@ const INVOKE = {
       do WhatsApp e o telefone são do main. O renderer nunca escolhe o que esta
       view carrega nem para quem ela manda.
     */
+  /** O que a sonda está vendo na página do WhatsApp AGORA. Diagnóstico. */
+  SCR_ZAP_DIAGNOSTICO: "scrapper:zapDiagnostico",
   SCR_ZAP_ESTADO: "scrapper:zapEstado",
   SCR_ZAP_ABRIR: "scrapper:zapAbrir",
   SCR_ZAP_FECHAR: "scrapper:zapFechar",
@@ -262,6 +264,7 @@ const api = {
           `zapIniciar` levam só id de lead. Quem monta o número internacional e o
           endereço da conversa é o main, do que está gravado em disco.
         */
+    zapDiagnostico: async () => await electron.ipcRenderer.invoke(INVOKE.SCR_ZAP_DIAGNOSTICO, {}),
     zapEstado: async () => await electron.ipcRenderer.invoke(INVOKE.SCR_ZAP_ESTADO, {}),
     zapAbrir: async (bounds) => await electron.ipcRenderer.invoke(INVOKE.SCR_ZAP_ABRIR, { bounds }),
     zapFechar: async () => await electron.ipcRenderer.invoke(INVOKE.SCR_ZAP_FECHAR, {}),

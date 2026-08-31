@@ -1,57 +1,82 @@
-// PATCH no app.asar do Kaptar: campanha NAO pausa mais por
-//  - N numeros seguidos sem WhatsApp  (MAX_INVALIDOS_SEGUIDOS)
-//  - N envios seguidos falhados        (MAX_FALHAS_SEGUIDAS)
-// So para se a sessao do WhatsApp cair de verdade (s.deslogado) — esse fica.
-// Numero sem contato -> marca "sem-whatsapp" e PULA pro proximo.
+// Patch do Kaptar: a campanha NUNCA pausa por
+//   - N numeros seguidos sem WhatsApp   (MAX_INVALIDOS_SEGUIDOS)
+//   - N envios seguidos falhados         (MAX_FALHAS_SEGUIDAS)
+//   - N vezes a pagina do WhatsApp nao carregar (MAX_CARGAS_SEGUIDAS)  [novo na 2.0.3]
+// So para se a sessao do WhatsApp cair de verdade (s.deslogado).
 //
-// Rodar com o Kaptar FECHADO. Refazer depois de cada auto-update.
+// Patch = troca binaria IN-PLACE no app.asar, mesmo numero de bytes (` = N;` -> `=Ne9;`),
+// entao o header do asar continua valido. Nao usa @electron/asar, so fs.
+//
+// Uso (com o Kaptar FECHADO):
+//   node scripts/kaptar-patch-nao-pausar.mjs
+//   node scripts/kaptar-patch-nao-pausar.mjs --bloquear-update   (tambem aponta o feed
+//                                                                 de update pra um endereco
+//                                                                 morto, pra o patch parar
+//                                                                 de ser desfeito)
 
-import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
 
-const RES = 'C:/Users/seven/AppData/Local/Programs/Kaptar/resources';
+const RES = path.join(process.env.LOCALAPPDATA || path.join(os.homedir(), 'AppData', 'Local'), 'Programs', 'Kaptar', 'resources');
 const ASAR = path.join(RES, 'app.asar');
+const YML = path.join(RES, 'app-update.yml');
+const bloquearUpdate = process.argv.includes('--bloquear-update');
 const ts = new Date().toISOString().replace(/[:.]/g, '-');
-const work = path.join(os.tmpdir(), `kaptar-patch-${ts}`);
-const BIG = '999999999';
 
-const asarBin = ['npx', ['--yes', '@electron/asar']];
-const asar = (...args) => execFileSync('npx', ['--yes', '@electron/asar', ...args], { stdio: ['ignore', 'pipe', 'inherit'] }).toString();
-
-// 1) versao + extrai
-fs.mkdirSync(work, { recursive: true });
-asar('extract', ASAR, work);
-const ver = JSON.parse(fs.readFileSync(path.join(work, 'package.json'), 'utf8')).version;
-console.log('versao do Kaptar:', ver);
-
-// 2) patch no index.js
-const idxPath = path.join(work, 'out', 'main', 'index.js');
-let src = fs.readFileSync(idxPath, 'utf8');
-const reps = [
-  [/const MAX_INVALIDOS_SEGUIDOS = \d+;/, `const MAX_INVALIDOS_SEGUIDOS = ${BIG};`],
-  [/const MAX_FALHAS_SEGUIDAS = \d+;/, `const MAX_FALHAS_SEGUIDAS = ${BIG};`],
-];
-for (const [re, to] of reps) {
-  if (!re.test(src)) { console.error('PADRAO NAO ENCONTRADO:', re); process.exit(1); }
-  src = src.replace(re, to);
+if (!fs.existsSync(ASAR)) {
+  console.error('Nao achei o app.asar em:', ASAR);
+  console.error('Ajuste o caminho RES no topo do script se o Kaptar estiver noutro lugar.');
+  process.exit(1);
 }
-fs.writeFileSync(idxPath, src, 'utf8');
-console.log('patched:', reps.map(([, t]) => t).join('  |  '));
 
-// 3) backup do asar original + repack por cima
-const orig = `${ASAR}.orig-v${ver}-${ts}`;
-fs.copyFileSync(ASAR, orig);
-console.log('backup do asar original ->', path.basename(orig));
-const out = path.join(os.tmpdir(), `app-patched-${ts}.asar`);
-asar('pack', work, out, '--unpack', '*.node');
-fs.copyFileSync(out, ASAR);
-console.log('app.asar repackado e instalado. tamanho:', fs.statSync(ASAR).size, 'bytes');
+// ---- 1) patch nas 3 constantes de parada ----
+const PARES = [
+  ['const MAX_INVALIDOS_SEGUIDOS = 3;', 'const MAX_INVALIDOS_SEGUIDOS=3e9;'],
+  ['const MAX_FALHAS_SEGUIDAS = 2;', 'const MAX_FALHAS_SEGUIDAS=2e9;'],
+  ['const MAX_CARGAS_SEGUIDAS = 6;', 'const MAX_CARGAS_SEGUIDAS=6e9;'],
+];
 
-// 4) confere
-const check = execFileSync('npx', ['--yes', '@electron/asar', 'extract-file', ASAR, 'out/main/index.js']).toString();
-console.log('conferindo no asar final:',
-  /MAX_INVALIDOS_SEGUIDOS = 999999999/.test(check) && /MAX_FALHAS_SEGUIDAS = 999999999/.test(check)
-    ? 'OK — travas removidas' : 'FALHOU a verificacao');
-console.log('\nversao=' + ver + '  (guarde pro backup)');
+let buf = fs.readFileSync(ASAR);
+const bak = `${ASAR}.orig-${ts}`;
+fs.copyFileSync(ASAR, bak);
+console.log('backup ->', path.basename(bak));
+
+let feitos = 0, jaOk = 0, faltou = [];
+for (const [from, to] of PARES) {
+  if (Buffer.byteLength(from) !== Buffer.byteLength(to)) { console.error('BUG no script: tamanhos diferentes p/', from); process.exit(1); }
+  if (buf.indexOf(to) !== -1) { jaOk++; console.log('ja aplicado:', to); continue; }
+  const i = buf.indexOf(from);
+  if (i === -1) { faltou.push(from); continue; }
+  buf.write(to, i, 'utf8');
+  feitos++;
+  console.log(`patch @${i}  ${to}`);
+}
+
+if (faltou.length) {
+  console.error('\nNao achei estes padroes (o Kaptar deve ter mudado o codigo nesta versao):');
+  for (const f of faltou) console.error('  ' + f);
+  console.error('Abra o app.asar (npx @electron/asar extract) e procure MAX_*_SEGUIDAS pra ajustar o script.');
+  if (feitos === 0) { fs.rmSync(bak); process.exit(1); }
+}
+
+fs.writeFileSync(ASAR, buf);
+console.log(`\napp.asar: ${feitos} patch(es) novos, ${jaOk} ja estavam. size ${fs.statSync(ASAR).size}`);
+
+// ---- 2) opcional: desligar o auto-update ----
+if (bloquearUpdate && fs.existsSync(YML)) {
+  fs.copyFileSync(YML, `${YML}.orig-${ts}`);
+  fs.writeFileSync(YML,
+    'provider: generic\n' +
+    'url: http://127.0.0.1:0/kaptar-update-desligado/\n' +
+    'channel: latest\n' +
+    'updaterCacheDirName: kaptar-updater\n', 'utf8');
+  console.log('\napp-update.yml -> feed apontado pra endereco morto (auto-update desligado).');
+  console.log('  pra religar: restaure o .orig, ou volte a url pra https://kaptar.mazzeoia.com.br/app/');
+  console.log('  reforco: adicione no C:\\Windows\\System32\\drivers\\etc\\hosts (como admin):');
+  console.log('    127.0.0.1 kaptar.mazzeoia.com.br');
+} else if (bloquearUpdate) {
+  console.log('\n(app-update.yml nao encontrado — pulei o bloqueio de update)');
+}
+
+console.log('\nPronto. Reabra o Kaptar.');

@@ -3205,6 +3205,50 @@ textarea.campo {
   font-variant-numeric: tabular-nums;
 }
 
+/*
+  O painel de diagnóstico da página do WhatsApp.
+
+  Texto selecionável de propósito: ele existe para ser COPIADO e mandado para
+  quem vai consertar. Um diagnóstico que não se copia é um diagnóstico que vira
+  print borrado.
+*/
+.zap-diag {
+  margin: 10px 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+
+.zap-diag-topo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: var(--t-meta);
+}
+
+.zap-diag-topo strong { flex: 1; color: var(--text); }
+
+.zap-diag-lista {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 12px;
+  margin: 0 0 8px;
+  font-size: var(--t-meta);
+}
+
+.zap-diag-lista dt { color: var(--text-muted); }
+.zap-diag-lista dd { margin: 0; color: var(--text); word-break: break-word; }
+
+.zap-diag-diario {
+  font-size: var(--t-rotulo);
+  color: var(--text-2);
+  margin-bottom: 8px;
+}
+
+.zap-diag-diario p { margin: 2px 0; }
+
 /* Os dois campos do intervalo na mão. Ver o ritmo `livre`. */
 .zap-livre {
   display: flex;

@@ -7,41 +7,42 @@ analisa o site com o Claude Agent SDK da própria máquina e dispara WhatsApp em
 **Por que esta pasta existe:** se o site/servidor da Mazzeo sair do ar, o Seven continua
 com uma cópia completa e funcional. Cópia de uso pessoal / continuidade — não redistribuir.
 
-- **Versão arquivada:** `2.0.0` (Windows x64) — atualizou de 1.9.2 → 2.0.0 em 2026-08-30
+- **Versão arquivada:** `2.0.3` (Windows x64) — 1.9.2 → 2.0.0 → 2.0.3 em ~24h (updater agressivo)
 - **Instalado:** `C:\Users\seven\AppData\Local\Programs\Kaptar\`
 - **Dados do app (privados, NÃO ficam aqui):** `C:\Users\seven\AppData\Roaming\Kaptar\`
 
 ---
 
-## ⚠️ PATCH ANTI-PAUSA aplicado (2026-08-30)
+## ⚠️ PATCH ANTI-PAUSA + AUTO-UPDATE DESLIGADO (2026-08-31, v2.0.3)
 
 O `app.asar` **em uso** (`C:\...\Programs\Kaptar\resources\app.asar`) foi patchado pra
-**campanha nunca pausar** por:
-- N números seguidos sem WhatsApp (`MAX_INVALIDOS_SEGUIDOS`: `3` → `3e9`)
-- N envios seguidos falhados (`MAX_FALHAS_SEGUIDAS`: `2` → `2e9`)
+**campanha nunca pausar** por nenhuma das 3 travas de `motivoParaParar()`:
+- N números seguidos sem WhatsApp — `MAX_INVALIDOS_SEGUIDOS`: `3` → `3e9`
+- N envios seguidos falhados — `MAX_FALHAS_SEGUIDAS`: `2` → `2e9`
+- N vezes a página do WhatsApp não carregar — `MAX_CARGAS_SEGUIDAS`: `6` → `6e9`  ← **nova na 2.0.3**
 
-Agora, número sem contato → marca `sem-whatsapp` e **pula pro próximo**. A campanha só
-para sozinha se **a sessão do WhatsApp cair de verdade** (`s.deslogado`) — essa trava fica,
-porque sem sessão não dá pra mandar nada mesmo.
+Número/erro → marca o alvo e **pula pro próximo**. A campanha só para sozinha se
+**a sessão do WhatsApp cair de verdade** (`s.deslogado`, confirmada com 2ª leitura).
 
-**O que NÃO foi mexido (de propósito):** o teto diário do número (`20 + dias×20`, máx 200/dia,
-anti-ban). Ao bater o teto a campanha para pro dia e volta no dia seguinte — isso é limite
-programado, não bug.
+**Auto-update DESLIGADO:** o updater trocou o `app.asar` (e apagou o patch) **3× em ~1 dia**.
+`resources/app-update.yml` foi apontado pra um endereço morto (`http://127.0.0.1:0/...`).
+Cópias no repo: `app-update.yml.ORIGINAL` (feed real) e `app-update.yml.NEUTRALIZADO` (o em uso).
+Reforço opcional: `127.0.0.1 kaptar.mazzeoia.com.br` no `C:\Windows\System32\drivers\etc\hosts`.
 
-### O auto-update APAGA o patch
-`app-update.yml` → `provider: generic`, `url: https://kaptar.mazzeoia.com.br/app/`.
-Toda versão nova troca o `app.asar` e volta a pausar. Depois de cada update, **refazer**:
-
+### Refazer o patch (só se atualizar de novo na mão)
 ```bash
-node scripts/kaptar-patch-nao-pausar.mjs      # do repo, com o Kaptar FECHADO
+node scripts/kaptar-patch-nao-pausar.mjs --bloquear-update    # Kaptar FECHADO
 ```
-O script extrai o asar instalado, faz backup `app.asar.orig-v<versão>-<ts>`, troca os 2
-números **in-place** (mesmo tamanho de bytes, header do asar intacto), reinstala e verifica.
-Se os padrões `const MAX_INVALIDOS_SEGUIDOS = N;` / `const MAX_FALHAS_SEGUIDAS = N;` mudarem
-numa versão futura, ele avisa "PADRÃO NÃO ENCONTRADO" — aí é ajustar o regex no script.
+Patch = troca binária **in-place** das 3 constantes (` = N;` → `=Ne9;`, mesmo nº de bytes →
+header do asar intacto; **não** usar extract+repack, empacota o `claude.exe` de 254 MB e quebra).
+Faz backup `app.asar.orig-<ts>`. Se um padrão mudar de forma numa versão futura, avisa
+"não achei" — aí ajustar as strings em `PARES` no script.
 
-**Pra travar a versão e nunca mais perder o patch:** bloquear `kaptar.mazzeoia.com.br` no
-`C:\Windows\System32\drivers\etc\hosts` (`127.0.0.1 kaptar.mazzeoia.com.br`) ou no firewall.
+**Teto diário:** na 2.0.x o contador `enviado` fica bugado (entrega mas marca `falhou`), então
+`enviadosNoDia` fica 0 e o teto (`20 + dias×20`) **nunca dispara**. O corte por onda passa a ser
+só o `quantidade:100` do disparo. Ver `scripts/kaptar-registrar-enviados.mjs` /
+`kaptar-watchdog-100.mjs` pro "não repetir contato" (que também depende do `enviado` e por isso
+precisa do apoio manual).
 
 ---
 

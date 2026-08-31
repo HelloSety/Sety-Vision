@@ -25228,6 +25228,7 @@ function PainelDeValores({
   );
 }
 function ScrapperWhatsapp() {
+  const [diagnostico, setDiagnostico] = reactExports.useState(null);
   const [estado, setEstado] = reactExports.useState(null);
   const palco = reactExports.useRef(null);
   const ler = reactExports.useCallback(() => {
@@ -25289,6 +25290,20 @@ function ScrapperWhatsapp() {
       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "zap-selo", "data-on": conectado, children: conectado ? "conectado" : "não conectado" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "nota", children: conectado ? "a campanha manda por aqui. sair desta aba não desconecta nem para a fila." : "leia o QR abaixo com o celular: WhatsApp → Aparelhos conectados → Conectar aparelho." }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "zap-espaco" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "link-mini",
+          title: "mostra o que o Kaptar está enxergando na página do WhatsApp",
+          onClick: () => {
+            void window.kaptar.scrapper.zapDiagnostico().then((d) => {
+              setDiagnostico(d);
+            });
+          },
+          children: "testar a página"
+        }
+      ),
       conectado && /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
@@ -25303,6 +25318,64 @@ function ScrapperWhatsapp() {
           children: "desconectar"
         }
       )
+    ] }),
+    diagnostico !== null && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "zap-diag", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "zap-diag-topo", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "o que o Kaptar está vendo" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "link-mini",
+            onClick: () => {
+              const texto = [
+                `estado: ${diagnostico.estado}`,
+                `detalhe: ${diagnostico.detalhe}`,
+                `botão de enviar: ${diagnostico.botao}`,
+                `sessão: ${diagnostico.sessao}`,
+                ...diagnostico.diario
+              ].join("\n");
+              void navigator.clipboard.writeText(texto).then(() => {
+                avisar("copiado — cole no suporte");
+              });
+            },
+            children: "copiar"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "link-mini",
+            onClick: () => {
+              setDiagnostico(null);
+            },
+            children: "fechar"
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("dl", { className: "zap-diag-lista", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("dt", { children: "estado" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("dd", { children: diagnostico.estado }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("dt", { children: "o que achou" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("dd", { className: "selecionavel", children: diagnostico.detalhe }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("dt", { children: "botão de enviar" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("dd", { className: "selecionavel", children: diagnostico.botao }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("dt", { children: "sessão" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("dd", { children: diagnostico.sessao })
+      ] }),
+      diagnostico.diario.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("details", { className: "zap-diag-diario", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("summary", { children: "últimos eventos da página" }),
+        diagnostico.diario.map((l, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "selecionavel", children: l }, i))
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "hint", children: [
+        "com a conversa de um lead aberta, o esperado é",
+        " ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "estado: pronto" }),
+        " e um botão de enviar encontrado. se aparecer ",
+        /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "compositor=NÃO" }),
+        " com a conversa na tela, o WhatsApp mudou a página — copie isto e mande para o suporte."
+      ] })
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "zapaba-palco", ref: palco })
   ] });
@@ -26507,7 +26580,7 @@ function SecaoDaAtualizacao() {
     /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "painel-titulo", children: "versão" }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "painel-sub", children: [
       "você está na ",
-      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "2.0.0" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "2.0.3" }),
       ". o Kaptar procura versão nova sozinho de tempos em tempos, e avisa na barra de cima quando encontra."
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "chips", children: /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "button", className: "btn", disabled: procurando, onClick: procurar, children: procurando ? "procurando…" : "procurar atualização" }) }),
@@ -27022,7 +27095,7 @@ function BotaoNovidades() {
       {
         type: "button",
         className: "novidades-chip",
-        title: `o que a versão ${"2.0.0"} trouxe`,
+        title: `o que a versão ${"2.0.3"} trouxe`,
         onClick: () => {
           setAberto(true);
         },
@@ -27032,8 +27105,8 @@ function BotaoNovidades() {
     aberto && /* @__PURE__ */ jsxRuntimeExports.jsx(
       NotasDaVersao,
       {
-        versao: "2.0.0",
-        notas: '**Corrigido: o "9" que faltava nos telefones.** O Google devolve muito cadastro no formato antigo de oito dígitos, e o Kaptar mandava a mensagem para um número que não existe mais — ou que hoje é de outra pessoa. Agora o nono dígito entra sozinho, tanto nos leads novos quanto nos que já estavam salvos. Fixo continua sem o 9, como tem que ser.\n**Voltou o intervalo na mão.** Além dos três ritmos prontos, dá para escrever a faixa: "de 70 a 95 segundos". O mínimo de 45s continua valendo e a tela mostra o número que vai valer de verdade.\n**Corrigido: os filtros da Campanha sumiam ao trocar de aba.** Tipo de lead, segmentos, cidades, score, limite, ritmo e quem você tirou da fila à mão agora continuam lá — inclusive depois de fechar o app.\n**Corrigido: a campanha travando do nada.** Se a página do WhatsApp engasgava, o Kaptar ficava esperando uma resposta que nunca vinha e a fila congelava mostrando "rodando". Agora toda leitura tem prazo, e um passo travado se solta sozinho e continua a fila.\n**Automações agora têm TIPO.** Ao criar uma, um popup pergunta o que ela vai fazer: **só buscar leads**, **só enviar mensagens**, ou **as duas coisas**. A tela seguinte pede só o que aquele tipo precisa — uma automação de disparo não pede mais nicho nem área no mapa.\n**Automação de disparo escolhe de onde vêm os leads:** da captação dela mesma, da sua **aba Leads** inteira, ou da **fila de outra automação** (uma busca, a outra despacha).\n**Dá para VER o banco de leads de cada automação.** O botão "ver banco" no cartão mostra exatamente quem ela vai abordar, na ordem — já sem quem foi apagado, sem quem está sem telefone e sem quem está protegido pelo livro do número.',
+        versao: "2.0.3",
+        notas: '**O Kaptar passou a reconhecer a página do WhatsApp em mais formatos.** Ele dependia de poucos sinais para saber que a conversa abriu; quando o WhatsApp mexe no visual, esses sinais somem e o app fica esperando uma conversa que já estava aberta — sem erro nenhum, só sem enviar. Agora são seis formas de achar o campo de mensagem e seis de achar o botão de enviar.\n**Novo botão "testar a página", na aba WhatsApp.** Com a conversa de um lead aberta, ele mostra exatamente o que o app está enxergando: achou a lista de conversas? o campo de mensagem? o botão de enviar? Dá para copiar o resultado num clique.\nSe a campanha não disparar, esse botão responde por quê em uma frase — em vez de deixar "não dispara" como um mistério.',
         titulo: "o que a versão que você está usando trouxe.",
         onFechar: () => {
           setAberto(false);
