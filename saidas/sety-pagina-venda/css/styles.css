@@ -381,33 +381,32 @@ body.mnav-open .mnav__panel a:nth-child(5){transition-delay:.27s}
 /* =========================================================================
    DOBRA 1 · HERO — composição de 2 figuras, ratio ~2560/826
    ========================================================================= */
-.hero{--hero-img:url("../assets/hero.webp?v=19");
+.hero{--hero-img:url("../assets/hero.webp?v=20");
   position:relative;background:var(--bg-0);overflow:hidden;
-  padding-block:clamp(104px,10vw,140px) clamp(44px,5vw,78px)}
+  min-height:clamp(600px,46vw,860px);
+  padding-block:clamp(128px,12vw,168px) clamp(64px,7vw,104px)}
 .hero__scrim{position:absolute;inset:0;pointer-events:none;background:
-  linear-gradient(180deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,0) 20%),
-  linear-gradient(0deg,var(--bg-0) 0%,var(--bg-0) 4%,rgba(0,0,0,0) 34%)}
+  linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 18%),
+  linear-gradient(0deg,var(--bg-0) 0%,var(--bg-0) 4%,rgba(0,0,0,0) 30%)}
 /* fusão suave hero -> próxima seção (sem linha dura) */
-.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:clamp(140px,20vw,260px);
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:clamp(120px,16vw,220px);
   z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(10,10,10,0) 0%,rgba(10,10,10,.5) 54%,var(--bg) 100%)}
-.hero>.container{position:relative;z-index:2}
+  background:linear-gradient(180deg,rgba(8,8,8,0) 0%,rgba(8,8,8,.5) 55%,var(--bg) 100%)}
+.hero>.container{position:relative;z-index:2;width:100%}
 /* HERO — a fotografia É a composição do hero (fiel ao Figma), NÃO um card.
-   hero.webp (2560x826) já traz modelos + glow + arte: entra como camada de fundo,
-   sangra até as bordas e se dissolve no preto à esquerda / na base. */
+   hero.webp (2560x1601) já traz modelos + glow + arte + FOLGA no topo pra navbar:
+   entra como camada de fundo full-bleed, `cover` ancorado no topo, e se
+   dissolve no preto à esquerda e na base. Sem card, sem corte na cabeça. */
 .hero__grid{display:block}
 .hero__inner{position:relative;z-index:2;max-width:540px}
-/* a fotografia (2560x826, já com modelos + arte + glow) sangra em largura total
-   no topo do hero e se dissolve no preto na base e à esquerda — sem card, sem corte. */
 .hero__media{
   position:absolute;top:0;left:0;right:0;height:100%;z-index:0;
   border-radius:0;box-shadow:none;border:0;overflow:hidden;
   aspect-ratio:auto;min-height:0;pointer-events:none;
-  background:var(--hero-img) no-repeat top right;background-size:100% auto}
+  background:var(--hero-img) no-repeat right 16%;background-size:cover}
 .hero__media::after{content:"";position:absolute;inset:0;pointer-events:none;background:
-  linear-gradient(90deg,var(--bg-0) 0%,rgba(5,5,5,.86) 16%,rgba(5,5,5,.32) 40%,rgba(5,5,5,0) 58%),
-  linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,.4) 16%,rgba(5,5,5,0) 40%),
-  linear-gradient(180deg,rgba(5,5,5,.5) 0%,rgba(5,5,5,0) 14%)}
+  linear-gradient(90deg,var(--bg-0) 0%,rgba(5,5,5,.94) 20%,rgba(5,5,5,.58) 40%,rgba(5,5,5,.12) 55%,rgba(5,5,5,0) 66%),
+  linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,.35) 13%,rgba(5,5,5,0) 32%)}
 .hero__title{
   font-size:var(--fs-h1);font-weight:var(--fw-black);color:var(--text);letter-spacing:-.03em;
   line-height:1.06;margin:clamp(18px,2vw,26px) 0 clamp(14px,1.6vw,20px);text-wrap:balance
@@ -425,9 +424,10 @@ body.mnav-open .mnav__panel a:nth-child(5){transition-delay:.27s}
 .proof--sm .proof__txt small{color:var(--text-dim)}
 .avstack{display:inline-flex;align-items:center}
 .avstack .av{width:36px;height:36px;border-radius:50%;margin-left:-12px;flex:0 0 auto;overflow:hidden;
-  background:#1a1a1a;border:2px solid rgba(255,255,255,.4);
+  background:#0c0c0c;border:2px solid rgba(255,255,255,.4);
   display:block}
-.avstack .av img{width:100%;height:100%;object-fit:cover;display:block}
+/* logos reais de cliente — quadrados sobre fundo escuro, centralizados, sem distorção */
+.avstack .av img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
 .avstack .av:first-child{margin-left:0}
 .avstack .av--check{display:grid;place-items:center;overflow:visible;
   background:#1c1c1c;border-color:rgba(255,255,255,.4);color:var(--orange)}
@@ -528,7 +528,7 @@ body.mnav-open .mnav__panel a:nth-child(5){transition-delay:.27s}
   min-height:clamp(460px,40vw,640px);
   display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(20px,2.8vw,40px)}
 .mec__bg{position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:url("../assets/bg-mecanismo.webp?v=18") 50% 10%/cover no-repeat;
+  background:url("../assets/bg-mecanismo.webp?v=20") 50% 6%/cover no-repeat;
   -webkit-mask:radial-gradient(64% 86% at 50% 32%,#000 54%,transparent 90%);
   mask:radial-gradient(64% 86% at 50% 32%,#000 54%,transparent 90%)}
 .mec__bg .mec__disc,.mec__bg .mec__blades{display:none}
@@ -803,12 +803,12 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
   .hero>.container{order:1}
   .hero__grid{display:block}
   .hero__inner{max-width:none}
-  .hero__media{position:relative;inset:auto;order:2;z-index:1;margin-top:clamp(20px,6vw,36px);
-    aspect-ratio:16/13;min-height:auto;max-height:60vh;width:100%;
-    background-position:78% top}
+  .hero__media{position:relative;inset:auto;order:2;z-index:1;margin-top:clamp(18px,5vw,32px);
+    aspect-ratio:3/4;min-height:auto;max-height:74vh;width:100%;
+    background-position:center top;background-size:cover}
   .hero__media::after{background:
-    linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,0) 30%),
-    linear-gradient(90deg,var(--bg-0) 0%,rgba(5,5,5,0) 14%,rgba(5,5,5,0) 86%,var(--bg-0) 100%)}
+    linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,0) 34%),
+    linear-gradient(90deg,var(--bg-0) 0%,rgba(5,5,5,0) 12%,rgba(5,5,5,0) 88%,var(--bg-0) 100%)}
   .problema__grid{grid-template-columns:1fr;gap:28px}
   .problema__device{order:2;max-width:520px}
   .manifesto{order:1;max-width:none}
@@ -834,11 +834,11 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
   .mec__foot{grid-template-columns:1fr;gap:14px;text-align:center;justify-items:center}
   .mec__left{align-items:center}
   .mec__left .sec__title,.mec__right{max-width:28ch;text-align:center;justify-self:center}
-  .hero{--hero-img:url("../assets/hero-mobile.webp?v=19");
-    padding-top:clamp(96px,24vw,120px);padding-bottom:0}
+  .hero{--hero-img:url("../assets/hero-mobile.webp?v=20");
+    min-height:0;padding-top:clamp(92px,22vw,116px);padding-bottom:0}
   .hero__scrim{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 24%),
     linear-gradient(0deg,var(--bg-0) 0%,rgba(0,0,0,0) 30%)}
-  .hero__media{background-position:72% top}
+  .hero__media{background-position:center top}
   .hero__title{font-size:clamp(2rem,8.4vw,2.9rem)}
   .hero__sub{max-width:40ch}
   .hero__actions{gap:12px}

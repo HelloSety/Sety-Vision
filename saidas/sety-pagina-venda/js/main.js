@@ -98,10 +98,10 @@
 
   /* --------------------------------------------------------------- STAT BAND */
   (function () {
-    function avImg(n, sz) { return '<span class="av"><img src="assets/avatars/a' + n + '.webp?v=19" alt="" width="' + sz + '" height="' + sz + '" loading="lazy" decoding="async"></span>'; }
+    function avImg(n, sz) { return '<span class="av"><img src="assets/logos/c' + n + '.webp?v=20" alt="" width="' + sz + '" height="' + sz + '" loading="lazy" decoding="async"></span>'; }
     function avStack(order) { return '<span class="avstack avstack--sm" aria-hidden="true">' + order.map(function (n) { return avImg(n, 30); }).join('') + '<span class="av av--check">' + ICON.check + '</span></span>'; }
-    var avs = avStack([1, 2, 3, 4]);
-    var avsAlt = avStack([5, 3, 2, 1]);
+    var avs = avStack([1, 2, 7, 5]);
+    var avsAlt = avStack([6, 3, 8, 4]);
     $$("[data-statband]").forEach(function (wrap) {
       var kind = wrap.getAttribute("data-statband");
       var ctaClass = kind === "orange" ? "btn--light" : "btn--orange";
