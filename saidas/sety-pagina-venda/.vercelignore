@@ -1,0 +1,5 @@
+_backup_*
+.playwright-mcp
+.env
+.env.example
+README.md
