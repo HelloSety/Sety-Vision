@@ -31,10 +31,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="image" href="assets/hero.webp?v=22" media="(min-width:821px)" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/hero.webp?v=22" media="(min-width:821px) and (max-width:1649px)" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/hero-desktop.webp?v=1" media="(min-width:1650px)" fetchpriority="high" />
 <link rel="preload" as="image" href="assets/hero-mobile.webp?v=20" media="(max-width:820px)" fetchpriority="high" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=22" />
+<link rel="stylesheet" href="css/styles.css?v=25" />
 
 <!-- ================= TRACKING (carrega só se houver ID em js/config.js) ======
      Meta Pixel / GA4 / GTM são injetados por js/main.js a partir de TRACKING_CONFIG.
@@ -99,7 +100,7 @@
     <a href="#portfolio">Projetos</a>
     <a href="#depoimentos">Depoimentos</a>
     <a href="#quem-faz">Quem faz</a>
-    <a class="btn btn--light mnav__cta" href="https://wa.me/5519988090110" data-cta="whatsapp" data-track="click_primary_cta">
+    <a class="btn btn--orange mnav__cta" href="https://wa.me/5519988090110" data-cta="whatsapp" data-track="click_primary_cta">
       <span>Falar com a Sety Studio</span>
       <i class="btn__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
     </a>
@@ -131,7 +132,7 @@
     </p>
 
     <div class="hero__actions reveal">
-      <a class="btn btn--light" href="https://wa.me/5519988090110" data-cta="whatsapp" data-track="click_primary_cta">
+      <a class="btn btn--orange" href="https://wa.me/5519988090110" data-cta="whatsapp" data-track="click_primary_cta">
         <span>Falar com a Sety Studio</span>
         <i class="btn__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
       </a>
@@ -380,6 +381,6 @@
 </a>
 
 <script src="js/config.js?v=20"></script>
-<script src="js/main.js?v=20" defer></script>
+<script src="js/main.js?v=21" defer></script>
 </body>
 </html>

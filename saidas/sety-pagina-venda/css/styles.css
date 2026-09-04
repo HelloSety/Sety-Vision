@@ -168,6 +168,7 @@ h1,h2,h3{font-family:var(--ff-display);font-weight:800;line-height:1.12;letter-s
 .statband__stat small{font-size:.72rem;color:var(--text-dim)}
 .statband__vr{width:1px;align-self:stretch;min-height:34px;background:var(--vline);flex:0 0 auto}
 .statband__cta{flex:0 0 auto}
+.statband__cta-group{display:flex;align-items:center;gap:12px;flex-wrap:wrap;flex:0 1 auto}
 .statband__proof{display:flex;align-items:center;gap:12px;flex:0 1 auto}
 .statband__proof .proof__txt b{font-size:.92rem}
 .statband__proof .proof__txt small{font-size:.7rem;color:var(--text-dim)}
@@ -246,6 +247,18 @@ h1,h2,h3{font-family:var(--ff-display);font-weight:800;line-height:1.12;letter-s
   --btn-glow-h:var(--btn-glow-blue-h);
   --btn-circle-bg:#fff;
   --btn-circle-fg:#2563EB;
+  --btn-circle-ring:0 0 0 4px rgba(255,255,255,.24)
+}
+
+/* Instagram — gradiente roxo→magenta→rosa→laranja (fiel à marca, tom premium) */
+.btn--instagram{
+  --btn-fg:#fff;
+  --btn-bg:linear-gradient(135deg,#5B2A86 0%,#8A3AB9 24%,#C13584 50%,#E1306C 72%,#F77737 100%);
+  --btn-brd:rgba(255,255,255,.26);
+  --btn-glow:0 12px 30px -8px rgba(193,53,132,.45),0 0 20px -2px rgba(247,119,55,.32);
+  --btn-glow-h:0 18px 44px -10px rgba(193,53,132,.55),0 0 30px -2px rgba(247,119,55,.42);
+  --btn-circle-bg:#fff;
+  --btn-circle-fg:#C13584;
   --btn-circle-ring:0 0 0 4px rgba(255,255,255,.24)
 }
 /* fantasma escuro (Instagram etc.) — transparente, borda sutil, sem glow */
@@ -776,7 +789,12 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
 /* =========================================================================
    RESPONSIVO
    ========================================================================= */
-@media (min-width:1650px){ :root{--maxw:1340px} }
+@media (min-width:1650px){
+  :root{--maxw:1340px}
+  /* telas grandes de desktop: arte DESKTOP.png própria (ratio largo, quase sem crop vertical) */
+  .hero{--hero-img:url("../assets/hero-desktop.webp?v=1")}
+  .hero__media{background-position:right top}
+}
 
 @media (max-width:1150px){
   .nav__links a{padding:9px 12px;font-size:.82rem}
@@ -801,14 +819,14 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
   .hero__inner{max-width:64%}
 }
 @media (max-width:900px){
-  /* mobile: texto em cima, foto embaixo em largura total — ainda sem cara de card */
+  /* mobile: foto em cima, texto embaixo em largura total — ainda sem cara de card */
   .hero{display:flex;flex-direction:column;padding-bottom:0}
-  .hero>.container{order:1}
+  .hero>.container{order:2;margin-top:clamp(18px,5vw,32px)}
   .hero__grid{display:block}
   .hero__inner{max-width:none}
-  .hero__media{position:relative;inset:auto;order:2;z-index:1;margin-top:clamp(18px,5vw,32px);
+  .hero__media{position:relative;inset:auto;order:1;z-index:1;margin-top:0;
     aspect-ratio:7/6;min-height:auto;max-height:74vh;width:100%;
-    background-position:center 20%;background-size:cover}
+    background-position:center top;background-size:cover}
   .hero__media::after{background:
     linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,0) 34%),
     linear-gradient(90deg,var(--bg-0) 0%,rgba(5,5,5,0) 12%,rgba(5,5,5,0) 88%,var(--bg-0) 100%)}
@@ -827,8 +845,8 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
 @media (max-width:820px){
   .nav__inner{padding:8px 8px 8px 18px}
   .sec--mecanismo{min-height:auto;justify-content:flex-start;align-items:center;
-    gap:clamp(16px,4vw,28px);
-    padding-block:clamp(40px,9vw,64px) var(--sec-y)}
+    gap:clamp(10px,2.6vw,18px);
+    padding-block:clamp(20px,4.5vw,36px) var(--sec-y)}
   .mec__bg{position:relative;left:auto;right:auto;top:auto;transform:none;order:-1;
     width:min(92%,400px);aspect-ratio:975/1549;
     background:url("../assets/bg-mecanismo-mobile.webp?v=18") center/contain no-repeat;
@@ -841,7 +859,7 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
     min-height:0;padding-top:clamp(92px,22vw,116px);padding-bottom:0}
   .hero__scrim{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 24%),
     linear-gradient(0deg,var(--bg-0) 0%,rgba(0,0,0,0) 30%)}
-  .hero__media{background-position:center 20%}
+  .hero__media{background-position:center top}
   .hero__title{font-size:clamp(2rem,8.4vw,2.9rem)}
   .hero__sub{max-width:40ch}
   .hero__actions{gap:12px}
@@ -851,6 +869,8 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
   .statband__cta{order:-1;width:100%}
   .statband__cta .btn{width:100%;justify-content:space-between}
   .statband--port .statband__cta{width:100%}
+  .statband__cta-group{order:-1;width:100%;flex-direction:column;align-items:stretch}
+  .statband__cta-group .btn{width:100%;justify-content:space-between}
   .quem__body{margin-left:0}
   .sec--quem{display:flex;flex-direction:column}
   .quem__bg{position:relative;order:-1;overflow:hidden;
@@ -861,6 +881,10 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
 }
 @media (max-width:600px){
   :root{--r-lg:24px;--sec-y:clamp(48px,13vw,84px);--block-gap:clamp(26px,7vw,40px)}
+  .faq__foot .btn{font-size:.68rem;padding:12px 14px 12px 20px;gap:10px;max-width:calc(100% - 16px)}
+  .faq__foot .btn__arrow{width:34px;height:34px}
+  .faq__foot .btn--orange{--btn-glow:0 8px 20px -10px rgba(255,78,18,.42),0 0 12px -4px rgba(255,78,18,.32);
+    --btn-glow-h:0 12px 26px -10px rgba(255,78,18,.5),0 0 16px -4px rgba(255,78,18,.4)}
   .dep-grid{grid-template-columns:1fr;gap:18px;max-width:420px;margin-inline:auto}
   .port-grid{--pg-cols:2}
   .sec__title--split{font-size:clamp(1.55rem,7vw,2rem)}

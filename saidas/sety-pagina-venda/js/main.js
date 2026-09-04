@@ -93,6 +93,7 @@
     star: '<svg viewBox="0 0 24 24"><path d="M12 2l2.6 6.3L21 9l-4.9 4.2L17.6 20 12 16.4 6.4 20l1.5-6.8L3 9l6.4-.7L12 2Z" fill="currentColor"/></svg>',
     arrow: '<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     be: '<svg viewBox="0 0 24 24"><path d="M3 6h6a3.2 3.2 0 010 6.4H3Zm0 6.4h6.6a3.3 3.3 0 010 6.6H3ZM15 9h6M15 15c.3-2.6 2.2-4 4.2-4S23 12.4 23 15Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    ig: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.4" fill="currentColor"/></svg>',
   };
   function h(html) { var t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
 
@@ -114,7 +115,10 @@
       if (kind === "portfolio") {
         wrap.style.justifyContent = "center";
         html =
+          '<span class="statband__cta-group">' +
           '<a class="btn btn--blue statband__cta btn--breathe" href="' + (CFG.behance || "#") + '" target="_blank" rel="noopener" data-cta="behance" data-track="click_behance"><span>Ver mais no Behance</span><i class="btn__arrow" aria-hidden="true">' + ICON.be + '</i></a>' +
+          '<a class="btn btn--instagram statband__cta" href="' + (CFG.instagram || "#") + '" target="_blank" rel="noopener noreferrer" data-cta="instagram" data-track="click_instagram"><span>Ver no Instagram</span><i class="btn__arrow" aria-hidden="true">' + ICON.ig + '</i></a>' +
+          '</span>' +
           '<span class="statband__vr"></span>' +
           '<span class="statband__proof">' + avsAlt +
             '<span class="proof__txt"><b>Criativos &amp; campanhas</b><small>portfólio completo no Behance</small></span></span>';
