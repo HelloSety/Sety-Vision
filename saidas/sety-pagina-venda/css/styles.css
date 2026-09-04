@@ -381,7 +381,7 @@ body.mnav-open .mnav__panel a:nth-child(5){transition-delay:.27s}
 /* =========================================================================
    DOBRA 1 · HERO — composição de 2 figuras, ratio ~2560/826
    ========================================================================= */
-.hero{--hero-img:url("../assets/hero.webp?v=21");
+.hero{--hero-img:url("../assets/hero.webp?v=22");
   position:relative;background:var(--bg-0);overflow:hidden;
   min-height:clamp(600px,46vw,860px);
   padding-block:clamp(128px,12vw,168px) clamp(64px,7vw,104px)}
@@ -403,7 +403,7 @@ body.mnav-open .mnav__panel a:nth-child(5){transition-delay:.27s}
   position:absolute;top:0;left:0;right:0;height:100%;z-index:0;
   border-radius:0;box-shadow:none;border:0;overflow:hidden;
   aspect-ratio:auto;min-height:0;pointer-events:none;
-  background:var(--hero-img) no-repeat right top;background-size:cover}
+  background:var(--hero-img) no-repeat right 20%;background-size:cover}
 .hero__media::after{content:"";position:absolute;inset:0;pointer-events:none;background:
   linear-gradient(90deg,var(--bg-0) 0%,rgba(5,5,5,.94) 20%,rgba(5,5,5,.58) 40%,rgba(5,5,5,.12) 55%,rgba(5,5,5,0) 66%),
   linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,.35) 13%,rgba(5,5,5,0) 32%)}
@@ -807,8 +807,8 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
   .hero__grid{display:block}
   .hero__inner{max-width:none}
   .hero__media{position:relative;inset:auto;order:2;z-index:1;margin-top:clamp(18px,5vw,32px);
-    aspect-ratio:3/4;min-height:auto;max-height:74vh;width:100%;
-    background-position:center top;background-size:cover}
+    aspect-ratio:7/6;min-height:auto;max-height:74vh;width:100%;
+    background-position:center 20%;background-size:cover}
   .hero__media::after{background:
     linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,0) 34%),
     linear-gradient(90deg,var(--bg-0) 0%,rgba(5,5,5,0) 12%,rgba(5,5,5,0) 88%,var(--bg-0) 100%)}
@@ -841,7 +841,7 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
     min-height:0;padding-top:clamp(92px,22vw,116px);padding-bottom:0}
   .hero__scrim{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 24%),
     linear-gradient(0deg,var(--bg-0) 0%,rgba(0,0,0,0) 30%)}
-  .hero__media{background-position:center top}
+  .hero__media{background-position:center 20%}
   .hero__title{font-size:clamp(2rem,8.4vw,2.9rem)}
   .hero__sub{max-width:40ch}
   .hero__actions{gap:12px}
