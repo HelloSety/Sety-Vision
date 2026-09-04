@@ -702,19 +702,22 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
    ========================================================================= */
 .sec--quem{position:relative;background:var(--orange);color:#fff;overflow:hidden;
   padding-block:clamp(64px,7vw,120px);
-  min-height:clamp(520px,46vw,700px);display:flex;align-items:center}
+  min-height:clamp(560px,48vw,820px);display:flex;align-items:center}
 /* transição limpa da seção escura -> seção laranja (véu escuro sutil no topo) */
 .sec--quem::before{content:"";position:absolute;top:0;left:0;right:0;height:clamp(90px,11vw,180px);
   z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(8,7,7,.5),transparent)}
 .sec--quem .container{position:relative;z-index:1;width:100%}
-/* figura: termina naturalmente logo ACIMA da linha do statband (não é cortada por ela) */
-.quem__bg{position:absolute;left:0;right:0;top:0;bottom:clamp(104px,13vw,176px);z-index:0;
+/* figura à esquerda — grande, integrada, ancorada na base (fiel ao Figma DOBRA 7).
+   O recorte reto da foto some por baixo do statband via máscara. */
+.quem__bg{position:absolute;left:0;top:0;bottom:0;width:min(56%,880px);z-index:0;
   pointer-events:none;overflow:hidden;
-  background:url("../assets/quem-bg.webp?v=18") left bottom/auto 100% no-repeat;
-  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 16%);
-  mask-image:linear-gradient(180deg,transparent 0,#000 16%)}
+  background:url("../assets/quem-bg.webp?v=20") left bottom/cover no-repeat;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 80%,transparent 100%),linear-gradient(90deg,#000 58%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(180deg,transparent 0,#000 12%,#000 80%,transparent 100%),linear-gradient(90deg,#000 58%,transparent 100%);
+  mask-composite:intersect}
 .quem__bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(272deg,var(--orange) 0%,var(--orange) 33%,rgba(255,78,18,.55) 48%,rgba(255,78,18,.08) 64%,rgba(255,78,18,0) 74%)}
+  background:linear-gradient(90deg,rgba(255,78,18,0) 42%,rgba(255,78,18,.28) 66%,var(--orange) 100%)}
 .quem__light{display:none}
 .quem__figure{display:none}
 .quem__body{max-width:492px;margin-left:auto}
@@ -850,7 +853,8 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
   .statband--port .statband__cta{width:100%}
   .quem__body{margin-left:0}
   .sec--quem{display:flex;flex-direction:column}
-  .quem__bg{position:static;order:-1;overflow:visible}
+  .quem__bg{position:relative;order:-1;overflow:hidden;
+    width:100%;height:clamp(240px,66vw,360px);margin-bottom:20px}
   .quem__figure{position:relative;left:auto;bottom:auto;width:min(72%,300px);max-height:none;
     margin:0 auto 8px;display:block}
   .quem__light{display:none}
