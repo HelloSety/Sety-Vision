@@ -686,6 +686,14 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
 .t-modal__close:focus-visible{outline:2px solid #fff;outline-offset:2px}
 
 /* =========================================================================
+   SOBRE · bloco de conteúdo SEO compacto (antes do footer)
+   ========================================================================= */
+.sec--sobre{padding-block:var(--sec-y)}
+.sobre__head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;margin-bottom:var(--block-gap)}
+.sobre__head .pill{margin-inline:auto}
+.sobre__body{max-width:700px;margin-inline:auto}
+
+/* =========================================================================
    DOBRA 7 · FAQ — acordeão
    ========================================================================= */
 .sec--faq{padding-block:var(--sec-y)}
