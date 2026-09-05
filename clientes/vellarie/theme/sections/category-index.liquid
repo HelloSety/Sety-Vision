@@ -1,0 +1,67 @@
+{%- liquid
+  assign rows = section.blocks | where: 'type', 'item'
+-%}
+<section class="section {{ section.settings.color_scheme }}" data-category-index>
+  <div class="container">
+    {%- if section.settings.heading != blank -%}
+      <div class="section-head" data-reveal><h2 class="section-head__title">{{ section.settings.heading }}</h2></div>
+    {%- endif -%}
+
+    <ul class="catx" data-reveal-stagger>
+      {%- for block in rows -%}
+        {%- liquid
+          assign coll = collections[block.settings.collection]
+          assign url = block.settings.link | default: coll.url | default: '#'
+          assign label = block.settings.label | default: coll.title
+        -%}
+        <li class="catx__row" {{ block.shopify_attributes }}>
+          <a class="catx__link" href="{{ url }}">
+            <span class="catx__n">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+            <span class="catx__label">{{ label }}</span>
+            {%- if block.settings.sub != blank -%}<span class="catx__sub">{{ block.settings.sub }}</span>{%- endif -%}
+            <span class="catx__arrow" aria-hidden="true">{% render 'icon', name: 'arrow-right', class: 'icon' %}</span>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category index",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by category" },
+    { "type": "select", "id": "color_scheme", "label": "t:settings.color_scheme.label", "options": [
+      { "value": "", "label": "t:settings.color_scheme.light" },
+      { "value": "color-surface", "label": "t:settings.color_scheme.surface" },
+      { "value": "color-dark", "label": "t:settings.color_scheme.dark" }
+    ], "default": "color-dark" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Category",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection", "info": "Its title and URL are used unless overridden below." },
+        { "type": "text", "id": "label", "label": "Label override" },
+        { "type": "text", "id": "sub", "label": "Sub-label", "default": "Explore essentials" },
+        { "type": "url", "id": "link", "label": "Link override" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "Category index",
+      "blocks": [
+        { "type": "item", "settings": { "label": "Grooming", "sub": "Shavers, trimmers & precision tools" } },
+        { "type": "item", "settings": { "label": "Hair & Styling", "sub": "Brushes, irons & scalp care" } },
+        { "type": "item", "settings": { "label": "Skin & Body", "sub": "Cleansing & beauty devices" } },
+        { "type": "item", "settings": { "label": "Recovery & Relief", "sub": "Massage & red-light therapy" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

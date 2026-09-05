@@ -268,6 +268,22 @@
       setTimeout(function () { lbl.textContent = prev; btn.classList.remove('is-error'); }, 2200);
     }
 
+    function addVariant(id, btn) {
+      var fd = new FormData();
+      fd.append('id', id); fd.append('quantity', 1); fd.append('sections', 'cart-drawer');
+      btn && btn.classList.add('is-loading');
+      return fetch(R.cartAdd, { method: 'POST', headers: { Accept: 'application/javascript' }, body: fd })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res.status) { flash(btn, res.description || STR.cartError); return; }
+          push('add_to_cart', { ecommerce: { value: (res.final_price || res.price || 0) / 100,
+            items: [{ item_id: res.sku || res.variant_id, item_name: res.product_title, price: (res.final_price || 0) / 100, quantity: 1 }] } });
+          return refresh().then(function () { if (isDrawer()) open(); else window.location = R.cart; });
+        })
+        .catch(function () { flash(btn, STR.cartError); })
+        .finally(function () { btn && btn.classList.remove('is-loading'); });
+    }
+
     openers.forEach(function (b) {
       on(b, 'click', function (e) {
         if (isDrawer()) { e.preventDefault(); open(); }
@@ -283,8 +299,33 @@
       add(form, form.querySelector('[type="submit"]'));
     });
 
-    return { open: open, close: close, refresh: refresh, add: add };
+    return { open: open, close: close, refresh: refresh, add: add, addVariant: addVariant };
   })();
+
+  /* ============================================================
+     6b. QUICK ADD — one-option variant popover on product cards
+     ============================================================ */
+  function initQuickAdd(root) {
+    $$('[data-quick-add]', root || document).forEach(function (wrap) {
+      if (wrap.dataset.qaBound) return; wrap.dataset.qaBound = '1';
+      var opener = $('[data-qa-open]', wrap);
+      var pop = $('[data-qa-pop]', wrap);
+      if (!opener || !pop) return;
+      function close() { pop.hidden = true; opener.setAttribute('aria-expanded', 'false'); }
+      function toggle() { pop.hidden ? (pop.hidden = false, opener.setAttribute('aria-expanded', 'true')) : close(); }
+      on(opener, 'click', function (e) { e.preventDefault(); toggle(); });
+      on(document, 'click', function (e) { if (!wrap.contains(e.target)) close(); });
+      on(document, 'keydown', function (e) { if (e.key === 'Escape') close(); });
+      $$('[data-qa-variant]', pop).forEach(function (b) {
+        on(b, 'click', function (e) {
+          e.preventDefault();
+          if (b.disabled) return;
+          Cart.addVariant(b.getAttribute('data-qa-variant'), opener);
+          close();
+        });
+      });
+    });
+  }
 
   /* ============================================================
      7. PDP — gallery + variants + qty + sticky ATC
@@ -609,6 +650,7 @@
     initPDP(root);
     initHero(root);
     initMarquee();
+    initQuickAdd(root);
     initParallax();
     initImgSkeleton(root);
     initPopup();

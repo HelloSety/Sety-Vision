@@ -33,12 +33,22 @@
   </a>
 
   {%- if settings.card_quick_add and product.available -%}
-    <div class="card__quick">
+    <div class="card__quick" data-quick-add>
       {%- if product.variants.size == 1 -%}
         <form action="{{ routes.cart_add_url }}" method="post">
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
           <button type="submit" class="btn btn--sm btn--full"><span class="btn__label">{{ 'products.product.quick_add' | t }}</span><span class="btn__spinner"></span></button>
         </form>
+      {%- elsif product.options.size == 1 -%}
+        <button type="button" class="btn btn--sm btn--full" data-qa-open aria-expanded="false"><span class="btn__label">{{ 'products.product.quick_add' | t }}</span><span class="btn__spinner"></span></button>
+        <div class="qa-pop" data-qa-pop hidden>
+          <p class="qa-pop__title">{{ product.options_with_values[0].name }}</p>
+          <div class="qa-pop__row">
+            {%- for v in product.variants -%}
+              <button type="button" class="qa-pop__opt{% unless v.available %} is-unavailable{% endunless %}" data-qa-variant="{{ v.id }}"{% unless v.available %} disabled{% endunless %}>{{ v.title }}</button>
+            {%- endfor -%}
+          </div>
+        </div>
       {%- else -%}
         <a href="{{ product.url }}" class="btn btn--sm btn--full">{{ 'products.product.choose_options' | t }}</a>
       {%- endif -%}

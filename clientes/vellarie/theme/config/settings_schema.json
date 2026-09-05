@@ -188,7 +188,7 @@
         "step": 4,
         "unit": "px",
         "label": "t:settings.layout.section_spacing.label",
-        "default": 120
+        "default": 100
       },
       {
         "type": "range",
@@ -198,7 +198,7 @@
         "step": 4,
         "unit": "px",
         "label": "t:settings.layout.section_spacing_mobile.label",
-        "default": 64
+        "default": 52
       },
       {
         "type": "range",
@@ -266,7 +266,7 @@
           { "value": "cover", "label": "Cover (fills the frame)" },
           { "value": "contain", "label": "Contain (pads to fit)" }
         ],
-        "default": "contain"
+        "default": "cover"
       },
       {
         "type": "checkbox",

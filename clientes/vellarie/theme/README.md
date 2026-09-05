@@ -3,6 +3,32 @@
 Custom Shopify **Online Store 2.0** theme for Vellarie (`4zevyg-1g.myshopify.com` / `vellarie.store`).
 Built by **Sety Studio**. No build step — plain Liquid + one CSS file + one JS file.
 
+## Version 3 — refinement (2026-09-05)
+
+Audit + fix pass on top of V2 Signature. Highlights:
+
+- **Fixed real bugs:** every product grid rendered as a single column (`.grid--products` had
+  `grid-template-columns` but no `display:grid`); the mobile hamburger showed on desktop (a later
+  unscoped rule beat the `@media` that hides it); the hero forced `min-height: 100svh` → empty
+  white band + cropped campaign art.
+- **Hero** is now **aspect-ratio driven** (`3/1` desktop, portrait mobile, `max-height` setting,
+  focal-point setting) — the art ends naturally, no empty space, no crop.
+- **Category section** is now an **editorial numbered index** (`sections/category-index.liquid`,
+  no images): `01 / GROOMING / sub-label / →`, animated hover. Replaces the image tiles.
+- **New Arrivals** section added to the homepage.
+- **Vertical rhythm** tightened (`section_spacing` 100/52, smaller section-head margin,
+  no double gap between consecutive dark sections). Homepage went from ~16000px to ~5200px.
+- **Product cards** quieter (1px border, no heavy shadow), `card_image_fit` defaults to **cover**
+  (the catalogue photos are marketing composites, not white-bg pack shots — cover crops the
+  callout text out); real **quick-add variant popover** for single-option products.
+- **Header** shrinks on scroll (58px, logo −6px, subtle shadow); centred logo on desktop.
+- **Testimonials** ship **empty and honest** — no fake rating, no invented quotes; rating summary
+  off by default; `@app` block slot + "reviews on the way" empty state.
+- **Trust bar** quieter; **marquee** slower; **promo** stronger overlay.
+- Announcement + all homepage copy in **en-US**.
+
+Skills for future Shopify work: `.claude/skills/shopify-{theme,liquid,ux,performance,conversion,qa}/`.
+
 ## Version 2 — "Signature" (2026-09-05)
 
 Direction: **dark premium beauty-tech**, editorial, mobile-first, conversion-first — matched to the
