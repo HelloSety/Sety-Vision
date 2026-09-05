@@ -399,7 +399,7 @@ body.mnav-open .mnav__panel a:nth-child(5){transition-delay:.27s}
 /* =========================================================================
    DOBRA 1 · HERO — composição de 2 figuras, ratio ~2560/826
    ========================================================================= */
-.hero{--hero-img:url("../assets/hero.webp?v=22");
+.hero{--hero-img:url("../assets/hero.webp?v=22");   /* 901–1649px: comp MACBOOK 2560x1664 */
   position:relative;background:var(--bg-0);overflow:hidden;
   min-height:clamp(600px,46vw,860px);
   padding-block:clamp(128px,12vw,168px) clamp(64px,7vw,104px)}
@@ -424,11 +424,12 @@ body.mnav-open .mnav__panel a:nth-child(5){transition-delay:.27s}
   border-radius:0;box-shadow:none;border:0;overflow:hidden;
   aspect-ratio:auto;min-height:0;pointer-events:none;
   background:var(--hero-img) no-repeat right center;background-size:cover}
-/* placa de leitura: esquerda 100% sólida até 42%, dissolve na arte até 78%.
-   não é "só z-index" — é o plano escuro real que sustenta a legibilidade do texto. */
+/* placa de leitura: escura só sob a coluna de texto (esq. ~26%), some ANTES
+   das figuras (~50%). Sem faixa preta em cima do rosto — a arte já tem o
+   próprio degradê à esquerda; aqui é só reforço leve. */
 .hero__media::after{content:"";position:absolute;inset:0;pointer-events:none;background:
-  linear-gradient(90deg,var(--bg-0) 0%,var(--bg-0) 42%,rgba(5,5,5,.82) 52%,rgba(5,5,5,.34) 64%,rgba(5,5,5,0) 78%),
-  linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,.35) 13%,rgba(5,5,5,0) 32%)}
+  linear-gradient(90deg,var(--bg-0) 0%,rgba(5,5,5,.72) 24%,rgba(5,5,5,.30) 38%,rgba(5,5,5,.08) 47%,rgba(5,5,5,0) 55%),
+  linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,.32) 12%,rgba(5,5,5,0) 30%)}
 .hero__title{
   font-size:var(--fs-h1);font-weight:var(--fw-black);color:var(--text);letter-spacing:-.03em;
   line-height:1.06;margin:clamp(18px,2vw,26px) 0 clamp(14px,1.6vw,20px);text-wrap:balance
@@ -797,11 +798,22 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
    ========================================================================= */
 @media (min-width:1650px){
   :root{--maxw:1340px}
-  /* telas grandes: a arte 2560x1664 (MACBOOK) cobre o hero cheio sem esmagar.
-     a versão letterbox 2560x826 (DESKTOP.png) super-amplia num hero de altura
-     cheia e corta um dos rostos — por isso o hero usa a comp alta em todo desktop. */
-  .hero__media{background-position:right center}
+  /* telas grandes (≥1650): comp própria DESKTOP 2560x826 (~3:1). O bloco de texto
+     é compactado aqui pra o hero ficar baixo (~3:1) → a arte larga entra quase
+     sem corte, figuras menores/com ar, os dois rostos livres, sem faixa preta. */
+  .hero{--hero-img:url("../assets/hero-desktop.webp?v=1");
+    min-height:clamp(520px,33vw,660px);
+    padding-block:clamp(104px,7vw,124px) clamp(36px,3vw,52px)}
+  .hero__media{background-position:right top;background-size:cover}
+  .hero__media::after{background:
+    linear-gradient(90deg,var(--bg-0) 0%,rgba(5,5,5,.64) 22%,rgba(5,5,5,.22) 36%,rgba(5,5,5,0) 50%),
+    linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,.26) 12%,rgba(5,5,5,0) 30%)}
   .hero__inner{max-width:520px}
+  .hero__title{font-size:clamp(1.95rem,2.5vw,2.55rem);line-height:1.05;margin:14px 0 12px}
+  .hero__sub{line-height:1.5}
+  .hero__actions{margin-top:22px}
+  .hero__microtrust{margin-top:10px}
+  .proof{margin-top:18px}
 }
 
 @media (max-width:1150px){
