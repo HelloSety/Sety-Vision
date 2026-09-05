@@ -173,43 +173,52 @@
     bindTracks(wrap);
   })();
 
-  // Depoimentos — vídeos reais de resultado (gestão de tráfego)
-  // Card = pôster + botão. Clique/toque/Enter abre o lightbox central com o vídeo grande.
+  // Resultados — prova real de gestão de tráfego (vídeos + prints de feedback).
+  // Fonte: pasta RESULTADOS do cliente. Card = mídia + legenda fiel ao material.
+  // Clique/toque/Enter abre o lightbox central (vídeo com som, ou print ampliado).
   (function () {
-    var wrap = $("[data-testimonials]"); if (!wrap || !window.TESTIMONIALS) return;
+    var wrap = $("[data-testimonials]");
+    var data = window.RESULTS || window.TESTIMONIALS;
+    if (!wrap || !data) return;
     wrap.setAttribute("data-stagger", "");
-    var playTag = '<span class="t-card__tag">' +
-      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>' +
-      'Vídeo · resultado real</span>';
+    function tag(isVideo) {
+      var ico = isVideo
+        ? '<path d="M8 5v14l11-7z" fill="currentColor"/>'
+        : '<path d="M4 5h16v14H4z M4 15l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>';
+      return '<span class="t-card__tag"><svg viewBox="0 0 24 24" aria-hidden="true">' + ico + '</svg>' +
+        (isVideo ? "Vídeo · resultado real" : "Print · resultado real") + "</span>";
+    }
 
-    var items = window.TESTIMONIALS.filter(function (t) { return t.video; });
+    var items = data.filter(function (t) { return t.video || t.image; });
     items.forEach(function (t) {
+      var isVideo = !!t.video;
+      var media = isVideo ? (t.poster || "") : t.image;
       var cap = t.caption ? '<p class="t-card__cap">' + t.caption + "</p>" : "";
+      var play = isVideo
+        ? '<span class="t-card__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>'
+        : "";
       var card = h(
-        '<article class="t-card reveal" role="button" tabindex="0" ' +
-          'aria-label="Abrir depoimento em vídeo: ' + (t.caption || t.alt || "resultado real de cliente") + '">' +
-          '<div class="t-card__vid" style="background-image:url(' + t.poster + ')">' +
-            '<span class="t-card__play" aria-hidden="true">' +
-              '<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>' +
-            '</span>' +
-          '</div>' +
-          '<div class="t-card__foot">' + playTag + cap + "</div>" +
+        '<article class="t-card reveal' + (isVideo ? "" : " t-card--img") + '" role="button" tabindex="0" ' +
+          'aria-label="Abrir ' + (isVideo ? "vídeo" : "print") + ' de resultado: ' + (t.caption || t.alt || "resultado real de cliente") + '">' +
+          '<div class="t-card__vid" style="background-image:url(' + media + ')">' + play + '</div>' +
+          '<div class="t-card__foot">' + tag(isVideo) + cap + "</div>" +
         "</article>"
       );
       card.__data = t;
       wrap.appendChild(card);
     });
 
-    /* ---- Lightbox (um só, reutilizado) ---- */
+    /* ---- Lightbox (um só, reutilizado — vídeo OU imagem) ---- */
     var modal = h(
       '<div class="t-modal" hidden aria-hidden="true">' +
         '<div class="t-modal__backdrop" data-modal-close></div>' +
-        '<div class="t-modal__dialog" role="dialog" aria-modal="true" aria-label="Depoimento em vídeo">' +
-          '<button class="t-modal__close" type="button" data-modal-close aria-label="Fechar depoimento">' +
+        '<div class="t-modal__dialog" role="dialog" aria-modal="true" aria-label="Resultado real de cliente">' +
+          '<button class="t-modal__close" type="button" data-modal-close aria-label="Fechar">' +
             '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>' +
           '</button>' +
           '<div class="t-modal__media">' +
-            '<video controls playsinline preload="auto"></video>' +
+            '<video controls playsinline preload="auto" hidden></video>' +
+            '<img alt="" hidden />' +
           '</div>' +
           '<p class="t-modal__cap"></p>' +
         '</div>' +
@@ -217,6 +226,7 @@
     );
     document.body.appendChild(modal);
     var mVideo = $("video", modal);
+    var mImg = $("img", modal);
     var mCap = $(".t-modal__cap", modal);
     var lastFocus = null;
     var closeTimer = null;
@@ -224,8 +234,19 @@
     function openModal(t, trigger) {
       lastFocus = trigger || null;
       clearTimeout(closeTimer);
-      mVideo.src = t.video;
-      mVideo.poster = t.poster || "";
+      var isVideo = !!t.video;
+      if (isVideo) {
+        mImg.hidden = true; mImg.removeAttribute("src");
+        mVideo.hidden = false;
+        mVideo.src = t.video;
+        mVideo.poster = t.poster || "";
+      } else {
+        try { mVideo.pause(); } catch (e) {}
+        mVideo.hidden = true; mVideo.removeAttribute("src");
+        mImg.hidden = false;
+        mImg.src = t.image;
+        mImg.alt = t.alt || t.caption || "Resultado real de cliente";
+      }
       mCap.textContent = t.caption || "";
       mCap.hidden = !t.caption;
       modal.hidden = false;
@@ -235,9 +256,8 @@
       void modal.offsetWidth;
       modal.classList.add("is-open");
       $(".t-modal__close", modal).focus();
-      var p = mVideo.play();
-      if (p && p.catch) p.catch(function () {});
-      trackEvent("testimonial_open", { cap: (t.caption || "").slice(0, 60) });
+      if (isVideo) { var p = mVideo.play(); if (p && p.catch) p.catch(function () {}); }
+      trackEvent("resultado_open", { cap: (t.caption || "").slice(0, 60), tipo: isVideo ? "video" : "print" });
     }
     function closeModal() {
       if (modal.hidden) return;
@@ -247,6 +267,7 @@
       var finish = function () {
         modal.hidden = true;
         mVideo.removeAttribute("src"); mVideo.load();
+        mImg.removeAttribute("src");
         document.body.classList.remove("is-locked");
         if (lastFocus && lastFocus.focus) lastFocus.focus();
       };
@@ -331,6 +352,32 @@
     });
     setTimeout(revealAll, 2600);
   }
+
+  // page_view (garante o evento no dataLayer mesmo sem GA/GTM) + UTM
+  (function () {
+    var p = new URLSearchParams(location.search);
+    var utm = {};
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
+      if (p.get(k)) utm[k] = p.get(k);
+    });
+    trackEvent("page_view", Object.assign({ path: location.pathname, title: document.title }, utm));
+  })();
+
+  // scroll_depth — 25 / 50 / 75 / 100 (uma vez cada)
+  (function () {
+    var marks = [25, 50, 75, 100], hit = {};
+    function onDepth() {
+      var st = window.scrollY || document.documentElement.scrollTop;
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = h > 0 ? Math.round((st / h) * 100) : 100;
+      marks.forEach(function (m) {
+        if (pct >= m && !hit[m]) { hit[m] = 1; trackEvent("scroll_depth", { percent: m }); }
+      });
+      if (hit[100]) window.removeEventListener("scroll", onDepth);
+    }
+    window.addEventListener("scroll", onDepth, { passive: true });
+    onDepth();
+  })();
 
   // eventos de visualização de seção (uma vez cada)
   var VIEW_EVENTS = { "#servicos": "view_services", "#portfolio": "view_portfolio", "#depoimentos": "view_testimonials" };

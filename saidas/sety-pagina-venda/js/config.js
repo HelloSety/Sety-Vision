@@ -5,7 +5,7 @@
 
 window.SITE_CONFIG = {
   brand: "Sety Studio",
-  baseUrl: "https://sety-pagina-venda.vercel.app", // trocar quando tiver domínio próprio
+  baseUrl: "https://www.setystudio.com.br", // domínio oficial
 
   // Canal comercial principal — todos os CTAs de contato usam isto
   whatsapp: "5519988090110", // só dígitos, com DDI+DDD
@@ -44,28 +44,32 @@ window.TEAM_MEMBERS = [
   },
 ];
 
-/* Serviços — 3 cards (mesma estrutura do Figma). -------------------------- */
+/* Serviços — 3 cards que cobrem os 4 pilares: estratégia + design + aquisição + conversão.
+   Estrutura visual fiel ao Figma (3 cards retrato). ---------------------- */
 window.SERVICES = [
   {
-    icon: "target",
-    title: "Tráfego Pago",
+    icon: "layers",
+    title: "Marca &amp; Site",
     html:
-      "<strong>Colocamos sua empresa na frente de quem já está pronto pra comprar.</strong> " +
-      "Campanhas de Meta Ads e Google Ads com método, previsibilidade e acompanhamento número por número.",
+      "<strong>A base que passa credibilidade e foi feita pra vender.</strong> " +
+      "Identidade visual e logotipo, web design, criação de sites, landing pages e loja virtual em " +
+      "Nuvemshop ou Shopify — rápidos, responsivos e com cada seção pensada pra levar ao próximo passo.",
   },
   {
-    icon: "layers",
-    title: "Sites e Landing Pages",
+    icon: "target",
+    title: "Tráfego &amp; Aquisição",
     html:
-      "<strong>Seu site precisa fazer mais do que existir. Precisa vender.</strong> " +
-      "Sites, landing pages e lojas virtuais rápidos, responsivos e com cada seção pensada pra tirar a dúvida, quebrar a objeção e levar ao próximo passo.",
+      "<strong>Sua empresa na frente de quem já está pronto pra comprar.</strong> " +
+      "Gestão de tráfego pago em Meta Ads, Google Ads e TikTok Ads, com verba de teste, " +
+      "leitura de número e escala — geração de leads e vendas com previsibilidade.",
   },
   {
     icon: "route",
-    title: "Estratégia de Conversão",
+    title: "Estratégia &amp; Conversão",
     html:
       "<strong>Anúncio, página, oferta e criativo trabalhando juntos.</strong> " +
-      "Conectamos as pontas pra cada real investido em tráfego voltar em oportunidade e venda.",
+      "Estratégia digital e CRO: conectamos as pontas e ajustamos com base em dado " +
+      "pra cada real investido voltar em oportunidade e venda.",
   },
 ];
 
@@ -81,43 +85,72 @@ window.PORTFOLIO_ITEMS = [
   { title: "Dias Sport",      category: "Esportivo",      image: "assets/portfolio/dias-sport.webp?v=18",       url: "https://diassport.com.br/" },
 ];
 
-/* Depoimentos — vídeos reais de resultado de gestão de tráfego (pasta GESTÃO).
-   Cada card: vídeo vertical + poster + caption (frase real transcrita do vídeo).
-   Clique = play com som. Não inventar dado — caption sai do próprio conteúdo. */
-window.TESTIMONIALS = [
-  { video: "assets/depoimentos/t1.mp4?v=18", poster: "assets/depoimentos/t1.jpg?v=18",
-    caption: "1ª venda por tráfego pago em 2 dias de campanha",
-    alt: "Feedback: 1ª venda por tráfego pago em 2 dias de campanha" },
-  { video: "assets/depoimentos/t3.mp4?v=18", poster: "assets/depoimentos/t3.jpg?v=18",
-    caption: "Resultado quando a estratégia é pensada pro produto certo",
-    alt: "Feedback: resultado quando a estratégia é pensada pro produto certo" },
-  { video: "assets/depoimentos/t4.mp4?v=18", poster: "assets/depoimentos/t4.jpg?v=18",
-    caption: "Campanha direcionada: +R$ 1,9 mil em vendas",
-    alt: "Feedback: campanha direcionada, mais de R$ 1,9 mil em vendas" },
-  { video: "assets/depoimentos/t5.mp4?v=18", poster: "assets/depoimentos/t5.jpg?v=18",
-    caption: "Venda com a jornada inteira, do site ao WhatsApp",
-    alt: "Feedback: venda com jornada bem construída, do site ao WhatsApp" },
-  { video: "assets/depoimentos/t6.mp4?v=18", poster: "assets/depoimentos/t6.jpg?v=18",
-    caption: "R$ 512 em anúncios → R$ 4.318 a mais no caixa · 8,4x",
-    alt: "Feedback: R$ 512 em anúncios, R$ 4.318 a mais no caixa, 8,43x de retorno" },
-  { video: "assets/depoimentos/t2.mp4?v=18", poster: "assets/depoimentos/t2.jpg?v=18",
-    caption: "Cliente de tráfego: campanha rodando e vendendo",
-    alt: "Feedback de cliente: campanha de tráfego rodando e gerando venda" },
+/* Resultados — prova REAL, extraída da pasta RESULTADOS do cliente (nada inventado).
+   3 vídeos verticais (clique = play com som) + 3 prints de feedback (clique = amplia).
+   Legenda descreve fielmente o que aparece no material — sem número que não esteja lá. */
+window.RESULTS = [
+  { video: "assets/depoimentos/res-italo.mp4?v=41", poster: "assets/depoimentos/res-italo.jpg?v=41",
+    caption: "Campanha no ar: 75 conversas, 11.115 alcançados, 6 vendas",
+    alt: "Print de resultado: cliente com 75 conversas geradas, 11.115 pessoas alcançadas e 6 vendas com a campanha rodando" },
+  { video: "assets/depoimentos/res-sparta.mp4?v=41", poster: "assets/depoimentos/res-sparta.jpg?v=41",
+    caption: "Feedback do cliente em áudio — projeto Sparta Tech",
+    alt: "Cliente Sparta Tech enviando feedback em áudio sobre o projeto entregue" },
+  { video: "assets/depoimentos/res-fist.mp4?v=41", poster: "assets/depoimentos/res-fist.jpg?v=41",
+    caption: "@fist.street: feedback do cliente e vendas na loja",
+    alt: "Cliente Fist Street mostrando o perfil no ar, com feedback positivo e vendas" },
+  { image: "assets/depoimentos/res-5k.webp?v=41",
+    caption: "“Batemos 5k no Insta” — crescimento de perfil do cliente",
+    alt: "Print de conversa: cliente comemora ter batido 5 mil seguidores no Instagram" },
+  { image: "assets/depoimentos/res-cobby.webp?v=41",
+    caption: "@cobbyoutlet: “conheci pelo tráfego pago, o perfil passou credibilidade”",
+    alt: "Print de WhatsApp do cliente @cobbyoutlet elogiando o trabalho de tráfego pago, a credibilidade do perfil e os prazos rápidos" },
+  { image: "assets/depoimentos/res-campanhas.webp?v=41",
+    caption: "Bastidor: 3 campanhas no ar — venda, remarketing e estrutura completa",
+    alt: "Foto de dois monitores com o Gerenciador de Anúncios aberto: três campanhas ativas de venda e remarketing" },
 ];
+/* aliases legados */
+window.TESTIMONIALS = window.RESULTS;
 
-/* FAQ — perguntas e respostas reais (acordeão). Primeira já aberta. ----- */
+/* FAQ — perguntas comerciais reais (acordeão). Primeira já aberta.
+   Cobre os serviços (site, landing page, loja Nuvemshop/Shopify, e-commerce,
+   tráfego pago, Meta Ads, Google Ads, TikTok Ads, branding). Mesmo texto no
+   FAQPage JSON-LD do index.html — manter os dois em sincronia. */
 window.FAQ = [
   {
-    q: "Já tenho um site. Vocês aproveitam ou refazem tudo?",
-    a: "A gente analisa o que já existe e mede o que está travando a conversão antes de tocar em qualquer coisa. Se dá pra ajustar, ajusta. Se o site não foi feito pra vender, aí sim vale refazer, e você entra na conversa sabendo o porquê.",
+    q: "Vocês criam sites e landing pages?",
+    a: "Sim. Sites institucionais, landing pages e páginas de vendas — em HTML/CSS/JS ou no builder que fizer sentido pro projeto. Cada seção é pensada pra tirar a dúvida, quebrar a objeção e levar ao próximo passo.",
   },
   {
-    q: "Já rodo anúncios. Vocês assumem a conta ou começam do zero?",
-    a: "Assumimos a conta que já existe, revisamos estrutura, públicos e criativos, e mantemos o histórico de aprendizado. Tráfego sem uma página preparada pra converter queima parte do investimento. A gente arruma a ponta que falta.",
+    q: "Vocês criam e personalizam loja Nuvemshop?",
+    a: "Sim. Criação e personalização de loja Nuvemshop: layout próprio, catálogo organizado, checkout simples e o tráfego direcionado pra quem já quer comprar.",
   },
   {
-    q: "Vocês também criam lojas virtuais e cuidam de e-commerce?",
-    a: "Sim. Além de sites e landing pages, montamos lojas virtuais em Nuvemshop e Shopify pensadas pra vender: catálogo organizado, checkout simples e tráfego direcionado pra quem já quer comprar.",
+    q: "E loja Shopify?",
+    a: "Também. Criação e personalização de loja Shopify, tema ajustado à identidade da marca e integração com a operação de anúncios.",
+  },
+  {
+    q: "Vocês fazem e-commerce de verdade, não só o visual?",
+    a: "Sim. Estrutura de e-commerce pensada pra vender: arquitetura de catálogo, páginas de produto que convencem, prova social, frete claro e recuperação de carrinho — não só uma home bonita.",
+  },
+  {
+    q: "Vocês trabalham com tráfego pago?",
+    a: "É metade do serviço. Gestão de tráfego pago em Meta Ads (Facebook e Instagram) e Google Ads, com verba de teste, leitura de número e escala quando o resultado aparece.",
+  },
+  {
+    q: "Fazem TikTok Ads e Pinterest Ads também?",
+    a: "Quando o público do negócio está nesses canais, sim. Normalmente entram depois que Meta Ads e Google Ads já estão estáveis e dando retorno.",
+  },
+  {
+    q: "Vocês fazem branding e identidade visual?",
+    a: "Fazemos identidade visual, logotipo e direção de marca quando o projeto pede — em geral junto com o site, pra tudo falar a mesma língua.",
+  },
+  {
+    q: "Dá pra contratar site e tráfego juntos?",
+    a: "É como a gente prefere trabalhar. Site e anúncio na mesma mesa: um atrai as pessoas certas, o outro transforma em contato — sem repasse entre fornecedores e sem uma ponta esperando a outra.",
+  },
+  {
+    q: "Já tenho site / já rodo anúncio. Vocês aproveitam?",
+    a: "A gente mede o que já existe antes de mexer. Se o site dá pra ajustar, ajusta; se não foi feito pra vender, vale refazer e você entra na conversa sabendo o porquê. Na conta de anúncio, assumimos a estrutura atual e preservamos o histórico de aprendizado.",
   },
   {
     q: "Quanto tempo até a estrutura estar no ar?",
@@ -125,15 +158,11 @@ window.FAQ = [
   },
   {
     q: "Como funciona o investimento?",
-    a: "Tem o valor do projeto (site / landing) e a gestão mensal do tráfego, cobrada à parte da verba de anúncio, que você define e paga direto pra plataforma. Na conversa a gente monta o escopo e o número fecha ali, sem surpresa depois.",
-  },
-  {
-    q: "Preciso ter uma verba grande de anúncio pra começar?",
-    a: "Não. A gente começa com um orçamento de teste pra validar oferta e criativo, lê os números e só então escala. O objetivo é cada real investido voltar em oportunidade, não gastar muito rápido.",
+    a: "Tem o valor do projeto (site / landing / loja) e a gestão mensal do tráfego, cobrada à parte da verba de anúncio — que você define e paga direto pra plataforma. Na conversa a gente monta o escopo e o número fecha ali, sem surpresa depois.",
   },
   {
     q: "Não sei por onde começar. Isso é problema?",
-    a: "É o cenário mais comum. A conversa inicial serve pra entender seu negócio, sua oferta e seu objetivo. O plano da estrutura, o que fazer primeiro e o que pode esperar, sai daí.",
+    a: "É o cenário mais comum. A conversa inicial serve pra entender seu negócio, sua oferta e seu objetivo. O plano da estrutura — o que fazer primeiro e o que pode esperar — sai daí.",
   },
 ];
 /* alias legado */

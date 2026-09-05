@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SEO &amp; Growth — Sety Studio (painel interno)</title>
+<meta name="robots" content="noindex,nofollow" />
+<meta name="description" content="Central interna de SEO e Growth da Sety Studio — on-page, técnico, dados estruturados, social, conteúdo, performance, analytics e mapa de keywords. Não indexável." />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<style>
+  :root{
+    --bg:#0b0a0a; --panel:#141212; --panel-2:#1b1818; --line:#2a2626;
+    --text:#f4f1ef; --dim:#a89f9b; --muted:#8b817d;
+    --orange:#ff4e12; --orange-2:#ff6a2b; --green:#3ecf8e; --amber:#f6b73c; --red:#ff5a52;
+    --ff:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;
+    --mono:"SF Mono",SFMono-Regular,ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--ff);line-height:1.55;
+    -webkit-font-smoothing:antialiased;padding:0 0 80px}
+  a{color:var(--orange-2)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  header.top{padding:40px 0 28px;border-bottom:1px solid var(--line);margin-bottom:36px;
+    background:radial-gradient(120% 100% at 0% 0%,rgba(255,78,18,.10),transparent 60%)}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.72rem;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--orange);
+    border:1px solid var(--line);border-radius:999px;padding:6px 12px;background:var(--panel)}
+  h1{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:800;letter-spacing:-.02em;margin:16px 0 8px}
+  .sub{color:var(--dim);max-width:70ch;font-size:.98rem}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:18px;font-size:.8rem;color:var(--dim)}
+  .legend b{color:var(--text);font-weight:600}
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:.08em;padding:3px 9px;border-radius:999px;border:1px solid}
+  .ok{color:var(--green);border-color:rgba(62,207,142,.4);background:rgba(62,207,142,.08)}
+  .wait{color:var(--amber);border-color:rgba(246,183,60,.4);background:rgba(246,183,60,.08)}
+  .block{color:var(--red);border-color:rgba(255,90,82,.4);background:rgba(255,90,82,.08)}
+  section{margin:34px 0}
+  h2{font-size:1.12rem;font-weight:800;letter-spacing:-.01em;margin-bottom:6px;
+    display:flex;align-items:center;gap:10px}
+  h2 .n{font-family:var(--mono);font-size:.78rem;color:var(--orange);border:1px solid var(--line);
+    border-radius:7px;padding:2px 7px}
+  .hint{color:var(--muted);font-size:.85rem;margin-bottom:14px}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--panel);
+    border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:var(--panel-2);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+  tr:last-child td{border-bottom:0}
+  td code,.val{font-family:var(--mono);font-size:.82rem;color:var(--text);background:var(--panel-2);
+    padding:1px 6px;border-radius:5px;display:inline-block;max-width:100%;overflow-wrap:anywhere}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin-bottom:8px}
+  .card p{font-size:.9rem;color:var(--text)}
+  .kw{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+  .kw span{font-size:.78rem;background:var(--panel-2);border:1px solid var(--line);
+    border-radius:7px;padding:4px 9px;color:var(--dim)}
+  .kw span.core{color:var(--text);border-color:rgba(255,78,18,.35)}
+  ul.list{margin:6px 0 0 18px;font-size:.9rem;color:var(--dim)}
+  ul.list li{margin:4px 0}
+  .note{background:var(--panel-2);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;
+    padding:12px 16px;font-size:.86rem;color:var(--dim);margin-top:12px}
+  footer{margin-top:50px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem}
+  nav.toc{position:sticky;top:0;background:rgba(11,10,10,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:10px 0;z-index:5;margin-bottom:8px}
+  nav.toc .wrap{display:flex;gap:8px;flex-wrap:wrap}
+  nav.toc a{font-size:.74rem;color:var(--dim);text-decoration:none;border:1px solid var(--line);
+    border-radius:7px;padding:4px 9px}
+  nav.toc a:hover{color:var(--text);border-color:var(--orange)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <span class="kicker">✦ Sety Studio · painel interno</span>
+    <h1>SEO &amp; Growth</h1>
+    <p class="sub">Central de controle e documentação da estratégia de SEO da <b>setystudio.com.br</b>.
+      Esta página é <code>noindex,nofollow</code> — organiza o que já está no site, o que falta e o que depende de acesso externo.
+      A homepage segue limpa; nada daqui aparece lá.</p>
+    <div class="legend">
+      <span><span class="pill ok">✔ implementado</span> <b>está no site e validado</b></span>
+      <span><span class="pill wait">⏳ pendente</span> <b>definido, falta executar</b></span>
+      <span><span class="pill block">⛔ bloqueado</span> <b>depende de credencial/ferramenta externa</b></span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc"><div class="wrap">
+  <a href="#onpage">1 · On-page</a>
+  <a href="#tech">2 · Técnico</a>
+  <a href="#schema">3 · Dados estruturados</a>
+  <a href="#social">4 · Social</a>
+  <a href="#content">5 · Conteúdo</a>
+  <a href="#perf">6 · Performance</a>
+  <a href="#analytics">7 · Analytics</a>
+  <a href="#keywords">8 · Mapa de keywords</a>
+</div></nav>
+
+<div class="wrap">
+
+  <section id="onpage">
+    <h2><span class="n">01</span> SEO On-page <span class="pill ok">✔ implementado</span></h2>
+    <p class="hint">Valores reais publicados em <code>index.html</code>.</p>
+    <table>
+      <tr><th>Elemento</th><th>Valor atual</th><th>Status</th></tr>
+      <tr><td>Title</td><td><span class="val">Sites e Tráfego Pago para Vender Mais | Sety Studio</span></td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>Meta description</td><td><span class="val">Sites, landing pages e lojas virtuais com gestão de tráfego pago em Meta Ads e Google Ads. Estratégia e design para transformar visitas em vendas.</span></td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>H1 (único)</td><td><span class="val">Seu site não é cartão de visita. É seu canal de venda.</span></td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>H2</td><td>Problema · Serviços (“O que colocamos pra vender”) · Mecanismo · Portfólio · Resultados · FAQ · Quem faz — 1 H2 por seção</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>H3</td><td>Títulos dos cards de serviço, projeto, resultado e FAQ; colunas do rodapé</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>Keywords no corpo</td><td>criação de sites, web design, landing page, loja virtual, Nuvemshop, Shopify, e-commerce, tráfego pago, Meta Ads, Google Ads, TikTok Ads, geração de leads, branding, identidade visual, estratégia digital, conversão — distribuídas em hero, serviços, marquee, FAQ e rodapé</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>Termos semânticos</td><td>aquisição, previsibilidade, verba de teste, escala, CRO, jornada, checkout, catálogo, prova social, oportunidade qualificada</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>Idioma</td><td><span class="val">&lt;html lang="pt-BR"&gt;</span> · og:locale <span class="val">pt_BR</span></td><td><span class="pill ok">✔</span></td></tr>
+    </table>
+    <div class="note">Regra: nenhuma lista de keyword visível na home. O vocabulário entra em copy real, no marquee de serviços, nas perguntas do FAQ e no schema.</div>
+  </section>
+
+  <section id="tech">
+    <h2><span class="n">02</span> SEO Técnico <span class="pill ok">✔ implementado</span></h2>
+    <table>
+      <tr><th>Item</th><th>Configuração</th><th>Status</th></tr>
+      <tr><td>Canonical</td><td><span class="val">https://www.setystudio.com.br/</span> (nunca a URL da Vercel)</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>Robots meta</td><td><span class="val">index,follow</span> na home · <span class="val">noindex,nofollow</span> nesta página</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>robots.txt</td><td><span class="val">/robots.txt</span> → allow all + <span class="val">Sitemap: https://www.setystudio.com.br/sitemap.xml</span></td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>Sitemap</td><td><span class="val">/sitemap.xml</span> — URL da home (prioridade 1.0). <code>/seo</code> fora do sitemap de propósito.</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>HTTPS</td><td>Forçado pela Vercel · <span class="val">Strict-Transport-Security</span> ativo</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>URLs</td><td><span class="val">cleanUrls: true</span>, <span class="val">trailingSlash: false</span> (vercel.json) — <code>/seo</code> sem <code>.html</code></td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>Redirects</td><td>apex → <span class="val">www</span> (domínio primário Vercel). Sem cadeias de redirect.</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>Headers de segurança</td><td>X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy (vercel.json)</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>Indexação</td><td>Enviar <span class="val">sitemap.xml</span> no Search Console após deploy</td><td><span class="pill block">⛔ sem acesso ao GSC</span></td></tr>
+    </table>
+  </section>
+
+  <section id="schema">
+    <h2><span class="n">03</span> Dados estruturados (JSON-LD) <span class="pill ok">✔ implementado</span></h2>
+    <table>
+      <tr><th>Tipo</th><th>Conteúdo</th><th>Status</th></tr>
+      <tr><td>Organization + ProfessionalService</td><td>nome, url, logo, descrição, founders (Seven, Gabriel), areaServed=Brasil, priceRange, contactPoint (WhatsApp), <b>makesOffer</b> (6 serviços), <b>knowsAbout</b> (27 termos), sameAs</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>WebSite</td><td>nome, url, inLanguage pt-BR, publisher → #studio</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>FAQPage</td><td>12 perguntas comerciais (Nuvemshop, Shopify, e-commerce, tráfego, Meta/Google/TikTok Ads, branding, prazo, investimento) — espelha o FAQ visível</td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>BreadcrumbList</td><td>não aplicável — site de página única sem hierarquia de navegação</td><td><span class="pill wait">n/a</span></td></tr>
+    </table>
+    <div class="note">Validar em <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Rich Results Test</a> após cada deploy. Manter o texto do FAQPage idêntico ao de <code>js/config.js → window.FAQ</code>.</div>
+  </section>
+
+  <section id="social">
+    <h2><span class="n">04</span> Social / Open Graph <span class="pill ok">✔ implementado</span></h2>
+    <table>
+      <tr><th>Tag</th><th>Valor</th></tr>
+      <tr><td>og:type / og:site_name / og:locale</td><td><span class="val">website</span> · <span class="val">Sety Studio</span> · <span class="val">pt_BR</span></td></tr>
+      <tr><td>og:title</td><td><span class="val">Sites e Tráfego Pago para Vender Mais | Sety Studio</span></td></tr>
+      <tr><td>og:description</td><td><span class="val">Tráfego traz atenção. Um site transforma essa atenção em oportunidade. A Sety Studio conecta os dois.</span></td></tr>
+      <tr><td>og:url</td><td><span class="val">https://www.setystudio.com.br/</span></td></tr>
+      <tr><td>og:image (1200×630)</td><td><span class="val">/assets/og.jpg</span> — <span class="pill wait">⏳ trocar por arte definitiva 1200×630</span></td></tr>
+      <tr><td>twitter:card</td><td><span class="val">summary_large_image</span> + title / description / image</td></tr>
+    </table>
+  </section>
+
+  <section id="content">
+    <h2><span class="n">05</span> Conteúdo &amp; intenção de busca <span class="pill wait">⏳ parcial</span></h2>
+    <div class="grid">
+      <div class="card"><h3>Intenção transacional</h3><p>“criar loja Nuvemshop”, “criação de loja Shopify”, “agência de tráfego pago”, “criação de landing page”.</p><p style="color:var(--muted);font-size:.82rem;margin-top:6px">Home cobre com hero + serviços + FAQ + CTA WhatsApp.</p></div>
+      <div class="card"><h3>Intenção comercial</h3><p>“agência de e-commerce”, “gestor de tráfego”, “especialista em Nuvemshop”, “site que converte”.</p><p style="color:var(--muted);font-size:.82rem;margin-top:6px">Coberto por FAQ + prova (Resultados) + Quem faz.</p></div>
+      <div class="card"><h3>Intenção informacional</h3><p>“quanto custa um site profissional”, “vale a pena tráfego pago”, “Nuvemshop vs Shopify”.</p><p style="color:var(--amber);font-size:.82rem;margin-top:6px">⏳ pede páginas/artigos dedicados (blog).</p></div>
+    </div>
+    <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:20px 0 8px">Páginas de serviço — roadmap</h3>
+    <ul class="list">
+      <li>⏳ <b>/criacao-de-sites</b> — sites institucionais, landing pages, one-pages</li>
+      <li>⏳ <b>/loja-nuvemshop</b> — criação e personalização de loja Nuvemshop</li>
+      <li>⏳ <b>/loja-shopify</b> — criação e personalização de loja Shopify</li>
+      <li>⏳ <b>/trafego-pago</b> — gestão de Meta Ads, Google Ads, TikTok Ads</li>
+      <li>⏳ <b>/branding</b> — identidade visual e logotipo</li>
+      <li>⏳ <b>/blog</b> — conteúdo informacional para topo de funil</li>
+    </ul>
+    <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:20px 0 8px">Internal linking</h3>
+    <ul class="list">
+      <li>✔ Nav âncora: Serviços · Projetos · Depoimentos · Quem faz · FAQ</li>
+      <li>✔ Rodapé: coluna “Navegar” (Serviços, Projetos, Resultados, FAQ, SEO &amp; Growth) + CTA WhatsApp em toda seção</li>
+      <li>⏳ Cross-links entre páginas de serviço quando existirem</li>
+    </ul>
+  </section>
+
+  <section id="perf">
+    <h2><span class="n">06</span> Performance <span class="pill wait">⏳ lab medido, sem dado de campo</span></h2>
+    <p class="hint">Medição de laboratório local (Playwright / PerformanceObserver, viewport 1440, cache frio). Sem CrUX/PSI de campo por falta de API key.</p>
+    <table>
+      <tr><th>Métrica</th><th>Lab local</th><th>Meta “bom”</th><th>Observação</th></tr>
+      <tr><td>LCP</td><td id="m-lcp"><b style="color:var(--green)">~0,5–0,7 s</b></td><td>&lt; 2,5 s</td><td>LCP = imagem do hero (<code>hero.webp</code>), já com <code>preload</code> + <code>fetchpriority=high</code>. Lab local 504 ms · prod 676 ms.</td></tr>
+      <tr><td>CLS</td><td id="m-cls"><b style="color:var(--green)">~0,03</b></td><td>&lt; 0,1</td><td>imagens com width/height; fontes com <code>display=swap</code></td></tr>
+      <tr><td>INP</td><td id="m-inp">n/d em lab · esperado &lt; 200 ms</td><td>&lt; 200 ms</td><td>JS único ~29 KB, sem framework; só medível com interação real de campo</td></tr>
+      <tr><td>FCP</td><td id="m-fcp"><b style="color:var(--green)">~0,5–0,7 s</b></td><td>&lt; 1,8 s</td><td>CSS único, sem render-blocking de terceiros. Lab 504 ms · prod 676 ms.</td></tr>
+      <tr><td>TTFB</td><td id="m-ttfb"><b style="color:var(--green)">~0,17 s</b></td><td>&lt; 0,8 s</td><td>estático na CDN da Vercel (X-Vercel-Cache: HIT), medido em produção</td></tr>
+      <tr><td>Peso da home</td><td id="m-weight">~360 KB crítico · ~1,4 MB com tudo</td><td>—</td><td>HTML 28 KB · CSS 52 KB · JS 31 KB · hero.webp ~184 KB · fontes 84 KB · sem libs externas</td></tr>
+    </table>
+    <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:18px 0 8px">Otimizações já aplicadas</h3>
+    <ul class="list">
+      <li>✔ Imagens em <code>.webp</code>, <code>loading=lazy</code>/<code>decoding=async</code> abaixo da dobra, <code>width</code>/<code>height</code> explícitos</li>
+      <li>✔ Hero: <code>&lt;link rel=preload&gt;</code> por breakpoint + <code>fetchpriority=high</code></li>
+      <li>✔ Fontes Google com <code>preconnect</code> + <code>display=swap</code></li>
+      <li>✔ Vídeos de resultado: <code>preload</code> só ao abrir o lightbox (não no load)</li>
+      <li>✔ Zero JS de terceiros até existir ID de analytics</li>
+      <li>⏳ Converter <code>og.jpg</code> e artes pesadas remanescentes; avaliar AVIF</li>
+    </ul>
+  </section>
+
+  <section id="analytics">
+    <h2><span class="n">07</span> Analytics &amp; conversão <span class="pill block">⛔ aguardando IDs</span></h2>
+    <p class="hint">A base de tracking existe em <code>js/main.js</code> (camada <code>dataLayer</code> + <code>trackEvent()</code>), mas <code>js/config.js → TRACKING_CONFIG</code> está vazio: nenhum pixel/tag carrega até um ID ser preenchido.</p>
+    <table>
+      <tr><th>Ferramenta</th><th>ID</th><th>Status</th></tr>
+      <tr><td>Google Analytics 4</td><td><span class="val">googleAnalyticsId: ""</span></td><td><span class="pill block">⛔ sem ID</span></td></tr>
+      <tr><td>Google Tag Manager</td><td><span class="val">googleTagManagerId: ""</span></td><td><span class="pill block">⛔ sem ID</span></td></tr>
+      <tr><td>Meta Pixel</td><td><span class="val">metaPixelId: ""</span></td><td><span class="pill block">⛔ sem ID</span></td></tr>
+      <tr><td>Google Search Console</td><td>—</td><td><span class="pill block">⛔ verificar domínio + enviar sitemap</span></td></tr>
+    </table>
+    <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:18px 0 8px">Eventos instrumentados (disparam no dataLayer)</h3>
+    <div class="kw">
+      <span class="core">page_view</span><span class="core">click_primary_cta</span><span class="core">click_whatsapp</span>
+      <span>nav_servicos</span><span>nav_portfolio</span><span>nav_depoimentos</span><span>nav_quem_faz</span>
+      <span>view_services</span><span>view_portfolio</span><span>view_testimonials</span>
+      <span>click_projeto</span><span>click_instagram</span><span>click_behance</span>
+      <span>resultado_open</span><span>faq_open</span><span>scroll_depth</span>
+    </div>
+    <div class="note">UTM: a página preserva <code>utm_source/medium/campaign/content/term</code> na querystring; ao ligar GA4/GTM eles entram automaticamente no relatório. Definir eventos de conversão = <b>click_whatsapp</b> + <b>click_primary_cta</b>.</div>
+  </section>
+
+  <section id="keywords">
+    <h2><span class="n">08</span> Mapa de keywords <span class="pill wait">⏳ mapa pronto · volume/CPC bloqueado</span></h2>
+    <p class="hint">Uso interno: alimenta metadata, schema, FAQ, marquee e as futuras páginas de serviço. <b>Não</b> vai visível na home.
+      Volume, CPC, concorrência e tendência: <span class="pill block">⛔</span> sem acesso a Google Keyword Planner, Trends API, Search Console ou DataForSEO.</p>
+    <div class="grid">
+      <div class="card"><h3>Nuvemshop</h3><div class="kw">
+        <span class="core">criação de loja Nuvemshop</span><span class="core">loja Nuvemshop profissional</span><span>criar loja Nuvemshop</span><span>site Nuvemshop</span><span>e-commerce Nuvemshop</span><span>personalização Nuvemshop</span><span>designer Nuvemshop</span><span>agência Nuvemshop</span><span>especialista em Nuvemshop</span><span>layout Nuvemshop</span><span>customização Nuvemshop</span>
+      </div></div>
+      <div class="card"><h3>Shopify</h3><div class="kw">
+        <span class="core">criação de loja Shopify</span><span class="core">loja Shopify profissional</span><span>criar loja Shopify</span><span>site Shopify</span><span>e-commerce Shopify</span><span>personalização Shopify</span><span>tema Shopify</span><span>designer Shopify</span><span>agência Shopify</span><span>especialista Shopify</span><span>customização Shopify</span>
+      </div></div>
+      <div class="card"><h3>E-commerce</h3><div class="kw">
+        <span class="core">criação de loja virtual</span><span class="core">agência de e-commerce</span><span>loja virtual</span><span>e-commerce profissional</span><span>desenvolvimento de e-commerce</span><span>design de e-commerce</span><span>marketing para e-commerce</span><span>tráfego pago para e-commerce</span><span>Meta Ads para e-commerce</span><span>Google Ads para e-commerce</span><span>conversão em e-commerce</span><span>vendas online</span>
+      </div></div>
+      <div class="card"><h3>Sites</h3><div class="kw">
+        <span class="core">criação de sites</span><span class="core">site que converte</span><span>criação de site profissional</span><span>site para empresa</span><span>web design</span><span>landing page</span><span>criação de landing page</span><span>site institucional</span><span>site para vendas</span><span>site responsivo</span>
+      </div></div>
+      <div class="card"><h3>Tráfego</h3><div class="kw">
+        <span class="core">agência de tráfego pago</span><span class="core">gestão de tráfego pago</span><span>gestor de tráfego</span><span>Meta Ads</span><span>Facebook Ads</span><span>Instagram Ads</span><span>Google Ads</span><span>TikTok Ads</span><span>Pinterest Ads</span><span>geração de leads</span><span>marketing de performance</span><span>performance digital</span>
+      </div></div>
+      <div class="card"><h3>Branding</h3><div class="kw">
+        <span class="core">identidade visual</span><span class="core">criação de logotipo</span><span>branding</span><span>agência de branding</span><span>criação de identidade visual</span><span>logo profissional</span><span>design de marca</span><span>posicionamento de marca</span><span>identidade de marca</span>
+      </div></div>
+    </div>
+    <div class="note">Próximo passo quando houver acesso: puxar volume + CPC + concorrência (Keyword Planner / DataForSEO), cruzar com Search Console (consultas reais) e Trends (sazonalidade), priorizar long-tail transacional e distribuir 1 cluster por página de serviço.</div>
+  </section>
+
+  <footer>
+    Sety Studio — painel interno de SEO &amp; Growth · não indexável · última revisão sincronizada com o deploy da home.
+    Fonte da verdade das keywords: este arquivo + <code>MEMORY/PLAYBOOKS/seo-sety-master.md</code>.
+  </footer>
+
+</div>
+</body>
+</html>

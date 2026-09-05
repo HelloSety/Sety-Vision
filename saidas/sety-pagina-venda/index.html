@@ -31,11 +31,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="preload" as="image" href="assets/hero.webp?v=22" media="(min-width:901px) and (max-width:1649px)" fetchpriority="high" />
-<link rel="preload" as="image" href="assets/hero-desktop.webp?v=1" media="(min-width:1650px)" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/hero.webp?v=22" media="(min-width:901px)" fetchpriority="high" />
 <link rel="preload" as="image" href="assets/hero-mobile.webp?v=20" media="(max-width:900px)" fetchpriority="high" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=39" />
+<link rel="stylesheet" href="css/styles.css?v=41" />
 
 <!-- ================= TRACKING (carrega só se houver ID em js/config.js) ======
      Meta Pixel / GA4 / GTM são injetados por js/main.js a partir de TRACKING_CONFIG.
@@ -46,13 +45,44 @@
 {
   "@context": "https://schema.org",
   "@type": ["Organization", "ProfessionalService"],
+  "@id": "https://www.setystudio.com.br/#studio",
   "name": "Sety Studio",
+  "alternateName": "Sety Studio — Estúdio Criativo Digital",
   "url": "https://www.setystudio.com.br/",
   "logo": "https://www.setystudio.com.br/apple-touch-icon.png",
-  "description": "Estúdio digital que cria sites, landing pages e lojas virtuais com gestão de tráfego pago em Meta Ads e Google Ads, focado em aquisição e conversão.",
+  "image": "https://www.setystudio.com.br/assets/og.jpg?v=18",
+  "description": "Estúdio criativo digital que une estratégia, design, aquisição e conversão: criação de sites, landing pages e lojas virtuais (Nuvemshop e Shopify) com gestão de tráfego pago em Meta Ads, Google Ads, TikTok Ads e Pinterest Ads, além de branding e identidade visual.",
+  "slogan": "Seu site não é cartão de visita. É seu canal de venda.",
   "founder": [
-    { "@type": "Person", "name": "Seven" },
-    { "@type": "Person", "name": "Gabriel Mariani" }
+    { "@type": "Person", "name": "Seven", "jobTitle": "Experiência & conversão" },
+    { "@type": "Person", "name": "Gabriel Mariani", "jobTitle": "Aquisição / tráfego pago" }
+  ],
+  "areaServed": { "@type": "Country", "name": "Brasil" },
+  "availableLanguage": "Portuguese",
+  "priceRange": "$$",
+  "knowsAbout": [
+    "Criação de sites", "Web design", "Landing pages", "Site institucional",
+    "Loja virtual", "E-commerce", "Nuvemshop", "Loja Nuvemshop", "Personalização Nuvemshop",
+    "Shopify", "Loja Shopify", "Personalização Shopify",
+    "Tráfego pago", "Gestão de tráfego", "Meta Ads", "Facebook Ads", "Instagram Ads",
+    "Google Ads", "TikTok Ads", "Pinterest Ads",
+    "Geração de leads", "Conversão", "CRO", "Estratégia digital", "Marketing de performance",
+    "Branding", "Identidade visual", "Logotipo"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "sales",
+    "telephone": "+55-19-98809-0110",
+    "url": "https://wa.me/5519988090110",
+    "availableLanguage": "Portuguese"
+  },
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Criação de sites e landing pages", "serviceType": "Web design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Criação e personalização de loja Nuvemshop", "serviceType": "E-commerce" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Criação e personalização de loja Shopify", "serviceType": "E-commerce" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gestão de tráfego pago (Meta Ads e Google Ads)", "serviceType": "Marketing de performance" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding e identidade visual", "serviceType": "Design" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Estratégia de conversão e CRO", "serviceType": "Conversão" } }
   ],
   "sameAs": [
     "https://www.instagram.com/sety.studio/",
@@ -64,9 +94,31 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "https://www.setystudio.com.br/#website",
   "name": "Sety Studio",
   "url": "https://www.setystudio.com.br/",
-  "inLanguage": "pt-BR"
+  "inLanguage": "pt-BR",
+  "publisher": { "@id": "https://www.setystudio.com.br/#studio" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Vocês criam sites e landing pages?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Sites institucionais, landing pages e páginas de vendas — em HTML/CSS/JS ou no builder que fizer sentido pro projeto. Cada seção é pensada pra tirar a dúvida, quebrar a objeção e levar ao próximo passo." } },
+    { "@type": "Question", "name": "Vocês criam e personalizam loja Nuvemshop?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Criação e personalização de loja Nuvemshop: layout próprio, catálogo organizado, checkout simples e o tráfego direcionado pra quem já quer comprar." } },
+    { "@type": "Question", "name": "E loja Shopify?", "acceptedAnswer": { "@type": "Answer", "text": "Também. Criação e personalização de loja Shopify, tema ajustado à identidade da marca e integração com a operação de anúncios." } },
+    { "@type": "Question", "name": "Vocês fazem e-commerce de verdade, não só o visual?", "acceptedAnswer": { "@type": "Answer", "text": "Sim. Estrutura de e-commerce pensada pra vender: arquitetura de catálogo, páginas de produto que convencem, prova social, frete claro e recuperação de carrinho — não só uma home bonita." } },
+    { "@type": "Question", "name": "Vocês trabalham com tráfego pago?", "acceptedAnswer": { "@type": "Answer", "text": "É metade do serviço. Gestão de tráfego pago em Meta Ads (Facebook e Instagram) e Google Ads, com verba de teste, leitura de número e escala quando o resultado aparece." } },
+    { "@type": "Question", "name": "Fazem TikTok Ads e Pinterest Ads também?", "acceptedAnswer": { "@type": "Answer", "text": "Quando o público do negócio está nesses canais, sim. Normalmente entram depois que Meta Ads e Google Ads já estão estáveis e dando retorno." } },
+    { "@type": "Question", "name": "Vocês fazem branding e identidade visual?", "acceptedAnswer": { "@type": "Answer", "text": "Fazemos identidade visual, logotipo e direção de marca quando o projeto pede — em geral junto com o site, pra tudo falar a mesma língua." } },
+    { "@type": "Question", "name": "Dá pra contratar site e tráfego juntos?", "acceptedAnswer": { "@type": "Answer", "text": "É como a gente prefere trabalhar. Site e anúncio na mesma mesa: um atrai as pessoas certas, o outro transforma em contato — sem repasse entre fornecedores e sem uma ponta esperando a outra." } },
+    { "@type": "Question", "name": "Já tenho site / já rodo anúncio. Vocês aproveitam?", "acceptedAnswer": { "@type": "Answer", "text": "A gente mede o que já existe antes de mexer. Se o site dá pra ajustar, ajusta; se não foi feito pra vender, vale refazer e você entra na conversa sabendo o porquê. Na conta de anúncio, assumimos a estrutura atual e preservamos o histórico de aprendizado." } },
+    { "@type": "Question", "name": "Quanto tempo até a estrutura estar no ar?", "acceptedAnswer": { "@type": "Answer", "text": "Uma landing page fica pronta em poucos dias; um site completo, em cerca de duas a três semanas, dependendo do volume de conteúdo. As campanhas sobem assim que a página que recebe o tráfego está publicada." } },
+    { "@type": "Question", "name": "Como funciona o investimento?", "acceptedAnswer": { "@type": "Answer", "text": "Tem o valor do projeto (site / landing / loja) e a gestão mensal do tráfego, cobrada à parte da verba de anúncio — que você define e paga direto pra plataforma. Na conversa a gente monta o escopo e o número fecha ali, sem surpresa depois." } },
+    { "@type": "Question", "name": "Não sei por onde começar. Isso é problema?", "acceptedAnswer": { "@type": "Answer", "text": "É o cenário mais comum. A conversa inicial serve pra entender seu negócio, sua oferta e seu objetivo. O plano da estrutura — o que fazer primeiro e o que pode esperar — sai daí." } }
+  ]
 }
 </script>
 </head>
@@ -168,14 +220,16 @@
 <div class="marquee" aria-hidden="true" data-marquee>
   <div class="marquee__track">
     <ul class="marquee__group">
-      <li>Sites institucionais</li><li>Landing pages</li><li>Lojas virtuais</li><li>Tráfego pago</li>
-      <li>Meta Ads</li><li>Google Ads</li><li>SEO</li><li>Estratégia digital</li>
-      <li>Conversão</li><li>Geração de leads</li><li>Checkout otimizado</li><li>Presença digital</li>
+      <li>Criação de sites</li><li>Web design</li><li>Landing pages</li><li>Loja virtual</li>
+      <li>Nuvemshop</li><li>Shopify</li><li>E-commerce</li><li>Tráfego pago</li>
+      <li>Meta Ads</li><li>Google Ads</li><li>TikTok Ads</li><li>Geração de leads</li>
+      <li>Branding</li><li>Identidade visual</li><li>Estratégia digital</li><li>Conversão</li>
     </ul>
     <ul class="marquee__group">
-      <li>Sites institucionais</li><li>Landing pages</li><li>Lojas virtuais</li><li>Tráfego pago</li>
-      <li>Meta Ads</li><li>Google Ads</li><li>SEO</li><li>Estratégia digital</li>
-      <li>Conversão</li><li>Geração de leads</li><li>Checkout otimizado</li><li>Presença digital</li>
+      <li>Criação de sites</li><li>Web design</li><li>Landing pages</li><li>Loja virtual</li>
+      <li>Nuvemshop</li><li>Shopify</li><li>E-commerce</li><li>Tráfego pago</li>
+      <li>Meta Ads</li><li>Google Ads</li><li>TikTok Ads</li><li>Geração de leads</li>
+      <li>Branding</li><li>Identidade visual</li><li>Estratégia digital</li><li>Conversão</li>
     </ul>
   </div>
 </div>
@@ -274,7 +328,7 @@
           <i class="pill__chip pill__chip--dark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4Z" fill="currentColor"/></svg></i>
           Não precisa acreditar na nossa palavra
         </p>
-        <h2 class="sec__title">Quem já roda tráfego<br />com a gente</h2>
+        <h2 class="sec__title">O que o cliente manda<br />quando a campanha entra no ar</h2>
       </div>
       <div class="dep__cta reveal">
         <a class="btn btn--orange" href="https://wa.me/5519988090110" data-cta="whatsapp" data-track="click_whatsapp">
@@ -290,7 +344,7 @@
 
     <p class="dep__evidence reveal">
       <span>De um dos casos abaixo</span>
-      <b>R$&nbsp;512</b> em anúncios <i>→</i> <b>R$&nbsp;4.318</b> a mais no caixa <i>·</i> <b>8,4×</b>
+      <b>75</b> conversas <i>·</i> <b>11.115</b> alcançados <i>·</i> <b>6</b> vendas com a campanha no ar
     </p>
     <div class="dep-grid" data-testimonials></div>
   </div>
@@ -331,7 +385,7 @@
       <h2 class="sec__title sec__title--on-orange">Duas mentes.<br />Uma operação focada em fazer você vender.</h2>
 
       <div class="prose prose--on-orange">
-        <p>A Sety Studio é uma dupla enxuta. <strong>Gabriel</strong> cuida da aquisição: tráfego pago no Meta e no Google, estratégia, dados e testes até o anúncio virar oportunidade. <strong>Seven</strong> cuida da experiência e da conversão: o site e a landing page que transformam a visita em percepção de valor, confiança e contato.</p>
+        <p>A Sety Studio é um estúdio criativo enxuto — estratégia, design, aquisição e conversão na mesma mesa. <strong>Gabriel</strong> cuida da aquisição: tráfego pago no Meta Ads e no Google Ads, estratégia, dados e testes até o anúncio virar oportunidade. <strong>Seven</strong> cuida da marca e da conversão: identidade visual, o site e a landing page que transformam a visita em percepção de valor, confiança e contato.</p>
         <p>As duas frentes na mesma mesa. Você fala direto com quem executa, sem camada de agência, sem repasse, sem fila.</p>
       </div>
 
@@ -364,8 +418,17 @@
 
     <div class="foot__col">
       <h3>Sety Studio</h3>
-      <p>Estúdio de tráfego pago<br />&amp; web design</p>
+      <p>Estúdio criativo digital:<br />estratégia, design, tráfego e conversão</p>
       <p class="foot__dim">Sety Studio © <span data-year>2026</span></p>
+    </div>
+
+    <div class="foot__col">
+      <h3>Navegar</h3>
+      <p><a href="#servicos" data-track="foot_servicos">Serviços</a></p>
+      <p><a href="#portfolio" data-track="foot_portfolio">Projetos</a></p>
+      <p><a href="#depoimentos" data-track="foot_depoimentos">Resultados</a></p>
+      <p><a href="#faq" data-track="foot_faq">Perguntas frequentes</a></p>
+      <p><a href="/seo" data-track="foot_seo">SEO &amp; Growth</a></p>
     </div>
 
     <div class="foot__col">
@@ -389,7 +452,7 @@
   <i class="btn__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
 </a>
 
-<script src="js/config.js?v=21"></script>
-<script src="js/main.js?v=22" defer></script>
+<script src="js/config.js?v=41"></script>
+<script src="js/main.js?v=41" defer></script>
 </body>
 </html>

@@ -416,14 +416,18 @@ body.mnav-open .mnav__panel a:nth-child(5){transition-delay:.27s}
    entra como camada de fundo full-bleed, `cover` ancorado no topo, e se
    dissolve no preto à esquerda e na base. Sem card, sem corte na cabeça. */
 .hero__grid{display:block}
-.hero__inner{position:relative;z-index:2;max-width:540px}
+/* coluna de texto: presa à esquerda, nunca invade a zona das figuras da arte.
+   ~480px cobre a linha mais larga do headline ("É seu canal de venda.") com folga. */
+.hero__inner{position:relative;z-index:2;max-width:480px}
 .hero__media{
   position:absolute;top:0;left:0;right:0;height:100%;z-index:0;
   border-radius:0;box-shadow:none;border:0;overflow:hidden;
   aspect-ratio:auto;min-height:0;pointer-events:none;
-  background:var(--hero-img) no-repeat right 20%;background-size:cover}
+  background:var(--hero-img) no-repeat right center;background-size:cover}
+/* placa de leitura: esquerda 100% sólida até 42%, dissolve na arte até 78%.
+   não é "só z-index" — é o plano escuro real que sustenta a legibilidade do texto. */
 .hero__media::after{content:"";position:absolute;inset:0;pointer-events:none;background:
-  linear-gradient(90deg,var(--bg-0) 0%,rgba(5,5,5,.94) 20%,rgba(5,5,5,.58) 40%,rgba(5,5,5,.12) 55%,rgba(5,5,5,0) 66%),
+  linear-gradient(90deg,var(--bg-0) 0%,var(--bg-0) 42%,rgba(5,5,5,.82) 52%,rgba(5,5,5,.34) 64%,rgba(5,5,5,0) 78%),
   linear-gradient(0deg,var(--bg-0) 0%,rgba(5,5,5,.35) 13%,rgba(5,5,5,0) 32%)}
 .hero__title{
   font-size:var(--fs-h1);font-weight:var(--fw-black);color:var(--text);letter-spacing:-.03em;
@@ -630,10 +634,16 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
   letter-spacing:.12em;text-transform:uppercase;color:var(--orange);white-space:nowrap}
 .t-card__tag svg{width:11px;height:11px}
 .t-card__cap{margin-top:8px;font-size:clamp(.85rem,1vw,.96rem);font-weight:600;color:var(--text);line-height:1.4}
-.t-card__vid{position:relative;z-index:1;border-radius:var(--r-md);overflow:hidden;background:#000 center/cover no-repeat;
-  aspect-ratio:4/3;border:1px solid var(--glass-brd)}
+.t-card__vid{position:relative;z-index:1;border-radius:var(--r-md);overflow:hidden;background:#0a0a0a top center/cover no-repeat;
+  aspect-ratio:4/5;border:1px solid var(--glass-brd)}
 .t-card__vid video{width:100%;height:100%;object-fit:cover;display:block}
 .t-card__vid.is-playing video{object-fit:contain;background:#000}
+/* card de print (feedback real) — sem botão de play, foco no topo do print */
+.t-card--img .t-card__vid{background-position:top center}
+.t-card--img .t-card__vid::before{content:"";position:absolute;right:10px;bottom:10px;width:30px;height:30px;
+  border-radius:9px;background:rgba(12,10,10,.72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M9 4H4v5M15 20h5v-5M20 4l-6 6M4 20l6-6'/%3E%3C/svg%3E") center/15px no-repeat;
+  border:1px solid rgba(255,255,255,.16);opacity:0;transition:opacity .3s var(--ease);z-index:2}
+.t-card--img:hover .t-card__vid::before,.t-card--img:focus-visible .t-card__vid::before{opacity:1}
 .t-card__play{position:absolute;inset:0;margin:auto;width:60px;height:60px;border-radius:50%;
   display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#FF6A2B,#FF4E12);
   box-shadow:0 10px 26px -8px rgba(0,0,0,.55),0 0 0 6px rgba(255,78,18,.16);
@@ -674,6 +684,9 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
 .t-modal__media{position:relative;flex:1 1 auto;min-height:0;
   border-radius:18px;overflow:hidden;background:#000;aspect-ratio:9/16;max-height:72vh}
 .t-modal__media video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.t-modal__media img{max-width:100%;max-height:100%;width:auto;height:auto;margin:auto;display:block;
+  object-fit:contain;border-radius:var(--r-md)}
+.t-modal__media video[hidden],.t-modal__media img[hidden]{display:none}
 .t-modal__cap{flex:0 0 auto;font-family:var(--ff-display);font-weight:800;
   font-size:clamp(.92rem,1.1vw,1.04rem);line-height:1.32;color:var(--text);
   text-align:center;padding:0 6px 2px}
@@ -749,7 +762,7 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
    ========================================================================= */
 .foot{position:relative;padding-block:clamp(56px,6vw,96px);overflow:hidden;
   background:linear-gradient(180deg,var(--bg) 0%,#080808 40%)}
-.foot__inner{display:grid;grid-template-columns:auto 1fr 1fr 1.6fr;gap:clamp(20px,3.2vw,48px);align-items:start}
+.foot__inner{display:grid;grid-template-columns:auto 1fr 1fr 1fr 1.5fr;gap:clamp(20px,3vw,44px);align-items:start}
 .foot__logo{display:flex;align-items:center;gap:10px;color:var(--orange);
   background:rgba(22,22,22,.7);border:1px solid #2C2C2C;border-radius:28px;padding:11px 20px;align-self:start}
 .foot__logo svg{width:24px;height:24px}
@@ -784,9 +797,11 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
    ========================================================================= */
 @media (min-width:1650px){
   :root{--maxw:1340px}
-  /* telas grandes de desktop: arte DESKTOP.png própria (ratio largo, quase sem crop vertical) */
-  .hero{--hero-img:url("../assets/hero-desktop.webp?v=1")}
-  .hero__media{background-position:right top}
+  /* telas grandes: a arte 2560x1664 (MACBOOK) cobre o hero cheio sem esmagar.
+     a versão letterbox 2560x826 (DESKTOP.png) super-amplia num hero de altura
+     cheia e corta um dos rostos — por isso o hero usa a comp alta em todo desktop. */
+  .hero__media{background-position:right center}
+  .hero__inner{max-width:520px}
 }
 
 @media (max-width:1150px){
@@ -877,7 +892,7 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
   .t-card__foot{padding:0 4px 4px}
   .t-card__tag{font-size:.6rem;letter-spacing:.1em}
   .t-card__cap{font-size:.88rem}
-  .t-card__vid{aspect-ratio:5/4}
+  .t-card__vid{aspect-ratio:4/5}
   .t-card__play{width:56px;height:56px}
   .t-card__play svg{width:21px;height:21px}
   .proj-card__title{font-size:.92rem;min-height:0}
