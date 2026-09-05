@@ -1,0 +1,171 @@
+{%- liquid
+  assign slides = section.blocks | where: 'type', 'slide'
+  assign h = section.settings.height
+  assign hero_class = 'hero'
+  if h == 'compact'
+    assign hero_class = 'hero hero--compact'
+  elsif h == 'tall'
+    assign hero_class = 'hero hero--tall'
+  endif
+-%}
+<section class="{{ hero_class }}" data-hero data-autoplay="{{ section.settings.autoplay | times: 1000 }}">
+  {%- for block in slides -%}
+    {%- liquid
+      assign is_first = forloop.first
+      assign hero_loading = 'lazy'
+      assign hero_priority = ''
+      if is_first
+        assign hero_loading = 'eager'
+        assign hero_priority = 'high'
+      endif
+      assign baked = false
+      if block.settings.text_source == 'baked'
+        assign baked = true
+      endif
+
+      assign asset_d = ''
+      assign asset_m = ''
+      case block.settings.default_asset
+        when 'hero-a'
+          assign asset_d = 'hero-a-desktop'
+          assign asset_m = 'hero-a-mobile'
+        when 'hero-b'
+          assign asset_d = 'hero-b-desktop'
+          assign asset_m = 'hero-b-mobile'
+      endcase
+
+      assign cta_class = 'btn'
+      case block.settings.cta_style
+        when 'pill'
+          assign cta_class = 'btn btn--pill btn--glow'
+        when 'outline'
+          assign cta_class = 'btn btn--secondary'
+      endcase
+    -%}
+    <div class="hero__slide{% if baked %} hero__slide--baked{% endif %}" data-hero-slide aria-hidden="{% if is_first %}false{% else %}true{% endif %}" {{ block.shopify_attributes }}>
+      <div class="hero__media hero__media--{{ section.settings.overlay }}" data-parallax>
+        {%- if block.settings.image_desktop != blank -%}
+          {%- if block.settings.image_mobile != blank -%}
+            <picture>
+              <source media="(max-width: 749px)" srcset="{{ block.settings.image_mobile | image_url: width: 900 }} 900w, {{ block.settings.image_mobile | image_url: width: 1400 }} 1400w" sizes="100vw">
+              {% render 'responsive-image', image: block.settings.image_desktop, sizes: '100vw', loading: hero_loading, fetchpriority: hero_priority %}
+            </picture>
+          {%- else -%}
+            {% render 'responsive-image', image: block.settings.image_desktop, sizes: '100vw', loading: hero_loading, fetchpriority: hero_priority %}
+          {%- endif -%}
+        {%- elsif asset_d != blank -%}
+          <picture>
+            <source media="(max-width: 749px)" type="image/webp" srcset="{{ asset_m | append: '.webp' | asset_url }}">
+            <source media="(max-width: 749px)" srcset="{{ asset_m | append: '.jpg' | asset_url }}">
+            <source type="image/webp" srcset="{{ asset_d | append: '.webp' | asset_url }}">
+            <img src="{{ asset_d | append: '.jpg' | asset_url }}" alt="{{ block.settings.heading | default: shop.name | escape }}" width="1800" height="600" loading="{{ hero_loading }}"{% if hero_priority != blank %} fetchpriority="high"{% endif %}>
+          </picture>
+        {%- else -%}
+          <div style="position:absolute;inset:0;background:var(--color-bg-dark)"></div>
+        {%- endif -%}
+      </div>
+
+      {%- if baked -%}
+        <a class="hero__link" href="{{ block.settings.cta_link | default: routes.all_products_collection_url }}" aria-label="{{ block.settings.heading | default: shop.name | escape }}"></a>
+      {%- endif -%}
+
+      <div class="hero__inner">
+        <div class="hero__content" data-reveal-stagger>
+          {%- if baked -%}
+            <h1 class="visually-hidden">{{ block.settings.heading | default: shop.name }}</h1>
+            {%- if block.settings.cta_label != blank -%}
+              <a class="{{ cta_class }} hero__cta-float" href="{{ block.settings.cta_link }}">{{ block.settings.cta_label }}</a>
+            {%- endif -%}
+          {%- else -%}
+            {%- if block.settings.eyebrow != blank -%}<p class="eyebrow hero__eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
+            {%- if block.settings.heading != blank -%}<h1 class="hero__title">{{ block.settings.heading }}</h1>{%- endif -%}
+            {%- if block.settings.text != blank -%}<p class="hero__text">{{ block.settings.text }}</p>{%- endif -%}
+            {%- if block.settings.cta_label != blank or block.settings.cta2_label != blank -%}
+              <div class="hero__ctas">
+                {%- if block.settings.cta_label != blank -%}<a class="{{ cta_class }}" href="{{ block.settings.cta_link }}">{{ block.settings.cta_label }}</a>{%- endif -%}
+                {%- if block.settings.cta2_label != blank -%}<a class="btn btn--secondary" href="{{ block.settings.cta2_link }}">{{ block.settings.cta2_label }}</a>{%- endif -%}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  {%- endfor -%}
+
+  {%- if slides.size > 1 -%}
+    <div class="hero__controls" data-hero-controls>
+      <span class="hero__count" data-hero-count>
+        <span data-hero-current>01</span>
+        <span class="bar" data-hero-bar></span>
+        <span data-hero-total>0{{ slides.size }}</span>
+      </span>
+      <span class="hero__arrows">
+        <button type="button" data-hero-prev aria-label="{{ 'general.slider.previous' | t }}">{% render 'icon', name: 'chevron-left', class: 'icon' %}</button>
+        <button type="button" data-hero-next aria-label="{{ 'general.slider.next' | t }}">{% render 'icon', name: 'chevron-right', class: 'icon' %}</button>
+      </span>
+    </div>
+    {%- if section.settings.show_dots -%}
+      <div class="hero__dots" data-hero-dots>
+        {%- for block in slides -%}
+          <button type="button" data-hero-dot aria-label="Go to slide {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}"></button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.hero.name",
+  "tag": "section",
+  "class": "hero-section",
+  "settings": [
+    { "type": "select", "id": "height", "label": "t:sections.hero.height", "options": [
+      { "value": "compact", "label": "t:sections.hero.height_compact" },
+      { "value": "standard", "label": "Standard" },
+      { "value": "tall", "label": "t:sections.hero.height_full" }
+    ], "default": "standard" },
+    { "type": "select", "id": "overlay", "label": "Image overlay", "options": [
+      { "value": "gradient", "label": "Gradient (for overlaid text)" },
+      { "value": "subtle", "label": "Subtle" },
+      { "value": "none", "label": "None (art already has text)" }
+    ], "default": "none" },
+    { "type": "checkbox", "id": "show_dots", "label": "Show slide dots", "default": true },
+    { "type": "range", "id": "autoplay", "min": 0, "max": 12, "step": 1, "unit": "s", "label": "t:sections.hero.autoplay", "default": 7, "info": "t:sections.hero.autoplay_info" }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.hero.slide",
+      "settings": [
+        { "type": "select", "id": "default_asset", "label": "Built-in campaign art", "info": "Use one of the bundled Vellarie campaign banners. Overridden by the images below.", "options": [
+          { "value": "none", "label": "None" },
+          { "value": "hero-a", "label": "Campaign A — Grooming (blue)" },
+          { "value": "hero-b", "label": "Campaign B — Hair (green)" }
+        ], "default": "none" },
+        { "type": "image_picker", "id": "image_desktop", "label": "t:sections.hero.image_desktop" },
+        { "type": "image_picker", "id": "image_mobile", "label": "t:sections.hero.image_mobile", "info": "t:sections.hero.image_mobile_info" },
+        { "type": "select", "id": "text_source", "label": "Text", "options": [
+          { "value": "baked", "label": "Already in the image (recommended for campaign art)" },
+          { "value": "overlay", "label": "Add text over the image" }
+        ], "default": "baked" },
+        { "type": "text", "id": "eyebrow", "label": "t:sections.hero.eyebrow", "default": "New" },
+        { "type": "textarea", "id": "heading", "label": "t:sections.hero.heading", "default": "Premium beauty & grooming essentials" },
+        { "type": "textarea", "id": "text", "label": "t:sections.hero.text", "default": "Salon-grade tools engineered for everyday use." },
+        { "type": "text", "id": "cta_label", "label": "t:sections.hero.cta_label", "default": "" },
+        { "type": "url", "id": "cta_link", "label": "t:sections.hero.cta_link" },
+        { "type": "select", "id": "cta_style", "label": "Button style", "options": [
+          { "value": "solid", "label": "Solid" },
+          { "value": "pill", "label": "Pill + glow" },
+          { "value": "outline", "label": "Outline" }
+        ], "default": "pill" },
+        { "type": "text", "id": "cta2_label", "label": "t:sections.hero.cta2_label", "default": "" },
+        { "type": "url", "id": "cta2_link", "label": "t:sections.hero.cta2_link" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "t:sections.hero.name", "blocks": [ { "type": "slide" } ] }
+  ]
+}
+{% endschema %}

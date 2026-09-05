@@ -1,0 +1,20 @@
+<section class="section" data-section-id="{{ section.id }}">
+  <div class="container" style="max-width: 760px">
+    {%- if section.settings.show_breadcrumb -%}
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> / <span>{{ page.title }}</span>
+      </nav>
+    {%- endif -%}
+    <h1 class="h1" data-reveal style="margin-bottom:1.5rem">{{ page.title }}</h1>
+    <div class="rte" data-reveal>{{ page.content }}</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_page.name",
+  "settings": [
+    { "type": "checkbox", "id": "show_breadcrumb", "label": "t:sections.main_page.show_breadcrumb", "default": true }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,33 @@
+<section class="section">
+  <div class="container" style="max-width:640px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2rem">
+      <h1 class="h2">{{ 'customer.addresses.title' | t }}</h1>
+      <a href="{{ routes.account_url }}" class="link-underline">&larr; {{ 'customer.account.title' | t }}</a>
+    </div>
+
+    {%- form 'customer_address', customer.new_address -%}
+      <h2 class="h3" style="margin-bottom:1rem">{{ 'customer.addresses.add_new' | t }}</h2>
+      <div class="form-field"><label>{{ 'customer.addresses.first_name' | t }}</label><input type="text" name="address[first_name]"></div>
+      <div class="form-field"><label>{{ 'customer.addresses.last_name' | t }}</label><input type="text" name="address[last_name]"></div>
+      <div class="form-field"><label>{{ 'customer.addresses.address1' | t }}</label><input type="text" name="address[address1]"></div>
+      <div class="form-field"><label>{{ 'customer.addresses.city' | t }}</label><input type="text" name="address[city]"></div>
+      <div class="form-field"><label>{{ 'customer.addresses.country' | t }}</label><select name="address[country]" id="AddressCountryNew" data-default="">{{ all_country_option_tags }}</select></div>
+      <div class="form-field"><label>{{ 'customer.addresses.zip' | t }}</label><input type="text" name="address[zip]"></div>
+      <div class="form-field"><label>{{ 'customer.addresses.phone' | t }}</label><input type="tel" name="address[phone]"></div>
+      <button type="submit" class="btn">{{ 'customer.addresses.add' | t }}</button>
+    {%- endform -%}
+
+    <div style="margin-top:2.5rem">
+      {%- for address in customer.addresses -%}
+        <div style="border-top:1px solid var(--color-line);padding:1.25rem 0">
+          {%- if address == customer.default_address -%}<p class="eyebrow">{{ 'customer.addresses.default' | t }}</p>{%- endif -%}
+          <div class="rte text-muted">{{ address | format_address }}</div>
+          <div style="display:flex;gap:1rem;margin-top:.5rem">
+            <a href="{{ address.url_to_edit }}" class="link-underline">{{ 'customer.addresses.edit' | t }}</a>
+            <a href="{{ address.url_to_delete }}" class="link-underline" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">{{ 'customer.addresses.delete' | t }}</a>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

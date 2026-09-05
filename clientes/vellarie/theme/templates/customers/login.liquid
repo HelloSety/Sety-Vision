@@ -1,0 +1,29 @@
+<section class="section">
+  <div class="container" style="max-width:420px">
+    <h1 class="h2" style="margin-bottom:1.5rem">{{ 'customer.login.title' | t }}</h1>
+
+    {%- form 'customer_login', novalidate: 'novalidate' -%}
+      {%- if form.errors -%}<p class="form-note form-note--error">{{ form.errors | default_errors }}</p>{%- endif -%}
+      <div class="form-field"><label for="cLoginEmail">{{ 'customer.login.email' | t }}</label><input type="email" id="cLoginEmail" name="customer[email]" autocomplete="email" required></div>
+      {%- if form.password_needed -%}
+        <div class="form-field">
+          <label for="cLoginPass">{{ 'customer.login.password' | t }}</label>
+          <input type="password" id="cLoginPass" name="customer[password]" autocomplete="current-password" required>
+        </div>
+        <a href="#recover" class="link-underline" data-recover-toggle>{{ 'customer.login.forgot_password' | t }}</a>
+      {%- endif -%}
+      <button type="submit" class="btn btn--full" style="margin-top:1rem">{{ 'customer.login.sign_in' | t }}</button>
+    {%- endform -%}
+
+    <div id="recover" style="margin-top:2rem;border-top:1px solid var(--color-line);padding-top:1.5rem">
+      <h2 class="h3" style="margin-bottom:1rem">{{ 'customer.recover_password.title' | t }}</h2>
+      {%- form 'recover_customer_password' -%}
+        {%- if form.posted_successfully? -%}<p class="form-note form-note--success">{{ 'customer.recover_password.success' | t }}</p>{%- endif -%}
+        <div class="form-field"><label for="cRecEmail">{{ 'customer.login.email' | t }}</label><input type="email" id="cRecEmail" name="email" required></div>
+        <button type="submit" class="btn btn--secondary btn--full">{{ 'customer.recover_password.submit' | t }}</button>
+      {%- endform -%}
+    </div>
+
+    <p style="margin-top:1.5rem" class="text-muted">{{ 'customer.login.no_account' | t }} <a href="{{ routes.account_register_url }}" class="link-underline">{{ 'customer.register.title' | t }}</a></p>
+  </div>
+</section>

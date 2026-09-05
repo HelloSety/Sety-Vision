@@ -1,0 +1,44 @@
+{%- comment -%}
+  Responsive image with srcset + sizes + lazy/eager + aspect wrapper option.
+  Params:
+    image (required) - image object
+    sizes  - CSS sizes attr (default '100vw')
+    widths - comma list (default '360,540,720,960,1200,1600,2000')
+    loading- 'lazy' | 'eager' (default 'lazy')
+    fetchpriority - optional
+    class  - <img> class
+    alt    - override alt
+    crop   - Shopify crop
+    ratio  - e.g. '3/4' -> wraps in aspect box
+{%- endcomment -%}
+{%- liquid
+  assign widths = widths | default: '360,540,720,960,1200,1600,2000'
+  assign width_list = widths | split: ','
+  assign sizes = sizes | default: '100vw'
+  assign loading = loading | default: 'lazy'
+  assign alt = alt | default: image.alt | escape
+-%}
+{%- if image == blank -%}
+  <div class="placeholder-media"{% if ratio %} style="aspect-ratio:{{ ratio }}"{% endif %}>
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  </div>
+{%- else -%}
+  {%- capture srcset -%}
+    {%- for w in width_list -%}
+      {%- assign wn = w | plus: 0 -%}
+      {%- if wn <= image.width -%}{{ image | image_url: width: wn, crop: crop }} {{ wn }}w{% unless forloop.last %}, {% endunless %}{%- endif -%}
+    {%- endfor -%}
+    {{ image | image_url: width: image.width, crop: crop }} {{ image.width }}w
+  {%- endcapture -%}
+  <img
+    class="{{ class }}"
+    src="{{ image | image_url: width: 960, crop: crop }}"
+    srcset="{{ srcset }}"
+    sizes="{{ sizes }}"
+    width="{{ image.width }}"
+    height="{{ image.height }}"
+    alt="{{ alt }}"
+    loading="{{ loading }}"
+    {% if fetchpriority %}fetchpriority="{{ fetchpriority }}"{% endif %}
+    decoding="async">
+{%- endif -%}

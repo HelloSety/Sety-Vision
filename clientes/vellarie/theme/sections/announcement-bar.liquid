@@ -1,0 +1,85 @@
+{%- liquid
+  assign msgs = section.blocks | where: 'type', 'message'
+-%}
+<div class="announcement" data-announcement>
+  <div class="container">
+    <div class="announcement__inner">
+      <div class="announcement__msg" data-announcement-track>
+        {%- for block in msgs -%}
+          <div class="announcement__item"{% if forloop.index0 > 0 %} hidden{% endif %} {{ block.shopify_attributes }}>
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+            {%- else -%}
+              {{ block.settings.text }}
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.show_locale or section.settings.show_country -%}
+        <div class="announcement__locale">
+          {%- if section.settings.show_country and localization.available_countries.size > 1 -%}
+            {%- form 'localization', class: 'localization-form', id: 'AnnCountry' -%}
+              <button type="button" data-loc-toggle="country" aria-haspopup="listbox">
+                {{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }}
+                {% render 'icon', name: 'chevron-down', class: 'icon' %}
+              </button>
+              <div class="loc-popover" data-loc-popover="country" hidden>
+                {%- for c in localization.available_countries -%}
+                  <button type="submit" name="country_code" value="{{ c.iso_code }}"{% if c.iso_code == localization.country.iso_code %} aria-current="true"{% endif %}>{{ c.name }} ({{ c.currency.iso_code }})</button>
+                {%- endfor -%}
+              </div>
+            {%- endform -%}
+          {%- endif -%}
+          {%- if section.settings.show_locale and localization.available_languages.size > 1 -%}
+            {%- form 'localization', id: 'AnnLang' -%}
+              <button type="button" data-loc-toggle="lang" aria-haspopup="listbox">
+                {{ localization.language.endonym_name | capitalize }}
+                {% render 'icon', name: 'chevron-down', class: 'icon' %}
+              </button>
+              <div class="loc-popover" data-loc-popover="lang" hidden>
+                {%- for l in localization.available_languages -%}
+                  <button type="submit" name="locale_code" value="{{ l.iso_code }}"{% if l.iso_code == localization.language.iso_code %} aria-current="true"{% endif %}>{{ l.endonym_name | capitalize }}</button>
+                {%- endfor -%}
+              </div>
+            {%- endform -%}
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{%- if msgs.size > 1 -%}
+<script>
+(function(){
+  var t=document.querySelector('[data-announcement-track]'); if(!t) return;
+  var items=t.querySelectorAll('.announcement__item'); var i=0;
+  setInterval(function(){ items[i].hidden=true; i=(i+1)%items.length; items[i].hidden=false; }, 5000);
+})();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.announcement.name",
+  "class": "announcement-section",
+  "settings": [
+    { "type": "checkbox", "id": "show_locale", "label": "t:sections.announcement.show_locale", "default": true },
+    { "type": "checkbox", "id": "show_country", "label": "t:sections.announcement.show_country", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "t:sections.announcement.block_message",
+      "settings": [
+        { "type": "text", "id": "text", "label": "t:sections.announcement.text", "default": "Free worldwide shipping on orders over $150" },
+        { "type": "url", "id": "link", "label": "t:sections.announcement.link" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "t:sections.announcement.name", "blocks": [ { "type": "message" } ] }
+  ]
+}
+{% endschema %}

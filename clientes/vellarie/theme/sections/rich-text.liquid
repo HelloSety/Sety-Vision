@@ -1,0 +1,44 @@
+<section class="section {{ section.settings.color_scheme }}">
+  <div class="container">
+    <div class="rich-text" data-reveal-stagger>
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'eyebrow' -%}<p class="eyebrow" {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+          {%- when 'heading' -%}<h2 class="{{ block.settings.size }}" {{ block.shopify_attributes }}>{{ block.settings.text }}</h2>
+          {%- when 'text' -%}<div class="rte text-muted" {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+          {%- when 'button' -%}<div {{ block.shopify_attributes }}><a class="btn{% if block.settings.style == 'secondary' %} btn--secondary{% endif %}" href="{{ block.settings.link }}">{{ block.settings.label }}</a></div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.rich_text.name",
+  "tag": "section",
+  "settings": [
+    { "type": "select", "id": "color_scheme", "label": "t:settings.color_scheme.label", "options": [
+      { "value": "", "label": "t:settings.color_scheme.light" },
+      { "value": "color-surface", "label": "t:settings.color_scheme.surface" },
+      { "value": "color-dark", "label": "t:settings.color_scheme.dark" }
+    ], "default": "color-dark" }
+  ],
+  "blocks": [
+    { "type": "eyebrow", "name": "t:sections.rich_text.eyebrow", "limit": 1, "settings": [ { "type": "text", "id": "text", "label": "t:sections.rich_text.text", "default": "Our story" } ] },
+    { "type": "heading", "name": "t:sections.rich_text.heading", "limit": 1, "settings": [
+      { "type": "textarea", "id": "text", "label": "t:sections.rich_text.text", "default": "More than clothing. A frequency you live in." },
+      { "type": "select", "id": "size", "label": "t:sections.rich_text.size", "options": [ { "value": "h2", "label": "H2" }, { "value": "display", "label": "Display" } ], "default": "display" }
+    ] },
+    { "type": "text", "name": "t:sections.rich_text.body", "limit": 1, "settings": [ { "type": "richtext", "id": "text", "label": "t:sections.rich_text.text", "default": "<p>Designed in-house and made to last, every piece is built around movement and identity.</p>" } ] },
+    { "type": "button", "name": "t:sections.rich_text.button", "limit": 2, "settings": [
+      { "type": "text", "id": "label", "label": "t:sections.rich_text.label", "default": "About the brand" },
+      { "type": "url", "id": "link", "label": "t:sections.rich_text.link" },
+      { "type": "select", "id": "style", "label": "t:sections.rich_text.style", "options": [ { "value": "primary", "label": "Primary" }, { "value": "secondary", "label": "Secondary" } ], "default": "primary" }
+    ] }
+  ],
+  "presets": [
+    { "name": "t:sections.rich_text.name", "blocks": [ { "type": "eyebrow" }, { "type": "heading" }, { "type": "text" }, { "type": "button" } ] }
+  ]
+}
+{% endschema %}

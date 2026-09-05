@@ -1,0 +1,107 @@
+{%- comment -%}
+  Params: results (collection or search), enable_filter, enable_sort
+  Uses Shopify Search & Discovery filters (results.filters).
+{%- endcomment -%}
+{%- liquid
+  assign sort_by = results.sort_by | default: results.default_sort_by
+-%}
+<form class="collection-toolbar" data-facets-form>
+  <div class="collection-tabs" role="list">
+    {%- if linklists['collection-tabs'].links.size > 0 -%}
+      {%- for l in linklists['collection-tabs'].links -%}
+        <a href="{{ l.url }}"{% if l.current %} aria-current="page"{% endif %}>{{ l.title }}</a>
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+
+  <div style="display:flex;gap:1.25rem;align-items:center">
+    {%- if enable_filter and results.filters.size > 0 -%}
+      <button type="button" class="toolbar-btn" data-facets-open>
+        {% render 'icon', name: 'filter' %} {{ 'products.facets.filter' | t }}
+      </button>
+    {%- endif -%}
+    {%- if enable_sort -%}
+      <label class="toolbar-btn" style="gap:.4rem">
+        {% render 'icon', name: 'sort' %}
+        <span class="visually-hidden">{{ 'products.facets.sort_by_label' | t }}</span>
+        <select name="sort_by" data-auto-submit>
+          {%- for option in results.sort_options -%}
+            <option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name }}</option>
+          {%- endfor -%}
+        </select>
+      </label>
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} keep active facet params on sort change {%- endcomment -%}
+  {%- for filter in results.filters -%}
+    {%- for value in filter.active_values -%}
+      <input type="hidden" name="{{ value.param_name }}" value="{{ value.value }}">
+    {%- endfor -%}
+  {%- endfor -%}
+</form>
+
+{%- if enable_filter and results.filters.size > 0 -%}
+  <aside class="facets facets--drawer" data-facets-drawer aria-label="{{ 'products.facets.filters' | t }}">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--color-line)">
+      <strong style="letter-spacing:.12em;text-transform:uppercase;font-size:.8rem">{{ 'products.facets.filters' | t }}</strong>
+      <button type="button" data-facets-close aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', name: 'close', class: 'icon' %}</button>
+    </div>
+    <form data-facets-drawer-form>
+      {%- for filter in results.filters -%}
+        <div class="accordion" data-accordion>
+          <div class="accordion__item">
+            <button type="button" class="accordion__trigger" aria-expanded="true">{{ filter.label }}{% render 'icon', name: 'plus', class: 'accordion__icon' %}</button>
+            <div class="accordion__panel" style="max-height:1000px">
+              <div class="accordion__panel-inner">
+                {%- case filter.type -%}
+                  {%- when 'price_range' -%}
+                    <div style="display:flex;gap:.75rem">
+                      <label>{{ 'products.facets.from' | t }} <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}" min="0" max="{{ filter.range_max | money_without_currency }}"></label>
+                      <label>{{ 'products.facets.to' | t }} <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}" min="0" max="{{ filter.range_max | money_without_currency }}"></label>
+                    </div>
+                  {%- else -%}
+                    <div class="facet__values">
+                      {%- for value in filter.values -%}
+                        <label class="facet__chip">
+                          <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}>
+                          {{ value.label }} ({{ value.count }})
+                        </label>
+                      {%- endfor -%}
+                    </div>
+                {%- endcase -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+      <div style="display:flex;gap:.75rem;margin-top:1.25rem">
+        <button type="submit" class="btn btn--full btn--sm">{{ 'products.facets.apply' | t }}</button>
+        <a href="{{ results.url | default: request.path }}" class="btn btn--secondary btn--full btn--sm">{{ 'products.facets.clear_all' | t }}</a>
+      </div>
+    </form>
+  </aside>
+
+  {%- if results.filters.size > 0 -%}
+    {%- assign has_active = false -%}
+    {%- for f in results.filters -%}{%- if f.active_values.size > 0 -%}{%- assign has_active = true -%}{%- endif -%}{%- endfor -%}
+    {%- if has_active -%}
+      <div class="container"><div class="active-filters">
+        {%- for filter in results.filters -%}
+          {%- for value in filter.active_values -%}
+            <a class="active-filters__chip" href="{{ value.url_to_remove }}"><button type="button">{{ value.label }} {% render 'icon', name: 'close', class: 'icon' %}</button></a>
+          {%- endfor -%}
+        {%- endfor -%}
+      </div></div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+
+<script>
+(function(){
+  document.querySelectorAll('[data-auto-submit]').forEach(function(s){ s.addEventListener('change', function(){ s.form.submit(); }); });
+  var d=document.querySelector('[data-facets-drawer]');
+  document.querySelectorAll('[data-facets-open]').forEach(function(b){ b.addEventListener('click', function(){ d && d.classList.add('is-open'); document.body.classList.add('is-locked'); }); });
+  document.querySelectorAll('[data-facets-close]').forEach(function(b){ b.addEventListener('click', function(){ d && d.classList.remove('is-open'); document.body.classList.remove('is-locked'); }); });
+})();
+</script>

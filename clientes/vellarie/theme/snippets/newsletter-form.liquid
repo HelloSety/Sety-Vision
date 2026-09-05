@@ -1,0 +1,23 @@
+{%- form 'customer', class: 'newsletter__form', id: 'NewsletterForm' -%}
+  <input type="hidden" name="contact[tags]" value="newsletter">
+  <input
+    type="email"
+    name="contact[email]"
+    placeholder="{{ 'sections.newsletter.placeholder' | t }}"
+    aria-label="{{ 'sections.newsletter.placeholder' | t }}"
+    autocomplete="email"
+    required>
+  <button type="submit" name="commit">{{ 'sections.newsletter.button' | t }}</button>
+{%- endform -%}
+{%- if form.posted_successfully? -%}
+  <p class="form-note form-note--success">{{ 'sections.newsletter.success' | t }}</p>
+{%- elsif form.errors -%}
+  <p class="form-note form-note--error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+{%- endif -%}
+<script>
+  if (window.Vellarie && window.Vellarie.settings.dataLayer) {
+    document.getElementById('NewsletterForm')?.addEventListener('submit', function () {
+      (window.dataLayer = window.dataLayer || []).push({ event: 'newsletter_signup' });
+    });
+  }
+</script>

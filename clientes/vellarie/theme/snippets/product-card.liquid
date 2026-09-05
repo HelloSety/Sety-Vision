@@ -1,0 +1,60 @@
+{%- comment -%}
+  Params:
+    product (required)
+    sizes   - responsive sizes (default card grid)
+    loading - 'lazy' | 'eager'
+    reveal  - bool (wrap in reveal)
+{%- endcomment -%}
+{%- liquid
+  assign sizes = sizes | default: '(min-width: 990px) 22vw, (min-width: 750px) 30vw, 46vw'
+  assign img1 = product.featured_media.preview_image | default: product.featured_image
+  assign img2 = product.media[1].preview_image
+  assign show_hover = false
+  if settings.card_hover_second_image and img2 != blank
+    assign show_hover = true
+  endif
+  assign color_opt = null
+  for opt in product.options_with_values
+    assign dn = opt.name | downcase
+    if dn contains 'cor' or dn contains 'color' or dn contains 'colour'
+      assign color_opt = opt
+    endif
+  endfor
+  assign card_alt = img1.alt | default: product.title
+  assign card_loading = loading | default: 'lazy'
+-%}
+<div class="card"{% if reveal %} data-reveal{% endif %} data-product-card>
+  <a class="card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
+    {% render 'product-badges', product: product %}
+    {% render 'responsive-image', image: img1, class: 'card__img card__img--pri', sizes: sizes, loading: card_loading, alt: card_alt %}
+    {%- if show_hover -%}
+      {% render 'responsive-image', image: img2, class: 'card__img card__img--sec', sizes: sizes, loading: 'lazy', alt: card_alt %}
+    {%- endif -%}
+  </a>
+
+  {%- if settings.card_quick_add and product.available -%}
+    <div class="card__quick">
+      {%- if product.variants.size == 1 -%}
+        <form action="{{ routes.cart_add_url }}" method="post">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <button type="submit" class="btn btn--sm btn--full"><span class="btn__label">{{ 'products.product.quick_add' | t }}</span><span class="btn__spinner"></span></button>
+        </form>
+      {%- else -%}
+        <a href="{{ product.url }}" class="btn btn--sm btn--full">{{ 'products.product.choose_options' | t }}</a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <a class="card__info" href="{{ product.url }}">
+    <span class="card__title">{{ product.title }}</span>
+    {% render 'price', product: product %}
+    {%- if settings.card_show_color_count and color_opt -%}
+      <span class="card__swatches" aria-hidden="true">
+        {%- for val in color_opt.values limit: 5 -%}
+          <span class="swatch" style="background-color:{{ val | split: ' ' | last | downcase }}" title="{{ val | escape }}"></span>
+        {%- endfor -%}
+        {%- if color_opt.values.size > 5 -%}<span class="card__swatch-more">+{{ color_opt.values.size | minus: 5 }}</span>{%- endif -%}
+      </span>
+    {%- endif -%}
+  </a>
+</div>

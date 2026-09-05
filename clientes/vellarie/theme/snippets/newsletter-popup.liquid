@@ -1,0 +1,30 @@
+{%- comment -%}
+  Newsletter popup — native Shopify customer capture.
+  Shown once per session by theme.js (delay or exit-intent). Gated by settings.popup_enabled.
+{%- endcomment -%}
+<div class="np-overlay" data-np-overlay hidden{% if form.posted_successfully? %} data-np-open-now{% endif %}>
+  <div class="np-modal" role="dialog" aria-modal="true" aria-labelledby="np-title">
+    <button type="button" class="np-close" data-np-close aria-label="{{ 'accessibility.close' | t }}">
+      {% render 'icon', name: 'close' %}
+    </button>
+
+    {%- if settings.popup_image != blank -%}
+      <img src="{{ settings.popup_image | image_url: width: 800 }}" alt="" width="800" height="500" loading="lazy" style="width:100%;height:auto;object-fit:cover;aspect-ratio:16/9">
+    {%- endif -%}
+
+    {%- if settings.popup_eyebrow != blank -%}<p class="eyebrow np-modal__eyebrow">{{ settings.popup_eyebrow }}</p>{%- endif -%}
+    <h2 class="np-modal__title" id="np-title">{{ settings.popup_heading }}</h2>
+    {%- if settings.popup_text != blank -%}<p class="text-muted">{{ settings.popup_text }}</p>{%- endif -%}
+
+    {%- form 'customer', class: 'newsletter__form', id: 'NewsletterPopupForm' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter, popup">
+      <input type="email" name="contact[email]" placeholder="{{ 'sections.newsletter.placeholder' | t }}" aria-label="{{ 'sections.newsletter.placeholder' | t }}" autocomplete="email" required>
+      <button type="submit" name="commit">{{ settings.popup_button | default: 'Subscribe' }}</button>
+    {%- endform -%}
+    {%- if form.posted_successfully? -%}
+      <p class="form-note form-note--success">{{ 'sections.newsletter.success' | t }}</p>
+    {%- elsif form.errors -%}
+      <p class="form-note form-note--error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
+    {%- endif -%}
+  </div>
+</div>

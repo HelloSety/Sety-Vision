@@ -1,0 +1,39 @@
+<article class="section" data-section-id="{{ section.id }}">
+  <div class="container" style="max-width: 760px">
+    <nav class="breadcrumb"><a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a> / <a href="{{ blog.url }}">{{ blog.title }}</a> / <span>{{ article.title }}</span></nav>
+    <header data-reveal style="text-align:center;display:grid;gap:.75rem;margin-bottom:2rem">
+      <p class="eyebrow">{{ article.published_at | date: format: 'abbreviated_date' }}{% if article.author != blank %} · {{ article.author }}{% endif %}</p>
+      <h1 class="h1">{{ article.title }}</h1>
+    </header>
+    {%- if article.image -%}
+      <div data-reveal style="margin-bottom:2.5rem">{% render 'responsive-image', image: article.image, sizes: '760px', loading: 'eager' %}</div>
+    {%- endif -%}
+    <div class="rte" data-reveal>{{ article.content }}</div>
+
+    {%- if blog.comments_enabled? -%}
+      <div style="margin-top:3rem;border-top:1px solid var(--color-line);padding-top:2rem">
+        {%- if article.comments_count > 0 -%}
+          <h2 class="h3" style="margin-bottom:1rem">{{ 'blogs.article.comments' | t: count: article.comments_count }}</h2>
+          {%- for comment in article.comments -%}
+            <div style="padding:1rem 0;border-bottom:1px solid var(--color-line)">
+              <p style="font-weight:600">{{ comment.author }}</p>
+              <div class="rte text-muted">{{ comment.content }}</div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+        {%- form 'new_comment', article -%}
+          {%- if form.errors -%}<p class="form-note form-note--error">{{ form.errors | default_errors }}</p>{%- endif -%}
+          {%- if form.posted_successfully? -%}<p class="form-note form-note--success">{{ 'blogs.article.success' | t }}</p>{%- endif -%}
+          <div class="form-field"><label>{{ 'blogs.article.name' | t }}</label><input type="text" name="comment[author]" required></div>
+          <div class="form-field"><label>{{ 'blogs.article.email' | t }}</label><input type="email" name="comment[email]" required></div>
+          <div class="form-field"><label>{{ 'blogs.article.message' | t }}</label><textarea name="comment[body]" rows="4" required></textarea></div>
+          <button type="submit" class="btn btn--sm">{{ 'blogs.article.post' | t }}</button>
+        {%- endform -%}
+      </div>
+    {%- endif -%}
+  </div>
+</article>
+
+{% schema %}
+{ "name": "t:sections.main_article.name", "settings": [] }
+{% endschema %}

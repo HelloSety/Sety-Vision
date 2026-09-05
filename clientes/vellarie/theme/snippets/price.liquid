@@ -1,0 +1,25 @@
+{%- comment -%}
+  Params: product OR variant/price ; show_compare (default true)
+{%- endcomment -%}
+{%- liquid
+  assign tgt = variant | default: product
+  if product and product.price_varies and variant == blank
+    assign is_range = true
+  endif
+  assign price = tgt.price | default: price
+  assign compare = tgt.compare_at_price
+  assign on_sale = false
+  if compare and compare > price
+    assign on_sale = true
+  endif
+-%}
+<span class="card__price">
+  {%- if is_range -%}
+    <span>{{ 'products.price.from_price_html' | t: price: product.price_min | money }}</span>
+  {%- elsif on_sale -%}
+    <span class="price--sale">{{ price | money }}</span>
+    {%- if show_compare != false -%}<span class="price--compare">{{ compare | money }}</span>{%- endif -%}
+  {%- else -%}
+    <span>{{ price | money }}</span>
+  {%- endif -%}
+</span>

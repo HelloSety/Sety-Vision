@@ -1,0 +1,94 @@
+{%- liquid
+  assign cols = section.settings.columns
+  assign pct = section.settings.rating | times: 20
+-%}
+<section class="section {{ section.settings.color_scheme }}" data-testimonials>
+  <div class="container">
+    {%- if section.settings.heading != blank -%}
+      <div class="section-head" data-reveal><h2 class="section-head__title">{{ section.settings.heading }}</h2></div>
+    {%- endif -%}
+
+    {%- if section.settings.show_summary -%}
+      <div class="rating-summary" data-reveal>
+        <span class="stars" style="--pct: {{ pct }}%" aria-hidden="true">★★★★★</span>
+        <span class="rating-summary__n">
+          {{ section.settings.rating }} / 5
+          {%- if section.settings.review_count != blank %} &middot; {{ section.settings.review_count }} reviews{% endif -%}
+        </span>
+      </div>
+    {%- endif -%}
+
+    <div class="testi-grid testi-grid--{{ cols }}" data-reveal-stagger>
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'quote' -%}
+            <blockquote class="testi" {{ block.shopify_attributes }}>
+              {%- if block.settings.stars -%}
+                <span class="testi__stars" aria-hidden="true">
+                  {%- for i in (1..5) -%}{% if i <= block.settings.stars %}★{% else %}☆{% endif %}{%- endfor -%}
+                </span>
+              {%- endif -%}
+              <p class="testi__quote">&ldquo;{{ block.settings.quote }}&rdquo;</p>
+              <footer class="testi__meta">
+                {{ block.settings.author }}{% if block.settings.detail != blank %} &middot; {{ block.settings.detail }}{% endif %}
+              </footer>
+            </blockquote>
+          {%- when '@app' -%}
+            <div {{ block.shopify_attributes }}>{% render block %}</div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.note != blank -%}
+      <p class="testi-note">{{ section.settings.note }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Loved by thousands" },
+    { "type": "select", "id": "columns", "label": "Columns", "options": [
+      { "value": "2", "label": "2" }, { "value": "3", "label": "3" }
+    ], "default": "3" },
+    { "type": "header", "content": "Rating summary" },
+    { "type": "checkbox", "id": "show_summary", "label": "Show rating summary", "default": true },
+    { "type": "range", "id": "rating", "min": 3, "max": 5, "step": 0.1, "label": "Average rating", "default": 4.8 },
+    { "type": "text", "id": "review_count", "label": "Review count", "default": "2,400+" },
+    { "type": "paragraph", "content": "Numbers are display-only. Connect a reviews app (Judge.me, Loox, Shopify Reviews) and add its app block below for verified reviews." },
+    { "type": "text", "id": "note", "label": "Footnote", "default": "" },
+    { "type": "select", "id": "color_scheme", "label": "t:settings.color_scheme.label", "options": [
+      { "value": "", "label": "t:settings.color_scheme.light" },
+      { "value": "color-surface", "label": "t:settings.color_scheme.surface" },
+      { "value": "color-dark", "label": "t:settings.color_scheme.dark" }
+    ], "default": "color-surface" }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "Quote",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote", "default": "Feels like a professional treatment at home. The build quality genuinely surprised me." },
+        { "type": "text", "id": "author", "label": "Author", "default": "Jordan M." },
+        { "type": "text", "id": "detail", "label": "Detail", "default": "Verified buyer" },
+        { "type": "range", "id": "stars", "min": 0, "max": 5, "step": 1, "label": "Stars", "default": 5 }
+      ]
+    },
+    { "type": "@app" }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        { "type": "quote", "settings": { "quote": "Feels like a professional treatment at home. The build quality genuinely surprised me.", "author": "Jordan M.", "detail": "Verified buyer" } },
+        { "type": "quote", "settings": { "quote": "Charged once, used it all week. Shipping to the US was quick and packaging was premium.", "author": "Priya S.", "detail": "Verified buyer" } },
+        { "type": "quote", "settings": { "quote": "Replaced two devices with one. My routine is faster and my skin looks better.", "author": "Alex R.", "detail": "Verified buyer" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

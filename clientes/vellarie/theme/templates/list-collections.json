@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-list-collections",
+      "settings": { "heading": "All collections", "subheading": "Every drop and every essential, in one place.", "source": "all" }
+    }
+  },
+  "order": ["main"]
+}

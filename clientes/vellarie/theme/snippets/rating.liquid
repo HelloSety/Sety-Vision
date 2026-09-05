@@ -1,0 +1,16 @@
+{%- comment -%}
+  Renders a star rating from product metafield `reviews.rating` (+ `reviews.rating_count`).
+  Compatible with Shopify Product Reviews / Judge.me / Loox metafield conventions.
+  Params: product ; compact (bool)
+{%- endcomment -%}
+{%- liquid
+  assign rating = product.metafields.reviews.rating.value
+  assign count = product.metafields.reviews.rating_count | default: 0
+-%}
+{%- if rating != blank and count > 0 -%}
+  {%- assign pct = rating.rating | default: rating | times: 20 -%}
+  <div class="pdp__rating" role="img" aria-label="{{ 'products.product.rating_label' | t: rating: rating, count: count }}">
+    <span class="stars" style="--pct: {{ pct }}%">★★★★★</span>
+    <span>({{ count }})</span>
+  </div>
+{%- endif -%}

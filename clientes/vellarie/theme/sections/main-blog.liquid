@@ -1,0 +1,26 @@
+<section class="section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="collection-head" data-reveal><h1 class="h1">{{ blog.title }}</h1></div>
+    {%- paginate blog.articles by 12 -%}
+      <div class="cat-grid cat-grid--3" data-reveal-stagger>
+        {%- for article in blog.articles -%}
+          <a class="cat-card" href="{{ article.url }}">
+            <span class="cat-card__media">
+              {%- if article.image -%}{% render 'responsive-image', image: article.image, sizes: '(min-width:750px) 33vw, 90vw' %}{%- else -%}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+            </span>
+            <span class="cat-card__body">
+              <span class="cat-card__count">{{ article.published_at | date: format: 'abbreviated_date' }}</span>
+              <span class="cat-card__title" style="text-transform:none;letter-spacing:0;font-size:1rem;margin-top:.35rem">{{ article.title }}</span>
+              {%- if article.excerpt_or_content != blank -%}<span class="trust-item__d" style="display:block;margin-top:.4rem">{{ article.excerpt_or_content | strip_html | truncatewords: 20 }}</span>{%- endif -%}
+            </span>
+          </a>
+        {%- endfor -%}
+      </div>
+      {% render 'pagination', paginate: paginate %}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "t:sections.main_blog.name", "settings": [] }
+{% endschema %}

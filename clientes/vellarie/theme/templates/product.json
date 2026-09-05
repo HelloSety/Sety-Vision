@@ -1,0 +1,30 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": { "type": "title" },
+        "price": { "type": "price" },
+        "rating": { "type": "rating" },
+        "subtitle": { "type": "description_short", "settings": { "fallback_excerpt": true } },
+        "variants": { "type": "variant_picker" },
+        "buy": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true } },
+        "trust": { "type": "trust", "settings": { "item_1": "Free shipping over $150", "item_2": "14-day returns", "item_3": "Secure checkout" } },
+        "payments": { "type": "payments", "settings": { "label": "Secure checkout with" } },
+        "acc_details": { "type": "accordion", "settings": { "heading": "Details", "use_product_description": true, "open": true } },
+        "acc_shipping": { "type": "accordion", "settings": { "heading": "Shipping", "content": "<p>Configure this text in the theme editor. Do not invent delivery times.</p>" } },
+        "acc_returns": { "type": "accordion", "settings": { "heading": "Returns & exchanges", "content": "<p>Configure this text in the theme editor. Do not invent a return policy.</p>" } }
+      },
+      "block_order": ["title", "price", "rating", "subtitle", "variants", "buy", "trust", "payments", "acc_details", "acc_shipping", "acc_returns"]
+    },
+    "related": {
+      "type": "related-products",
+      "settings": { "enable": true, "heading": "You may also like", "products_to_show": 4, "color_scheme": "color-surface" }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "settings": { "heading": "Recently viewed", "products_to_show": 4, "color_scheme": "" }
+    }
+  },
+  "order": ["main", "related", "recently-viewed"]
+}

@@ -1,0 +1,82 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="footer-brand">
+        <a href="{{ routes.root_url }}" class="footer-brand__logo">
+          {%- if settings.logo_light != blank -%}
+            <img src="{{ settings.logo_light | image_url: width: 400 }}" width="{{ settings.logo_light.width }}" height="{{ settings.logo_light.height }}" alt="{{ shop.name | escape }}" style="max-width:180px;height:auto">
+          {%- else -%}
+            <img src="{{ 'vellarie-logo-light.png' | asset_url }}" width="900" height="246" alt="{{ shop.name | escape }}" style="max-width:180px;height:auto">
+          {%- endif -%}
+        </a>
+        {%- if section.settings.tagline != blank -%}<p>{{ section.settings.tagline }}</p>{%- endif -%}
+        <div class="footer-social">
+          {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" aria-label="Instagram">{% render 'icon', name: 'instagram' %}</a>{%- endif -%}
+          {%- if settings.social_tiktok != blank -%}<a href="{{ settings.social_tiktok }}" aria-label="TikTok">{% render 'icon', name: 'tiktok' %}</a>{%- endif -%}
+          {%- if settings.social_facebook != blank -%}<a href="{{ settings.social_facebook }}" aria-label="Facebook">{% render 'icon', name: 'facebook' %}</a>{%- endif -%}
+          {%- if settings.social_youtube != blank -%}<a href="{{ settings.social_youtube }}" aria-label="YouTube">{% render 'icon', name: 'youtube' %}</a>{%- endif -%}
+          {%- if settings.social_pinterest != blank -%}<a href="{{ settings.social_pinterest }}" aria-label="Pinterest">{% render 'icon', name: 'pinterest' %}</a>{%- endif -%}
+        </div>
+      </div>
+
+      {%- for pair in section.blocks -%}
+        {%- assign menu = linklists[pair.settings.menu] -%}
+        <div class="footer-col accordion" data-accordion {{ pair.shopify_attributes }}>
+          <div class="accordion__item">
+            <button class="accordion__trigger" aria-expanded="false">
+              <span>{{ pair.settings.title }}</span>{% render 'icon', name: 'plus', class: 'accordion__icon' %}
+            </button>
+            <div class="accordion__panel">
+              <div class="accordion__panel-inner">
+                {%- for link in menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="site-footer__bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'sections.footer.rights' | t }}</span>
+      {%- if section.settings.show_locale and localization.available_countries.size > 1 -%}
+        {%- form 'localization', id: 'FooterLoc' -%}
+          <button type="button" data-loc-toggle="footer">{{ localization.country.name }} · {{ localization.country.currency.iso_code }} {% render 'icon', name: 'chevron-down', class: 'icon' %}</button>
+          <div class="loc-popover" data-loc-popover="footer" hidden>
+            {%- for c in localization.available_countries -%}
+              <button type="submit" name="country_code" value="{{ c.iso_code }}">{{ c.name }} ({{ c.currency.iso_code }})</button>
+            {%- endfor -%}
+          </div>
+        {%- endform -%}
+      {%- endif -%}
+      {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+        <span class="payment-icons">
+          {%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag: class: 'payment-icon' }}{%- endfor -%}
+        </span>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "settings": [
+    { "type": "textarea", "id": "tagline", "label": "t:sections.footer.tagline", "default": "Built for your own frequency. Designed in-house, made to last." },
+    { "type": "checkbox", "id": "show_payment_icons", "label": "t:sections.footer.show_payment_icons", "default": true },
+    { "type": "checkbox", "id": "show_locale", "label": "t:sections.footer.show_locale", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "t:sections.footer.menu_block",
+      "settings": [
+        { "type": "text", "id": "title", "label": "t:sections.footer.menu_title", "default": "Shop" },
+        { "type": "link_list", "id": "menu", "label": "t:sections.footer.menu" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "t:sections.footer.name", "blocks": [ { "type": "menu" }, { "type": "menu" }, { "type": "menu" } ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,61 @@
+{%- liquid
+  assign pp = section.settings.products_per_page
+-%}
+<section class="section--flush" data-section-id="{{ section.id }}">
+  {%- if section.settings.show_banner and collection.image -%}
+    <div class="collection-banner">
+      <img src="{{ collection.image | image_url: width: 2000 }}" width="{{ collection.image.width }}" height="{{ collection.image.height }}" alt="{{ collection.title | escape }}" fetchpriority="high">
+      <div class="container">
+        <h1 class="collection-banner__title">{{ collection.title }}</h1>
+        {%- if collection.description != blank and section.settings.show_description_in_banner -%}
+          <div class="rte" style="max-width:52ch;margin:.75rem auto 0;color:rgba(255,255,255,.85)">{{ collection.description }}</div>
+        {%- endif -%}
+      </div>
+    </div>
+  {%- else -%}
+    <div class="container">
+      <div class="collection-head" data-reveal>
+        <h1 class="h1">{{ collection.title }}</h1>
+        {%- if collection.description != blank -%}<div class="rte collection-head__desc">{{ collection.description }}</div>{%- endif -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <div class="container">
+    {% render 'facets', results: collection, enable_filter: section.settings.enable_filtering, enable_sort: section.settings.enable_sorting %}
+  </div>
+
+  <div class="container section--tight">
+    {%- paginate collection.products by pp -%}
+      {%- if collection.products.size > 0 -%}
+        <div class="grid--products" data-reveal-stagger>
+          {%- for product in collection.products -%}
+            {%- assign card_loading = 'lazy' -%}
+            {%- if forloop.index0 < 8 -%}{%- assign card_loading = 'eager' -%}{%- endif -%}
+            {% render 'product-card', product: product, loading: card_loading %}
+          {%- endfor -%}
+        </div>
+        {% render 'pagination', paginate: paginate %}
+      {%- else -%}
+        <div class="cart-empty">
+          <p class="h3">{{ 'sections.collection_template.empty' | t }}</p>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn--secondary">{{ 'general.404.link' | t }}</a>
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_collection.name",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "show_banner", "label": "t:sections.main_collection.show_banner", "default": true },
+    { "type": "checkbox", "id": "show_description_in_banner", "label": "t:sections.main_collection.show_description_in_banner", "default": true },
+    { "type": "range", "id": "products_per_page", "min": 8, "max": 48, "step": 4, "label": "t:sections.main_collection.products_per_page", "default": 24 },
+    { "type": "checkbox", "id": "enable_filtering", "label": "t:sections.main_collection.enable_filtering", "info": "t:sections.main_collection.enable_filtering_info", "default": true },
+    { "type": "checkbox", "id": "enable_sorting", "label": "t:sections.main_collection.enable_sorting", "default": true }
+  ]
+}
+{% endschema %}

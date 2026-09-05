@@ -1,0 +1,48 @@
+<section class="section" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="collection-head" data-reveal>
+      <h1 class="h1">{{ 'general.search.title' | t }}</h1>
+      <form action="{{ routes.search_url }}" method="get" role="search" class="search-field" style="max-width:520px;margin:1.5rem auto 0">
+        {% render 'icon', name: 'search', class: 'header-icon' %}
+        <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
+      </form>
+      {%- if search.performed -%}
+        <p class="text-muted" style="margin-top:1rem">{{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}</p>
+      {%- endif -%}
+    </div>
+
+    {%- if search.performed -%}
+      {%- if search.results_count > 0 -%}
+        {%- paginate search.results by 24 -%}
+          <div class="grid--products" data-reveal-stagger>
+            {%- for item in search.results -%}
+              {%- case item.object_type -%}
+                {%- when 'product' -%}{% render 'product-card', product: item %}
+                {%- else -%}
+                  {%- assign item_img = item.featured_media.preview_image | default: item.image -%}
+                  <a class="card" href="{{ item.url }}">
+                    <span class="card__media">
+                      {%- if item_img -%}
+                        <img class="card__img card__img--pri" src="{{ item_img | image_url: width: 600 }}" width="{{ item_img.width | default: 600 }}" height="{{ item_img.height | default: 800 }}" alt="{{ item.title | escape }}" loading="lazy">
+                      {%- else -%}{{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+                    </span>
+                    <span class="card__info"><span class="card__title">{{ item.title }}</span></span>
+                  </a>
+              {%- endcase -%}
+            {%- endfor -%}
+          </div>
+          {% render 'pagination', paginate: paginate %}
+        {%- endpaginate -%}
+      {%- else -%}
+        <div class="predictive__empty">
+          <p class="h3">{{ 'general.search.no_results_heading' | t }}</p>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn--secondary btn--sm">{{ 'general.404.link' | t }}</a>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "t:sections.main_search.name", "settings": [] }
+{% endschema %}

@@ -1,0 +1,43 @@
+{%- comment -%} Params: product {%- endcomment -%}
+<div class="pdp__gallery" data-pdp-gallery>
+  <div class="pdp__thumbs" role="tablist" aria-label="{{ 'products.product.media.gallery_viewer' | t }}">
+    {%- for media in product.media limit: 8 -%}
+      <button class="pdp__thumb" data-pdp-thumb aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="{{ 'products.product.media.image_available' | t: index: forloop.index }}">
+        <img src="{{ media.preview_image | image_url: width: 160 }}" width="72" height="96" alt="" loading="lazy">
+      </button>
+    {%- endfor -%}
+  </div>
+
+  <div class="pdp__stage" data-pdp-stage>
+    <div class="pdp__stage-track" data-pdp-track>
+      {%- for media in product.media -%}
+        {%- liquid
+          assign m_alt = media.alt | default: product.title
+          assign m_loading = 'lazy'
+          assign m_priority = ''
+          if forloop.first
+            assign m_loading = 'eager'
+            assign m_priority = 'high'
+          endif
+        -%}
+        <div class="pdp__stage-slide">
+          {%- case media.media_type -%}
+            {%- when 'video' -%}
+              {{ media | media_tag: image_size: '1200x', autoplay: false, loop: false, controls: true }}
+            {%- when 'external_video' -%}
+              {{ media | external_video_tag }}
+            {%- when 'model' -%}
+              {{ media | model_viewer_tag }}
+            {%- else -%}
+              {% render 'responsive-image', image: media.preview_image, sizes: '(min-width: 990px) 55vw, 100vw', loading: m_loading, fetchpriority: m_priority, alt: m_alt %}
+          {%- endcase -%}
+        </div>
+      {%- else -%}
+        <div class="pdp__stage-slide">{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}</div>
+      {%- endfor -%}
+    </div>
+    {%- if product.media.size > 1 -%}
+      <span class="pdp__stage-count" data-pdp-count>1 / {{ product.media.size }}</span>
+    {%- endif -%}
+  </div>
+</div>

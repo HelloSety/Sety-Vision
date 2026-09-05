@@ -1,0 +1,50 @@
+{%- comment -%}
+  Results-only. Fetched by JS: {{ routes.predictive_search_url }}?q=..&section_id=predictive-search
+{%- endcomment -%}
+<div data-predictive-results>
+  {%- if predictive_search.performed -%}
+    {%- assign products = predictive_search.resources.products -%}
+    {%- assign collections = predictive_search.resources.collections -%}
+    {%- assign pages = predictive_search.resources.pages -%}
+
+    {%- if products.size == 0 and collections.size == 0 and pages.size == 0 -%}
+      <div class="predictive__empty">
+        <p class="h3">{{ 'general.search.no_results_heading' | t }}</p>
+        <a href="{{ routes.all_products_collection_url }}" class="btn btn--secondary btn--sm">{{ 'general.404.link' | t }}</a>
+      </div>
+    {%- else -%}
+      {%- if products.size > 0 -%}
+        <div class="predictive__group">
+          <h4>{{ 'general.search.products' | t }}</h4>
+          {%- for product in products limit: 6 -%}
+            <a class="predictive__product" href="{{ product.url }}">
+              <img src="{{ product.featured_media.preview_image | image_url: width: 120 }}" width="60" height="60" alt="{{ product.title | escape }}" loading="lazy">
+              <span class="card__title">{{ product.title }}</span>
+              {% render 'price', product: product %}
+            </a>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if collections.size > 0 -%}
+        <div class="predictive__group">
+          <h4>{{ 'general.search.collections' | t }}</h4>
+          {%- for c in collections limit: 4 -%}<a class="link-underline" style="display:block;padding:.4rem 0" href="{{ c.url }}">{{ c.title }}</a>{%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if pages.size > 0 -%}
+        <div class="predictive__group">
+          <h4>{{ 'general.search.pages' | t }}</h4>
+          {%- for p in pages limit: 4 -%}<a class="link-underline" style="display:block;padding:.4rem 0" href="{{ p.url }}">{{ p.title }}</a>{%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <a href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}" class="btn btn--full btn--sm">{{ 'general.search.view_all_results' | t }}</a>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{ "name": "Predictive search", "settings": [] }
+{% endschema %}

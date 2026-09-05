@@ -1,0 +1,24 @@
+{%- comment -%} Params: product ; block {%- endcomment -%}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+-%}
+<div class="pdp__buy" {{ block.shopify_attributes }}>
+  {%- form 'product', product, id: 'ProductForm', novalidate: 'novalidate' -%}
+    <input type="hidden" name="id" value="{{ variant.id }}" data-variant-id>
+    <div style="display:flex;gap:.6rem;align-items:stretch">
+      {% render 'quantity-input', id: 'Qty', value: 1 %}
+      <button
+        type="submit"
+        name="add"
+        class="btn btn--full"
+        data-atc
+        {% unless variant.available %}disabled{% endunless %}>
+        <span class="btn__label">{% if variant.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
+        <span class="btn__spinner" aria-hidden="true"></span>
+      </button>
+    </div>
+    {%- if block.settings.show_dynamic_checkout -%}
+      {{ form | payment_button }}
+    {%- endif -%}
+  {%- endform -%}
+</div>

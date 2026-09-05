@@ -1,0 +1,12 @@
+<section class="page-404" data-section-id="{{ section.id }}">
+  <div class="container">
+    <p class="display" data-reveal>404</p>
+    <p class="h3" data-reveal>{{ 'general.404.title' | t }}</p>
+    <p class="text-muted" data-reveal style="margin:.75rem 0 1.75rem">{{ 'general.404.subtext' | t }}</p>
+    <a href="{{ routes.root_url }}" class="btn" data-reveal>{{ 'general.404.link' | t }}</a>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "t:sections.main_404.name", "settings": [] }
+{% endschema %}

@@ -1,0 +1,46 @@
+<section class="section">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
+      <h1 class="h2">{{ 'customer.account.title' | t }}</h1>
+      <a href="{{ routes.account_logout_url }}" class="link-underline">{{ 'customer.log_out' | t }}</a>
+    </div>
+
+    <div class="grid--2" style="align-items:start;gap:3rem">
+      <div>
+        <h2 class="h3" style="margin-bottom:1rem">{{ 'customer.orders.title' | t }}</h2>
+        {%- paginate customer.orders by 12 -%}
+          {%- if customer.orders.size > 0 -%}
+            <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+              <thead><tr style="text-align:left;border-bottom:1px solid var(--color-line)">
+                <th style="padding:.6rem 0">{{ 'customer.orders.order_number' | t }}</th>
+                <th>{{ 'customer.orders.date' | t }}</th>
+                <th>{{ 'customer.orders.total' | t }}</th>
+                <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+              </tr></thead>
+              <tbody>
+                {%- for order in customer.orders -%}
+                  <tr style="border-bottom:1px solid var(--color-line)">
+                    <td style="padding:.7rem 0"><a class="link-underline" href="{{ order.customer_url }}">{{ order.name }}</a></td>
+                    <td>{{ order.created_at | date: format: 'abbreviated_date' }}</td>
+                    <td>{{ order.total_net_amount | money }}</td>
+                    <td>{{ order.fulfillment_status_label }}</td>
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+            {% render 'pagination', paginate: paginate %}
+          {%- else -%}
+            <p class="text-muted">{{ 'customer.orders.none' | t }}</p>
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+
+      <div>
+        <h2 class="h3" style="margin-bottom:1rem">{{ 'customer.account.details' | t }}</h2>
+        <p style="font-size:.9rem">{{ customer.default_address.name }}</p>
+        {%- if customer.default_address -%}<div class="rte text-muted" style="font-size:.85rem">{{ customer.default_address | format_address }}</div>{%- endif -%}
+        <a href="{{ routes.account_addresses_url }}" class="link-underline" style="display:inline-block;margin-top:1rem">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+      </div>
+    </div>
+  </div>
+</section>

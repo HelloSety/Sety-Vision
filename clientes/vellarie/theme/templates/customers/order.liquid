@@ -1,0 +1,40 @@
+<section class="section">
+  <div class="container">
+    <h1 class="h2" style="margin-bottom:.5rem">{{ 'customer.order.title' | t: name: order.name }}</h1>
+    <p class="text-muted" style="margin-bottom:2rem">{{ 'customer.order.date_html' | t: date: order.created_at | date: format: 'date' }}</p>
+
+    <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+      <thead><tr style="text-align:left;border-bottom:1px solid var(--color-line)">
+        <th style="padding:.6rem 0">{{ 'customer.order.product' | t }}</th>
+        <th>{{ 'customer.order.sku' | t }}</th>
+        <th>{{ 'customer.order.price' | t }}</th>
+        <th>{{ 'customer.order.quantity' | t }}</th>
+        <th>{{ 'customer.order.total' | t }}</th>
+      </tr></thead>
+      <tbody>
+        {%- for line_item in order.line_items -%}
+          <tr style="border-bottom:1px solid var(--color-line)">
+            <td style="padding:.7rem 0"><a class="link-underline" href="{{ line_item.product.url }}">{{ line_item.title }}</a></td>
+            <td>{{ line_item.sku }}</td>
+            <td>{{ line_item.price | money }}</td>
+            <td>{{ line_item.quantity }}</td>
+            <td>{{ line_item.quantity | times: line_item.price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+      <tfoot>
+        <tr><td colspan="4" style="text-align:right;padding:.5rem 0">{{ 'customer.order.subtotal' | t }}</td><td>{{ order.line_items_subtotal_price | money }}</td></tr>
+        {%- for shipping_method in order.shipping_methods -%}
+          <tr><td colspan="4" style="text-align:right;padding:.5rem 0">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td><td>{{ shipping_method.price | money }}</td></tr>
+        {%- endfor -%}
+        <tr style="font-weight:600"><td colspan="4" style="text-align:right;padding:.5rem 0">{{ 'customer.order.total' | t }}</td><td>{{ order.total_net_amount | money }}</td></tr>
+      </tfoot>
+    </table>
+
+    <div class="grid--2" style="margin-top:2.5rem;gap:3rem">
+      <div><h2 class="h3">{{ 'customer.order.billing_address' | t }}</h2><div class="rte text-muted">{{ order.billing_address | format_address }}</div></div>
+      <div><h2 class="h3">{{ 'customer.order.shipping_address' | t }}</h2><div class="rte text-muted">{{ order.shipping_address | format_address }}</div></div>
+    </div>
+    <a href="{{ routes.account_url }}" class="link-underline" style="display:inline-block;margin-top:2rem">&larr; {{ 'customer.account.title' | t }}</a>
+  </div>
+</section>

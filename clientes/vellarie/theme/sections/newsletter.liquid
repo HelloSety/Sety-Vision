@@ -1,0 +1,32 @@
+{%- liquid
+  assign scheme = 'color-' | append: section.settings.color_scheme
+  if section.settings.color_scheme == 'light'
+    assign scheme = ''
+  endif
+-%}
+<section class="section {{ scheme }}" data-reveal>
+  <div class="container">
+    <div class="newsletter">
+      {%- if section.settings.heading != blank -%}<h2 class="h2">{{ section.settings.heading }}</h2>{%- endif -%}
+      {%- if section.settings.text != blank -%}<p class="text-muted">{{ section.settings.text }}</p>{%- endif -%}
+      {%- render 'newsletter-form' -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.newsletter.name",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:sections.newsletter.heading", "default": "Join the movement" },
+    { "type": "text", "id": "text", "label": "t:sections.newsletter.text", "default": "New drops, private releases, and nothing else." },
+    { "type": "select", "id": "color_scheme", "label": "t:settings.color_scheme.label", "options": [
+      { "value": "light", "label": "t:settings.color_scheme.light" },
+      { "value": "surface", "label": "t:settings.color_scheme.surface" },
+      { "value": "dark", "label": "t:settings.color_scheme.dark" }
+    ], "default": "dark" }
+  ],
+  "presets": [ { "name": "t:sections.newsletter.name" } ]
+}
+{% endschema %}

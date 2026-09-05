@@ -1,0 +1,59 @@
+{%- liquid
+  assign list = collections
+  if section.settings.source == 'menu' and linklists[section.settings.menu].links.size > 0
+    assign use_menu = true
+  endif
+-%}
+<section class="section color-dark" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="collection-head" data-reveal>
+      <h1 class="h1">{{ section.settings.heading | default: page.title }}</h1>
+      {%- if section.settings.subheading != blank -%}<p class="collection-head__desc">{{ section.settings.subheading }}</p>{%- endif -%}
+    </div>
+
+    <div class="cat-grid cat-grid--4" data-reveal-stagger>
+      {%- if use_menu -%}
+        {%- for link in linklists[section.settings.menu].links -%}
+          {%- assign coll = link.object -%}
+          <a class="cat-card" href="{{ link.url }}">
+            <span class="cat-card__media">
+              {%- if coll.featured_image -%}{% render 'responsive-image', image: coll.featured_image, sizes: '25vw' %}{%- else -%}{{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+            </span>
+            <span class="cat-card__body">
+              <span class="cat-card__title">{{ link.title }}</span>
+              {%- if coll.all_products_count > 0 -%}<span class="cat-card__count">{{ 'sections.collection_list.count' | t: count: coll.all_products_count }}</span>{%- endif -%}
+            </span>
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for coll in list -%}
+          <a class="cat-card" href="{{ coll.url }}">
+            <span class="cat-card__media">
+              {%- if coll.featured_image -%}{% render 'responsive-image', image: coll.featured_image, sizes: '25vw' %}{%- else -%}{{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}{%- endif -%}
+            </span>
+            <span class="cat-card__body">
+              <span class="cat-card__title">{{ coll.title }}</span>
+              <span class="cat-card__count">{{ 'sections.collection_list.count' | t: count: coll.all_products_count }}</span>
+            </span>
+          </a>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_list_collections.name",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:sections.rich_text.heading", "default": "All collections" },
+    { "type": "text", "id": "subheading", "label": "t:sections.main_list_collections.subheading", "default": "Every drop and every essential, in one place." },
+    { "type": "select", "id": "source", "label": "t:sections.main_list_collections.source", "options": [
+      { "value": "all", "label": "t:sections.main_list_collections.source_all" },
+      { "value": "menu", "label": "t:sections.main_list_collections.source_menu" }
+    ], "default": "all" },
+    { "type": "link_list", "id": "menu", "label": "t:sections.footer.menu" }
+  ]
+}
+{% endschema %}

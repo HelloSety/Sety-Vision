@@ -1,0 +1,85 @@
+{%- liquid
+  assign blocks = section.blocks
+  assign cols = section.settings.columns
+-%}
+<section class="section {{ section.settings.color_scheme }}">
+  <div class="container">
+    {%- if section.settings.heading != blank -%}
+      <div class="section-head" data-reveal><h2 class="section-head__title">{{ section.settings.heading }}</h2></div>
+    {%- endif -%}
+    <div class="cat-grid cat-grid--{{ cols }}" data-reveal-stagger>
+      {%- for block in blocks -%}
+        {%- liquid
+          assign coll = collections[block.settings.collection]
+          assign bundled = ''
+          case block.settings.default_asset
+            when 'grooming'
+              assign bundled = 'cat-grooming'
+            when 'hair'
+              assign bundled = 'cat-hair'
+          endcase
+        -%}
+        <a class="cat-card cat-card--tall" href="{{ coll.url | default: block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
+          <span class="cat-card__media">
+            {%- assign img = block.settings.image | default: coll.featured_image -%}
+            {%- if img -%}
+              {% render 'responsive-image', image: img, sizes: '(min-width: 750px) 25vw, 90vw' %}
+            {%- elsif bundled != blank -%}
+              <picture>
+                <source type="image/webp" srcset="{{ bundled | append: '.webp' | asset_url }}">
+                <img src="{{ bundled | append: '.jpg' | asset_url }}" alt="{{ block.settings.title | default: coll.title | escape }}" width="1100" height="1375" loading="lazy">
+              </picture>
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+            {%- endif -%}
+          </span>
+          <span class="cat-card__body{% if section.settings.overlay_text %} cat-card__body--overlay{% endif %}">
+            <span class="cat-card__title">{{ block.settings.title | default: coll.title }}</span>
+            {%- if coll.all_products_count > 0 -%}
+              <span class="cat-card__count">{{ 'sections.collection_list.count' | t: count: coll.all_products_count }}</span>
+            {%- endif -%}
+          </span>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.collection_list.name",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:sections.collection_list.heading", "default": "Collections" },
+    { "type": "select", "id": "columns", "label": "t:sections.collection_list.columns", "options": [
+      { "value": "2", "label": "2" }, { "value": "3", "label": "3" }, { "value": "4", "label": "4" }
+    ], "default": "3" },
+    { "type": "checkbox", "id": "overlay_text", "label": "t:sections.collection_list.overlay_text", "default": true },
+    { "type": "select", "id": "color_scheme", "label": "t:settings.color_scheme.label", "options": [
+      { "value": "", "label": "t:settings.color_scheme.light" },
+      { "value": "color-surface", "label": "t:settings.color_scheme.surface" },
+      { "value": "color-dark", "label": "t:settings.color_scheme.dark" }
+    ], "default": "" }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "t:sections.collection_list.block",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "t:sections.collection_list.collection" },
+        { "type": "image_picker", "id": "image", "label": "t:sections.collection_list.image", "info": "t:sections.collection_list.image_info" },
+        { "type": "select", "id": "default_asset", "label": "Built-in image (fallback)", "options": [
+          { "value": "none", "label": "None" },
+          { "value": "grooming", "label": "Grooming (blue)" },
+          { "value": "hair", "label": "Hair (green)" }
+        ], "default": "none" },
+        { "type": "text", "id": "title", "label": "t:sections.collection_list.title_override" },
+        { "type": "url", "id": "link", "label": "t:sections.collection_list.link_override" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "t:sections.collection_list.name", "blocks": [ { "type": "collection" }, { "type": "collection" }, { "type": "collection" } ] }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,16 @@
+<div class="search-overlay__inner">
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search-field">
+    {% render 'icon', name: 'search', class: 'header-icon' %}
+    <input
+      type="search"
+      name="q"
+      value="{{ search.terms | escape }}"
+      placeholder="{{ 'general.search.placeholder' | t }}"
+      aria-label="{{ 'general.search.placeholder' | t }}"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false">
+    <button type="button" data-search-close aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', name: 'close', class: 'header-icon' %}</button>
+  </form>
+  <div class="predictive" data-predictive-results aria-live="polite"></div>
+</div>

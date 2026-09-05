@@ -1,0 +1,51 @@
+{%- liquid
+  assign items = section.blocks | where: 'type', 'item'
+  assign scheme = ''
+  if section.settings.style == 'accent'
+    assign scheme = 'color-accent'
+  endif
+-%}
+<section class="marquee-section {{ scheme }}" data-marquee-section>
+  <div class="marquee" data-marquee aria-label="{{ section.settings.aria | default: 'Announcements' | escape }}">
+    <div class="marquee__track">
+      {%- for block in items -%}
+        <span {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Marquee",
+  "tag": "section",
+  "settings": [
+    { "type": "select", "id": "style", "label": "Style", "options": [
+      { "value": "dark", "label": "Dark" },
+      { "value": "accent", "label": "Accent" }
+    ], "default": "dark" },
+    { "type": "text", "id": "aria", "label": "Accessible label", "default": "Store highlights" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Free US shipping over $75" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Marquee",
+      "blocks": [
+        { "type": "item", "settings": { "text": "Free US shipping over $75" } },
+        { "type": "item", "settings": { "text": "30-day easy returns" } },
+        { "type": "item", "settings": { "text": "2-year device warranty" } },
+        { "type": "item", "settings": { "text": "Secure checkout" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

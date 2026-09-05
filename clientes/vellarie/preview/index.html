@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en" class="js anim-enabled">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vellarie — Signature theme preview</title>
+<!-- real theme design system -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="../theme/assets/base.css">
+<style>
+  /* tokens = config/settings_data.json "Vellarie — Signature" (mirrors snippets/css-variables.liquid output) */
+  :root{
+    --color-bg:#FFFFFF;--color-surface:#F4F4F5;--color-text:#0A0A0A;--color-text-muted:#6B7280;
+    --color-line-rgb:10,10,10;--color-line:rgba(var(--color-line-rgb),.16);--color-line-strong:rgba(var(--color-line-rgb),.5);
+    --color-bg-dark:#0B0B0C;--color-surface-dark:#151517;--color-text-dark:#F5F5F4;--color-text-muted-dark:#A1A1A6;
+    --color-accent:#101014;--color-accent-contrast:#FFFFFF;
+    --color-accent-dark:#2E9BFF;--color-accent-contrast-dark:#04121C;--color-accent-alt:#1FBFA8;
+    --color-accent-rgb:46,155,255;--color-sale:#E5484D;
+    --font-heading:'Space Grotesk','Helvetica Neue',Arial,sans-serif;--font-body:'Inter','Helvetica Neue',Arial,sans-serif;
+    --type-scale:1;--heading-tracking:.02rem;--heading-case:uppercase;--body-size:16px;
+    --container:1600px;--gutter:28px;--section-space:120px;--section-space-mobile:64px;--radius:4px;
+    --btn-tracking:.02rem;--btn-radius:4px;--btn-case:uppercase;--card-ratio:1/1;
+    --card-radius:8px;--shadow-1:0 1px 2px rgba(10,10,12,.06),0 8px 24px rgba(10,10,12,.06);
+    --shadow-2:0 24px 60px -20px rgba(10,10,12,.35);
+    --glow:0 0 0 1px rgba(var(--color-accent-rgb),.35),0 18px 50px -12px rgba(var(--color-accent-rgb),.45);
+    --ease:cubic-bezier(.16,1,.3,1);--dur-fast:200ms;--dur:400ms;--dur-slow:720ms;--header-h:72px;
+  }
+  [data-reveal],[data-reveal-stagger]>*{opacity:1!important;transform:none!important}
+  .demo-note{background:var(--color-accent-dark);color:var(--color-accent-contrast-dark);font:600 12px/1.5 var(--font-body);
+    letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:8px 16px}
+  /* replicate header-group--overlay wrapper (theme pulls hero up under the transparent header) */
+  .header-group--overlay{position:relative;z-index:100;margin-bottom:calc(-1 * var(--header-h))}
+  .header-group--overlay .site-header{position:absolute;left:0;right:0}
+</style>
+</head>
+<body class="template-index fit-contain">
+
+<div class="demo-note">Static visual proof · Vellarie “Signature” theme · real campaign art + live catalogue images · not the live store</div>
+
+<div class="announcement"><div class="container"><div class="announcement__inner">
+  <p class="announcement__msg">Free US shipping over $75 — 30-day returns</p>
+</div></div></div>
+
+<div class="header-group header-group--overlay">
+<header class="site-header is-overlay is-sticky">
+  <div class="container"><div class="site-header__inner">
+    <button class="header-menu-toggle" aria-label="Menu"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+    <nav class="site-header__nav"><ul class="main-nav">
+      <li class="main-nav__item"><a class="main-nav__link">Shave &amp; Grooming</a></li>
+      <li class="main-nav__item"><a class="main-nav__link">Hair &amp; Styling</a></li>
+      <li class="main-nav__item"><a class="main-nav__link">Skin &amp; Body</a></li>
+      <li class="main-nav__item"><a class="main-nav__link">Best Sellers</a></li>
+    </ul></nav>
+    <a class="site-header__logo" style="--logo-w:150px">
+      <img class="logo-img logo-img--dark" src="../theme/assets/vellarie-logo-dark.png" alt="Vellarie" style="max-width:var(--logo-w)">
+      <img class="logo-img logo-img--light" src="../theme/assets/vellarie-logo-light.png" alt="" style="max-width:var(--logo-w)">
+    </a>
+    <div class="site-header__actions">
+      <button aria-label="Search"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+      <a aria-label="Account"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></a>
+      <a aria-label="Cart"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg><span class="cart-count">2</span></a>
+    </div>
+  </div></div>
+</header>
+</div>
+
+<!-- HERO — baked campaign art, whole banner is the link -->
+<section class="hero">
+  <div class="hero__slide hero__slide--baked">
+    <div class="hero__media hero__media--none">
+      <picture>
+        <source media="(max-width:749px)" srcset="../theme/assets/hero-a-mobile.jpg">
+        <img src="../theme/assets/hero-a-desktop.jpg" alt="Premium beauty & grooming essentials">
+      </picture>
+    </div>
+    <a class="hero__link" aria-label="Shop best sellers"></a>
+  </div>
+  <div class="hero__controls">
+    <span class="hero__count"><span>01</span><span class="bar" style="--progress:50%"></span><span>02</span></span>
+    <span class="hero__arrows">
+      <button aria-label="Previous"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <button aria-label="Next"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6l6 6-6 6"/></svg></button>
+    </span>
+  </div>
+  <div class="hero__dots"><button aria-current="true"></button><button></button></div>
+</section>
+
+<!-- MARQUEE -->
+<section class="marquee-section">
+  <div class="marquee"><div class="marquee__track">
+    <span>Free US shipping over $75</span><span>30-day easy returns</span><span>2-year device warranty</span><span>Secure checkout</span>
+    <span>Free US shipping over $75</span><span>30-day easy returns</span><span>2-year device warranty</span><span>Secure checkout</span>
+  </div></div>
+</section>
+
+<!-- TRUST -->
+<section class="trust-bar"><div class="container"><div class="trust-bar__grid">
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><div><p class="trust-item__t">Free US shipping</p><p class="trust-item__d">On orders over $75</p></div></div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12a8 8 0 1 1 2.3 5.6"/><path d="M4 20v-5h5"/></svg><div><p class="trust-item__t">30-day returns</p><p class="trust-item__d">Easy, no-hassle returns</p></div></div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l7 3v6c0 5-3 7-7 9-4-2-7-4-7-9V6l7-3Z"/><path d="M9.5 12l2 2 3.5-4"/></svg><div><p class="trust-item__t">2-year warranty</p><p class="trust-item__d">On every device</p></div></div>
+  <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><div><p class="trust-item__t">Secure checkout</p><p class="trust-item__d">Encrypted &amp; protected</p></div></div>
+</div></div></section>
+
+<!-- BEST SELLERS -->
+<section class="section color-surface"><div class="container">
+  <div class="section-head"><h2 class="section-head__title">Best sellers</h2><a class="link-underline">View all</a></div>
+  <div class="grid--products">
+    <!-- card template repeated with live catalogue images -->
+    <div class="card"><a class="card__media"><span class="card__badges"><span class="badge">New</span></span>
+      <img class="card__img card__img--pri" src="https://cdn.shopify.com/s/files/1/0748/2428/6339/files/32522512.jpg?v=1786768312" alt=""></a>
+      <a class="card__info"><span class="card__title">3-in-1 Electric Razor for Men</span><span class="card__price"><span class="price--sale">$49.99</span> <span class="price--compare">$79.99</span></span></a>
+      <div class="card__quick"><a class="btn btn--sm btn--full">Quick add</a></div></div>
+    <div class="card"><a class="card__media"><img class="card__img card__img--pri" src="https://cdn.shopify.com/s/files/1/0748/2428/6339/files/32915898.jpg?v=1786768326" alt=""></a>
+      <a class="card__info"><span class="card__title">X20 Wireless Nail Lamp</span><span class="card__price"><span>$56.00</span></span></a>
+      <div class="card__quick"><a class="btn btn--sm btn--full">Quick add</a></div></div>
+    <div class="card"><a class="card__media"><span class="card__badges"><span class="badge badge--sale">Sale</span></span>
+      <img class="card__img card__img--pri" src="https://cdn.shopify.com/s/files/1/0748/2428/6339/files/32820879.jpg?v=1786768356" alt=""></a>
+      <a class="card__info"><span class="card__title">Professional 9mm Curling Iron</span><span class="card__price"><span class="price--sale">$34.90</span> <span class="price--compare">$54.90</span></span></a>
+      <div class="card__quick"><a class="btn btn--sm btn--full">Quick add</a></div></div>
+    <div class="card"><a class="card__media"><img class="card__img card__img--pri" src="https://cdn.shopify.com/s/files/1/0748/2428/6339/files/31491006.jpg?v=1786768461" alt=""></a>
+      <a class="card__info"><span class="card__title">Air Pressure Leg Massager</span><span class="card__price"><span>$99.00</span></span></a>
+      <div class="card__quick"><a class="btn btn--sm btn--full">Quick add</a></div></div>
+  </div>
+</div></section>
+
+<!-- CATEGORY TILES -->
+<section class="section"><div class="container">
+  <div class="section-head"><h2 class="section-head__title">Shop the range</h2></div>
+  <div class="cat-grid cat-grid--2">
+    <a class="cat-card cat-card--tall"><span class="cat-card__media"><img src="../theme/assets/cat-grooming.jpg" alt=""></span>
+      <span class="cat-card__body cat-card__body--overlay"><span class="cat-card__title">Grooming Essentials</span><span class="cat-card__count">18 products</span></span></a>
+    <a class="cat-card cat-card--tall"><span class="cat-card__media"><img src="../theme/assets/cat-hair.jpg" alt=""></span>
+      <span class="cat-card__body cat-card__body--overlay"><span class="cat-card__title">Hair &amp; Styling</span><span class="cat-card__count">18 products</span></span></a>
+  </div>
+</div></section>
+
+<!-- BRAND STORY -->
+<section class="editorial">
+  <div class="editorial__text">
+    <p class="eyebrow">Our standard</p>
+    <h2 class="editorial__title">Engineered for everyday ritual</h2>
+    <div class="rte text-muted"><p>Vellarie curates beauty and grooming devices that feel like a professional treatment — precision motors, medical-grade materials, and a finish built to last. No shortcuts, no gimmicks.</p></div>
+    <div><a class="btn" style="--color-accent:#fff;--color-accent-contrast:#0a0a0a">Explore the collection</a></div>
+  </div>
+  <div class="editorial__media"><img src="../theme/assets/cat-hair.jpg" alt=""></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section color-surface"><div class="container">
+  <div class="section-head"><h2 class="section-head__title">Loved by thousands</h2></div>
+  <div class="rating-summary"><span class="stars" style="--pct:96%">★★★★★</span><span class="rating-summary__n">4.8 / 5 · 2,400+ reviews</span></div>
+  <div class="testi-grid testi-grid--3">
+    <blockquote class="testi"><span class="testi__stars">★★★★★</span><p class="testi__quote">&ldquo;Feels like a professional treatment at home. The build quality genuinely surprised me.&rdquo;</p><footer class="testi__meta">Jordan M. · Verified buyer</footer></blockquote>
+    <blockquote class="testi"><span class="testi__stars">★★★★★</span><p class="testi__quote">&ldquo;Charged once, used it all week. Shipping to the US was quick and the packaging felt premium.&rdquo;</p><footer class="testi__meta">Priya S. · Verified buyer</footer></blockquote>
+    <blockquote class="testi"><span class="testi__stars">★★★★★</span><p class="testi__quote">&ldquo;Replaced two devices with one. My routine is faster and my skin looks better.&rdquo;</p><footer class="testi__meta">Alex R. · Verified buyer</footer></blockquote>
+  </div>
+</div></section>
+
+<!-- PROMO -->
+<section class="section section--flush">
+  <div class="promo">
+    <div class="promo__bg"><img src="../theme/assets/hero-a-desktop.jpg" alt=""></div>
+    <div class="promo__inner">
+      <p class="eyebrow" style="color:rgba(255,255,255,.8)">Bundle &amp; save</p>
+      <h2 class="promo__title">Build your kit, save 20%</h2>
+      <p>Mix any three tools and the discount applies at checkout.</p>
+      <a class="btn btn--pill btn--glow">Shop best sellers</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="footer-brand">
+        <a class="footer-brand__logo"><img src="../theme/assets/vellarie-logo-light.png" alt="Vellarie" style="max-width:180px"></a>
+        <p>Premium beauty &amp; grooming essentials. Salon-grade tools, engineered for everyday use.</p>
+        <div class="footer-social">
+          <a aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Shop</h4><a>Shave &amp; Grooming</a><a>Hair &amp; Styling</a><a>Skin &amp; Body</a><a>Best Sellers</a></div>
+      <div class="footer-col"><h4>Help</h4><a>Shipping</a><a>Returns</a><a>Warranty</a><a>Contact</a></div>
+      <div class="footer-col"><h4>About</h4><a>Our story</a><a>Reviews</a><a>Privacy</a><a>Terms</a></div>
+    </div>
+    <div class="site-footer__bottom"><span>© 2026 Vellarie. All rights reserved.</span>
+      <span class="payment-icons">VISA · MC · AMEX · PayPal · Shop Pay</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

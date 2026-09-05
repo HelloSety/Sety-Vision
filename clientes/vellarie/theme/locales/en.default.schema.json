@@ -1,0 +1,257 @@
+{
+  "section_groups": {
+    "header": "Header group",
+    "footer": "Footer group"
+  },
+  "settings": {
+    "color_scheme": {
+      "label": "Color scheme",
+      "light": "Light",
+      "surface": "Surface (greige)",
+      "dark": "Dark"
+    },
+    "logo": {
+      "name": "Logo",
+      "logo": { "label": "Logo (dark on light)", "info": "Used on solid / scrolled header and light backgrounds." },
+      "logo_light": { "label": "Logo (light on dark)", "info": "Used on the transparent hero header and dark backgrounds / footer." },
+      "logo_width": { "label": "Logo width" },
+      "favicon": { "label": "Favicon", "info": "32 × 32 px recommended. Use the VS monogram." }
+    },
+    "colors": {
+      "name": "Colors",
+      "light_scheme": "Light scheme",
+      "dark_scheme": "Dark scheme",
+      "accent": "Accent",
+      "bg": "Background",
+      "surface": "Surface",
+      "text": "Text",
+      "text_muted": "Muted text",
+      "line": "Lines / borders",
+      "accent_label": "Accent",
+      "accent_contrast": "Accent text",
+      "sale": "Sale price"
+    },
+    "typography": {
+      "name": "Typography",
+      "heading_font_family": { "label": "Heading font", "info": "Loads a curated web font. Choose “Shopify font picker” to use the picker below instead." },
+      "body_font_family": { "label": "Body font" },
+      "use_shopify_picker": "Use Shopify font picker",
+      "font_heading": { "label": "Heading font (Shopify picker)", "info": "Only used when Heading font is set to “Shopify font picker”." },
+      "font_body": { "label": "Body font (Shopify picker)" },
+      "type_scale": { "label": "Type scale" },
+      "heading_tracking": { "label": "Heading letter-spacing" },
+      "heading_case": { "label": "Heading case", "uppercase": "Uppercase", "none": "As typed" },
+      "body_size": { "label": "Body font size" }
+    },
+    "layout": {
+      "name": "Layout",
+      "container_width": { "label": "Container max width" },
+      "gutter": { "label": "Gutter" },
+      "section_spacing": { "label": "Section spacing (desktop)" },
+      "section_spacing_mobile": { "label": "Section spacing (mobile)" },
+      "corner_radius": { "label": "Corner radius" }
+    },
+    "buttons": {
+      "name": "Buttons",
+      "tracking": { "label": "Letter-spacing" },
+      "uppercase": { "label": "Uppercase labels" },
+      "radius": { "label": "Corner radius" }
+    },
+    "product_card": {
+      "name": "Product cards",
+      "ratio": { "label": "Image ratio", "portrait": "Portrait (3:4)", "square": "Square", "natural": "Natural" },
+      "hover_second_image": { "label": "Show second image on hover" },
+      "quick_add": { "label": "Show quick add" },
+      "color_count": { "label": "Show color swatches" },
+      "badge_new_metafield": { "label": "Badge metafield", "info": "namespace.key of a product metafield that holds a badge label (e.g. custom.badge)." }
+    },
+    "motion": {
+      "name": "Animations",
+      "enabled": { "label": "Enable scroll animations" },
+      "style": { "label": "Reveal style", "fade_up": "Fade up", "fade": "Fade", "reveal": "Image reveal" },
+      "animate_images": { "label": "Animate images" },
+      "sticky_header": { "label": "Sticky header" }
+    },
+    "cart": {
+      "name": "Cart",
+      "type": { "label": "Cart type", "drawer": "Drawer", "page": "Page" },
+      "recommendations": { "label": "Show recommendations in drawer" },
+      "note": { "label": "Enable order note" },
+      "free_shipping_bar": { "label": "Show free-shipping progress bar" },
+      "free_shipping_threshold": { "label": "Free-shipping threshold", "info": "In your store currency, no symbol. 0 disables. Must match your real shipping rule." }
+    },
+    "social": { "name": "Social" },
+    "seo": {
+      "name": "SEO",
+      "structured_data": { "label": "Output JSON-LD structured data" },
+      "org_name": { "label": "Organization name" },
+      "social_share_image": { "label": "Default social share image" }
+    },
+    "analytics": {
+      "name": "Analytics",
+      "datalayer": { "label": "Push dataLayer events", "info": "Emits view_item, add_to_cart, search, etc. to window.dataLayer for GTM." }
+    }
+  },
+  "sections": {
+    "announcement": {
+      "name": "Announcement bar",
+      "show_locale": "Show language selector",
+      "show_country": "Show country / currency selector",
+      "block_message": "Message",
+      "text": "Text",
+      "link": "Link"
+    },
+    "header": {
+      "name": "Header",
+      "menu": "Menu",
+      "enable_mega_menu": "Enable mega menu for menu items with sub-items",
+      "overlay_on_home": "Transparent header over the homepage hero",
+      "overlay_on_home_info": "The header turns solid on scroll.",
+      "mega_promo": "Mega menu promo",
+      "mega_image": "Image",
+      "mega_caption": "Caption",
+      "mega_link": "Link"
+    },
+    "hero": {
+      "name": "Hero",
+      "height": "Height",
+      "height_full": "Full screen",
+      "height_compact": "Compact",
+      "autoplay": "Autoplay",
+      "autoplay_info": "0 = off. Only applies with 2+ slides.",
+      "slide": "Slide",
+      "image_desktop": "Desktop image",
+      "image_mobile": "Mobile image",
+      "image_mobile_info": "Own composition for mobile. Falls back to the desktop image.",
+      "eyebrow": "Eyebrow",
+      "heading": "Heading",
+      "text": "Supporting text",
+      "cta_label": "Primary button label",
+      "cta_link": "Primary button link",
+      "cta2_label": "Secondary button label",
+      "cta2_link": "Secondary button link"
+    },
+    "trust_bar": {
+      "name": "Trust bar",
+      "item": "Item",
+      "icon": "Icon",
+      "title": "Title",
+      "text": "Text"
+    },
+    "featured_collection": {
+      "name": "Featured collection",
+      "heading": "Heading",
+      "collection": "Collection",
+      "products_to_show": "Products to show",
+      "show_view_all": "Show “view all” link"
+    },
+    "editorial_split": {
+      "name": "Editorial split",
+      "eyebrow": "Eyebrow",
+      "heading": "Heading",
+      "text": "Text",
+      "cta_label": "Button label",
+      "cta_link": "Button link",
+      "image": "Image",
+      "reverse": "Reverse layout"
+    },
+    "collection_list": {
+      "name": "Collection list",
+      "heading": "Heading",
+      "columns": "Columns",
+      "overlay_text": "Overlay text on image",
+      "block": "Collection",
+      "collection": "Collection",
+      "image": "Image override",
+      "image_info": "Falls back to the collection image.",
+      "title_override": "Title override",
+      "link_override": "Link override"
+    },
+    "rich_text": {
+      "name": "Rich text",
+      "eyebrow": "Eyebrow",
+      "heading": "Heading",
+      "body": "Text",
+      "button": "Button",
+      "text": "Text",
+      "size": "Size",
+      "label": "Label",
+      "link": "Link",
+      "style": "Style"
+    },
+    "newsletter": {
+      "name": "Newsletter",
+      "heading": "Heading",
+      "text": "Text"
+    },
+    "footer": {
+      "name": "Footer",
+      "tagline": "Tagline",
+      "show_payment_icons": "Show payment icons",
+      "show_locale": "Show country / currency selector",
+      "menu_block": "Menu column",
+      "menu_title": "Column title",
+      "menu": "Menu"
+    },
+    "main_product": {
+      "name": "Product information",
+      "title": "Title",
+      "price": "Price",
+      "rating": "Rating",
+      "description_short": "Short description",
+      "fallback_excerpt": "Fall back to a description excerpt when no subtitle metafield is set",
+      "variant_picker": "Variant picker",
+      "buy_buttons": "Buy buttons",
+      "show_dynamic_checkout": "Show dynamic checkout button (Buy it now)",
+      "trust": "Trust row",
+      "payments": "Payment icons",
+      "payments_label": "Label",
+      "accordion": "Accordion row",
+      "accordion_heading": "Heading",
+      "accordion_content": "Content",
+      "use_product_description": "Use the product description as content",
+      "accordion_metafield": "Metafield key",
+      "accordion_metafield_info": "A key under the custom namespace — pulls rich text from a product metafield.",
+      "accordion_open": "Open by default"
+    },
+    "related_products": {
+      "name": "Related products",
+      "enable": "Enable",
+      "heading": "Heading"
+    },
+    "recently_viewed": {
+      "name": "Recently viewed"
+    },
+    "main_collection": {
+      "name": "Collection grid",
+      "show_banner": "Show banner (uses the collection image)",
+      "show_description_in_banner": "Show description in banner",
+      "products_per_page": "Products per page",
+      "enable_filtering": "Enable filtering",
+      "enable_filtering_info": "Set up filters in Search & Discovery.",
+      "enable_sorting": "Enable sorting"
+    },
+    "main_list_collections": {
+      "name": "Collections list",
+      "subheading": "Subheading",
+      "source": "Source",
+      "source_all": "All collections",
+      "source_menu": "Selected menu"
+    },
+    "main_cart": { "name": "Cart" },
+    "main_search": { "name": "Search results" },
+    "main_page": {
+      "name": "Page",
+      "show_breadcrumb": "Show breadcrumb"
+    },
+    "main_404": { "name": "404" },
+    "main_blog": { "name": "Blog posts" },
+    "main_article": { "name": "Article" },
+    "main_password": {
+      "name": "Password",
+      "show_newsletter": "Show newsletter signup"
+    },
+    "contact_form": { "name": "Contact form" },
+    "cart": { "drawer_name": "Cart drawer" }
+  }
+}

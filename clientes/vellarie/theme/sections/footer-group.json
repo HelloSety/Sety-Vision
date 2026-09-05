@@ -1,0 +1,27 @@
+{
+  "type": "footer",
+  "name": "t:section_groups.footer",
+  "sections": {
+    "newsletter-cta": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "dark",
+        "heading": "Join the movement",
+        "text": "New drops, private releases, and nothing else."
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "menu_1_title": "Shop",
+        "menu_1": "footer",
+        "menu_2_title": "Help",
+        "menu_2": "footer",
+        "tagline": "Built for your own frequency. Designed in-house, made to last.",
+        "show_payment_icons": true,
+        "show_locale": true
+      }
+    }
+  },
+  "order": ["newsletter-cta", "footer"]
+}

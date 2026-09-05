@@ -1,0 +1,193 @@
+{
+  "general": {
+    "meta": { "tags": "Com a tag \"{{ tags }}\"", "page": "Página {{ page }}" },
+    "breadcrumb": { "home": "Início" },
+    "nav": { "shop_all": "Ver tudo" },
+    "slider": { "previous": "Anterior", "next": "Próximo" },
+    "pagination": { "label": "Paginação", "previous": "Página anterior", "next": "Próxima página" },
+    "search": {
+      "title": "Buscar",
+      "placeholder": "Buscar na loja",
+      "products": "Produtos",
+      "collections": "Coleções",
+      "pages": "Páginas",
+      "no_results_heading": "Nenhum resultado",
+      "view_all_results": "Ver todos os resultados",
+      "results_with_count": "{{ count }} resultados para “{{ terms }}”"
+    },
+    "404": {
+      "title": "Página não encontrada",
+      "subtext": "A página que você procura não existe ou foi movida.",
+      "link": "Voltar à loja"
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Ir para o conteúdo",
+    "refresh_page": "Selecionar uma opção recarrega a página inteira.",
+    "menu": "Menu",
+    "close": "Fechar",
+    "primary_nav": "Principal",
+    "link_messages": { "new_window": "Abre em uma nova janela." }
+  },
+  "sections": {
+    "header": { "announcement": "Aviso" },
+    "cart": {
+      "title": "Sacola",
+      "empty": "Sua sacola está vazia",
+      "remove": "Remover",
+      "note": "Observação do pedido",
+      "subtotal": "Subtotal",
+      "checkout": "Finalizar compra",
+      "continue_shopping": "Continuar comprando",
+      "taxes_and_shipping_at_checkout": "Impostos e frete calculados no checkout",
+      "cart_error": "Não foi possível atualizar a sacola. Tente de novo.",
+      "cart_quantity_error_html": "Você só pode adicionar {{ quantity }} unidades deste item.",
+      "free_shipping_remaining_html": "Faltam {{ amount }} para o frete grátis",
+      "free_shipping_reached": "Você ganhou frete grátis"
+    },
+    "featured_collection": { "view_all": "Ver tudo" },
+    "collection_list": { "count": "{{ count }} produtos" },
+    "collection_template": { "empty": "Nenhum produto encontrado" },
+    "footer": { "rights": "Todos os direitos reservados." },
+    "newsletter": { "placeholder": "Seu e-mail", "button": "Assinar", "success": "Inscrição confirmada." }
+  },
+  "products": {
+    "price": { "from_price_html": "A partir de {{ price }}" },
+    "product": {
+      "add_to_cart": "Adicionar à sacola",
+      "added": "Adicionado",
+      "sold_out": "Esgotado",
+      "unavailable": "Indisponível",
+      "quick_add": "Adicionar",
+      "choose_options": "Escolher opções",
+      "size_guide": "Guia de tamanhos",
+      "badge_new": "Novo",
+      "rating_label": "{{ rating }} de 5 estrelas ({{ count }} avaliações)",
+      "quantity": { "label": "Quantidade", "increase": "Aumentar quantidade", "decrease": "Diminuir quantidade" },
+      "media": { "gallery_viewer": "Galeria", "image_available": "Imagem {{ index }}" }
+    },
+    "facets": {
+      "filter": "Filtrar",
+      "filters": "Filtros",
+      "sort_by_label": "Ordenar por",
+      "from": "De",
+      "to": "Até",
+      "apply": "Aplicar",
+      "clear_all": "Limpar tudo"
+    }
+  },
+  "onboarding": { "product_title": "Produto de exemplo" },
+  "blogs": {
+    "article": {
+      "comments": "{{ count }} comentários",
+      "success": "Comentário enviado. Obrigado!",
+      "name": "Nome",
+      "email": "E-mail",
+      "message": "Comentário",
+      "post": "Enviar comentário"
+    }
+  },
+  "templates": {
+    "contact": {
+      "form": {
+        "name": "Nome",
+        "email": "E-mail",
+        "phone": "Telefone",
+        "message": "Mensagem",
+        "send": "Enviar",
+        "post_success": "Recebemos sua mensagem. Em breve retornamos."
+      }
+    },
+    "password": {
+      "opening_soon": "Em breve",
+      "password_placeholder": "Digite a senha da loja",
+      "password_label": "Senha",
+      "enter": "Entrar",
+      "signup": "Seja o primeiro a saber do lançamento."
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Seu vale-presente de {{ value }}",
+      "subtext": "Seu vale-presente",
+      "shop_link": "Começar a comprar"
+    }
+  },
+  "customer": {
+    "log_out": "Sair",
+    "account": { "title": "Conta", "details": "Dados da conta", "view_addresses": "Ver endereços" },
+    "login": {
+      "title": "Entrar",
+      "email": "E-mail",
+      "password": "Senha",
+      "sign_in": "Entrar",
+      "forgot_password": "Esqueceu a senha?",
+      "no_account": "Não tem conta?"
+    },
+    "register": {
+      "title": "Criar conta",
+      "first_name": "Nome",
+      "last_name": "Sobrenome",
+      "email": "E-mail",
+      "password": "Senha",
+      "submit": "Criar",
+      "has_account": "Já tem conta?"
+    },
+    "recover_password": {
+      "title": "Redefinir senha",
+      "submit": "Enviar link",
+      "success": "Enviamos um e-mail com o link para redefinir sua senha."
+    },
+    "reset_password": {
+      "title": "Redefinir a senha da conta",
+      "password": "Senha",
+      "password_confirmation": "Confirmar senha",
+      "submit": "Redefinir senha"
+    },
+    "activate_account": {
+      "title": "Ativar conta",
+      "subtext": "Crie sua senha para ativar a conta.",
+      "password": "Senha",
+      "password_confirmation": "Confirmar senha",
+      "submit": "Ativar conta",
+      "decline": "Recusar convite"
+    },
+    "orders": {
+      "title": "Histórico de pedidos",
+      "order_number": "Pedido",
+      "date": "Data",
+      "total": "Total",
+      "fulfillment_status": "Status",
+      "none": "Você ainda não fez pedidos."
+    },
+    "order": {
+      "title": "Pedido {{ name }}",
+      "date_html": "Feito em {{ date }}",
+      "product": "Produto",
+      "sku": "SKU",
+      "price": "Preço",
+      "quantity": "Qtd",
+      "total": "Total",
+      "subtotal": "Subtotal",
+      "shipping": "Frete",
+      "billing_address": "Endereço de cobrança",
+      "shipping_address": "Endereço de entrega"
+    },
+    "addresses": {
+      "title": "Endereços",
+      "add_new": "Adicionar novo endereço",
+      "first_name": "Nome",
+      "last_name": "Sobrenome",
+      "address1": "Endereço",
+      "city": "Cidade",
+      "country": "País",
+      "zip": "CEP",
+      "phone": "Telefone",
+      "add": "Adicionar endereço",
+      "edit": "Editar",
+      "delete": "Excluir",
+      "delete_confirm": "Tem certeza de que quer excluir este endereço?",
+      "default": "Padrão"
+    }
+  }
+}

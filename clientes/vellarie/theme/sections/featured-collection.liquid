@@ -1,0 +1,48 @@
+{%- liquid
+  assign coll = collections[section.settings.collection]
+  assign limit = section.settings.products_to_show
+  assign products = coll.products
+-%}
+<section class="section {{ section.settings.color_scheme }}" data-section-id="{{ section.id }}">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <h2 class="section-head__title">{{ section.settings.heading | default: coll.title }}</h2>
+      {%- if section.settings.show_view_all and coll != blank -%}
+        <a class="link-underline" href="{{ coll.url }}">{{ 'sections.featured_collection.view_all' | t }}</a>
+      {%- endif -%}
+    </div>
+
+    {%- if products.size > 0 -%}
+      <div class="grid--products" data-reveal-stagger>
+        {%- for product in products limit: limit -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="grid--products">
+        {%- for i in (1..limit) -%}
+          <div class="card"><span class="card__media">{{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}</span><span class="card__info"><span class="card__title">{{ 'onboarding.product_title' | t }}</span><span class="card__price">$0.00</span></span></div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.featured_collection.name",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:sections.featured_collection.heading", "default": "New arrivals" },
+    { "type": "collection", "id": "collection", "label": "t:sections.featured_collection.collection" },
+    { "type": "range", "id": "products_to_show", "min": 2, "max": 12, "step": 1, "label": "t:sections.featured_collection.products_to_show", "default": 4 },
+    { "type": "checkbox", "id": "show_view_all", "label": "t:sections.featured_collection.show_view_all", "default": true },
+    { "type": "select", "id": "color_scheme", "label": "t:settings.color_scheme.label", "options": [
+      { "value": "", "label": "t:settings.color_scheme.light" },
+      { "value": "color-surface", "label": "t:settings.color_scheme.surface" },
+      { "value": "color-dark", "label": "t:settings.color_scheme.dark" }
+    ], "default": "" }
+  ],
+  "presets": [ { "name": "t:sections.featured_collection.name" } ]
+}
+{% endschema %}

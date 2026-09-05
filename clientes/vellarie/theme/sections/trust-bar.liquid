@@ -1,0 +1,52 @@
+<section class="trust-bar" data-reveal>
+  <div class="container">
+    <div class="trust-bar__grid">
+      {%- for block in section.blocks -%}
+        <div class="trust-item" {{ block.shopify_attributes }}>
+          {% render 'icon', name: block.settings.icon %}
+          <div>
+            <p class="trust-item__t">{{ block.settings.title }}</p>
+            {%- if block.settings.text != blank -%}<p class="trust-item__d">{{ block.settings.text }}</p>{%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.trust_bar.name",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "t:sections.trust_bar.item",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "t:sections.trust_bar.icon", "options": [
+          { "value": "shipping", "label": "Shipping" },
+          { "value": "shield", "label": "Shield" },
+          { "value": "return", "label": "Return" },
+          { "value": "card", "label": "Card" },
+          { "value": "lock", "label": "Lock" },
+          { "value": "star", "label": "Star" }
+        ], "default": "shipping" },
+        { "type": "text", "id": "title", "label": "t:sections.trust_bar.title", "default": "Worldwide shipping" },
+        { "type": "text", "id": "text", "label": "t:sections.trust_bar.text", "default": "On all orders over $150" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.trust_bar.name",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "shipping", "title": "Worldwide shipping", "text": "On all orders over $150" } },
+        { "type": "item", "settings": { "icon": "star", "title": "Premium quality", "text": "Crafted with the finest materials" } },
+        { "type": "item", "settings": { "icon": "return", "title": "Easy returns", "text": "14-day return policy" } },
+        { "type": "item", "settings": { "icon": "lock", "title": "Secure payments", "text": "Encrypted and protected" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

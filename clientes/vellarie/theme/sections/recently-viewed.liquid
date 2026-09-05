@@ -1,0 +1,25 @@
+<section class="section {{ section.settings.color_scheme }}" data-recently-section {% if request.design_mode == false %}{% endif %}>
+  <div class="container">
+    <div class="section-head"><h2 class="section-head__title">{{ section.settings.heading }}</h2></div>
+    <div class="grid--products"
+      data-recently-viewed
+      data-limit="{{ section.settings.products_to_show }}"
+      data-exclude="{{ product.handle }}"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.recently_viewed.name",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:sections.related_products.heading", "default": "Recently viewed" },
+    { "type": "range", "id": "products_to_show", "min": 2, "max": 8, "step": 1, "label": "t:sections.featured_collection.products_to_show", "default": 4 },
+    { "type": "select", "id": "color_scheme", "label": "t:settings.color_scheme.label", "options": [
+      { "value": "", "label": "t:settings.color_scheme.light" },
+      { "value": "color-surface", "label": "t:settings.color_scheme.surface" }
+    ], "default": "" }
+  ],
+  "presets": [ { "name": "t:sections.recently_viewed.name" } ]
+}
+{% endschema %}

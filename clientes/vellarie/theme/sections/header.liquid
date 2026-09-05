@@ -1,0 +1,121 @@
+{%- liquid
+  assign menu = linklists[section.settings.menu]
+  assign overlay = false
+  if section.settings.overlay_on_home and request.page_type == 'index'
+    assign overlay = true
+  endif
+-%}
+
+<header class="site-header" data-header {% if overlay %}data-overlay{% endif %}>
+  <div class="container">
+    <div class="site-header__inner">
+      <button class="header-menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="MobileNav" aria-label="{{ 'accessibility.menu' | t }}">
+        {% render 'icon', name: 'menu', class: 'header-icon' %}
+      </button>
+
+      <nav class="site-header__nav" aria-label="{{ 'accessibility.primary_nav' | t }}">
+        <ul class="main-nav">
+          {%- for link in menu.links -%}
+            <li class="main-nav__item{% if link.links != blank and section.settings.enable_mega_menu %} has-mega{% endif %}">
+              <a href="{{ link.url }}" class="main-nav__link"{% if link.current %} aria-current="page"{% endif %}{% if link.links != blank %} aria-expanded="false"{% endif %}>{{ link.title }}</a>
+              {%- if link.links != blank and section.settings.enable_mega_menu -%}
+                <div class="mega">
+                  {%- for child in link.links limit: 3 -%}
+                    <div class="mega__col">
+                      <h4>{{ child.title }}</h4>
+                      {%- if child.links != blank -%}
+                        {%- for g in child.links -%}<a href="{{ g.url }}">{{ g.title }}</a>{%- endfor -%}
+                      {%- else -%}
+                        <a href="{{ child.url }}">{{ 'general.nav.shop_all' | t }}</a>
+                      {%- endif -%}
+                    </div>
+                  {%- endfor -%}
+                  {%- assign promo = section.settings.mega_image -%}
+                  {%- if promo -%}
+                    <a class="mega__promo" href="{{ section.settings.mega_link }}">
+                      {% render 'responsive-image', image: promo, sizes: '25vw' %}
+                      <span class="mega__promo-caption eyebrow">{{ section.settings.mega_caption }}</span>
+                    </a>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+
+      {%- liquid
+        if settings.logo != blank
+          assign logo_dark_src = settings.logo | image_url: width: 600
+        else
+          assign logo_dark_src = 'vellarie-logo-dark.png' | asset_url
+        endif
+        if settings.logo_light != blank
+          assign logo_light_src = settings.logo_light | image_url: width: 600
+        else
+          assign logo_light_src = 'vellarie-logo-light.png' | asset_url
+        endif
+      -%}
+      <a href="{{ routes.root_url }}" class="site-header__logo" style="--logo-w:{{ settings.logo_width }}px" aria-label="{{ shop.name | escape }}">
+        <img class="logo-img logo-img--dark" src="{{ logo_dark_src }}" width="900" height="246" alt="{{ shop.name | escape }}" style="max-width:var(--logo-w)">
+        <img class="logo-img logo-img--light" src="{{ logo_light_src }}" width="900" height="246" alt="" aria-hidden="true" style="max-width:var(--logo-w)">
+      </a>
+
+      <div class="site-header__actions">
+        <button data-search-open aria-label="{{ 'general.search.title' | t }}">{% render 'icon', name: 'search', class: 'header-icon' %}</button>
+        <a href="{{ routes.account_url }}" aria-label="{{ 'customer.account.title' | t }}" class="hide-mobile">{% render 'icon', name: 'user', class: 'header-icon' %}</a>
+        <a href="{{ routes.cart_url }}" data-cart-open aria-label="{{ 'sections.cart.title' | t }}">
+          {% render 'icon', name: 'bag', class: 'header-icon' %}
+          <span class="cart-count" data-cart-count{% if cart.item_count == 0 %} hidden{% endif %}>{{ cart.item_count }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Mobile nav (rendered once, toggled by JS) {%- endcomment -%}
+<div class="mobile-nav" id="MobileNav" data-mobile-nav inert>
+  <div class="mobile-nav__head">
+    <a href="{{ routes.root_url }}" class="site-header__logo" aria-label="{{ shop.name | escape }}">
+      <img class="logo-img logo-img--dark" src="{{ logo_dark_src }}" width="900" height="246" alt="{{ shop.name | escape }}" style="max-width:132px">
+    </a>
+    <button data-menu-close aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', name: 'close', class: 'header-icon' %}</button>
+  </div>
+  <div class="mobile-nav__body">
+    {%- for link in menu.links -%}
+      {%- if link.links != blank -%}
+        <button class="mobile-nav__link" data-mnav-sub-toggle aria-expanded="false">
+          {{ link.title }} {% render 'icon', name: 'plus', class: 'icon' %}
+        </button>
+        <div class="mobile-nav__sub">
+          <a href="{{ link.url }}">{{ 'general.nav.shop_all' | t }} {{ link.title }}</a>
+          {%- for child in link.links -%}
+            <a href="{{ child.url }}">{{ child.title }}</a>
+            {%- for g in child.links -%}<a href="{{ g.url }}" style="padding-left:2rem">{{ g.title }}</a>{%- endfor -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+  <div class="mobile-nav__foot">
+    <a href="{{ routes.account_url }}">{% render 'icon', name: 'user', class: 'header-icon' %} {{ 'customer.account.title' | t }}</a>
+    <button data-search-open>{% render 'icon', name: 'search', class: 'header-icon' %} {{ 'general.search.title' | t }}</button>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.header.name",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "t:sections.header.menu", "default": "main-menu" },
+    { "type": "checkbox", "id": "enable_mega_menu", "label": "t:sections.header.enable_mega_menu", "default": true },
+    { "type": "checkbox", "id": "overlay_on_home", "label": "t:sections.header.overlay_on_home", "info": "t:sections.header.overlay_on_home_info", "default": true },
+    { "type": "header", "content": "t:sections.header.mega_promo" },
+    { "type": "image_picker", "id": "mega_image", "label": "t:sections.header.mega_image" },
+    { "type": "text", "id": "mega_caption", "label": "t:sections.header.mega_caption", "default": "New season" },
+    { "type": "url", "id": "mega_link", "label": "t:sections.header.mega_link" }
+  ]
+}
+{% endschema %}
