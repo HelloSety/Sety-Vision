@@ -848,7 +848,7 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
   .mec__left{align-items:center}
   .mec__left .sec__title,.mec__right{max-width:28ch;text-align:center;justify-self:center}
   .hero{--hero-img:url("../assets/hero-mobile.webp?v=20");
-    min-height:0;padding-top:clamp(88px,20vw,108px);padding-bottom:0}
+    min-height:0;padding-top:0;padding-bottom:0}
   .hero__scrim{background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 24%),
     linear-gradient(0deg,var(--bg-0) 0%,rgba(0,0,0,0) 30%)}
   .hero__media{background-position:center 12%}
