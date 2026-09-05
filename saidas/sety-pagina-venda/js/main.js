@@ -348,7 +348,7 @@
   /* ------------------------------------------------------ CTA FIXO (mobile) */
   var heroEl = $(".hero");
   // esconde o CTA fixo quando qualquer bloco de CTA da página (statbands, seção laranja, footer) está à vista
-  var ctaBlockers = $$(".sec--quem, .foot, [data-statband], .dep__cta, .flow__cta");
+  var ctaBlockers = $$(".sec--quem, .foot, [data-statband], .dep__cta, .faq__foot, .flow__cta");
   function updateStickyCta() {
     if (!heroEl) return;
     var past = window.scrollY > heroEl.offsetHeight * 0.7;
