@@ -105,9 +105,15 @@ Sobe como tema **não publicado** — nada muda na loja ao vivo. Preview no admi
 
 **Opção B (zip):** já existe pronto — `clientes/vellarie/vellarie-theme-signature-v1.zip` (conteúdo de `theme/`, separadores `/`, 95 arquivos). Subir em *Loja virtual → Temas → Adicionar tema → Fazer upload de arquivo zip*. Entra como **não publicado** → revisar no preview → publicar.
 
-> **2026-09-05:** tema atualizado para a **V2 "Signature"** (dark premium beauty-tech, com os banners e o logo do Seven). Detalhes em `MEMORY/CLIENTES/vellarie.md` e `theme/README.md`. Passa `shopify theme check` com 0 erros. Preview visual estático: `clientes/vellarie/preview/`.
+> **2026-09-05 — tema V6 DEPLOYADO (não publicado).** Evoluído V2→V6 (dark premium beauty-tech; auditoria funcional sem link/botão falso). `shopify theme push` funcionou via token Admin (`write_themes`).
+> - **Tema:** "VELLARIE — SIGNATURE V6" · id `163248799875` · role UNPUBLISHED · 0 erros (theme check + validação Shopify).
+> - **Preview** (logado no admin): `https://4zevyg-1g.myshopify.com?preview_theme_id=163248799875`
+> - **Editor:** `https://4zevyg-1g.myshopify.com/admin/themes/163248799875/editor`
+> - **Publicar:** `shopify theme push --store 4zevyg-1g.myshopify.com --path clientes/vellarie/theme --theme 163248799875` (atualiza) e publicar no editor quando aprovado. **Nunca** publicar sem revisar o preview.
+> - Apagar no admin os temas órfãos #163248636035 e #163248701571 (mesmo nome, de pushes que falharam antes).
+> - `theme dev` / `theme list` seguem bloqueados (conta CLI não é staff) — sem impacto no push.
 >
-> **Falta configurar no admin (tarefa do Jônatas/Seven, não do tema):** mercado/moeda **USD** em Settings → Markets (a loja está BRL/Brasil); coleções reais por categoria; `compare_at_price` nos produtos; políticas e frete.
+> **Falta configurar no admin (Jônatas/Seven, não é do tema):** mercado/moeda **USD** (Settings → Markets — loja está BRL/Brasil); menu principal + footer menu; página **About** (handle `about`, template `page.about`); coleções reais por categoria (Grooming/Hair & Styling/Skin & Body/Recovery); filtros Search & Discovery; `compare_at_price` nos produtos em oferta; app de reviews; políticas EN + frete; **fotos de produto profissionais** (as 18 atuais são composições de fornecedor).
 
 ## Histórico
 
