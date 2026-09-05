@@ -27,8 +27,11 @@
             {%- when 'price' -%}
               <div class="pdp__price" data-pdp-price {{ block.shopify_attributes }}>
                 {%- if variant.compare_at_price > variant.price -%}
+                  {%- assign pdp_saved = variant.compare_at_price | minus: variant.price -%}
+                  {%- assign pdp_saved_pct = pdp_saved | times: 100.0 | divided_by: variant.compare_at_price | round -%}
                   <span class="price--sale">{{ variant.price | money }}</span>
                   <span class="price--compare">{{ variant.compare_at_price | money }}</span>
+                  <span class="price--save">Save {{ pdp_saved | money }} ({{ pdp_saved_pct }}%)</span>
                 {%- else -%}
                   <span>{{ variant.price | money }}</span>
                 {%- endif -%}
@@ -102,8 +105,9 @@
       { "type": "checkbox", "id": "show_dynamic_checkout", "label": "t:sections.main_product.show_dynamic_checkout", "default": true }
     ] },
     { "type": "trust", "name": "t:sections.main_product.trust", "limit": 1, "settings": [
-      { "type": "text", "id": "item_1", "label": "1", "default": "Free shipping over $150" },
-      { "type": "text", "id": "item_2", "label": "2", "default": "14-day returns" },
+      { "type": "paragraph", "content": "Only enter benefits your store actually offers." },
+      { "type": "text", "id": "item_1", "label": "1", "default": "Free US shipping over $75" },
+      { "type": "text", "id": "item_2", "label": "2", "default": "30-day returns" },
       { "type": "text", "id": "item_3", "label": "3", "default": "Secure checkout" }
     ] },
     { "type": "payments", "name": "t:sections.main_product.payments", "limit": 1, "settings": [

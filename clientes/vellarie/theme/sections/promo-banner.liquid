@@ -5,13 +5,25 @@
       assign asset = 'hero-a-desktop'
     when 'hero-b'
       assign asset = 'hero-b-desktop'
+    when 'grooming'
+      assign asset = 'cat-grooming'
+    when 'hair'
+      assign asset = 'cat-hair'
   endcase
+  assign promo_class = 'promo'
+  if section.settings.layout == 'split'
+    assign promo_class = 'promo promo--split'
+  endif
+  assign btn_class = 'btn btn--pill btn--glow'
+  if section.settings.layout == 'split'
+    assign btn_class = 'btn'
+  endif
 -%}
 <section class="section section--flush" data-reveal>
-  <div class="promo">
-    <div class="promo__bg" data-parallax>
+  <div class="{{ promo_class }}">
+    <div class="promo__bg"{% unless section.settings.layout == 'split' %} data-parallax{% endunless %}>
       {%- if section.settings.image != blank -%}
-        {% render 'responsive-image', image: section.settings.image, sizes: '100vw' %}
+        {% render 'responsive-image', image: section.settings.image, sizes: '(min-width: 800px) 50vw, 100vw' %}
       {%- elsif asset != blank -%}
         <picture>
           <source type="image/webp" srcset="{{ asset | append: '.webp' | asset_url }}">
@@ -23,7 +35,7 @@
     </div>
 
     <div class="promo__inner">
-      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow" style="color:rgba(255,255,255,0.8)">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      {%- if section.settings.eyebrow != blank -%}<p class="eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
       {%- if section.settings.heading != blank -%}<h2 class="promo__title">{{ section.settings.heading }}</h2>{%- endif -%}
       {%- if section.settings.text != blank -%}<p>{{ section.settings.text }}</p>{%- endif -%}
 
@@ -37,7 +49,7 @@
       {%- endif -%}
 
       {%- if section.settings.cta_label != blank -%}
-        <a class="btn btn--pill btn--glow" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
+        <a class="{{ btn_class }}" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
       {%- endif -%}
     </div>
   </div>
@@ -48,17 +60,24 @@
   "name": "Promo banner",
   "tag": "section",
   "settings": [
-    { "type": "select", "id": "default_asset", "label": "Built-in background", "options": [
+    { "type": "select", "id": "layout", "label": "Layout", "options": [
+      { "value": "split", "label": "Split — image + text panel (recommended)" },
+      { "value": "overlay", "label": "Full-bleed image + text overlay" }
+    ], "default": "split" },
+    { "type": "select", "id": "default_asset", "label": "Built-in image", "options": [
       { "value": "none", "label": "None" },
       { "value": "hero-a", "label": "Campaign A — Grooming (blue)" },
-      { "value": "hero-b", "label": "Campaign B — Hair (green)" }
-    ], "default": "hero-a" },
-    { "type": "image_picker", "id": "image", "label": "Background image", "info": "Overrides the built-in background." },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Limited time" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Bundle & save 20%" },
-    { "type": "textarea", "id": "text", "label": "Text", "default": "Build your grooming kit — mix any three tools and save at checkout." },
-    { "type": "text", "id": "end_date", "label": "Countdown end (optional)", "info": "Format: 2026-12-25T23:59. Leave blank for no countdown. Only use a real deadline.", "default": "" },
-    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop the bundle" },
+      { "value": "hero-b", "label": "Campaign B — Hair (green)" },
+      { "value": "grooming", "label": "Grooming close-up" },
+      { "value": "hair", "label": "Hair close-up" }
+    ], "default": "hero-b" },
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Overrides the built-in image." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The kit" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Build your grooming routine" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Pair a shaver, a styler and a recovery tool — everything you reach for, in one order." },
+    { "type": "paragraph", "content": "Only mention a specific discount (e.g. “Save 20%”) if that promotion is really configured in Discounts." },
+    { "type": "text", "id": "end_date", "label": "Countdown end (optional)", "info": "Format: 2026-12-25T23:59. Blank = no countdown. Only use a real deadline.", "default": "" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Shop best sellers" },
     { "type": "url", "id": "cta_link", "label": "Button link" }
   ],
   "presets": [ { "name": "Promo banner" } ]

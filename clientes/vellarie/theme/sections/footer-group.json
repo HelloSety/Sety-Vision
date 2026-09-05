@@ -6,21 +6,33 @@
       "type": "newsletter",
       "settings": {
         "color_scheme": "dark",
-        "heading": "Join the movement",
-        "text": "New drops, private releases, and nothing else."
+        "heading": "Stay in the loop",
+        "text": "New releases, better routines, and the occasional offer. Nothing else."
       }
     },
     "footer": {
       "type": "footer",
       "settings": {
-        "menu_1_title": "Shop",
-        "menu_1": "footer",
-        "menu_2_title": "Help",
-        "menu_2": "footer",
-        "tagline": "Built for your own frequency. Designed in-house, made to last.",
+        "manifesto": "Beauty & grooming, engineered for everyday.",
+        "tagline": "Salon-grade tools for your daily routine. Shipped from the US.",
         "show_payment_icons": true,
         "show_locale": true
-      }
+      },
+      "blocks": {
+        "col-shop": {
+          "type": "menu",
+          "settings": { "title": "Shop", "menu": "footer" }
+        },
+        "col-help": {
+          "type": "menu",
+          "settings": { "title": "Help", "menu": "footer" }
+        },
+        "col-about": {
+          "type": "menu",
+          "settings": { "title": "About", "menu": "footer" }
+        }
+      },
+      "block_order": ["col-shop", "col-help", "col-about"]
     }
   },
   "order": ["newsletter-cta", "footer"]

@@ -3,6 +3,31 @@
 Custom Shopify **Online Store 2.0** theme for Vellarie (`4zevyg-1g.myshopify.com` / `vellarie.store`).
 Built by **Sety Studio**. No build step — plain Liquid + one CSS file + one JS file.
 
+## Version 4 — polish pass (2026-09-05)
+
+Art-direction + conversion + finish. No new architecture.
+
+- **Product cards** reworked to read as objects, not catalogue rows: bigger media, sentence-case
+  title in the body font, refined price, **savings chip** (`−38%`), hairline that draws in on hover,
+  subtle image scale. `card_image_fit` default **cover**.
+- **New "WOW" section** — `sections/campaign-feature.liquid`: large asymmetric image + short copy +
+  CTA, with a clip-path reveal and image scale on scroll (off for reduced-motion). Placed right
+  after the category index.
+- **Promo banner** got a **50/50 split layout** (image half + solid text panel) — kills the
+  text-over-baked-art clash. `layout` setting: split (default) / overlay.
+- **Homepage recomposed** and de-duplicated: Hero → Marquee → Trust → Best sellers → Category index →
+  **Campaign feature** → New arrivals → Brand story → Reviews → Promo (split). One editorial split
+  instead of two.
+- **PDP**: price now shows `Save $X (Y%)`; gallery main image is **contain on white** (supplier
+  photos are marketing composites — no aggressive crop of important info); framed stage + thumbs.
+- **Footer**: manifesto line, refined columns, circled social; **newsletter band** ("Stay in the
+  loop") kept premium/minimal. en-US copy throughout.
+- **Category index**: label underline-sweep on hover + `:active` touch feedback.
+- **Claim audit**: "medical-grade materials" → "durable materials"; trust-bar and promo schemas carry
+  "only enter what you actually offer" notes; testimonials ship empty + honest.
+- Rhythm: `:has()`-based spacing around full-bleed sections; homepage ≈ 6,600px.
+- `shopify theme check`: **0 errors**.
+
 ## Version 3 — refinement (2026-09-05)
 
 Audit + fix pass on top of V2 Signature. Highlights:

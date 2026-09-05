@@ -1,5 +1,5 @@
 {%- comment -%}
-  Params: product OR variant/price ; show_compare (default true)
+  Params: product OR variant/price ; show_compare (default true) ; show_save (default true)
 {%- endcomment -%}
 {%- liquid
   assign tgt = variant | default: product
@@ -11,6 +11,8 @@
   assign on_sale = false
   if compare and compare > price
     assign on_sale = true
+    assign saved = compare | minus: price
+    assign saved_pct = saved | times: 100.0 | divided_by: compare | round
   endif
 -%}
 <span class="card__price">
@@ -19,6 +21,7 @@
   {%- elsif on_sale -%}
     <span class="price--sale">{{ price | money }}</span>
     {%- if show_compare != false -%}<span class="price--compare">{{ compare | money }}</span>{%- endif -%}
+    {%- if show_save != false and saved_pct >= 5 -%}<span class="price--save">&minus;{{ saved_pct }}%</span>{%- endif -%}
   {%- else -%}
     <span>{{ price | money }}</span>
   {%- endif -%}

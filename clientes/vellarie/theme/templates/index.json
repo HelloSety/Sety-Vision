@@ -80,16 +80,17 @@
       },
       "block_order": ["c1", "c2", "c3", "c4"]
     },
-    "brandstory": {
-      "type": "editorial-split",
+    "campaign": {
+      "type": "campaign-feature",
       "settings": {
-        "eyebrow": "Built for your routine",
-        "heading": "Salon results, engineered for home",
-        "text": "<p>Precision motors, medical-grade materials, and a finish built to last. Every Vellarie device earns its place on your counter.</p>",
+        "default_asset": "hair",
+        "media_position": "left",
+        "eyebrow": "Designed for your routine",
+        "heading": "Precision technology. Everyday performance.",
+        "text": "Tools that feel considered in the hand and hold up over years of daily use. No shortcuts, no gimmicks.",
         "cta_label": "Explore the collection",
         "cta_link": "shopify://collections/best-sellers",
-        "default_asset": "hair",
-        "reverse": false
+        "color_scheme": "color-surface"
       }
     },
     "newarrivals": {
@@ -99,16 +100,16 @@
         "collection": "best-offers",
         "products_to_show": 4,
         "show_view_all": true,
-        "color_scheme": "color-surface"
+        "color_scheme": ""
       }
     },
-    "editorial": {
+    "brandstory": {
       "type": "editorial-split",
       "settings": {
-        "eyebrow": "Everyday essentials",
-        "heading": "One device, a faster routine",
-        "text": "<p>Replace two or three tools with one. Better results, less clutter, and a morning that moves quicker.</p>",
-        "cta_label": "Shop grooming",
+        "eyebrow": "The Vellarie standard",
+        "heading": "Salon results, at home",
+        "text": "<p>Precision motors, durable materials, and a finish built to last. Every device earns its place on your counter.</p>",
+        "cta_label": "About Vellarie",
         "cta_link": "shopify://collections/best-sellers",
         "default_asset": "grooming",
         "reverse": true
@@ -117,21 +118,23 @@
     "testimonials": {
       "type": "testimonials",
       "settings": {
-        "heading": "What people say",
+        "heading": "Customer reviews",
         "columns": "3",
         "show_summary": false,
         "rating": 0,
         "review_count": "",
+        "empty_note": "Verified customer reviews will appear here once your reviews app is connected.",
         "color_scheme": "color-surface"
       }
     },
     "promo": {
       "type": "promo-banner",
       "settings": {
-        "default_asset": "hero-a",
-        "eyebrow": "Bundle & save",
-        "heading": "Build your kit, save 20%",
-        "text": "Mix any three tools and the discount applies at checkout.",
+        "layout": "split",
+        "default_asset": "hero-b",
+        "eyebrow": "The kit",
+        "heading": "Build your grooming routine",
+        "text": "Pair a shaver, a styler and a recovery tool — everything you reach for, in one order.",
         "end_date": "",
         "cta_label": "Shop best sellers",
         "cta_link": "shopify://collections/best-sellers"
@@ -144,9 +147,9 @@
     "trust",
     "bestsellers",
     "categories",
-    "brandstory",
+    "campaign",
     "newarrivals",
-    "editorial",
+    "brandstory",
     "testimonials",
     "promo"
   ]

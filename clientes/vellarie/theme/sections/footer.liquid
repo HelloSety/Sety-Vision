@@ -9,6 +9,7 @@
             <img src="{{ 'vellarie-logo-light.png' | asset_url }}" width="900" height="246" alt="{{ shop.name | escape }}" style="max-width:180px;height:auto">
           {%- endif -%}
         </a>
+        {%- if section.settings.manifesto != blank -%}<p class="footer-manifesto">{{ section.settings.manifesto }}</p>{%- endif -%}
         {%- if section.settings.tagline != blank -%}<p>{{ section.settings.tagline }}</p>{%- endif -%}
         <div class="footer-social">
           {%- if settings.social_instagram != blank -%}<a href="{{ settings.social_instagram }}" aria-label="Instagram">{% render 'icon', name: 'instagram' %}</a>{%- endif -%}
@@ -61,7 +62,8 @@
 {
   "name": "t:sections.footer.name",
   "settings": [
-    { "type": "textarea", "id": "tagline", "label": "t:sections.footer.tagline", "default": "Built for your own frequency. Designed in-house, made to last." },
+    { "type": "text", "id": "manifesto", "label": "Manifesto line", "default": "Beauty & grooming, engineered for everyday." },
+    { "type": "textarea", "id": "tagline", "label": "t:sections.footer.tagline", "default": "Salon-grade tools for your daily routine. Shipped from the US." },
     { "type": "checkbox", "id": "show_payment_icons", "label": "t:sections.footer.show_payment_icons", "default": true },
     { "type": "checkbox", "id": "show_locale", "label": "t:sections.footer.show_locale", "default": true }
   ],

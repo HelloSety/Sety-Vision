@@ -931,3 +931,172 @@ body.is-locked { overflow: hidden; }
 
 /* --- 22.9 Section reveal: calmer default distance --- */
 .anim-enabled [data-reveal="fade-up"] { transform: translateY(16px); }
+
+/* ============================================================
+   23. VELLARIE V4 — polish pass
+   Art direction, product-as-object, WOW moment, honest rhythm.
+   ============================================================ */
+
+/* --- 23.1 Product cards — object of desire, not catalogue item --- */
+.grid--products { gap: clamp(16px, 2.2vw, 34px) clamp(12px, 1.6vw, 24px); }
+.card__media { background: var(--color-surface); overflow: hidden; }
+.card__img { transition: opacity var(--dur-slow) var(--ease), transform 900ms var(--ease); }
+@media (hover: hover) {
+  .card:hover .card__img--pri { transform: scale(1.035); }
+  .card__media::after {                     /* hairline that draws in on hover */
+    content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+    background: var(--color-accent); transform: scaleX(0); transform-origin: left;
+    transition: transform var(--dur) var(--ease); z-index: 3;
+  }
+  .color-dark .card__media::after { background: var(--color-accent-dark); }
+  .card:hover .card__media::after { transform: scaleX(1); }
+}
+.card__info { padding-top: 1rem; gap: 6px; }
+.card__title {
+  font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
+  letter-spacing: 0; text-transform: none; line-height: 1.35; color: var(--color-text);
+}
+.card__price { font-size: 0.9rem; font-weight: 500; gap: 0.55rem; align-items: baseline; }
+.card__price > span:first-child { font-weight: 600; }
+.price--compare { font-size: 0.82rem; }
+.price--save {
+  font-size: 0.64rem; font-weight: 700; letter-spacing: 0.06em;
+  color: var(--color-sale); border: 1px solid currentColor; border-radius: 999px;
+  padding: 2px 7px; align-self: center;
+}
+.card__badges { top: 12px; left: 12px; }
+.badge { font-size: 0.58rem; letter-spacing: 0.16em; padding: 4px 8px; background: var(--color-text); color: var(--color-bg); }
+.badge--sale { background: var(--color-sale); color: #fff; }
+/* quick add: hidden until hover on desktop, quiet on mobile */
+.card__quick .btn {
+  background: rgba(255,255,255,0.94); color: #0a0a0a; border-color: rgba(255,255,255,0.94);
+  font-size: 0.64rem; letter-spacing: 0.14em; min-height: 40px;
+}
+.card__quick .btn:hover { background: #fff; opacity: 1; }
+@media (max-width: 749px) {
+  .card__quick { position: static; opacity: 1; transform: none; margin-top: 0.7rem; }
+  .card__quick .btn { background: transparent; color: var(--color-text); border-color: var(--color-line-strong); }
+}
+
+/* --- 23.2 PDP price savings --- */
+.pdp__price { flex-wrap: wrap; gap: 0.6rem 0.75rem; align-items: baseline; }
+.pdp__price .price--save {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; color: var(--color-sale);
+  border: 1px solid currentColor; border-radius: 999px; padding: 3px 9px; align-self: center;
+}
+
+/* --- 23.3 Campaign feature — the WOW moment --- */
+.cfeat { position: relative; display: grid; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+@media (min-width: 900px) {
+  .cfeat { grid-template-columns: 1.35fr 1fr; gap: clamp(2rem, 6vw, 6rem); }
+  .cfeat--right { grid-template-columns: 1fr 1.35fr; }
+  .cfeat--right .cfeat__media { order: 2; }
+}
+.cfeat__media { position: relative; overflow: hidden; border-radius: var(--radius); aspect-ratio: 4 / 3; }
+@media (min-width: 900px) { .cfeat__media { aspect-ratio: 5 / 6; } }
+.cfeat__media img { width: 100%; height: 100%; object-fit: cover; }
+.anim-enabled .cfeat__media { clip-path: inset(0 0 100% 0); transition: clip-path 900ms var(--ease); }
+.anim-enabled .cfeat__media.is-in,
+.anim-enabled [data-reveal].is-in .cfeat__media { clip-path: inset(0 0 0 0); }
+.anim-enabled .cfeat__media img { transform: scale(1.12); transition: transform 1400ms var(--ease); }
+.anim-enabled [data-reveal].is-in .cfeat__media img { transform: scale(1); }
+@media (prefers-reduced-motion: reduce) {
+  .anim-enabled .cfeat__media { clip-path: none; }
+  .anim-enabled .cfeat__media img { transform: none; }
+}
+.cfeat__body { display: grid; gap: 1.15rem; max-width: 42ch; }
+.cfeat__title {
+  font-family: var(--font-heading); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(1.9rem, 4.4vw, 3.4rem); line-height: 1.02; letter-spacing: -0.015em;
+}
+.cfeat__lede { font-size: 1rem; color: var(--color-text-muted); line-height: 1.55; }
+.cfeat__body .btn { justify-self: start; margin-top: 0.4rem; }
+
+/* --- 23.4 Promo — 50/50 split kills the text/image clash --- */
+.promo--split {
+  min-height: 0; display: grid; place-items: stretch;
+  text-align: left; color: var(--color-text-dark);
+}
+@media (min-width: 800px) {
+  .promo--split { grid-template-columns: 1fr 1fr; min-height: clamp(380px, 42vw, 560px); }
+}
+.promo--split .promo__bg { position: relative; inset: auto; z-index: auto; aspect-ratio: 4 / 3; height: 100%; }
+@media (min-width: 800px) { .promo--split .promo__bg { aspect-ratio: auto; } }
+.promo--split .promo__bg img { filter: none; transform: none; }
+.promo--split::after { display: none; }
+.promo--split .promo__inner {
+  width: 100%; height: 100%;
+  background: var(--color-bg-dark); color: var(--color-text-dark);
+  justify-items: start; align-content: center; text-align: left;
+  padding: clamp(2.5rem, 6vw, 5.5rem); max-width: none; gap: 1.15rem;
+}
+.promo--split .promo__inner .eyebrow { color: var(--color-text-muted-dark); }
+.promo--split .promo__title { color: var(--color-text-dark); }
+.promo--split .promo__inner p { color: var(--color-text-muted-dark); max-width: 40ch; }
+.promo--split .promo__inner .btn { --color-accent: #fff; --color-accent-contrast: #0a0a0a; margin-top: 0.4rem; }
+
+/* --- 23.4b Rhythm around full-bleed sections --- */
+.section--flush + .section { padding-top: clamp(2.5rem, 5vw, 4rem); }
+.section:has(+ .section--flush) { padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+.section--tight { padding-block: clamp(2rem, 4vw, 3.25rem); }
+
+/* --- 23.5 Newsletter band — premium, minimal --- */
+.newsletter { max-width: 46ch; }
+.newsletter .h2 {
+  font-family: var(--font-heading); font-weight: 800; text-transform: uppercase;
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem); letter-spacing: -0.01em; line-height: 1.05;
+}
+.newsletter p { font-size: 0.95rem; }
+.newsletter__form { border-bottom-width: 1px; margin-top: 0.5rem; }
+.newsletter__form input { font-size: 0.95rem; padding-block: 1rem; }
+.newsletter__form button { letter-spacing: 0.18em; }
+.newsletter__form button:hover { opacity: 0.6; }
+
+/* --- 23.6 Footer — brand signature, not empty scaffold --- */
+.site-footer__top { grid-template-columns: 1fr; gap: 2.5rem; }
+@media (min-width: 750px) { .site-footer__top { grid-template-columns: 1.6fr repeat(3, 1fr); gap: clamp(2rem, 5vw, 4.5rem); } }
+.footer-brand__logo img { max-width: 168px; }
+.footer-manifesto {
+  font-family: var(--font-heading); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(1.05rem, 2vw, 1.5rem); line-height: 1.15; letter-spacing: -0.005em;
+  color: var(--color-text-dark); margin-top: 1.25rem; max-width: 22ch;
+}
+.footer-brand p { margin-top: 1rem; }
+.footer-col h4 { margin-bottom: 1.25rem; }
+.footer-col a { padding: 0.45rem 0; font-size: 0.82rem; opacity: 0.82; transition: opacity var(--dur-fast) var(--ease); }
+.footer-col a:hover { opacity: 1; }
+.footer-social { gap: 1rem; margin-top: 1.5rem; }
+.footer-social a { width: 38px; height: 38px; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; display: grid; place-items: center; transition: border-color var(--dur-fast) var(--ease); }
+.footer-social a:hover { border-color: rgba(255,255,255,0.5); }
+.site-footer__bottom { margin-top: 1rem; }
+
+/* --- 23.7 Rhythm — kill the specific gaps --- */
+.trust-bar + .section { padding-top: clamp(2.5rem, 5vw, 4rem); }
+.section + .site-footer .newsletter,
+.section.color-dark + .section.color-dark { }
+/* first section after hero+marquee shouldn't have full top padding */
+.marquee-section + .trust-bar { border-top: 0; }
+/* editorial split touching another dark block: seam, not gap */
+.editorial + .section.color-surface { padding-top: var(--section-space); }
+@media (max-width: 749px) {
+  .section { padding-block: var(--section-space-mobile); }
+  .hero + .marquee-section .marquee { padding-block: 0.7rem; }
+}
+
+/* --- 23.8 Category index — underline sweep on the label --- */
+.catx__label { position: relative; }
+.catx__label::after {
+  content: ""; position: absolute; left: 0; bottom: -4px; height: 2px; width: 100%;
+  background: currentColor; transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur) var(--ease);
+}
+@media (hover: hover) { .catx__link:hover .catx__label::after { transform: scaleX(1); } }
+.catx__link:active .catx__label { opacity: 0.6; }   /* touch feedback */
+
+/* --- 23.9 PDP gallery — don't crop supplier composites aggressively --- */
+.pdp__stage-slide { aspect-ratio: 1 / 1; background: #fff; }
+.pdp__stage-slide img { object-fit: contain; padding: clamp(12px, 4%, 40px); }
+.pdp__stage { border: 1px solid var(--color-line); border-radius: var(--radius); }
+.pdp__thumb { border-radius: calc(var(--radius) - 1px); background: #fff; }
+.pdp__thumb img { object-fit: contain; padding: 6px; }
+@media (min-width: 990px) { .pdp__thumbs { gap: 0.5rem; } }

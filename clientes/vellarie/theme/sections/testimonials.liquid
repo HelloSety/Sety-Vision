@@ -6,7 +6,7 @@
     assign has_content = true
   endif
 -%}
-<section class="section {{ section.settings.color_scheme }}" data-testimonials>
+<section class="section{% unless has_content %} section--tight{% endunless %} {{ section.settings.color_scheme }}" data-testimonials>
   <div class="container">
     {%- if section.settings.heading != blank -%}
       <div class="section-head" data-reveal><h2 class="section-head__title">{{ section.settings.heading }}</h2></div>
