@@ -728,7 +728,7 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
 .faq-item.is-open .faq-item__a>p{padding-bottom:clamp(15px,1.9vw,20px)}
 .faq__foot{display:flex;align-items:center;justify-content:center;gap:clamp(14px,2vw,22px);flex-wrap:wrap;
   margin-top:clamp(28px,3.4vw,44px);text-align:center}
-.faq__foot span{font-size:.92rem;color:var(--text-dim)}
+.faq__foot>span{font-size:.92rem;color:var(--text-dim)}
 
 /* =========================================================================
    DOBRA 8 · QUEM FAZ (seção laranja) — bloco editorial, só texto/CTA, sem foto
