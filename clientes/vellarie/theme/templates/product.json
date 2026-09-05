@@ -9,7 +9,7 @@
         "subtitle": { "type": "description_short", "settings": { "fallback_excerpt": true } },
         "variants": { "type": "variant_picker" },
         "buy": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true } },
-        "trust": { "type": "trust", "settings": { "item_1": "Free shipping over $150", "item_2": "14-day returns", "item_3": "Secure checkout" } },
+        "trust": { "type": "trust", "settings": { "item_1": "Free US shipping over $75", "item_2": "30-day returns", "item_3": "Secure checkout" } },
         "payments": { "type": "payments", "settings": { "label": "Secure checkout with" } },
         "acc_details": { "type": "accordion", "settings": { "heading": "Details", "use_product_description": true, "open": true } },
         "acc_shipping": { "type": "accordion", "settings": { "heading": "Shipping", "content": "<p>Configure this text in the theme editor. Do not invent delivery times.</p>" } },

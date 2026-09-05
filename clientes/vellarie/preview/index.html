@@ -18,7 +18,7 @@
     --font-heading:'Space Grotesk','Helvetica Neue',Arial,sans-serif;--font-body:'Inter','Helvetica Neue',Arial,sans-serif;
     --type-scale:1;--heading-tracking:.02rem;--heading-case:uppercase;--body-size:16px;
     --container:1560px;--gutter:28px;--section-space:100px;--section-space-mobile:52px;--radius:4px;
-    --btn-tracking:.02rem;--btn-radius:4px;--btn-case:uppercase;--card-ratio:1/1;
+    --btn-tracking:.02rem;--btn-radius:4px;--btn-case:uppercase;--card-ratio:1/1;--card-focus:50% 50%;
     --card-radius:8px;--shadow-1:0 1px 2px rgba(10,10,12,.06),0 8px 24px rgba(10,10,12,.06);
     --shadow-2:0 24px 60px -20px rgba(10,10,12,.35);
     --glow:0 0 0 1px rgba(var(--color-accent-rgb),.35),0 18px 50px -12px rgba(var(--color-accent-rgb),.45);
@@ -26,7 +26,6 @@
   }
   [data-reveal],[data-reveal-stagger]>*{opacity:1!important;transform:none!important}
   .cfeat__media{clip-path:none!important}.cfeat__media img{transform:none!important}
-  .header-group--overlay{position:relative;z-index:100;margin-bottom:calc(-1 * var(--header-h))}
 </style>
 </head>
 <body class="template-index">
@@ -35,8 +34,7 @@
   <div class="announcement__msg">Free US shipping over $75 — 30-day returns</div>
 </div></div></div>
 
-<div class="header-group header-group--overlay">
-<header class="site-header is-overlay is-sticky">
+<header class="site-header is-sticky is-solid">
   <div class="container"><div class="site-header__inner">
     <button class="header-menu-toggle" aria-label="Menu"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
     <nav class="site-header__nav"><ul class="main-nav">
@@ -51,14 +49,13 @@
     </a>
     <div class="site-header__actions">
       <button aria-label="Search"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
-      <a aria-label="Account"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></a>
+      <a aria-label="Account" class="hide-mobile"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></a>
       <a aria-label="Cart"><svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/></svg><span class="cart-count">1</span></a>
     </div>
   </div></div>
 </header>
-</div>
 
-<section class="hero" style="--hero-ar-d:3 / 1;--hero-ar-m:40 / 63;--hero-maxh-d:720px">
+<section class="hero" style="--hero-ar-d:3 / 1;--hero-ar-m:5 / 7;--hero-maxh-d:720px">
   <div class="hero__slide hero__slide--baked">
     <div class="hero__media hero__media--none">
       <picture><source media="(max-width:749px)" srcset="../theme/assets/hero-a-mobile.jpg">
@@ -89,9 +86,9 @@
 </div></div></section>
 
 <section class="section"><div class="container">
-  <div class="section-head"><h2 class="section-head__title">Best sellers</h2><a class="link-underline">View all</a></div>
+  <div class="section-head"><div><h2 class="section-head__title">Best sellers</h2></div><a class="link-underline">View all</a></div>
   <div class="grid--products">
-    <div class="card"><a class="card__media"><span class="card__badges"><span class="badge">New</span></span><img class="card__img card__img--pri" src="https://cdn.shopify.com/s/files/1/0748/2428/6339/files/32522512.jpg?v=1786768312" alt=""></a>
+    <div class="card" style="--card-focus:50% 50%"><a class="card__media"><span class="card__badges"><span class="badge">New</span></span><img class="card__img card__img--pri" src="https://cdn.shopify.com/s/files/1/0748/2428/6339/files/32522512.jpg?v=1786768312" alt=""></a>
       <a class="card__info"><span class="card__title">3-in-1 Electric Razor for Men</span><span class="card__price"><span class="price--sale">$49.99</span> <span class="price--compare">$79.99</span> <span class="price--save">−38%</span></span></a>
       <div class="card__quick"><button class="btn btn--sm btn--full"><span class="btn__label">Add to cart</span></button></div></div>
     <div class="card"><a class="card__media"><img class="card__img card__img--pri" src="https://cdn.shopify.com/s/files/1/0748/2428/6339/files/32915898.jpg?v=1786768326" alt=""></a>
@@ -107,7 +104,7 @@
 </div></section>
 
 <section class="section color-dark"><div class="container">
-  <div class="section-head"><h2 class="section-head__title">Shop by category</h2></div>
+  <div class="section-head"><div><h2 class="section-head__title">Shop by category</h2></div></div>
   <ul class="catx">
     <li class="catx__row"><a class="catx__link" href="#"><span class="catx__n">01</span><span class="catx__label">Grooming</span><span class="catx__sub">Shavers, trimmers &amp; precision tools</span><span class="catx__arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
     <li class="catx__row"><a class="catx__link" href="#"><span class="catx__n">02</span><span class="catx__label">Hair &amp; Styling</span><span class="catx__sub">Brushes, irons &amp; scalp care</span><span class="catx__arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
@@ -116,7 +113,6 @@
   </ul>
 </div></section>
 
-<!-- WOW: campaign feature -->
 <section class="section color-surface" data-reveal><div class="container">
   <div class="cfeat">
     <div class="cfeat__media"><img src="../theme/assets/cat-hair.jpg" alt=""></div>
@@ -129,9 +125,10 @@
   </div>
 </div></section>
 
-<section class="section"><div class="container">
-  <div class="section-head"><h2 class="section-head__title">New arrivals</h2><a class="link-underline">View all</a></div>
-  <div class="grid--products">
+<!-- NEW ARRIVALS — discovery style, feature-first -->
+<section class="section section--discovery"><div class="container">
+  <div class="section-head"><div><p class="eyebrow">Just in</p><h2 class="section-head__title">New arrivals</h2></div><a class="link-underline">View all</a></div>
+  <div class="grid--products is-feature">
     <div class="card"><a class="card__media"><img class="card__img card__img--pri" src="https://cdn.shopify.com/s/files/1/0748/2428/6339/files/33018850.jpg?v=1786768372" alt=""></a>
       <a class="card__info"><span class="card__title">Eyebrow Scissors with Comb</span><span class="card__price"><span>$14.00</span></span></a>
       <div class="card__quick"><button class="btn btn--sm btn--full"><span class="btn__label">Add to cart</span></button></div></div>
@@ -143,6 +140,9 @@
       <div class="card__quick"><button class="btn btn--sm btn--full"><span class="btn__label">Add to cart</span></button></div></div>
     <div class="card"><a class="card__media"><img class="card__img card__img--pri" src="https://cdn.shopify.com/s/files/1/0748/2428/6339/files/32689955.jpg?v=1786768492" alt=""></a>
       <a class="card__info"><span class="card__title">Electric Cupping Massager</span><span class="card__price"><span>$45.00</span></span></a>
+      <div class="card__quick"><button class="btn btn--sm btn--full"><span class="btn__label">Add to cart</span></button></div></div>
+    <div class="card"><a class="card__media"><img class="card__img card__img--pri" src="https://cdn.shopify.com/s/files/1/0748/2428/6339/files/29630673.jpg?v=1786768416" alt=""></a>
+      <a class="card__info"><span class="card__title">Acne Needle Tool Set</span><span class="card__price"><span>$18.00</span></span></a>
       <div class="card__quick"><button class="btn btn--sm btn--full"><span class="btn__label">Add to cart</span></button></div></div>
   </div>
 </div></section>
@@ -158,11 +158,10 @@
 </section>
 
 <section class="section section--tight color-surface"><div class="container">
-  <div class="section-head"><h2 class="section-head__title">Customer reviews</h2></div>
+  <div class="section-head"><div><h2 class="section-head__title">Customer reviews</h2></div></div>
   <p class="testi-note">Verified customer reviews will appear here once your reviews app is connected.</p>
 </div></section>
 
-<!-- PROMO — 50/50 split -->
 <section class="section section--flush">
   <div class="promo promo--split">
     <div class="promo__bg"><img src="../theme/assets/cat-hair.jpg" alt=""></div>
@@ -175,7 +174,6 @@
   </div>
 </section>
 
-<!-- NEWSLETTER band -->
 <section class="section color-dark"><div class="container">
   <div class="newsletter">
     <h2 class="h2">Stay in the loop</h2>
@@ -190,14 +188,14 @@
       <div class="footer-brand">
         <a class="footer-brand__logo"><img src="../theme/assets/vellarie-logo-light.png" alt="Vellarie"></a>
         <p class="footer-manifesto">Beauty &amp; grooming, engineered for everyday.</p>
-        <p>Salon-grade tools for your daily routine. Shipped from the US.</p>
+        <p>Beauty &amp; grooming devices for your daily routine. Shipped from the US.</p>
         <div class="footer-social">
           <a aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17" cy="7" r="1"/></svg></a>
         </div>
       </div>
-      <div class="footer-col"><h4>Shop</h4><a>Best Sellers</a><a>New Arrivals</a><a>Grooming</a><a>Hair &amp; Styling</a></div>
-      <div class="footer-col"><h4>Help</h4><a>Shipping</a><a>Returns</a><a>Warranty</a><a>Contact</a></div>
-      <div class="footer-col"><h4>About</h4><a>Our story</a><a>Reviews</a><a>Privacy</a><a>Terms</a></div>
+      <div class="footer-col accordion"><div class="accordion__item"><button class="accordion__trigger"><span>Shop</span><svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg></button><div class="accordion__panel"><div class="accordion__panel-inner"><a>Best Sellers</a><a>New Arrivals</a><a>Grooming</a><a>Hair &amp; Styling</a></div></div></div></div>
+      <div class="footer-col accordion"><div class="accordion__item"><button class="accordion__trigger"><span>Help</span><svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg></button><div class="accordion__panel"><div class="accordion__panel-inner"><a>Shipping</a><a>Returns</a><a>Warranty</a><a>Contact</a></div></div></div></div>
+      <div class="footer-col accordion"><div class="accordion__item"><button class="accordion__trigger"><span>About</span><svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14"/></svg></button><div class="accordion__panel"><div class="accordion__panel-inner"><a>Our story</a><a>Reviews</a><a>Privacy</a><a>Terms</a></div></div></div></div>
     </div>
     <div class="site-footer__bottom"><span>© 2026 Vellarie. All rights reserved.</span>
       <span class="payment-icons">VISA · MC · AMEX · PayPal · Shop Pay</span>

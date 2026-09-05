@@ -12,5 +12,18 @@
       spellcheck="false">
     <button type="button" data-search-close aria-label="{{ 'accessibility.close' | t }}">{% render 'icon', name: 'close', class: 'header-icon' %}</button>
   </form>
+
+  {%- assign suggest_menu = linklists['search-suggestions'] -%}
+  {%- if suggest_menu.links.size > 0 -%}
+    <div class="search-suggest" data-search-suggest>
+      <h4>Popular searches</h4>
+      <div class="search-suggest__row">
+        {%- for link in suggest_menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
   <div class="predictive" data-predictive-results aria-live="polite"></div>
 </div>

@@ -298,7 +298,7 @@ strong, b { font-weight: 700; }
 }
 .hero__slide {
   position: relative; grid-area: 1 / 1; display: grid;
-  aspect-ratio: var(--hero-ar-m); max-height: 92svh;
+  aspect-ratio: var(--hero-ar-m); max-height: 78svh;
 }
 @media (min-width: 750px) {
   .hero__slide { aspect-ratio: var(--hero-ar-d); max-height: var(--hero-maxh-d); min-height: 420px; }
@@ -364,14 +364,15 @@ strong, b { font-weight: 700; }
   position: relative; display: block; overflow: hidden;
   background: var(--color-surface); aspect-ratio: var(--card-ratio); border-radius: var(--radius);
 }
-.card__img { width: 100%; height: 100%; object-fit: cover; transition: opacity var(--dur) var(--ease), transform var(--dur-slow) var(--ease); }
+.card__img { width: 100%; height: 100%; object-fit: cover; transition: opacity 300ms var(--ease), transform 500ms var(--ease); }
 .card__img--sec { position: absolute; inset: 0; opacity: 0; }
+/* image swap ONLY when the cursor is over the image container (.card__media), not the info/quick-add */
 @media (hover: hover) {
-  .card:hover .card__img--pri { opacity: 0; }
-  .card:hover .card__img--sec { opacity: 1; }
-  .card:hover .card__img { transform: scale(1.04); }
+  .card__media:hover .card__img--pri { opacity: 0; }
+  .card__media:hover .card__img--sec { opacity: 1; }
+  .card__media:hover .card__img { transform: scale(1.02); }
 }
-.card__badges { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 6px; z-index: 2; }
+.card__badges { position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 6px; z-index: 2; pointer-events: none; }
 .badge {
   font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
   padding: 5px 9px; background: var(--color-accent); color: var(--color-accent-contrast);
@@ -658,6 +659,7 @@ strong, b { font-weight: 700; }
 @media (prefers-reduced-motion: reduce) {
   .anim-enabled [data-reveal], .anim-enabled [data-reveal-stagger] > * { opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important; }
   .card__img, .cat-card__media img { transition: none !important; }
+  .card__media:hover .card__img { transform: none !important; }
 }
 
 /* ---------- 20. Body scroll lock ---------- */
@@ -879,7 +881,7 @@ body.is-locked { overflow: hidden; }
 @media (hover: hover) {
   .card { transition: none; }
   .card:hover { transform: none; }
-  .card:hover .card__media { border-color: var(--color-line-strong); }
+  .card__media:hover { border-color: var(--color-line-strong); }
 }
 .card__info { padding-top: 0.85rem; gap: 4px; }
 .card__title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; text-transform: none; color: var(--color-text); }
@@ -900,9 +902,29 @@ body.is-locked { overflow: hidden; }
 }
 .site-header { --_h: var(--header-h); }
 .site-header__inner { min-height: var(--_h); transition: min-height var(--dur) var(--ease); }
-.site-header.is-solid { --_h: 58px; box-shadow: 0 1px 0 var(--color-line), 0 8px 24px -14px rgba(10,10,12,0.20); }
-.site-header.is-solid .site-header__logo .logo-img { max-height: 24px; }
+.site-header__logo { justify-self: center; }                 /* centred on every breakpoint */
+.site-header.is-compact { --_h: 56px; }
+.site-header.is-compact.is-solid { box-shadow: 0 1px 0 var(--color-line), 0 10px 28px -16px rgba(10,10,12,0.22); }
+.site-header.is-compact .site-header__logo .logo-img { max-height: 22px; }
 .site-header__logo .logo-img { transition: max-height var(--dur) var(--ease), opacity var(--dur-fast) var(--ease); }
+.header-group--overlay { position: sticky; top: 0; z-index: 100; margin-bottom: calc(-1 * var(--header-h)); }
+
+/* mobile: header is always its own solid bar — never overlaps the hero art */
+@media (max-width: 749px) {
+  .site-header.is-overlay {
+    --_fg: var(--color-text); background: var(--color-bg);
+    box-shadow: 0 1px 0 var(--color-line);
+  }
+  .site-header.is-overlay .site-header__logo .logo-img--light,
+  .site-header.is-overlay .main-nav__link { color: var(--color-text); }
+  .site-header.is-overlay .site-header__logo .logo-img--light { display: none; }
+  .site-header.is-overlay .site-header__logo .logo-img--dark { display: block; }
+  .header-group--overlay { margin-bottom: 0; }
+  .site-header__inner { grid-template-columns: 1fr auto 1fr; gap: 0.5rem; }
+  .header-menu-toggle { justify-self: start; }
+  .site-header__actions { justify-self: end; gap: 0.9rem; }
+  .site-header__logo .logo-img { max-height: 24px; }
+}
 
 /* --- 22.5 Trust bar — quieter, less "template" --- */
 .trust-bar { background: transparent; border-block: 1px solid var(--color-line); }
@@ -940,16 +962,15 @@ body.is-locked { overflow: hidden; }
 /* --- 23.1 Product cards — object of desire, not catalogue item --- */
 .grid--products { gap: clamp(16px, 2.2vw, 34px) clamp(12px, 1.6vw, 24px); }
 .card__media { background: var(--color-surface); overflow: hidden; }
-.card__img { transition: opacity var(--dur-slow) var(--ease), transform 900ms var(--ease); }
+.card__img { transition: opacity 300ms var(--ease), transform 500ms var(--ease); }
 @media (hover: hover) {
-  .card:hover .card__img--pri { transform: scale(1.035); }
-  .card__media::after {                     /* hairline that draws in on hover */
+  .card__media::after {                     /* hairline that draws in on image hover */
     content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
     background: var(--color-accent); transform: scaleX(0); transform-origin: left;
     transition: transform var(--dur) var(--ease); z-index: 3;
   }
   .color-dark .card__media::after { background: var(--color-accent-dark); }
-  .card:hover .card__media::after { transform: scaleX(1); }
+  .card__media:hover::after { transform: scaleX(1); }
 }
 .card__info { padding-top: 1rem; gap: 6px; }
 .card__title {
@@ -1100,3 +1121,71 @@ body.is-locked { overflow: hidden; }
 .pdp__thumb { border-radius: calc(var(--radius) - 1px); background: #fff; }
 .pdp__thumb img { object-fit: contain; padding: 6px; }
 @media (min-width: 990px) { .pdp__thumbs { gap: 0.5rem; } }
+
+/* ============================================================
+   24. VELLARIE V5 — final polish (mobile + commerce)
+   ============================================================ */
+
+/* --- 24.1 Mobile quick-add: compact text link, not a Shopify button --- */
+@media (max-width: 749px) {
+  .card__quick { position: static; opacity: 1; transform: none; margin-top: 0.55rem; }
+  .card__quick .btn, .card__quick form .btn {
+    background: transparent; color: var(--color-text); border: 0; border-bottom: 1px solid var(--color-line-strong);
+    min-height: 0; padding: 0 0 5px; border-radius: 0; width: auto;
+    font-size: 0.66rem; font-weight: 700; letter-spacing: 0.14em;
+  }
+  .card__quick .btn::after { content: " \2192"; }
+  .card__quick .btn:hover { border-color: var(--color-text); }
+  .qa-pop { position: static; box-shadow: none; border: 0; padding: 0.5rem 0 0; }
+}
+
+/* --- 24.2 Product image: configurable focal point --- */
+.card__img--pri { object-position: var(--card-focus, 50% 50%); }
+
+/* --- 24.3 Best sellers vs new arrivals: feature-first layout --- */
+.grid--products.is-feature > .card:first-child { grid-column: span 2; grid-row: span 2; }
+.grid--products.is-feature > .card:first-child .card__title { font-size: 1rem; }
+@media (max-width: 749px) {
+  .grid--products.is-feature > .card:first-child { grid-column: span 2; grid-row: auto; }
+}
+.section--discovery .section-head__title { font-weight: 700; }
+.section--discovery .eyebrow { display: block; margin-bottom: 0.3rem; }
+
+/* --- 24.4 Campaign feature: editorial, not billboard, on mobile --- */
+@media (max-width: 899px) {
+  .cfeat__media { aspect-ratio: 16 / 11; }
+  .cfeat__body { gap: 0.9rem; }
+  .cfeat__title { font-size: clamp(1.7rem, 7vw, 2.3rem); }
+}
+
+/* --- 24.5 Cart: free-shipping "unlocked" state --- */
+.free-ship-bar { display: grid; gap: 0.5rem; }
+.free-ship-bar__fill { background: var(--color-accent); }
+.free-ship-bar.is-reached { color: #1f7a3d; font-weight: 600; }
+.free-ship-bar.is-reached .free-ship-bar__fill { background: #1f7a3d; }
+
+/* --- 24.6 Footer: accordions on mobile (brand + manifesto always visible) --- */
+@media (max-width: 749px) {
+  .site-footer__top { grid-template-columns: 1fr; gap: 0; }
+  .footer-brand { padding-bottom: 1.5rem; }
+  .footer-col { border-top: 1px solid rgba(255,255,255,0.14); }
+  .footer-col h4 { margin-bottom: 0; }
+  .site-footer .accordion__trigger { padding-block: 1.05rem; pointer-events: auto; }
+  .site-footer .accordion__icon { display: block; }
+  .site-footer .accordion__panel { max-height: 0; }
+  .footer-col a { padding: 0.55rem 0; }
+}
+
+/* --- 24.7 Collection header — editorial --- */
+.collection-head__title { font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.015em; }
+.collection-head__count { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-text-muted); }
+
+/* --- 24.8 Search overlay — suggested searches --- */
+.search-suggest { margin-top: 1.75rem; }
+.search-suggest h4 { font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-text-muted); margin-bottom: 0.75rem; }
+.search-suggest__row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.search-suggest__row a {
+  border: 1px solid var(--color-line-strong); padding: 0.45rem 0.85rem;
+  font-size: 0.78rem; border-radius: 999px; transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+}
+.search-suggest__row a:hover { background: var(--color-text); color: var(--color-bg); }

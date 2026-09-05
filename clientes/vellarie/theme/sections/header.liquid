@@ -1,7 +1,7 @@
 {%- liquid
   assign menu = linklists[section.settings.menu]
   assign overlay = false
-  if section.settings.overlay_on_home and request.page_type == 'index'
+  if section.settings.header_style == 'overlay' and request.page_type == 'index'
     assign overlay = true
   endif
 -%}
@@ -111,7 +111,10 @@
   "settings": [
     { "type": "link_list", "id": "menu", "label": "t:sections.header.menu", "default": "main-menu" },
     { "type": "checkbox", "id": "enable_mega_menu", "label": "t:sections.header.enable_mega_menu", "default": true },
-    { "type": "checkbox", "id": "overlay_on_home", "label": "t:sections.header.overlay_on_home", "info": "t:sections.header.overlay_on_home_info", "default": true },
+    { "type": "select", "id": "header_style", "label": "Header style", "info": "Solid keeps the bar clean and separate from the hero (recommended). Transparent floats over the homepage hero and needs a dark hero image.", "options": [
+      { "value": "solid", "label": "Solid" },
+      { "value": "overlay", "label": "Transparent over homepage hero" }
+    ], "default": "solid" },
     { "type": "header", "content": "t:sections.header.mega_promo" },
     { "type": "image_picker", "id": "mega_image", "label": "t:sections.header.mega_image" },
     { "type": "text", "id": "mega_caption", "label": "t:sections.header.mega_caption", "default": "New season" },

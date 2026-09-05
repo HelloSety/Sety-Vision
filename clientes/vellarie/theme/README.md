@@ -3,6 +3,40 @@
 Custom Shopify **Online Store 2.0** theme for Vellarie (`4zevyg-1g.myshopify.com` / `vellarie.store`).
 Built by **Sety Studio**. No build step — plain Liquid + one CSS file + one JS file.
 
+## Version 5–6 — mobile polish + functional audit (2026-09-05)
+
+**V5 — mobile + finish**
+- **Mobile header fixed**: header is now a solid bar on its own (not transparent over the hero), so
+  the header logo never overlaps the hero art's baked logo. Logo centred (`1fr auto 1fr`) at every
+  breakpoint. `header_style` setting: Solid (default) / Transparent-over-hero.
+- **Hero mobile ratio** `5 / 7` + `max-height: 78svh` — impactful without trapping the viewport (~62%).
+- **Mobile quick-add** is a compact underlined "Add to cart →" link, not a full-width button.
+- **Best sellers vs New arrivals** differentiated: New arrivals uses `layout: feature` (first card
+  spans 2×2) + `style: discovery` (eyebrow + lighter heading).
+- **Product image focus**: `card_image_focus` setting + `custom.card_focus` metafield per product.
+- **Campaign feature** less tall on mobile (`16/11`). **Footer** columns collapse to accordions on
+  mobile (brand + manifesto stay visible). **Promo split** panel fills its half. Cart free-shipping
+  bar has an "unlocked" state (still off unless a real threshold is set).
+- **Hover image swap** rescoped to `.card__media:hover` only — swapping to the real
+  `product.media[1]`, crossfade 300ms + `scale(1.02)`, `@media (hover:hover)` only, instant under
+  reduced-motion, nothing when a product has one image. Verified with real hover tests.
+
+**V6 — functional audit**
+- Full grep of the theme: **no `href="#"`, no `javascript:`/`void(0)`, no TODO/FIXME/mock/fake,
+  no hardcoded store URLs, no `<a>` without href.** Every CTA uses `routes.*` / `collection.url` /
+  `product.url` or a Theme Editor `url` setting pointed at a real handle.
+- ATC / cart / variants confirmed as **native Shopify**: `{% form 'product' %}`, `routes.cart_add_url`,
+  Sections API drawer refresh, `{{ form | payment_button }}` (accelerated checkout / PayPal),
+  `results.sort_options` + Search & Discovery `results.filters` on the collection page.
+- Removed `locales/pt-BR.json` (US-only store). Fixed V1 streetwear leftovers in schema defaults
+  ("Shadow System", "A frequency you live in", "$150", "14-day returns").
+- Added `templates/page.about.json` (editable About structure — no fabricated company story).
+- `shopify theme check`: **0 errors**.
+- **Not deployed / not runtime-tested**: `shopify theme list/push/dev` blocked (CLI account is not
+  store staff); `themeCreate` via Admin API blocked by the session's write guard. The buy flow is
+  code-verified but not clicked live — needs the deploy first (zip upload, Theme Access token, or the
+  merchant running the `themeCreate` mutation).
+
 ## Version 4 — polish pass (2026-09-05)
 
 Art-direction + conversion + finish. No new architecture.

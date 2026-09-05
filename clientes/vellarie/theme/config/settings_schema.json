@@ -269,6 +269,18 @@
         "default": "cover"
       },
       {
+        "type": "select",
+        "id": "card_image_focus",
+        "label": "Image focal point",
+        "info": "Where “Cover” crops toward. Per-product override: metafield custom.card_focus (e.g. 50% 30%).",
+        "options": [
+          { "value": "50% 50%", "label": "Center" },
+          { "value": "50% 30%", "label": "Top" },
+          { "value": "50% 70%", "label": "Bottom" }
+        ],
+        "default": "50% 50%"
+      },
+      {
         "type": "checkbox",
         "id": "card_hover_second_image",
         "label": "t:settings.product_card.hover_second_image.label",

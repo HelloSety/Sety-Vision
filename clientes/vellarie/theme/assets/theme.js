@@ -71,15 +71,23 @@
     var header = $('[data-header]');
     if (!header) return;
     var overlay = header.hasAttribute('data-overlay');
-    var sticky = S.stickyHeader;
-    if (sticky) header.classList.add('is-sticky');
-    if (overlay) header.classList.add('is-overlay');
+    if (S.stickyHeader) header.classList.add('is-sticky');
+    var wrap = header.closest('.shopify-section') || header.parentElement;
+    if (overlay) {
+      header.classList.add('is-overlay');
+      if (wrap) wrap.classList.add('header-group--overlay');
+    }
 
     function update() {
       var y = window.scrollY || window.pageYOffset;
-      var solid = y > 40;
-      header.classList.toggle('is-solid', solid || !overlay);
-      if (overlay) header.classList.toggle('is-overlay', !solid);
+      var scrolled = y > 32;
+      if (overlay) {
+        header.classList.toggle('is-overlay', !scrolled);
+        header.classList.toggle('is-solid', scrolled);
+      } else {
+        header.classList.add('is-solid');
+      }
+      header.classList.toggle('is-compact', scrolled);
     }
     update();
     var ticking = false;

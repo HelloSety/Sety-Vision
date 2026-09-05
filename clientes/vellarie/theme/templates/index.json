@@ -5,7 +5,7 @@
       "settings": {
         "height": "standard",
         "desktop_ratio": "3 / 1",
-        "mobile_ratio": "40 / 63",
+        "mobile_ratio": "5 / 7",
         "max_height": 720,
         "focus": "50% 50%",
         "overlay": "none",
@@ -96,9 +96,12 @@
     "newarrivals": {
       "type": "featured-collection",
       "settings": {
+        "eyebrow": "Just in",
         "heading": "New arrivals",
         "collection": "best-offers",
-        "products_to_show": 4,
+        "products_to_show": 5,
+        "layout": "feature",
+        "style": "discovery",
         "show_view_all": true,
         "color_scheme": ""
       }

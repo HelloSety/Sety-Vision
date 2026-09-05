@@ -34,6 +34,7 @@
     "button_radius": 4,
     "card_image_ratio": "square",
     "card_image_fit": "cover",
+    "card_image_focus": "50% 50%",
     "card_hover_second_image": true,
     "card_quick_add": true,
     "card_show_color_count": false,

@@ -22,8 +22,9 @@
   endfor
   assign card_alt = img1.alt | default: product.title
   assign card_loading = loading | default: 'lazy'
+  assign card_focus = product.metafields.custom.card_focus | default: settings.card_image_focus | default: '50% 50%'
 -%}
-<div class="card"{% if reveal %} data-reveal{% endif %} data-product-card>
+<div class="card"{% if reveal %} data-reveal{% endif %} data-product-card style="--card-focus: {{ card_focus }}">
   <a class="card__media" href="{{ product.url }}" aria-label="{{ product.title | escape }}">
     {% render 'product-badges', product: product %}
     {% render 'responsive-image', image: img1, class: 'card__img card__img--pri', sizes: sizes, loading: card_loading, alt: card_alt %}

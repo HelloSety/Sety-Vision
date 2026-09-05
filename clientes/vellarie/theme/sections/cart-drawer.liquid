@@ -11,7 +11,7 @@
   {%- if cart.item_count > 0 -%}
     {%- if settings.free_shipping_bar and threshold > 0 -%}
       <div class="cart-drawer__body" style="flex:0;padding-bottom:0">
-        <div class="free-ship-bar">
+        <div class="free-ship-bar{% if remaining <= 0 %} is-reached{% endif %}">
           {%- if remaining > 0 -%}
             {{ 'sections.cart.free_shipping_remaining_html' | t: amount: remaining | money }}
           {%- else -%}

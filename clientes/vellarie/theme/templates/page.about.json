@@ -1,0 +1,38 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": { "color_scheme": "" },
+      "blocks": {
+        "eyebrow": { "type": "eyebrow", "settings": { "text": "About Vellarie" } },
+        "heading": { "type": "heading", "settings": { "text": "Beauty & grooming, engineered for everyday.", "size": "h2" } },
+        "text": { "type": "text", "settings": { "text": "<p>Add your brand story in the Theme Editor. Keep it true — where the tools come from, how you pick them, what you stand behind.</p>" } }
+      },
+      "block_order": ["eyebrow", "heading", "text"]
+    },
+    "split": {
+      "type": "editorial-split",
+      "settings": {
+        "eyebrow": "The standard",
+        "heading": "How we choose our tools",
+        "text": "<p>Edit this section in the Theme Editor. Add a real photo and real detail about your selection process, materials and testing.</p>",
+        "cta_label": "Shop the collection",
+        "cta_link": "shopify://collections/best-sellers",
+        "default_asset": "grooming",
+        "reverse": false
+      }
+    },
+    "shop": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Best sellers",
+        "collection": "best-sellers",
+        "products_to_show": 4,
+        "layout": "grid",
+        "show_view_all": true,
+        "color_scheme": "color-surface"
+      }
+    }
+  },
+  "order": ["intro", "split", "shop"]
+}
