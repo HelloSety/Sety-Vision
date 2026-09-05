@@ -35,7 +35,7 @@
 <link rel="preload" as="image" href="assets/hero-desktop.webp?v=1" media="(min-width:1650px)" fetchpriority="high" />
 <link rel="preload" as="image" href="assets/hero-mobile.webp?v=20" media="(max-width:900px)" fetchpriority="high" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="css/styles.css?v=37" />
+<link rel="stylesheet" href="css/styles.css?v=39" />
 
 <!-- ================= TRACKING (carrega só se houver ID em js/config.js) ======
      Meta Pixel / GA4 / GTM são injetados por js/main.js a partir de TRACKING_CONFIG.
@@ -45,7 +45,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "ProfessionalService"],
   "name": "Sety Studio",
   "url": "https://www.setystudio.com.br/",
   "logo": "https://www.setystudio.com.br/apple-touch-icon.png",
@@ -136,8 +136,8 @@
     <h1 class="hero__title reveal">Seu site não é <br class="hero__br" />cartão de visita. <br class="hero__br" />É seu canal de venda.</h1>
 
     <p class="hero__sub reveal">
-      Posicionamento, <strong>design e tráfego pago</strong> na mesma estrutura,
-      para transformar o clique do anúncio em <u>conversa qualificada no WhatsApp.</u>
+      Unimos <strong>site, tráfego pago e estratégia</strong> numa única estrutura —
+      pra atrair as pessoas certas e transformar visita em <u>conversa qualificada no WhatsApp.</u>
     </p>
 
     <div class="hero__actions reveal">
@@ -147,6 +147,7 @@
       </a>
       <a class="btn btn--text" href="#portfolio" data-track="nav_portfolio">Ver projetos</a>
     </div>
+    <p class="hero__microtrust reveal">Fale direto com quem executa — sem agência no meio do caminho.</p>
 
     <div class="proof reveal">
       <span class="avstack" aria-hidden="true">
@@ -198,7 +199,7 @@
       <h2 class="sec__title sec__title--split reveal"><span class="o">Seu negócio pode estar</span><span>perdendo vendas todo dia.</span></h2>
 
       <div class="prose reveal">
-        <p>Você investe em anúncio, mas o resultado não aparece. O tráfego chega, clica e <u>vai embora</u> sem virar contato.</p>
+        <p>Seu anúncio gera clique. Seu Instagram gera atenção. Mas se a página não transmite confiança e não deixa a oferta clara, o interesse esfria e <u>vai embora</u> sem virar contato.</p>
         <p>Seu site recebe visitas e não transforma nenhuma em oportunidade. A página existe. Só que <u>não foi feita pra vender.</u></p>
         <p>Você tem presença digital, mas não tem uma estrutura conectando anúncio, página e conversão. É <u>nessa desconexão</u> que o dinheiro escapa.</p>
       </div>
@@ -271,7 +272,7 @@
       <div class="dep__head-l reveal">
         <p class="pill pill--dark">
           <i class="pill__chip pill__chip--dark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4Z" fill="currentColor"/></svg></i>
-          Depoimentos dos nossos clientes
+          Não precisa acreditar na nossa palavra
         </p>
         <h2 class="sec__title">Quem já roda tráfego<br />com a gente</h2>
       </div>
@@ -350,25 +351,6 @@
   </div>
 </section>
 
-<!-- ===================== SOBRE · conteúdo SEO (compacto, antes do footer) ========== -->
-<section class="sec sec--sobre" id="sobre">
-  <div class="container">
-    <div class="sobre__head reveal">
-      <p class="pill pill--dark">
-        <i class="pill__chip pill__chip--dark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2 3 14h7l-1 8 11-13h-7l0-7Z" fill="currentColor"/></svg></i>
-        <span>Como a Sety Studio trabalha</span>
-      </p>
-      <h2 class="sec__title sec__title--center">Presença digital que transforma atenção em vendas</h2>
-    </div>
-    <div class="prose sobre__body reveal">
-      <p>A Sety Studio desenvolve <strong>sites, landing pages e lojas virtuais</strong> para empresas que precisam vender mais pela internet. Cada projeto une design, copywriting e estrutura técnica pensados pra apresentar melhor uma marca, reduzir objeções e facilitar a decisão de quem visita.</p>
-      <p>Na aquisição, cuidamos da <strong>gestão de tráfego pago em Meta Ads e Google Ads</strong>, conectando anúncio, página e oferta numa mesma estratégia — o objetivo é que o clique vire conversa qualificada no WhatsApp, não só visita.</p>
-      <p>Também atuamos com <strong>e-commerce</strong>, incluindo lojas construídas em Nuvemshop e Shopify, sempre com foco em conversão: catálogo organizado, checkout simples e uma experiência de compra que não perde venda por falha de estrutura. <a href="#portfolio">Conheça os projetos que já colocamos no ar</a>.</p>
-      <p>Cada entrega passa pelas mesmas duas frentes: <strong>estratégia de aquisição</strong> (tráfego, público, criativo) e <strong>experiência de conversão</strong> (UX, copy e estrutura da página). Da primeira conversa ao lançamento, o objetivo é sempre o mesmo — fazer o site funcionar como canal de venda, não como cartão de visita digital.</p>
-    </div>
-  </div>
-</section>
-
 </main>
 
 <!-- ============================ FOOTER =========================== -->
@@ -407,7 +389,7 @@
   <i class="btn__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
 </a>
 
-<script src="js/config.js?v=20"></script>
+<script src="js/config.js?v=21"></script>
 <script src="js/main.js?v=22" defer></script>
 </body>
 </html>

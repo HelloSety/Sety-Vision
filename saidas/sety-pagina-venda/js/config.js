@@ -58,7 +58,7 @@ window.SERVICES = [
     title: "Sites e Landing Pages",
     html:
       "<strong>Seu site precisa fazer mais do que existir. Precisa vender.</strong> " +
-      "Páginas rápidas, responsivas e com cada seção pensada pra tirar a dúvida, quebrar a objeção e levar ao próximo passo.",
+      "Sites, landing pages e lojas virtuais rápidos, responsivos e com cada seção pensada pra tirar a dúvida, quebrar a objeção e levar ao próximo passo.",
   },
   {
     icon: "route",
@@ -114,6 +114,10 @@ window.FAQ = [
   {
     q: "Já rodo anúncios. Vocês assumem a conta ou começam do zero?",
     a: "Assumimos a conta que já existe, revisamos estrutura, públicos e criativos, e mantemos o histórico de aprendizado. Tráfego sem uma página preparada pra converter queima parte do investimento. A gente arruma a ponta que falta.",
+  },
+  {
+    q: "Vocês também criam lojas virtuais e cuidam de e-commerce?",
+    a: "Sim. Além de sites e landing pages, montamos lojas virtuais em Nuvemshop e Shopify pensadas pra vender: catálogo organizado, checkout simples e tráfego direcionado pra quem já quer comprar.",
   },
   {
     q: "Quanto tempo até a estrutura estar no ar?",
