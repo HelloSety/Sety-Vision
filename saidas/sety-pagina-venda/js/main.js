@@ -21,6 +21,7 @@
     window.dataLayer.push(payload);
     if (typeof window.fbq === "function") window.fbq("trackCustom", name, props || {});
     if (typeof window.gtag === "function") window.gtag("event", name, props || {});
+    if (typeof window.va === "function") window.va("event", { name: name, data: props || {} });
     if (/localhost|127\.0\.0\.1|file:/.test(location.href)) console.debug("[track]", name, props || "");
   }
   window.trackEvent = trackEvent;

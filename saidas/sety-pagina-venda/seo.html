@@ -204,8 +204,8 @@
   </section>
 
   <section id="analytics">
-    <h2><span class="n">07</span> Analytics &amp; conversão <span class="pill block">⛔ aguardando IDs</span></h2>
-    <p class="hint">A base de tracking existe em <code>js/main.js</code> (camada <code>dataLayer</code> + <code>trackEvent()</code>), mas <code>js/config.js → TRACKING_CONFIG</code> está vazio: nenhum pixel/tag carrega até um ID ser preenchido.</p>
+    <h2><span class="n">07</span> Analytics &amp; conversão <span class="pill wait">⏳ Vercel Web Analytics ligado no código</span></h2>
+    <p class="hint">Painel dedicado: <a href="/admin/analytics">/admin/analytics</a>. A base de tracking em <code>js/main.js</code> agora também envia eventos pro <b>Vercel Web Analytics</b> (<code>window.va</code>) além do <code>dataLayer</code>. GA4/GTM/Pixel continuam dependendo de ID em <code>js/config.js → TRACKING_CONFIG</code>.</p>
     <table>
       <tr><th>Ferramenta</th><th>ID</th><th>Status</th></tr>
       <tr><td>Google Analytics 4</td><td><span class="val">googleAnalyticsId: ""</span></td><td><span class="pill block">⛔ sem ID</span></td></tr>

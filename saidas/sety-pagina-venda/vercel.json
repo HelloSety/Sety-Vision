@@ -13,6 +13,10 @@
       ]
     },
     {
+      "source": "/(admin|seo)(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
       "source": "/assets/depoimentos/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, must-revalidate" }]
     },
