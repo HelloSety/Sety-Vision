@@ -164,6 +164,10 @@ window.FAQ = [
     q: "Não sei por onde começar. Isso é problema?",
     a: "É o cenário mais comum. A conversa inicial serve pra entender seu negócio, sua oferta e seu objetivo. O plano da estrutura — o que fazer primeiro e o que pode esperar — sai daí.",
   },
+  {
+    q: "Vocês usam inteligência artificial nos projetos?",
+    a: "Usamos. IA acelera copy, estrutura, criativos e análise de campanha — sempre com uma pessoa decidindo o que entra. E quando faz sentido, montamos automação com IA e agente de atendimento no WhatsApp junto com o site e o tráfego. Detalhe na página de <a href=\"/ia\">inteligência artificial</a>.",
+  },
 ];
 /* alias legado */
 window.OBJECTIONS = window.FAQ;

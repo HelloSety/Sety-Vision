@@ -13,7 +13,7 @@
       ]
     },
     {
-      "source": "/(admin|seo)(.*)",
+      "source": "/seo(.*)",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     },
     {

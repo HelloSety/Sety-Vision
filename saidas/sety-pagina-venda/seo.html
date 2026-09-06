@@ -163,6 +163,12 @@
       <div class="card"><h3>Intenção comercial</h3><p>“agência de e-commerce”, “gestor de tráfego”, “especialista em Nuvemshop”, “site que converte”.</p><p style="color:var(--muted);font-size:.82rem;margin-top:6px">Coberto por FAQ + prova (Resultados) + Quem faz.</p></div>
       <div class="card"><h3>Intenção informacional</h3><p>“quanto custa um site profissional”, “vale a pena tráfego pago”, “Nuvemshop vs Shopify”.</p><p style="color:var(--amber);font-size:.82rem;margin-top:6px">⏳ pede páginas/artigos dedicados (blog).</p></div>
     </div>
+    <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:20px 0 8px">Cluster de Inteligência Artificial — CAMADA ADICIONAL (não substitui nada)</h3>
+    <ul class="list">
+      <li>✔ <b>/ia</b> — pillar indexável: “inteligência artificial para empresas”. Cobre, em seções com H2/H3 próprios: o que é IA / IA generativa, IA para empresas, IA para marketing e vendas, IA para e-commerce (Nuvemshop/Shopify), criação de sites com IA, automação e agentes de IA, ferramentas (ChatGPT/Claude/Gemini), tendências 2026. Schema: WebPage + Article + BreadcrumbList + FAQPage (8 Q&As). Canonical <code>/ia</code>, <code>index,follow</code>, no sitemap.</li>
+      <li>✔ Home: <code>knowsAbout</code> estendido com 18 entidades de IA · marquee +“Automação com IA” +“IA para negócios” · FAQ +1 (“Vocês usam IA nos projetos?” → link <code>/ia</code>) · rodapé “Navegar” → <code>/ia</code>. <b>Nenhuma keyword antiga tocada.</b></li>
+      <li>⏳ Sub-páginas só se a intenção divergir de verdade: <code>/ia/criacao-de-sites-com-ia</code>, <code>/ia/automacao-com-ia</code>, <code>/ia/agentes-de-ia</code>. Hoje as seções do pillar dão conta — não fazer doorway pages.</li>
+    </ul>
     <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:20px 0 8px">Páginas de serviço — roadmap</h3>
     <ul class="list">
       <li>⏳ <b>/criacao-de-sites</b> — sites institucionais, landing pages, one-pages</li>
@@ -175,7 +181,8 @@
     <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:20px 0 8px">Internal linking</h3>
     <ul class="list">
       <li>✔ Nav âncora: Serviços · Projetos · Depoimentos · Quem faz · FAQ</li>
-      <li>✔ Rodapé: coluna “Navegar” (Serviços, Projetos, Resultados, FAQ, SEO &amp; Growth) + CTA WhatsApp em toda seção</li>
+      <li>✔ Rodapé: coluna “Navegar” (Serviços, Projetos, Resultados, IA, FAQ, SEO &amp; Growth) + CTA WhatsApp em toda seção</li>
+      <li>✔ <code>/ia</code> ↔ home: a página de IA linka de volta para <code>/#servicos</code> e <code>/#depoimentos</code>; a home linka para <code>/ia</code> no rodapé, marquee e FAQ</li>
       <li>⏳ Cross-links entre páginas de serviço quando existirem</li>
     </ul>
   </section>
@@ -204,8 +211,8 @@
   </section>
 
   <section id="analytics">
-    <h2><span class="n">07</span> Analytics &amp; conversão <span class="pill wait">⏳ Vercel Web Analytics ligado no código</span></h2>
-    <p class="hint">Painel dedicado: <a href="/admin/analytics">/admin/analytics</a>. A base de tracking em <code>js/main.js</code> agora também envia eventos pro <b>Vercel Web Analytics</b> (<code>window.va</code>) além do <code>dataLayer</code>. GA4/GTM/Pixel continuam dependendo de ID em <code>js/config.js → TRACKING_CONFIG</code>.</p>
+    <h2><span class="n">07</span> Analytics &amp; conversão <span class="pill block">⛔ aguardando IDs</span></h2>
+    <p class="hint">A base de tracking existe em <code>js/main.js</code> (camada <code>dataLayer</code> + <code>trackEvent()</code>), mas <code>js/config.js → TRACKING_CONFIG</code> está vazio: nenhum pixel/tag carrega até um ID ser preenchido.</p>
     <table>
       <tr><th>Ferramenta</th><th>ID</th><th>Status</th></tr>
       <tr><td>Google Analytics 4</td><td><span class="val">googleAnalyticsId: ""</span></td><td><span class="pill block">⛔ sem ID</span></td></tr>
@@ -247,6 +254,9 @@
       <div class="card"><h3>Branding</h3><div class="kw">
         <span class="core">identidade visual</span><span class="core">criação de logotipo</span><span>branding</span><span>agência de branding</span><span>criação de identidade visual</span><span>logo profissional</span><span>design de marca</span><span>posicionamento de marca</span><span>identidade de marca</span>
       </div></div>
+      <div class="card" style="grid-column:1/-1"><h3>Inteligência artificial — cluster novo (camada adicional) · pillar <code>/ia</code></h3><div class="kw">
+        <span class="core">inteligência artificial</span><span class="core">IA para empresas</span><span class="core">ferramentas de IA</span><span>IA</span><span>o que é inteligência artificial</span><span>como funciona a inteligência artificial</span><span>ferramentas de inteligência artificial</span><span>melhores ferramentas de IA</span><span>melhores IAs</span><span>IA para negócios</span><span>IA para empreendedores</span><span>IA para pequenas empresas</span><span>IA para marketing</span><span>IA para marketing digital</span><span>IA para vendas</span><span>IA para produtividade</span><span>IA para criação de conteúdo</span><span>IA para redes sociais</span><span>automação com IA</span><span>automação inteligente</span><span>automação de processos com IA</span><span>agentes de IA</span><span>agente de inteligência artificial</span><span>agentes de IA para empresas</span><span>chatbot com IA</span><span>IA para atendimento</span><span>IA para atendimento ao cliente</span><span>IA para WhatsApp</span><span>IA para ecommerce</span><span>IA para loja virtual</span><span>IA para Nuvemshop</span><span>inteligência artificial para ecommerce</span><span>inteligência artificial para empresas</span><span>inteligência artificial no marketing</span><span>inteligência artificial nas vendas</span><span>IA para criação de sites</span><span>criação de sites com IA</span><span>criação de site com inteligência artificial</span><span>site com IA</span><span>desenvolvimento de sites com IA</span><span>IA generativa</span><span>inteligência artificial generativa</span><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>OpenAI</span><span>Google AI</span><span>automação com ChatGPT</span><span>automação com Claude</span><span>ferramentas gratuitas de IA</span><span>novas ferramentas de IA</span><span>tendências de inteligência artificial</span><span>IA 2026</span>
+      </div><p style="font-size:.82rem;color:var(--muted);margin-top:8px">Distribuído em: title/description/H1-H3 de <code>/ia</code>, <code>knowsAbout</code> da home, marquee, FAQ. <b>Não</b> altera nenhuma keyword dos clusters acima.</p></div>
     </div>
     <div class="note">Próximo passo quando houver acesso: puxar volume + CPC + concorrência (Keyword Planner / DataForSEO), cruzar com Search Console (consultas reais) e Trends (sazonalidade), priorizar long-tail transacional e distribuir 1 cluster por página de serviço.</div>
   </section>
