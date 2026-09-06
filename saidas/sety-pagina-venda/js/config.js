@@ -7,11 +7,10 @@ window.SITE_CONFIG = {
   brand: "Sety Studio",
   baseUrl: "https://www.setystudio.com.br", // domínio oficial
 
-  // Canal comercial principal — todos os CTAs de contato usam isto.
-  // CTAs podem sobrescrever com data-wa="mensagem" pra contextualizar a origem.
+  // Canal comercial principal — todos os CTAs de contato usam isto
   whatsapp: "5519988090110", // só dígitos, com DDI+DDD
   whatsappMessage:
-    "Olá, vi o site da Sety Studio e quero entender como vocês podem estruturar meu negócio com site, tráfego e conversão.",
+    "Olá! Vim pela página da Sety Studio e quero uma estratégia de tráfego + site pro meu negócio.",
 
   instagram: "https://www.instagram.com/sety.studio/",
   behance: "https://www.behance.net/sevendsgnn",
@@ -45,37 +44,33 @@ window.TEAM_MEMBERS = [
   },
 ];
 
-/* OFERTA — 6 cards orientados a resultado. Renderizados em data-services. --- */
+/* Pilares — as frentes que a Sety Studio conecta numa mesma operação.
+   Só texto; renderizado no componente de cards existente. ---------------- */
 window.SERVICES = [
   {
     icon: "layers",
-    title: "Site / Landing page",
-    html: "Para empresas que precisam de uma presença digital profissional e preparada para gerar oportunidades.",
-  },
-  {
-    icon: "cart",
-    title: "Loja virtual",
-    html: "Para marcas que querem vender seus produtos online com uma estrutura profissional.",
+    title: "Site &amp; Loja Virtual",
+    html: "Experiências digitais profissionais criadas para apresentar sua marca e facilitar a venda.",
   },
   {
     icon: "star",
-    title: "Web design",
-    html: "Para empresas que precisam transformar uma experiência comum em uma experiência que transmite valor.",
+    title: "Web Design",
+    html: "Design estratégico para transmitir valor, confiança e diferenciação.",
   },
   {
     icon: "target",
-    title: "Tráfego pago",
-    html: "Para colocar sua oferta diante das pessoas certas e gerar demanda.",
+    title: "Tráfego Pago",
+    html: "Campanhas para colocar sua oferta na frente das pessoas certas.",
   },
   {
     icon: "route",
-    title: "Conversão",
-    html: "Para transformar mais visitas em contatos, leads e vendas.",
+    title: "Inteligência Artificial",
+    html: "Tecnologia para acelerar processos, aumentar produtividade e tornar sua operação mais inteligente.",
   },
   {
-    icon: "bolt",
-    title: "Inteligência artificial",
-    html: "Para automatizar processos, ganhar produtividade e construir uma operação mais inteligente.",
+    icon: "check",
+    title: "Vendas &amp; Conversão",
+    html: "Estratégias para transformar atenção, visitas e oportunidades em negócios.",
   },
 ];
 
@@ -117,32 +112,62 @@ window.RESULTS = [
 /* aliases legados */
 window.TESTIMONIALS = window.RESULTS;
 
-/* FAQ — perguntas comerciais e objetivas (acordeão). Primeira já aberta.
-   Mesmo texto no FAQPage JSON-LD do index.html — manter os dois em sincronia. */
+/* FAQ — perguntas comerciais reais (acordeão). Primeira já aberta.
+   Cobre os serviços (site, landing page, loja Nuvemshop/Shopify, e-commerce,
+   tráfego pago, Meta Ads, Google Ads, TikTok Ads, branding). Mesmo texto no
+   FAQPage JSON-LD do index.html — manter os dois em sincronia. */
 window.FAQ = [
   {
-    q: "Vocês fazem apenas sites?",
-    a: "Não. A Sety Studio trabalha com uma estrutura integrada de site, web design, tráfego pago, conversão e inteligência artificial.",
+    q: "Vocês criam sites e landing pages?",
+    a: "Sim. Sites institucionais, landing pages e páginas de vendas — em HTML/CSS/JS ou no builder que fizer sentido pro projeto. Cada seção é pensada pra tirar a dúvida, quebrar a objeção e levar ao próximo passo.",
   },
   {
-    q: "Vocês trabalham com lojas virtuais?",
-    a: "Sim. Desenvolvemos estruturas para lojas virtuais e podemos trabalhar com plataformas como Nuvemshop, Shopify e outras soluções conforme o projeto.",
+    q: "Vocês criam e personalizam loja Nuvemshop?",
+    a: "Sim. Criação e personalização de loja Nuvemshop: layout próprio, catálogo organizado, checkout simples e o tráfego direcionado pra quem já quer comprar.",
   },
   {
-    q: "Vocês fazem tráfego pago?",
-    a: "Sim. Trabalhamos com aquisição e campanhas em plataformas como Meta Ads, Google Ads e TikTok Ads, conforme a estratégia.",
+    q: "E loja Shopify?",
+    a: "Também. Criação e personalização de loja Shopify, tema ajustado à identidade da marca e integração com a operação de anúncios.",
   },
   {
-    q: "Vocês trabalham com inteligência artificial?",
-    a: "Sim. A IA pode ser aplicada ao projeto de diferentes formas, como automação, produtividade, conteúdo, análise e processos comerciais, dependendo da necessidade da empresa. Mais na página de <a href=\"/ia\">inteligência artificial</a>.",
+    q: "Vocês fazem e-commerce de verdade, não só o visual?",
+    a: "Sim. Estrutura de e-commerce pensada pra vender: arquitetura de catálogo, páginas de produto que convencem, prova social, frete claro e recuperação de carrinho — não só uma home bonita.",
   },
   {
-    q: "Quanto custa um projeto?",
-    a: "Depende da estrutura necessária. Após entender o negócio, o objetivo e o escopo, apresentamos uma proposta adequada ao projeto.",
+    q: "Vocês trabalham com tráfego pago?",
+    a: "É metade do serviço. Gestão de tráfego pago em Meta Ads (Facebook e Instagram) e Google Ads, com verba de teste, leitura de número e escala quando o resultado aparece.",
   },
   {
-    q: "Posso contratar apenas um serviço?",
-    a: "Sim. A empresa pode contratar apenas uma frente ou construir uma operação integrada.",
+    q: "Fazem TikTok Ads e Pinterest Ads também?",
+    a: "Quando o público do negócio está nesses canais, sim. Normalmente entram depois que Meta Ads e Google Ads já estão estáveis e dando retorno.",
+  },
+  {
+    q: "Vocês fazem branding e identidade visual?",
+    a: "Fazemos identidade visual, logotipo e direção de marca quando o projeto pede — em geral junto com o site, pra tudo falar a mesma língua.",
+  },
+  {
+    q: "Dá pra contratar site e tráfego juntos?",
+    a: "É como a gente prefere trabalhar. Site e anúncio na mesma mesa: um atrai as pessoas certas, o outro transforma em contato — sem repasse entre fornecedores e sem uma ponta esperando a outra.",
+  },
+  {
+    q: "Já tenho site / já rodo anúncio. Vocês aproveitam?",
+    a: "A gente mede o que já existe antes de mexer. Se o site dá pra ajustar, ajusta; se não foi feito pra vender, vale refazer e você entra na conversa sabendo o porquê. Na conta de anúncio, assumimos a estrutura atual e preservamos o histórico de aprendizado.",
+  },
+  {
+    q: "Quanto tempo até a estrutura estar no ar?",
+    a: "Uma landing page fica pronta em poucos dias; um site completo, em cerca de duas a três semanas, dependendo do volume de conteúdo. As campanhas sobem assim que a página que recebe o tráfego está publicada.",
+  },
+  {
+    q: "Como funciona o investimento?",
+    a: "Tem o valor do projeto (site / landing / loja) e a gestão mensal do tráfego, cobrada à parte da verba de anúncio — que você define e paga direto pra plataforma. Na conversa a gente monta o escopo e o número fecha ali, sem surpresa depois.",
+  },
+  {
+    q: "Não sei por onde começar. Isso é problema?",
+    a: "É o cenário mais comum. A conversa inicial serve pra entender seu negócio, sua oferta e seu objetivo. O plano da estrutura — o que fazer primeiro e o que pode esperar — sai daí.",
+  },
+  {
+    q: "Vocês usam inteligência artificial nos projetos?",
+    a: "Usamos. IA acelera copy, estrutura, criativos e análise de campanha — sempre com uma pessoa decidindo o que entra. E quando faz sentido, montamos automação com IA e agente de atendimento no WhatsApp junto com o site e o tráfego. Detalhe na página de <a href=\"/ia\">inteligência artificial</a>.",
   },
 ];
 /* alias legado */
