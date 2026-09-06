@@ -515,8 +515,9 @@ body.mnav-open .mnav__panel a:nth-child(5){transition-delay:.27s}
    ========================================================================= */
 .sec--servicos{padding-block:var(--sec-y)}
 .sec--servicos .sec__title--center{max-width:26ch;margin-bottom:var(--block-gap)}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,26px)}
+.svc-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(18px,2vw,26px)}
 .svc-card{
+  flex:0 1 clamp(260px,30%,340px);
   position:relative;background:var(--glass-bg);border:1px solid var(--glass-brd);border-radius:var(--r-lg);
   -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
   box-shadow:var(--shadow-sm);
@@ -855,8 +856,8 @@ a.proj-card:focus-visible{outline:2px solid var(--orange);outline-offset:4px;bor
   .manifesto{order:1;max-width:none}
   .rings--bg{width:150%;opacity:.5;transform:translate(-30%,-50%)}
   .dep__head{flex-direction:column;align-items:flex-start}
-  .svc-grid{grid-template-columns:1fr;max-width:440px;margin-inline:auto}
-  .svc-card{padding-top:64px;padding-bottom:24px}
+  .svc-grid{max-width:440px;margin-inline:auto}
+  .svc-card{flex-basis:100%;padding-top:64px;padding-bottom:24px}
   .svc-card h3{min-height:0}
   .svc-card__ico{width:72px}
   .dep-grid{grid-template-columns:repeat(2,1fr);gap:16px}
