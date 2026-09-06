@@ -68,9 +68,15 @@
   };
   function bindCtas(root) {
     $$("[data-cta]", root).forEach(function (el) {
-      var d = DEST[el.getAttribute("data-cta")];
+      var kind = el.getAttribute("data-cta");
+      var d = DEST[kind];
       if (!d) return;
-      el.setAttribute("href", d.href);
+      var href = d.href;
+      // CTA de WhatsApp pode contextualizar a origem via data-wa="mensagem"
+      if (kind === "whatsapp" && el.getAttribute("data-wa")) {
+        href = "https://wa.me/" + (CFG.whatsapp || "") + "?text=" + encodeURIComponent(el.getAttribute("data-wa"));
+      }
+      el.setAttribute("href", href);
       if (d.ext) { el.setAttribute("target", "_blank"); el.setAttribute("rel", "noopener"); }
     });
   }
@@ -94,6 +100,8 @@
     arrow: '<svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     be: '<svg viewBox="0 0 24 24"><path d="M3 6h6a3.2 3.2 0 010 6.4H3Zm0 6.4h6.6a3.3 3.3 0 010 6.6H3ZM15 9h6M15 15c.3-2.6 2.2-4 4.2-4S23 12.4 23 15Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     ig: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.4" fill="currentColor"/></svg>',
+    bolt: '<svg viewBox="0 0 24 24"><path d="M13 2 3 14h7l-1 8 11-13h-7l0-7Z" fill="currentColor"/></svg>',
+    cart: '<svg viewBox="0 0 24 24"><path d="M3 4h2l2.4 12.3a2 2 0 002 1.7h8.7a2 2 0 002-1.6L23 8H6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10" cy="21" r="1.4" fill="currentColor"/><circle cx="18" cy="21" r="1.4" fill="currentColor"/></svg>',
   };
   function h(html) { var t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; }
 
