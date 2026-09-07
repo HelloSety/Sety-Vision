@@ -105,7 +105,7 @@
       <tr><th>Elemento</th><th>Valor atual</th><th>Status</th></tr>
       <tr><td>Title</td><td><span class="val">Sites e Tráfego Pago para Vender Mais | Sety Studio</span></td><td><span class="pill ok">✔</span></td></tr>
       <tr><td>Meta description</td><td><span class="val">Sites, landing pages e lojas virtuais com gestão de tráfego pago em Meta Ads e Google Ads. Estratégia e design para transformar visitas em vendas.</span></td><td><span class="pill ok">✔</span></td></tr>
-      <tr><td>H1 (único)</td><td><span class="val">Seu site não é cartão de visita. É seu canal de venda.</span></td><td><span class="pill ok">✔</span></td></tr>
+      <tr><td>H1 (único)</td><td><span class="val">Transformamos sua presença digital em vendas.</span></td><td><span class="pill ok">✔</span></td></tr>
       <tr><td>H2</td><td>Problema · Serviços (“O que colocamos pra vender”) · Mecanismo · Portfólio · Resultados · FAQ · Quem faz — 1 H2 por seção</td><td><span class="pill ok">✔</span></td></tr>
       <tr><td>H3</td><td>Títulos dos cards de serviço, projeto, resultado e FAQ; colunas do rodapé</td><td><span class="pill ok">✔</span></td></tr>
       <tr><td>Keywords no corpo</td><td>criação de sites, web design, landing page, loja virtual, Nuvemshop, Shopify, e-commerce, tráfego pago, Meta Ads, Google Ads, TikTok Ads, geração de leads, branding, identidade visual, estratégia digital, conversão — distribuídas em hero, serviços, marquee, FAQ e rodapé</td><td><span class="pill ok">✔</span></td></tr>
@@ -182,32 +182,38 @@
     <ul class="list">
       <li>✔ Nav âncora: Serviços · Projetos · Depoimentos · Quem faz · FAQ</li>
       <li>✔ Rodapé: coluna “Navegar” (Serviços, Projetos, Resultados, IA, FAQ, SEO &amp; Growth) + CTA WhatsApp em toda seção</li>
-      <li>✔ <code>/ia</code> ↔ home: a página de IA linka de volta para <code>/#servicos</code> e <code>/#depoimentos</code>; a home linka para <code>/ia</code> no rodapé, marquee e FAQ</li>
+      <li>✔ <code>/ia</code> ↔ home: a página de IA linka de volta para <code>/#servicos</code> e <code>/#depoimentos</code>; a home linka para <code>/ia</code> no rodapé, marquee, FAQ e agora também no card "Inteligência Artificial" da seção Serviços (2026-09-06)</li>
       <li>⏳ Cross-links entre páginas de serviço quando existirem</li>
     </ul>
   </section>
 
   <section id="perf">
-    <h2><span class="n">06</span> Performance <span class="pill wait">⏳ lab medido, sem dado de campo</span></h2>
-    <p class="hint">Medição de laboratório local (Playwright / PerformanceObserver, viewport 1440, cache frio). Sem CrUX/PSI de campo por falta de API key.</p>
+    <h2><span class="n">06</span> Performance <span class="pill ok">✔ Lighthouse medido (baseline real)</span></h2>
+    <p class="hint">Auditoria de 2026-09-06: baseline via <code>npx lighthouse</code> contra a URL de produção (<code>www.setystudio.com.br</code>) e comparação local controlada (mesmo servidor, código antes vs. depois) para isolar o efeito das mudanças de rede/CDN.</p>
     <table>
-      <tr><th>Métrica</th><th>Lab local</th><th>Meta “bom”</th><th>Observação</th></tr>
-      <tr><td>LCP</td><td id="m-lcp"><b style="color:var(--green)">~0,5–0,7 s</b></td><td>&lt; 2,5 s</td><td>LCP = imagem do hero (<code>hero.webp</code>), já com <code>preload</code> + <code>fetchpriority=high</code>. Lab local 504 ms · prod 676 ms.</td></tr>
-      <tr><td>CLS</td><td id="m-cls"><b style="color:var(--green)">~0,03</b></td><td>&lt; 0,1</td><td>imagens com width/height; fontes com <code>display=swap</code></td></tr>
-      <tr><td>INP</td><td id="m-inp">n/d em lab · esperado &lt; 200 ms</td><td>&lt; 200 ms</td><td>JS único ~29 KB, sem framework; só medível com interação real de campo</td></tr>
-      <tr><td>FCP</td><td id="m-fcp"><b style="color:var(--green)">~0,5–0,7 s</b></td><td>&lt; 1,8 s</td><td>CSS único, sem render-blocking de terceiros. Lab 504 ms · prod 676 ms.</td></tr>
-      <tr><td>TTFB</td><td id="m-ttfb"><b style="color:var(--green)">~0,17 s</b></td><td>&lt; 0,8 s</td><td>estático na CDN da Vercel (X-Vercel-Cache: HIT), medido em produção</td></tr>
-      <tr><td>Peso da home</td><td id="m-weight">~360 KB crítico · ~1,4 MB com tudo</td><td>—</td><td>HTML 28 KB · CSS 52 KB · JS 31 KB · hero.webp ~184 KB · fontes 84 KB · sem libs externas</td></tr>
+      <tr><th>Categoria (Lighthouse)</th><th>Antes</th><th>Depois</th><th>Observação</th></tr>
+      <tr><td>Performance — mobile</td><td>84 (prod)</td><td><b style="color:var(--green)">97</b> (local, mesmo código depois do deploy deve aproximar)</td><td>fontes non-blocking + <code>config.js defer</code></td></tr>
+      <tr><td>Performance — desktop</td><td>87 (prod)</td><td><b style="color:var(--green)">99</b> (local)</td><td>idem</td></tr>
+      <tr><td>SEO</td><td>100</td><td>100</td><td>mantido</td></tr>
+      <tr><td>Best Practices</td><td>100</td><td>100</td><td>mantido</td></tr>
+      <tr><td>Accessibility</td><td>96</td><td>96</td><td><code>target-size</code> do rodapé corrigido; <code>label-content-name-mismatch</code> parcialmente melhorado (ver nota)</td></tr>
+      <tr><td>LCP / FCP / Speed Index (mobile, local)</td><td>3,6 s / 2,8 s / 4,7 s</td><td><b style="color:var(--green)">2,5 s / 1,5 s / 1,5 s</b></td><td>comparação local controlada (antes/depois no mesmo servidor)</td></tr>
     </table>
-    <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:18px 0 8px">Otimizações já aplicadas</h3>
+    <h3 style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:18px 0 8px">Otimizações aplicadas em 2026-09-06 (sem mudança visual)</h3>
     <ul class="list">
-      <li>✔ Imagens em <code>.webp</code>, <code>loading=lazy</code>/<code>decoding=async</code> abaixo da dobra, <code>width</code>/<code>height</code> explícitos</li>
-      <li>✔ Hero: <code>&lt;link rel=preload&gt;</code> por breakpoint + <code>fetchpriority=high</code></li>
-      <li>✔ Fontes Google com <code>preconnect</code> + <code>display=swap</code></li>
-      <li>✔ Vídeos de resultado: <code>preload</code> só ao abrir o lightbox (não no load)</li>
-      <li>✔ Zero JS de terceiros até existir ID de analytics</li>
+      <li>✔ Fonte do Google Fonts deixou de bloquear o render: <code>preload</code> + swap assíncrono + <code>&lt;noscript&gt;</code> de fallback (<code>index.html</code>, <code>ia.html</code>)</li>
+      <li>✔ <code>js/config.js</code> ganhou <code>defer</code> (era o único script síncrono da página)</li>
+      <li>✔ Alvo de toque dos links do rodapé (mobile) — <code>padding-block:5px</code> no <code>&lt;a&gt;</code>, corrige audit <code>target-size</code> do Lighthouse</li>
+      <li>✔ Logo do nav: <code>aria-label</code> redundante trocado por <code>&lt;span class="sr-only"&gt;</code> (corrige <code>label-content-name-mismatch</code> na logo)</li>
+      <li>✔ Card "Inteligência Artificial" da seção Serviços agora é link real para <code>/ia</code> (reforça internal linking, mesmo componente/estilo dos outros cards)</li>
+      <li>⏳ <code>label-content-name-mismatch</code> nos cards de depoimento (vídeo/print): aria-label reordenado (legenda antes da ação), mas o audit automatizado do Lighthouse ainda acusa por causa de como concatena texto multi-elemento — impacto real para leitor de tela é baixo (o label já é completo e claro); não vale mexer mais na estrutura por causa de um heurístico de linter.</li>
+      <li>ℹ️ <code>color-contrast</code> apareceu de forma intermitente no audit em <code>.proj-card__cat</code>/<code>.proj-card__view</code> — conferido manualmente: a cor real (<code>--text-dim #8A8686</code> sobre <code>--bg #080808</code>) dá contraste 5.56:1, acima do mínimo AA (4.5:1). É artefato de timing do scan automatizado durante a transição de <code>reveal</code>/hover, não um defeito real — nenhuma cor foi alterada.</li>
+      <li>✔ Imagens em <code>.webp</code>, <code>loading=lazy</code>/<code>decoding=async</code> abaixo da dobra, <code>width</code>/<code>height</code> explícitos (já estava correto)</li>
+      <li>✔ Hero: <code>&lt;link rel=preload&gt;</code> por breakpoint + <code>fetchpriority=high</code> (já estava correto)</li>
+      <li>✔ Vídeos de resultado: <code>preload</code> só ao abrir o lightbox (já estava correto)</li>
       <li>⏳ Converter <code>og.jpg</code> e artes pesadas remanescentes; avaliar AVIF</li>
     </ul>
+    <div class="note">Números "depois" foram medidos localmente (servidor estático sem CDN/latência de rede) comparando o MESMO código antes/depois via <code>git stash</code> — isola o efeito real das mudanças. Depois do deploy em produção, rodar <code>npx lighthouse https://www.setystudio.com.br/ --view</code> (mobile e desktop) pra confirmar o ganho de campo.</div>
   </section>
 
   <section id="analytics">

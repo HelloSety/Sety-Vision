@@ -66,6 +66,7 @@ window.SERVICES = [
     icon: "route",
     title: "Inteligência Artificial",
     html: "Tecnologia para acelerar processos, aumentar produtividade e tornar sua operação mais inteligente.",
+    url: "/ia",
   },
   {
     icon: "check",

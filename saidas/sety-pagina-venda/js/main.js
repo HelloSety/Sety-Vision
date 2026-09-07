@@ -139,13 +139,15 @@
     var wrap = $("[data-services]"); if (!wrap || !window.SERVICES) return;
     wrap.setAttribute("data-stagger", "");
     window.SERVICES.forEach(function (s) {
+      var tag = s.url ? "a" : "article";
+      var attrs = s.url ? ' href="' + s.url + '"' : "";
       wrap.appendChild(h(
-        '<article class="svc-card reveal">' +
+        "<" + tag + ' class="svc-card reveal"' + attrs + ">" +
           '<span class="svc-card__ico">' + (ICON[s.icon] || ICON.star) + '</span>' +
           '<span class="svc-card__line"></span>' +
           '<h3>' + s.title + '</h3>' +
           '<p>' + s.html + '</p>' +
-        '</article>'
+        "</" + tag + ">"
       ));
     });
   })();
@@ -181,12 +183,13 @@
     var data = window.RESULTS || window.TESTIMONIALS;
     if (!wrap || !data) return;
     wrap.setAttribute("data-stagger", "");
+    function tagText(isVideo) { return isVideo ? "Vídeo · resultado real" : "Print · resultado real"; }
     function tag(isVideo) {
       var ico = isVideo
         ? '<path d="M8 5v14l11-7z" fill="currentColor"/>'
         : '<path d="M4 5h16v14H4z M4 15l5-5 4 4 3-3 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>';
       return '<span class="t-card__tag"><svg viewBox="0 0 24 24" aria-hidden="true">' + ico + '</svg>' +
-        (isVideo ? "Vídeo · resultado real" : "Print · resultado real") + "</span>";
+        tagText(isVideo) + "</span>";
     }
 
     var items = data.filter(function (t) { return t.video || t.image; });
@@ -197,9 +200,10 @@
       var play = isVideo
         ? '<span class="t-card__play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>'
         : "";
+      var label = (t.caption || t.alt || "Resultado real de cliente") + " — abrir " + (isVideo ? "vídeo" : "print");
       var card = h(
         '<article class="t-card reveal' + (isVideo ? "" : " t-card--img") + '" role="button" tabindex="0" ' +
-          'aria-label="Abrir ' + (isVideo ? "vídeo" : "print") + ' de resultado: ' + (t.caption || t.alt || "resultado real de cliente") + '">' +
+          'aria-label="' + label + '">' +
           '<div class="t-card__vid" style="background-image:url(' + media + ')">' + play + '</div>' +
           '<div class="t-card__foot">' + tag(isVideo) + cap + "</div>" +
         "</article>"

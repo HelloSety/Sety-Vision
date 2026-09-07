@@ -34,7 +34,8 @@
 <link rel="preload" as="image" href="assets/hero.webp?v=22" media="(min-width:901px) and (max-width:1649px)" fetchpriority="high" />
 <link rel="preload" as="image" href="assets/hero-desktop.webp?v=1" media="(min-width:1650px)" fetchpriority="high" />
 <link rel="preload" as="image" href="assets/hero-mobile.webp?v=20" media="(max-width:900px)" fetchpriority="high" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" /></noscript>
 <link rel="stylesheet" href="css/styles.css?v=43" />
 
 <!-- ================= TRACKING (carrega só se houver ID em js/config.js) ======
@@ -128,9 +129,10 @@
 <!-- ===================== NAVBAR (barra laranja — fiel ao Figma) ===================== -->
 <header class="nav" id="topo" data-nav>
   <div class="nav__inner">
-    <a class="nav__logo" href="#topo" aria-label="Sety Studio — início">
+    <a class="nav__logo" href="#topo">
       <svg class="nav__star" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 8L56 40.5 88 46.5 56 52.5 50 92 44 52.5 12 46.5 44 40.5Z" fill="currentColor"/></svg>
       <span class="nav__wordmark">SETY<b>STUDIO</b></span>
+      <span class="sr-only"> — início</span>
     </a>
 
     <nav class="nav__links" aria-label="Navegação principal">
@@ -451,7 +453,7 @@
   <i class="btn__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></i>
 </a>
 
-<script src="js/config.js?v=42"></script>
+<script src="js/config.js?v=42" defer></script>
 <script src="js/main.js?v=41" defer></script>
 </body>
 </html>
