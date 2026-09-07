@@ -1237,3 +1237,31 @@ body.is-locked { overflow: hidden; }
 /* --- 25.4 Collection facet loading (no layout shift — opacity only) --- */
 .is-facet-loading { opacity: 0.5; pointer-events: none; transition: opacity 150ms linear; }
 @media (prefers-reduced-motion: reduce) { .is-facet-loading { transition: none; } }
+
+/* ============================================================
+   26. VELLARIE V7 — split sections: balance image / text height
+   Kills the empty column next to short text and makes images
+   fill their half instead of floating.
+   ============================================================ */
+
+/* <picture> is inline by default, so height:100% on the <img> resolves to auto
+   and the image floats at its intrinsic aspect. display:contents removes the
+   wrapper from the box tree so the <img> fills its real container. */
+picture { display: contents; }
+
+@media (min-width: 900px) {
+  /* Campaign feature — image fills the row, text vertically centred */
+  .cfeat { align-items: stretch; }
+  .cfeat__media { aspect-ratio: auto; height: 100%; min-height: 420px; max-height: 600px; }
+  .cfeat__body { align-self: center; padding-block: 1rem; }
+
+  /* Editorial split — cap the media so the row isn't dragged tall */
+  .editorial__media { min-height: 420px; max-height: 620px; }
+}
+
+@media (min-width: 800px) {
+  /* Promo split — image column fills its half */
+  .promo--split { align-items: stretch; }
+  .promo--split .promo__bg { height: 100%; min-height: 100%; }
+  .promo--split .promo__inner { align-content: center; }
+}

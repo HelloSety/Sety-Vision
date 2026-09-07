@@ -6,6 +6,7 @@
     assign has_content = true
   endif
 -%}
+{%- if has_content or request.design_mode -%}
 <section class="section{% unless has_content %} section--tight{% endunless %} {{ section.settings.color_scheme }}" data-testimonials>
   <div class="container">
     {%- if section.settings.heading != blank -%}
@@ -52,6 +53,7 @@
     {%- endif -%}
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

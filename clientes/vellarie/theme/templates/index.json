@@ -139,7 +139,7 @@
       "type": "promo-banner",
       "settings": {
         "layout": "split",
-        "default_asset": "hero-b",
+        "default_asset": "grooming",
         "eyebrow": "The kit",
         "heading": "Build your grooming routine",
         "text": "Pair a shaver, a styler and a recovery tool — everything you reach for, in one order.",
