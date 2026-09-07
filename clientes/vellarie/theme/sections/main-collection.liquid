@@ -22,8 +22,9 @@
   {%- else -%}
     <div class="container">
       <div class="collection-head" data-reveal>
-        <h1 class="h1">{{ collection.title }}</h1>
+        <h1 class="h1 collection-head__title">{{ collection.title }}</h1>
         {%- if collection.description != blank -%}<div class="rte collection-head__desc">{{ collection.description }}</div>{%- endif -%}
+        <p class="collection-head__count">{{ 'sections.collection_list.count' | t: count: collection.products_count }}</p>
       </div>
     </div>
   {%- endif -%}

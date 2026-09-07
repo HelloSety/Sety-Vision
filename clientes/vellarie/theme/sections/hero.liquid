@@ -72,14 +72,21 @@
 
       <div class="hero__inner">
         <div class="hero__content" data-reveal-stagger>
+          {%- comment -%} Only the first slide carries the page <h1>; later slides use a paragraph. {%- endcomment -%}
           {%- if baked -%}
-            <h1 class="visually-hidden">{{ block.settings.heading | default: shop.name }}</h1>
+            {%- if is_first -%}
+              <h1 class="visually-hidden">{{ block.settings.heading | default: shop.name }}</h1>
+            {%- else -%}
+              <p class="visually-hidden">{{ block.settings.heading | default: shop.name }}</p>
+            {%- endif -%}
             {%- if block.settings.cta_label != blank -%}
               <a class="{{ cta_class }} hero__cta-float" href="{{ block.settings.cta_link }}">{{ block.settings.cta_label }}</a>
             {%- endif -%}
           {%- else -%}
             {%- if block.settings.eyebrow != blank -%}<p class="eyebrow hero__eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
-            {%- if block.settings.heading != blank -%}<h1 class="hero__title">{{ block.settings.heading }}</h1>{%- endif -%}
+            {%- if block.settings.heading != blank -%}
+              {%- if is_first -%}<h1 class="hero__title">{{ block.settings.heading }}</h1>{%- else -%}<p class="hero__title">{{ block.settings.heading }}</p>{%- endif -%}
+            {%- endif -%}
             {%- if block.settings.text != blank -%}<p class="hero__text">{{ block.settings.text }}</p>{%- endif -%}
             {%- if block.settings.cta_label != blank or block.settings.cta2_label != blank -%}
               <div class="hero__ctas">

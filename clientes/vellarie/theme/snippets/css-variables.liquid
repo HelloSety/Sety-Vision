@@ -83,6 +83,8 @@
     --color-accent-alt: {{ settings.color_accent_alt | default: settings.color_accent }};
     --color-accent-rgb: {{ settings.color_accent_dark | default: settings.color_accent | color_to_rgb | remove: 'rgb(' | remove: ')' }};
     --color-sale: {{ settings.color_sale }};
+    --color-success: #2b7a3d;
+    --color-error: #b3261e;
 
     --font-heading: {{ heading_stack }};
     --font-body: {{ body_stack }};
