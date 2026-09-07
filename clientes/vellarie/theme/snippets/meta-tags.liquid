@@ -27,9 +27,11 @@
 
 {%- if request.page_type == 'product' and product -%}
   {% render 'structured-data', type: 'product', product: product %}
+  {% render 'structured-data', type: 'breadcrumb', collection: product.collections.first, product: product %}
 {%- elsif request.page_type == 'index' -%}
   {% render 'structured-data', type: 'organization' %}
   {% render 'structured-data', type: 'website' %}
-{%- elsif request.page_type == 'collection' and collection -%}
+{%- elsif request.page_type == 'collection' and collection and collection.handle -%}
   {% render 'structured-data', type: 'collection', collection: collection %}
+  {% render 'structured-data', type: 'breadcrumb', collection: collection %}
 {%- endif -%}

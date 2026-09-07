@@ -1,0 +1,60 @@
+{%- comment -%}
+  Complementary / "pairs well with" products for the PDP.
+  Uses Shopify's native Product Recommendations API with intent=complementary
+  (configured by the merchant in Search & Discovery). No app required.
+  Renders nothing when the merchant has no complementary products set.
+{%- endcomment -%}
+{%- liquid
+  assign limit = section.settings.products_to_show
+-%}
+{%- if section.settings.enable and recommendations.performed and recommendations.products_count > 0 -%}
+  <section class="section {{ section.settings.color_scheme }}" data-complementary>
+    <div class="container">
+      <div class="section-head" data-reveal><h2 class="section-head__title">{{ section.settings.heading }}</h2></div>
+      <div class="grid--products" data-reveal-stagger>
+        {%- for product in recommendations.products limit: limit -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- elsif section.settings.enable and recommendations.performed == false -%}
+  <section class="section {{ section.settings.color_scheme }}" data-complementary
+    data-rec-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ limit }}&intent=complementary">
+    <div class="container"><div class="section-head"><h2 class="section-head__title">{{ section.settings.heading }}</h2></div></div>
+    <script>
+      (function () {
+        var s = document.currentScript.closest('section');
+        fetch(s.dataset.recUrl).then(function (r) { return r.text(); }).then(function (h) {
+          var doc = new DOMParser().parseFromString(h, 'text/html');
+          var grid = doc.querySelector('.grid--products');
+          if (grid && grid.children.length) {
+            s.querySelector('.container').innerHTML = doc.querySelector('.container').innerHTML;
+            document.dispatchEvent(new CustomEvent('shopify:section:load', { detail: {}, bubbles: true }));
+            if (s.dispatchEvent) s.dispatchEvent(new Event('shopify:section:load', { bubbles: true }));
+          } else {
+            s.remove();
+          }
+        }).catch(function () { s.remove(); });
+      })();
+    </script>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Complementary products",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "enable", "label": "Enable", "default": true },
+    { "type": "paragraph", "content": "Shows products you set as complementary in Search & Discovery. Hidden if none are set." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Pairs well with" },
+    { "type": "range", "id": "products_to_show", "min": 2, "max": 8, "step": 1, "label": "Products to show", "default": 4 },
+    { "type": "select", "id": "color_scheme", "label": "t:settings.color_scheme.label", "options": [
+      { "value": "", "label": "t:settings.color_scheme.light" },
+      { "value": "color-surface", "label": "t:settings.color_scheme.surface" }
+    ], "default": "" }
+  ],
+  "presets": [ { "name": "Complementary products" } ]
+}
+{% endschema %}

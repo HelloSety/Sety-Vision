@@ -1,0 +1,83 @@
+{%- comment -%}
+  FAQ — accordion, configurable in the Theme Editor.
+  Renders nothing on the storefront until the merchant adds question blocks.
+  Emits FAQPage structured data only when real Q&A exist.
+{%- endcomment -%}
+{%- liquid
+  assign has_items = false
+  if section.blocks.size > 0
+    assign has_items = true
+  endif
+-%}
+{%- if has_items or request.design_mode -%}
+  <section class="section {{ section.settings.color_scheme }}" data-faq>
+    <div class="container faq-wrap">
+      {%- if section.settings.heading != blank -%}
+        <div class="section-head" data-reveal><h2 class="section-head__title">{{ section.settings.heading }}</h2></div>
+      {%- endif -%}
+
+      {%- if has_items -%}
+        <div class="accordion faq" data-accordion>
+          {%- for block in section.blocks -%}
+            <div class="accordion__item" {{ block.shopify_attributes }}>
+              <button class="accordion__trigger" aria-expanded="false">
+                <span>{{ block.settings.question }}</span>{% render 'icon', name: 'plus', class: 'accordion__icon' %}
+              </button>
+              <div class="accordion__panel">
+                <div class="accordion__panel-inner rte">{{ block.settings.answer }}</div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <p class="text-muted">Add question blocks to publish your FAQ.</p>
+      {%- endif -%}
+    </div>
+  </section>
+
+  {%- if has_items -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for block in section.blocks -%}
+        {
+          "@type": "Question",
+          "name": {{ block.settings.question | json }},
+          "acceptedAnswer": { "@type": "Answer", "text": {{ block.settings.answer | strip_html | strip_newlines | json }} }
+        }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    }
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Frequently asked questions" },
+    { "type": "paragraph", "content": "Add a block per question. Empty = hidden on the storefront." },
+    { "type": "select", "id": "color_scheme", "label": "t:settings.color_scheme.label", "options": [
+      { "value": "", "label": "t:settings.color_scheme.light" },
+      { "value": "color-surface", "label": "t:settings.color_scheme.surface" },
+      { "value": "color-dark", "label": "t:settings.color_scheme.dark" }
+    ], "default": "" }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 24,
+  "presets": [ { "name": "FAQ" } ]
+}
+{% endschema %}

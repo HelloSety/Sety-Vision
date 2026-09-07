@@ -1189,3 +1189,43 @@ body.is-locked { overflow: hidden; }
   font-size: 0.78rem; border-radius: 999px; transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
 .search-suggest__row a:hover { background: var(--color-text); color: var(--color-bg); }
+
+/* ============================================================
+   25. VELLARIE V7 — toast, FAQ, breadcrumb, facet loading
+   ============================================================ */
+
+/* --- 25.1 Toast (non-blocking error/notice, replaces alert) --- */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 14px);
+  z-index: 400; max-width: min(90vw, 30rem);
+  background: var(--color-text); color: var(--color-bg);
+  padding: 0.8rem 1.2rem; font-size: 0.82rem; letter-spacing: 0.01em; line-height: 1.4;
+  border-radius: var(--radius); box-shadow: var(--shadow-2);
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.toast.is-in { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) {
+  .toast { transition: opacity 120ms linear; transform: translate(-50%, 0); }
+}
+
+/* --- 25.2 FAQ --- */
+.faq-wrap { max-width: 760px; }
+.faq .accordion__item { border-bottom: 1px solid var(--color-line); }
+.faq .accordion__trigger { padding-block: 1.15rem; font-weight: 500; }
+.faq .accordion__panel-inner { padding-bottom: 1.15rem; color: var(--color-text-muted); line-height: 1.6; }
+
+/* --- 25.3 Breadcrumb --- */
+.breadcrumb {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;
+  padding-block: 1.15rem 0; font-size: 0.68rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--color-text-muted);
+}
+.breadcrumb a { color: inherit; }
+.breadcrumb a:hover { color: var(--color-text); }
+.breadcrumb span[aria-current] { color: var(--color-text); }
+.color-dark .breadcrumb a:hover, .color-dark .breadcrumb span[aria-current] { color: var(--color-text-dark); }
+
+/* --- 25.4 Collection facet loading (no layout shift — opacity only) --- */
+.is-facet-loading { opacity: 0.5; pointer-events: none; transition: opacity 150ms linear; }
+@media (prefers-reduced-motion: reduce) { .is-facet-loading { transition: none; } }

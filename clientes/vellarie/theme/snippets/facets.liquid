@@ -39,6 +39,7 @@
       <input type="hidden" name="{{ value.param_name }}" value="{{ value.value }}">
     {%- endfor -%}
   {%- endfor -%}
+  <noscript><button type="submit" class="btn btn--sm">{{ 'products.facets.apply' | t }}</button></noscript>
 </form>
 
 {%- if enable_filter and results.filters.size > 0 -%}
@@ -97,11 +98,7 @@
   {%- endif -%}
 {%- endif -%}
 
-<script>
-(function(){
-  document.querySelectorAll('[data-auto-submit]').forEach(function(s){ s.addEventListener('change', function(){ s.form.submit(); }); });
-  var d=document.querySelector('[data-facets-drawer]');
-  document.querySelectorAll('[data-facets-open]').forEach(function(b){ b.addEventListener('click', function(){ d && d.classList.add('is-open'); document.body.classList.add('is-locked'); }); });
-  document.querySelectorAll('[data-facets-close]').forEach(function(b){ b.addEventListener('click', function(){ d && d.classList.remove('is-open'); document.body.classList.remove('is-locked'); }); });
-})();
-</script>
+<noscript>
+  <style>.facets--drawer{position:static;width:auto;transform:none;padding:0}.collection-toolbar [data-facets-open]{display:none}</style>
+</noscript>
+{%- comment -%} Behaviour (drawer + sort + AJAX filtering) lives in assets/theme.js → initCollectionFacets. Without JS the filter form still submits and sort is a plain form control. {%- endcomment -%}

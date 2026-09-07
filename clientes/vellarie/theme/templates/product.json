@@ -17,6 +17,10 @@
       },
       "block_order": ["title", "price", "rating", "subtitle", "variants", "buy", "trust", "payments", "acc_details", "acc_shipping", "acc_returns"]
     },
+    "complementary": {
+      "type": "complementary-products",
+      "settings": { "enable": true, "heading": "Pairs well with", "products_to_show": 4, "color_scheme": "" }
+    },
     "related": {
       "type": "related-products",
       "settings": { "enable": true, "heading": "You may also like", "products_to_show": 4, "color_scheme": "color-surface" }
@@ -26,5 +30,5 @@
       "settings": { "heading": "Recently viewed", "products_to_show": 4, "color_scheme": "" }
     }
   },
-  "order": ["main", "related", "recently-viewed"]
+  "order": ["main", "complementary", "related", "recently-viewed"]
 }

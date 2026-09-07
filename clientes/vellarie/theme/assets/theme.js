@@ -33,6 +33,22 @@
   on(scrim, 'click', function () { if (scrimClose) scrimClose(); });
   on(document, 'keydown', function (e) { if (e.key === 'Escape' && scrimClose) scrimClose(); });
 
+  /* ---------- non-blocking toast (design-consistent error/notice) ---------- */
+  var toastEl = null, toastTimer = null;
+  function toast(msg) {
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.className = 'toast';
+      toastEl.setAttribute('role', 'status');
+      toastEl.setAttribute('aria-live', 'polite');
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = msg;
+    clearTimeout(toastTimer);
+    requestAnimationFrame(function () { toastEl.classList.add('is-in'); });
+    toastTimer = setTimeout(function () { toastEl.classList.remove('is-in'); }, 3400);
+  }
+
   function money(cents) {
     try {
       return (cents / 100).toLocaleString(document.documentElement.lang || 'en', {
@@ -269,7 +285,7 @@
     }
 
     function flash(btn, msg) {
-      if (!btn) { alert(msg); return; }
+      if (!btn) { toast(msg); return; }
       var lbl = $('.btn__label', btn) || btn;
       var prev = lbl.textContent;
       lbl.textContent = msg; btn.classList.add('is-error');
@@ -646,6 +662,86 @@
   }
 
   /* ============================================================
+     15. COLLECTION FACETS — drawer + AJAX sort/filter/paginate
+     Progressive enhancement: without JS the filter form submits
+     and pagination/facet links navigate normally.
+     ============================================================ */
+  function initCollectionFacets() {
+    var container = $('[data-collection-results]');
+    if (!container || container.dataset.facetsBound) return;
+    container.dataset.facetsBound = '1';
+    var sectionId = container.getAttribute('data-section-id');
+
+    function currentSort() {
+      return new URLSearchParams(location.search).get('sort_by');
+    }
+    function formUrl(f) {
+      var p = new URLSearchParams();
+      new FormData(f).forEach(function (v, k) { if (v !== '' && v != null) p.append(k, v); });
+      if (currentSort() && !p.has('sort_by')) p.set('sort_by', currentSort());
+      var q = p.toString();
+      return location.pathname + (q ? '?' + q : '');
+    }
+    function dim(state) {
+      var g = $('[data-collection-grid]', container);
+      if (g) g.classList.toggle('is-facet-loading', state);
+    }
+    function nav(url, replace) {
+      dim(true);
+      var u = new URL(url, location.origin);
+      var clean = u.pathname + u.search;
+      u.searchParams.set('section_id', sectionId);
+      fetch(u.toString(), { headers: { 'X-Requested-With': 'fetch' } })
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          var fresh = new DOMParser().parseFromString(html, 'text/html').querySelector('[data-collection-results]');
+          if (!fresh) { location.href = clean; return; }
+          container.innerHTML = fresh.innerHTML;
+          history[replace ? 'replaceState' : 'pushState']({ facets: 1 }, '', clean);
+          bind();
+          initAccordions(container);
+          initImgSkeleton(container);
+          initQuickAdd(container);
+          $$('[data-reveal], [data-reveal-stagger]', container).forEach(function (el) { el.classList.add('is-in'); });
+          var top = container.getBoundingClientRect().top + window.pageYOffset - 90;
+          if (window.pageYOffset > top + 40) window.scrollTo({ top: top, behavior: reduceMotion ? 'auto' : 'smooth' });
+        })
+        .catch(function () { location.href = clean; })
+        .finally(function () { dim(false); });
+    }
+    function bind() {
+      var drawer = $('[data-facets-drawer]', container);
+      function closeDrawer() { if (drawer) drawer.classList.remove('is-open'); unlockScroll(); hideScrim(); }
+      $$('[data-facets-open]', container).forEach(function (b) {
+        on(b, 'click', function () { if (!drawer) return; drawer.classList.add('is-open'); lockScroll(); showScrim(closeDrawer); });
+      });
+      $$('[data-facets-close]', container).forEach(function (b) { on(b, 'click', closeDrawer); });
+
+      var sel = $('select[name="sort_by"]', container);
+      if (sel) on(sel, 'change', function () {
+        var u = new URL(location.href);
+        u.searchParams.set('sort_by', sel.value);
+        u.searchParams.delete('page');
+        nav(u.pathname + u.search);
+      });
+      $$('form[data-facets-form], form[data-facets-drawer-form]', container).forEach(function (f) {
+        on(f, 'submit', function (e) {
+          e.preventDefault();
+          if (drawer) drawer.classList.remove('is-open');
+          unlockScroll(); hideScrim();
+          nav(formUrl(f));
+        });
+      });
+      $$('.facets--drawer a[href], .active-filters__chip[href], .pagination a[href]', container).forEach(function (a) {
+        on(a, 'click', function (e) { e.preventDefault(); nav(a.getAttribute('href')); });
+      });
+    }
+
+    on(window, 'popstate', function () { nav(location.pathname + location.search, true); });
+    bind();
+  }
+
+  /* ============================================================
      BOOT
      ============================================================ */
   function boot(root) {
@@ -663,6 +759,7 @@
     initImgSkeleton(root);
     initPopup();
     initCountdown();
+    initCollectionFacets();
     renderRecentlyViewed();
   }
   if (document.readyState !== 'loading') boot();

@@ -20,9 +20,12 @@
       (function(){
         var s=document.currentScript.closest('section');
         fetch(s.dataset.relatedUrl).then(function(r){return r.text();}).then(function(h){
-          var d=new DOMParser().parseFromString(h,'text/html').querySelector('.container');
-          if(d) s.querySelector('.container').innerHTML=d.innerHTML;
-        });
+          var doc=new DOMParser().parseFromString(h,'text/html');
+          var grid=doc.querySelector('.grid--products');
+          if(grid && grid.children.length){
+            s.querySelector('.container').innerHTML=doc.querySelector('.container').innerHTML;
+          } else { s.remove(); }
+        }).catch(function(){ s.remove(); });
       })();
     </script>
   </section>

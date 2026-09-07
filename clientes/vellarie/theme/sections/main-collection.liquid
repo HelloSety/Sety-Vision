@@ -1,7 +1,14 @@
 {%- liquid
   assign pp = section.settings.products_per_page
 -%}
-<section class="section--flush" data-section-id="{{ section.id }}">
+<section class="section--flush" data-section-id="{{ section.id }}" data-collection-results>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t }}</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{{ collection.title }}</span>
+    </nav>
+  </div>
   {%- if section.settings.show_banner and collection.image -%}
     <div class="collection-banner">
       <img src="{{ collection.image | image_url: width: 2000 }}" width="{{ collection.image.width }}" height="{{ collection.image.height }}" alt="{{ collection.title | escape }}" fetchpriority="high">
@@ -25,7 +32,7 @@
     {% render 'facets', results: collection, enable_filter: section.settings.enable_filtering, enable_sort: section.settings.enable_sorting %}
   </div>
 
-  <div class="container section--tight">
+  <div class="container section--tight" data-collection-grid>
     {%- paginate collection.products by pp -%}
       {%- if collection.products.size > 0 -%}
         <div class="grid--products" data-reveal-stagger>

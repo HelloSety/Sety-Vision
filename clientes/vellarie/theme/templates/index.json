@@ -130,6 +130,10 @@
         "color_scheme": "color-surface"
       }
     },
+    "faq": {
+      "type": "faq",
+      "settings": { "heading": "Frequently asked questions", "color_scheme": "" }
+    },
     "promo": {
       "type": "promo-banner",
       "settings": {
@@ -154,6 +158,7 @@
     "newarrivals",
     "brandstory",
     "testimonials",
+    "faq",
     "promo"
   ]
 }
