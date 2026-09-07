@@ -105,6 +105,14 @@ Sobe como tema **não publicado** — nada muda na loja ao vivo. Preview no admi
 
 **Opção B (zip):** já existe pronto — `clientes/vellarie/vellarie-theme-signature-v1.zip` (conteúdo de `theme/`, separadores `/`, 95 arquivos). Subir em *Loja virtual → Temas → Adicionar tema → Fazer upload de arquivo zip*. Entra como **não publicado** → revisar no preview → publicar.
 
+> **2026-09-07 — tema live = VELLARIE — SIGNATURE V7 (#163315482755, role MAIN).**
+> Publicado pelo Seven. Contém: base V6 + A–E (complementary products, FAQ, toast, facets AJAX, breadcrumb+JSON-LD) + polish (1 h1/página, tokens de status, contagem na collection, imagens −230KB) + **5 tiles de categoria** (Beauty/Grooming/Accessories/New Arrivals/Best Sellers — `assets/cat-tile-*.{jpg,webp}`, modo "baked" no `collection-list`, links p/ coleções reais editáveis no editor).
+> `shopify theme check` 0 erros. `layout/theme.liquid` intacto (analytics/`content_for_header`).
+> Temas VELLARIE — SIGNATURE V6 (#163248799875 + 2 órfãos) = UNPUBLISHED, podem ser apagados no admin.
+> Git: branch `vellarie-tema-premium-v2`, tags `vellarie-v7-pre-final-qa` / `vellarie-v7-final-qa`.
+> **Pushes `--allow-live` foram autorizados explicitamente pelo Seven** ("Publica no ar", 2026-09-07).
+> Pendências Admin: menu principal + footer menu (ainda PT "Início/Catálogo/Contato"); criar coleções reais Beauty/Grooming/Accessories/New Arrivals e repointar cada tile no editor; página About (handle `about`, template `page.about`); USD/Markets; `compare_at_price`; app de reviews; políticas EN + frete; **fotos de produto profissionais**.
+
 > **2026-09-05 — tema V6 DEPLOYADO (não publicado).** Evoluído V2→V6 (dark premium beauty-tech; auditoria funcional sem link/botão falso). `shopify theme push` funcionou via token Admin (`write_themes`).
 > - **Tema:** "VELLARIE — SIGNATURE V6" · id `163248799875` · role UNPUBLISHED · 0 erros (theme check + validação Shopify).
 > - **Preview** (logado no admin): `https://4zevyg-1g.myshopify.com?preview_theme_id=163248799875`
