@@ -44,19 +44,21 @@
               assign bw = 620
               assign bh = 715
           endcase
-          assign cat_url = coll.url | default: block.settings.link | default: routes.all_products_collection_url
+          assign cat_url = block.settings.link | default: coll.url | default: routes.all_products_collection_url
           assign cat_label = block.settings.title | default: coll.title | default: 'Shop'
         -%}
         <a class="cat-card cat-card--tall{% if baked %} cat-card--baked{% endif %}" href="{{ cat_url }}" {{ block.shopify_attributes }}>
           <span class="cat-card__media">
-            {%- assign img = block.settings.image | default: coll.featured_image -%}
-            {%- if img -%}
-              {% render 'responsive-image', image: img, sizes: '(min-width: 750px) 33vw, 90vw' %}
+            {%- comment -%} Priority: uploaded image → built-in tile → collection image → placeholder {%- endcomment -%}
+            {%- if block.settings.image != blank -%}
+              {% render 'responsive-image', image: block.settings.image, sizes: '(min-width: 750px) 33vw, 90vw' %}
             {%- elsif bundled != blank -%}
               <picture>
                 <source type="image/webp" srcset="{{ bundled | append: '.webp' | asset_url }}">
                 <img src="{{ bundled | append: '.jpg' | asset_url }}" alt="{{ cat_label | escape }}" width="{{ bw }}" height="{{ bh }}" loading="lazy">
               </picture>
+            {%- elsif coll.featured_image -%}
+              {% render 'responsive-image', image: coll.featured_image, sizes: '(min-width: 750px) 33vw, 90vw' %}
             {%- else -%}
               {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
             {%- endif -%}
