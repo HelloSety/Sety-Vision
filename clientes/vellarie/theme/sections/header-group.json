@@ -22,7 +22,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "overlay_on_home": true,
+        "header_style": "solid",
         "menu": "main-menu",
         "enable_mega_menu": true
       }
