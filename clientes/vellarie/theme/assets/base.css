@@ -412,6 +412,14 @@ strong, b { font-weight: 700; }
 .cat-card__title { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
 .cat-card__count { font-size: 0.72rem; color: var(--color-text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 3px; }
 .cat-card__body--overlay .cat-card__count { color: rgba(255,255,255,0.75); }
+/* 5-across category strip (responsive) */
+@media (min-width: 990px) { .cat-grid--5 { grid-template-columns: repeat(5, 1fr); } }
+@media (min-width: 600px) and (max-width: 989px) { .cat-grid--5 { grid-template-columns: repeat(3, 1fr); } }
+/* tiles whose label is baked into the image */
+.cat-grid--baked { gap: clamp(10px, 1.4vw, 18px); }
+@media (max-width: 599px) { .cat-grid--baked { grid-template-columns: repeat(2, 1fr); } }
+.cat-card--baked .cat-card__media { aspect-ratio: 124 / 143; }
+.cat-card--baked:hover .cat-card__media img { transform: scale(1.03); }
 
 /* ---------- 11. Editorial / rich blocks ---------- */
 .editorial { display: grid; grid-template-columns: 1fr; }

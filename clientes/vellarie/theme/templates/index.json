@@ -70,15 +70,16 @@
       }
     },
     "categories": {
-      "type": "category-index",
-      "settings": { "heading": "Shop by category", "color_scheme": "color-dark" },
+      "type": "collection-list",
+      "settings": { "heading": "Shop by category", "columns": "5", "text_source": "baked", "overlay_text": false, "color_scheme": "color-dark" },
       "blocks": {
-        "c1": { "type": "item", "settings": { "collection": "best-sellers", "label": "Grooming", "sub": "Shavers, trimmers & precision tools", "link": "shopify://collections/best-sellers" } },
-        "c2": { "type": "item", "settings": { "collection": "best-offers", "label": "Hair & Styling", "sub": "Brushes, irons & scalp care", "link": "shopify://collections/best-offers" } },
-        "c3": { "type": "item", "settings": { "collection": "free-shipping", "label": "Skin & Body", "sub": "Cleansing & beauty devices", "link": "shopify://collections/free-shipping" } },
-        "c4": { "type": "item", "settings": { "collection": "best-sellers", "label": "Recovery & Relief", "sub": "Massage & red-light therapy", "link": "shopify://collections/best-sellers" } }
+        "c1": { "type": "collection", "settings": { "default_asset": "tile-beauty", "title": "Beauty", "collection": "best-sellers", "link": "shopify://collections/best-sellers" } },
+        "c2": { "type": "collection", "settings": { "default_asset": "tile-grooming", "title": "Grooming", "collection": "best-sellers", "link": "shopify://collections/best-sellers" } },
+        "c3": { "type": "collection", "settings": { "default_asset": "tile-accessories", "title": "Accessories", "collection": "best-sellers", "link": "shopify://collections/best-sellers" } },
+        "c4": { "type": "collection", "settings": { "default_asset": "tile-new", "title": "New Arrivals", "collection": "best-offers", "link": "shopify://collections/best-offers" } },
+        "c5": { "type": "collection", "settings": { "default_asset": "tile-best", "title": "Best Sellers", "collection": "best-sellers", "link": "shopify://collections/best-sellers" } }
       },
-      "block_order": ["c1", "c2", "c3", "c4"]
+      "block_order": ["c1", "c2", "c3", "c4", "c5"]
     },
     "campaign": {
       "type": "campaign-feature",
